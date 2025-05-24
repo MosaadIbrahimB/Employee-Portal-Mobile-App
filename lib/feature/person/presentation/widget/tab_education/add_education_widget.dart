@@ -48,7 +48,6 @@ class AddEducationWidget extends StatelessWidget {
         SizedBox(height: 16.h),
         InputBirthDayWidget(
           data: "التاريخ",
-
         ),
         SizedBox(height: 44.h),
         CustomElevatedButtonWidget(data: "حفظ",onPressed: (){

@@ -14,7 +14,7 @@ class AllEducationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderAllSkillWidget(title: "الدرجة العلمية",),
+        HeaderAllSkillWidget(title: "الدرجة العلمية",subTitle: "الترتيب حسب",),
         SizedBox(height: 16.h),
         ListView.builder(
           shrinkWrap: true,

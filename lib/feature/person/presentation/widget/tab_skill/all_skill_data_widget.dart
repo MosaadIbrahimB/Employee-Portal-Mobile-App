@@ -13,7 +13,7 @@ class AllSkillDataWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderAllSkillWidget(title: "جميع المهارات",),
+        HeaderAllSkillWidget(title: "جميع المهارات",subTitle: "الترتيب حسب",),
         SizedBox(height: 16.h),
         ListView.builder(
           shrinkWrap: true,

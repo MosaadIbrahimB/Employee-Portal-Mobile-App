@@ -1,124 +1,113 @@
-import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/home_screen.dart';
+import 'package:employee_portal_mobile_app/feature/layout/control/layout_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/screen/person_screen.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/screen/request_screen.dart';
 import 'package:employee_portal_mobile_app/feature/salary/presentation/screen/salary_screen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LayoutScreen extends StatefulWidget {
+class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
 
-  @override
-  State<LayoutScreen> createState() => _LayoutScreenState();
-}
-
-class _LayoutScreenState extends State<LayoutScreen> {
-  int currentIndex = 0;
-  final List<Widget> listScreen = [
+  final List<Widget> listScreen = const [
     HomeScreen(),
-    Text("الطلبات"),
+    RequestScreen(),
     Text("الاجازات"),
-   SalaryScreen(),
+    SalaryScreen(),
     PersonScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: listScreen[currentIndex],
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(8).r,
-            topRight: Radius.circular(8).r,
-          ),
-          border: Border(top: BorderSide(color: Color(0xffF5F5F5), width: 2.w)),
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            splashFactory: NoSplash.splashFactory,
-          ),
-
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-
-            currentIndex: currentIndex,
-            onTap: (value) {
-              setState(() {
-                currentIndex = value;
-              });
-            },
-            elevation: 0,
-            selectedItemColor: Color(0xff36B0E3),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            selectedLabelStyle: AppTextStyle.iBMP10w700,
-            unselectedLabelStyle: AppTextStyle.iBMP10w700.copyWith(
-              color: Colors.black38,
+    return BlocProvider(
+      create: (_) => LayoutCubit(),
+      child: BlocBuilder<LayoutCubit, int>(
+        builder: (context, currentIndex) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: listScreen[currentIndex],
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8).r,
+                  topRight: Radius.circular(8).r,
+                ),
+                border: Border(
+                  top: BorderSide(color: const Color(0xffF5F5F5), width: 2.w),
+                ),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  splashFactory: NoSplash.splashFactory,
+                ),
+                child: BottomNavigationBar(
+                  backgroundColor: Colors.white,
+                  type: BottomNavigationBarType.fixed,
+                  currentIndex: currentIndex,
+                  onTap:
+                      (value) => context.read<LayoutCubit>().changeIndex(value),
+                  elevation: 0,
+                  selectedItemColor: const Color(0xff36B0E3),
+                  showSelectedLabels: true,
+                  showUnselectedLabels: true,
+                  selectedLabelStyle: AppTextStyle.iBMP10w700,
+                  unselectedLabelStyle: AppTextStyle.iBMP10w700.copyWith(
+                    color: Colors.black38,
+                  ),
+                  items: [
+                    _navItem(
+                      "assets/image/tab/home.svg",
+                      "الرئيسية",
+                      currentIndex == 0,
+                    ),
+                    _navItem(
+                      "assets/image/tab/document-list.svg",
+                      "الطلبات",
+                      currentIndex == 1,
+                    ),
+                    _navItem(
+                      "assets/image/tab/calendar-plus.svg",
+                      "الاجازات",
+                      currentIndex == 2,
+                    ),
+                    _navItem(
+                      "assets/image/tab/money-bill.svg",
+                      "المرتبات",
+                      currentIndex == 3,
+                    ),
+                    _navItem(
+                      "assets/image/tab/person.svg",
+                      "الملف الشخصى",
+                      currentIndex == 4,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            items: [
-              BottomNavigationBarItem(
-                icon: SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: SvgPicture.asset(
-                    "assets/image/tab/home.svg",
-                    color: currentIndex == 0 ? AppColor.primary : null,
-                  ),
-                ),
-                label: "الرئيسية",
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: SvgPicture.asset(
-                    "assets/image/tab/document-list.svg",
-                    color: currentIndex == 1 ? AppColor.primary : null,
-                  ),
-                ),
-                label: "الطلبات",
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: SvgPicture.asset(
-                    "assets/image/tab/calendar-plus.svg",
-                    color: currentIndex ==2 ? AppColor.primary : null,
-                  ),
-                ),
-                label: "الاجازات",
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: SvgPicture.asset(
-                    "assets/image/tab/money-bill.svg",
-                    color: currentIndex ==3 ? AppColor.primary : null,
-                  ),
-                ),
-                label: "المرتبات",
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: SvgPicture.asset(
-                    "assets/image/tab/person.svg",
-                    color: currentIndex ==4 ? AppColor.primary : null,
-                  ),
-                ),
-                label: "الملف الشخصى",
-              ),
-            ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }
+
+  BottomNavigationBarItem _navItem(
+    String iconPath,
+    String label,
+    bool isActive,
+  ) {
+    return BottomNavigationBarItem(
+      icon: SizedBox(
+        height: 24.h,
+        width: 24.w,
+        child: SvgPicture.asset(
+          iconPath,
+          color: isActive ? AppColor.primary : null,
+        ),
+      ),
+      label: label,
+    );
+  }
 }
+

@@ -2,8 +2,9 @@ import 'package:employee_portal_mobile_app/core/utils/app_message.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class HeaderAllSkillWidget extends StatelessWidget {
-  const HeaderAllSkillWidget({super.key, required this.title});
+  const HeaderAllSkillWidget({super.key, required this.title, required this.subTitle});
 final String title;
+final String subTitle;
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
@@ -20,7 +21,7 @@ final String title;
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("الترتيب حسب", style: AppTextStyle.iBMP12w700Black),
+                Text(subTitle, style: AppTextStyle.iBMP12w700Black),
                 SizedBox(height: 10.w),
                 Stack(
                   children: [

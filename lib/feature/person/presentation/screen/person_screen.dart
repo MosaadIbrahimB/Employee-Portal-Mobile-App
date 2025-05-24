@@ -7,8 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widget/info_data_widget.dart';
 
 class PersonScreen extends StatelessWidget {
-  PersonScreen({super.key});
- final List<Widget> listBody = [
+const  PersonScreen({super.key});
+
+ static final  List<Widget> listBody = [
     InfoDataWidget(),
     SkillDataWidget(),
    EducationDataWidget()
