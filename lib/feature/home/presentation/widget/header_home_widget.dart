@@ -1,0 +1,39 @@
+import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+
+class HeaderHomeWidget extends StatelessWidget {
+  const HeaderHomeWidget({super.key, required this.title});
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("الرئيسية", style: AppTextStyle.iBMP24w600),
+             Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(" اهلاً بك", style: AppTextStyle.iBMP12w500),
+                Text(",", style: AppTextStyle.iBMP12w500),
+                Text(title, style: AppTextStyle.iBMP12w500.copyWith(
+                    color: Color(0xff0958D9)
+                )),
+              ],
+            )
+          ],
+        ),
+        Container(
+          width: 44.w,
+          height: 44.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15).r,
+            color: Color(0xffFF9600),
+          ),
+          child: Icon(Icons.notifications_none, color: Colors.white),
+        ),
+      ],
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/route/app_route.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/onboarding/data/page_model.dart';
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
@@ -97,9 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void startNow() {
     // انتقل إلى شاشة تسجيل الدخول أو الرئيسية
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const Scaffold(body: Text("home"))),
-    );
+    Navigator.pushReplacementNamed(context, AppRoute.login);
   }
 }
 

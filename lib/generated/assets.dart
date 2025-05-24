@@ -4,9 +4,27 @@ class Assets {
 
   static const String fontIBMPlexSansArabicExtraLight = 'assets/font/IBMPlexSansArabic-ExtraLight.ttf';
   static const String fontIBMPlexSansArabicLight = 'assets/font/IBMPlexSansArabic-Light.ttf';
+  static const String fontNunitoRegular = 'assets/font/Nunito-Regular.ttf';
+  static const String homeBg = 'assets/image/home/bg.png';
+  static const String homeMoneyBill = 'assets/image/home/money-bill.svg';
+  static const String homeMoneyBills = 'assets/image/home/money-bills.svg';
+  static const String homeNoReport = 'assets/image/home/no_report.svg';
+  static const String homeOpeningTimes = 'assets/image/home/opening-times.svg';
+  static const String homeReportIcon = 'assets/image/home/report_icon.svg';
+  static const String homeWaveIcon = 'assets/image/home/wave_icon.svg';
+  static const String homeWithdrawalsIcon = 'assets/image/home/withdrawals_icon.svg';
+  static const String imageLoginPassword = 'assets/image/login/password.svg';
+  static const String loginEmail = 'assets/image/login/email.png';
+  static const String loginMail = 'assets/image/login/mail.svg';
+  static const String loginPassword = 'assets/image/login/password.png';
   static const String onboardingOnb1 = 'assets/image/onboarding/onb1.png';
   static const String onboardingOnb2 = 'assets/image/onboarding/onb2.png';
   static const String onboardingOnb3 = 'assets/image/onboarding/onb3.png';
   static const String splashLogo = 'assets/image/splash/logo.png';
+  static const String tabCalendarPlus = 'assets/image/tab/calendar-plus.svg';
+  static const String tabDocumentList = 'assets/image/tab/document-list.svg';
+  static const String tabHome = 'assets/image/tab/home.svg';
+  static const String tabMoneyBill = 'assets/image/tab/money-bill.svg';
+  static const String tabPerson = 'assets/image/tab/person.svg';
 
 }
