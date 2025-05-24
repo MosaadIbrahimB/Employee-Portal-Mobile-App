@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarTheme(
               backgroundColor: Colors.white,
               elevation: 0,

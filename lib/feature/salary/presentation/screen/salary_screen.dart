@@ -1,5 +1,5 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/last_salary_widget.dart';
+import 'package:employee_portal_mobile_app/feature/salary/presentation/data/salary_widget_model.dart';
 import 'package:employee_portal_mobile_app/feature/salary/widget/salary_widget.dart';
 
 class SalaryScreen extends StatelessWidget {

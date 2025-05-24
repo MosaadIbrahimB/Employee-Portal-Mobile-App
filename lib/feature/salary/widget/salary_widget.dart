@@ -1,18 +1,6 @@
 import 'package:employee_portal_mobile_app/core/configure/route/app_route.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-
-class SalaryWidgetModel {
-  String? date;
-  String? money;
-
-  SalaryWidgetModel({this.date, this.money});
-
-  static List<SalaryWidgetModel> salaryList = [
-    SalaryWidgetModel(date: "يونيو 2024", money: "34,0845158"),
-    SalaryWidgetModel(date: "مايو 2024", money: "36,0845158"),
-    SalaryWidgetModel(date: "ابريل 2024", money: "36,0845158"),
-  ];
-}
+import 'package:employee_portal_mobile_app/feature/salary/presentation/data/salary_widget_model.dart';
 
 class SalaryWidget extends StatelessWidget {
   const SalaryWidget({super.key, this.salaryWidgetModel});

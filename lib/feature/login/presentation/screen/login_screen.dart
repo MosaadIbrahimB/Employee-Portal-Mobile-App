@@ -1,11 +1,9 @@
 import 'package:employee_portal_mobile_app/core/configure/route/app_route.dart';
-import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/login/presentation/widget/custom_email_input_widget.dart';
 import 'package:employee_portal_mobile_app/feature/login/presentation/widget/header_widget.dart';
 import 'package:employee_portal_mobile_app/core/utils/valid_utils.dart';
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
-import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +17,12 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordControl = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    emailControl.dispose();
+    passwordControl.dispose();
+    super.dispose();
+  }
 
   // bool pass=true;
   @override

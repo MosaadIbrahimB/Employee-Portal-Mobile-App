@@ -1,5 +1,5 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/salary/widget/salary_body_widget.dart';
+import 'package:employee_portal_mobile_app/feature/salary/widget/detail_salary_body_widget.dart';
 
 class DetailSalaryScreen extends StatelessWidget {
   const DetailSalaryScreen({super.key});
@@ -22,7 +22,7 @@ class DetailSalaryScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(child: SalaryBodyWidget()),
+      body: SingleChildScrollView(child: DetailSalaryBodyWidget()),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/home_screen.dart';
+import 'package:employee_portal_mobile_app/feature/person/presentation/screen/person_screen.dart';
 import 'package:employee_portal_mobile_app/feature/salary/presentation/screen/salary_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,7 +19,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     Text("الطلبات"),
     Text("الاجازات"),
    SalaryScreen(),
-    Text("الملف الشخصى"),
+    PersonScreen(),
   ];
 
   @override

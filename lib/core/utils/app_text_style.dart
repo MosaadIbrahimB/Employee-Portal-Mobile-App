@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyle {
+  static TextStyle get iBMP16w400 => TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w400,
+      fontFamily: "IBMP",
+      color: Colors.black
+  );
 
   static TextStyle get iBMP38w700 => TextStyle(
     fontSize: 30.sp,
@@ -44,6 +50,12 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
     fontFamily: "IBMP",
     color: Color(0xff0D0D0D)
+  );
+  static TextStyle get iBMP16w500Black => TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w500,
+      fontFamily: "IBMP",
+      color: Color(0xff0D0D0D)
   );
   static TextStyle get iBMP14w600Whit => TextStyle(
       fontSize: 14.sp,
@@ -106,7 +118,13 @@ class AppTextStyle {
     color: Color(0xff242E49)
 
   );
+  static TextStyle get iBMP12w700Black => TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w700,
+      fontFamily: "IBMP",
+      color: Colors.black
 
+  );
   static TextStyle get iBMP24w600Black => TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.w600,
@@ -114,11 +132,17 @@ class AppTextStyle {
       color: Colors.black
 
   );
-  static TextStyle get iBMP16w500Black => TextStyle(
+  static TextStyle get iBMP16w500Gray => TextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w500,
       fontFamily: "IBMP",
       color: Color(0xff50555C)
+
+  );
+  static TextStyle get iBMP16w700Black => TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w700,
+      fontFamily: "IBMP",
 
   );
   static TextStyle get iBMP20w600 => TextStyle(

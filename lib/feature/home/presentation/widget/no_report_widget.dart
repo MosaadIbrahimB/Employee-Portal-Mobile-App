@@ -20,7 +20,7 @@ class NoReportWidget extends StatelessWidget {
               SizedBox(height: 25.h),
               Text("لا يوجد تقارير", style: AppTextStyle.iBMP24w600Black),
               SizedBox(height: 12.h),
-              Text("هل بك في نظام مهر لادارة الموارد البشرية", style: AppTextStyle.iBMP16w500Black)
+              Text("هل بك في نظام مهر لادارة الموارد البشرية", style: AppTextStyle.iBMP16w500Gray)
             ],
           )),
     );

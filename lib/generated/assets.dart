@@ -20,6 +20,10 @@ class Assets {
   static const String onboardingOnb1 = 'assets/image/onboarding/onb1.png';
   static const String onboardingOnb2 = 'assets/image/onboarding/onb2.png';
   static const String onboardingOnb3 = 'assets/image/onboarding/onb3.png';
+  static const String personAward = 'assets/image/person/award.svg';
+  static const String personDocPage = 'assets/image/person/doc_page.svg';
+  static const String personDocText = 'assets/image/person/doc_text.svg';
+  static const String personUpload = 'assets/image/person/upload.svg';
   static const String splashLogo = 'assets/image/splash/logo.png';
   static const String tabCalendarPlus = 'assets/image/tab/calendar-plus.svg';
   static const String tabDocumentList = 'assets/image/tab/document-list.svg';
