@@ -105,6 +105,13 @@ class AppTextStyle {
       color: Color(0xffFF9600)
 
   );
+  static TextStyle get iBMP12w500Red => TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w500,
+      fontFamily: "IBMP",
+      color: Color(0xffFF382B)
+
+  );
   static TextStyle get iBMP12w600 => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w600,

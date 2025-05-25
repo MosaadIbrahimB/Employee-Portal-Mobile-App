@@ -1,6 +1,6 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/page_cubit/page_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/custom_elevated_button_widget.dart';
+import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/custom_image_pick_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/input_birth_day_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/input_data_widget.dart';

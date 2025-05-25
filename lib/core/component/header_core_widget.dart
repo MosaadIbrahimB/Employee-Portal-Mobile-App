@@ -1,8 +1,8 @@
 import 'package:employee_portal_mobile_app/core/utils/app_message.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
-class HeaderAllSkillWidget extends StatelessWidget {
-  const HeaderAllSkillWidget({super.key, required this.title, required this.subTitle});
+class HeaderCoreWidget extends StatelessWidget {
+  const HeaderCoreWidget({super.key, required this.title, required this.subTitle});
 final String title;
 final String subTitle;
   @override

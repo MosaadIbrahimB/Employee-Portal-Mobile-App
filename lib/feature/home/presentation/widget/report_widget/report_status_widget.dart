@@ -1,23 +1,20 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 
-class IsCertifiedOrUnderReviewWidget extends StatelessWidget {
-  const IsCertifiedOrUnderReviewWidget({
-    super.key,
-    this.isCertified,
-    this.isUnderReview,
-    this.nameReport,
+class ReportStatusWidget extends StatelessWidget {
+  const ReportStatusWidget({
+    super.key, required this.reportModel,
+
   });
 
-  final bool? isCertified;
-  final bool? isUnderReview;
-  final String? nameReport;
 
+final ReportModel reportModel;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        isCertified == true
+        reportModel.  isCertified == true
             ? Container(
           padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
           decoration: BoxDecoration(
@@ -27,7 +24,7 @@ class IsCertifiedOrUnderReviewWidget extends StatelessWidget {
         )
             : SizedBox(),
         //قيد التدقيق
-        isUnderReview == true
+        reportModel. isUnderReview == true
             ? Container(
           padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
           decoration: BoxDecoration(
@@ -36,8 +33,17 @@ class IsCertifiedOrUnderReviewWidget extends StatelessWidget {
           child: Text("قيد التدقيق", style: AppTextStyle.iBMP12w500Orange),
         )
             : SizedBox(),
+        reportModel. isRejected == true
+            ? Container(
+          padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(255, 120, 117, 0.24),
+          ),
+          child: Text("مرفوض", style: AppTextStyle.iBMP12w500Red),
+        )
+            : SizedBox(),
         SizedBox(width: 3.w),
-        Text(nameReport ?? "", style: AppTextStyle.iBMP20w600),
+        Text(reportModel.nameReport ?? "", style: AppTextStyle.iBMP20w600),
       ],
     );
   }

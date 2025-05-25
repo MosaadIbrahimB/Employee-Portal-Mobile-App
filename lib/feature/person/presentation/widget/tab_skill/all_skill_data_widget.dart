@@ -1,8 +1,8 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/skill_page/skill_page_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/person/data/skill_model.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/custom_elevated_button_widget.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_skill/header_all_skill_widget.dart';
+import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
+import 'package:employee_portal_mobile_app/core/component/header_core_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_skill/item_skill_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,7 @@ class AllSkillDataWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderAllSkillWidget(title: "جميع المهارات",subTitle: "الترتيب حسب",),
+        HeaderCoreWidget(title: "جميع المهارات",subTitle: "الترتيب حسب",),
         SizedBox(height: 16.h),
         ListView.builder(
           shrinkWrap: true,
