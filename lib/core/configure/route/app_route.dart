@@ -1,5 +1,4 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/home_screen.dart';
 import 'package:employee_portal_mobile_app/feature/layout/presentation/screen/layout_screen.dart';
 import 'package:employee_portal_mobile_app/feature/login/presentation/screen/login_screen.dart';
 import 'package:employee_portal_mobile_app/feature/onboarding/presentation/screen/onboarding_screen.dart';
@@ -7,12 +6,11 @@ import 'package:employee_portal_mobile_app/feature/salary/presentation/screen/de
 import 'package:employee_portal_mobile_app/feature/splash/presentation/screen/splash_screen.dart';
 
 class AppRoute {
-  static const String splash = '/splash';
+  static const String splash = '/';
   static const String onboarding = '/onboarding';
   static const String login = '/login';
-  static const String home = '/';
+  static const String home = '/home';
   static const String layout = '/layout';
-
   static const String detailSalary = '/detailSalary';
 
   static Route onGenerateRoute(RouteSettings routSetting) {

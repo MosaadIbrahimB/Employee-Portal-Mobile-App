@@ -28,13 +28,13 @@ class MyApp extends StatelessWidget {
             )
           ),
           debugShowCheckedModeBanner: false,
-          onGenerateRoute: AppRoute.onGenerateRoute,
+          // onGenerateRoute: AppRoute.onGenerateRoute,
           locale: Locale('ar'),
 
-          // home: Directionality(
-          //   textDirection: TextDirection.rtl,
-          //   child: LayoutScreen(),
-          // ),
+          home: Directionality(
+            textDirection: TextDirection.rtl,
+            child: LayoutScreen(),
+          ),
         );
       },
     );
