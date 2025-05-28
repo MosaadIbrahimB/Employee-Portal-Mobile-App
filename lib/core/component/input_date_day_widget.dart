@@ -1,15 +1,15 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
-class InputBirthDayWidget extends StatefulWidget {
-  const InputBirthDayWidget({super.key, required this.data, });
+class InputDateDayWidget extends StatefulWidget {
+  const InputDateDayWidget({super.key, required this.data, });
   final String data;
 
 
   @override
-  State<InputBirthDayWidget> createState() => _InputBirthDayWidgetState();
+  State<InputDateDayWidget> createState() => _InputDateDayWidgetState();
 }
 
-class _InputBirthDayWidgetState extends State<InputBirthDayWidget> {
+class _InputDateDayWidgetState extends State<InputDateDayWidget> {
   DateTime selectedDate = DateTime(2024, 3, 22);
 
   @override

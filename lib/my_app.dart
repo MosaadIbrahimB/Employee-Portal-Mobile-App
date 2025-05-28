@@ -6,6 +6,7 @@ import 'package:employee_portal_mobile_app/feature/splash/presentation/screen/sp
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/configure/route/app_route.dart';
+import 'core/configure/theme/app_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,27 +21,12 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          theme: ThemeData(
-            scaffoldBackgroundColor: Colors.white,
-            appBarTheme: AppBarTheme(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              scrolledUnderElevation: 0
-            ),
-              popupMenuTheme: PopupMenuThemeData(
-                color: Colors.white, // لون خلفية القايمة كلها أبيض
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.r), // زوايا دائرية
-                  side: BorderSide(color: Colors.grey.shade300, width: 1.0), // بوردر خفيف
-                ),
-                textStyle:AppTextStyle.iBMP16w500Black,
-                menuPadding: EdgeInsets.zero, // عشان ما يكونش فيه مساحة فاضية حوالين القايمة كلها
-              )
-          ),
+          theme:AppTheme.themeLight() ,
+          // theme: AppTheme.themeDark(),
+          // themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
           // onGenerateRoute: AppRoute.onGenerateRoute,
           locale: Locale('ar'),
-
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: LayoutScreen(),

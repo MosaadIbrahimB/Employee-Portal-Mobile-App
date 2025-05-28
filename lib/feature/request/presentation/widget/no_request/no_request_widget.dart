@@ -1,6 +1,8 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
-import 'package:employee_portal_mobile_app/core/component/header_core_widget.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/found_request/custom_button_dropdown_widget.dart';
 
 class NoRequestWidget extends StatelessWidget {
   const NoRequestWidget({super.key});
@@ -37,13 +39,12 @@ class NoRequestWidget extends StatelessWidget {
                   ),
                   Text("فقط", style: AppTextStyle.iBMP16w500Black),
                   SizedBox(height: 12.h),
-                  SizedBox(
-                    height: 48.h,
-                    child: CustomElevatedButtonWidget(
-                      data: "طلب جديد",
-                      icon: Icons.keyboard_arrow_down,
-                      onPressed: () {},
-                    ),
+                  CustomElevatedButtonWidget(
+                    onPressed: () {
+                      context.read<RequestCubit>().changePage(1);
+                    },
+                    data: "طلب جديد",
+                    icon: Icons.keyboard_arrow_down,
                   ),
                 ],
               ),

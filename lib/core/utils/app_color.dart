@@ -8,5 +8,6 @@ class AppColor {
   static const conColor = Color(0xFFE3F7FF);
   static const gray = Color(0xFFF2F5F9);
   static const titleButton = Color(0xFF4C5057);
+  static const blue = Color(0xFF1783B5);
 
 }

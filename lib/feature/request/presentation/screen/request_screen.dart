@@ -1,28 +1,33 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/found_request/found_request_widget.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/header_request_screen_widget.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/no_request/no_request_widget.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/dropdown/dropdown_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_request_type_widget.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_screen_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 class RequestScreen extends StatelessWidget {
   const RequestScreen({super.key});
 
+  static final List<Widget> screen = [
+    RequestScreenBody(),
+    AddRequestTypeWidget()
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 25.h),
-            Text("الطلبات", style: AppTextStyle.iBMP24w600),
-            SizedBox(height: 34.h),
-            HeaderRequestScreenWidget(),
-            ReportModel.listReport.isNotEmpty?
-                FoundRequestWidget():NoRequestWidget()
-          ],
-        ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<DropdownCubit>(create: (context) => DropdownCubit()),
+        BlocProvider<RequestCubit>(create: (context) => RequestCubit()),
+        BlocProvider<TabSwitcherCubit>(create: (context) => TabSwitcherCubit()),
+      ],
+      child: BlocBuilder<RequestCubit,int>(
+        builder: (context,state) {
+          return screen[state];
+        }
       ),
     );
   }
 }
+

@@ -7,12 +7,14 @@ class CustomButtonWidget extends StatelessWidget {
     required this.onTap,
     required this.title,
     this.color,
+    this.borderColor,
     this.colorTitle,
   });
 
   final void Function() onTap;
   final String title;
   final Color? color;
+  final Color? borderColor;
   final Color? colorTitle;
 
   @override
@@ -25,11 +27,27 @@ class CustomButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: color ?? AppColor.primary,
           borderRadius: BorderRadius.circular(10).r,
+          border: Border.all(
+            color:borderColor!=null? borderColor! : Colors.transparent,
+                      )
         ),
         child: Center(
-          child: Text(
-            title,
-            style: AppTextStyle.iBMP14w600Whit.copyWith(color: colorTitle),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: AppTextStyle.iBMP14w600Whit.copyWith(color: colorTitle),
+              ),
+              SizedBox(width: 8.w),
+              Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColor.primary
+                    )
+                  ),
+                  child: Icon(Icons.add,color: AppColor.primary,))
+            ],
           ),
         ),
       ),

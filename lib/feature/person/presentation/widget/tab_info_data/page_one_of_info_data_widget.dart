@@ -2,7 +2,7 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/page_cubit/page_cubit.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/custom_image_pick_widget.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/input_birth_day_widget.dart';
+import 'package:employee_portal_mobile_app/core/component/input_date_day_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/input_data_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +35,7 @@ class PageOneOfInfoDataWidget extends StatelessWidget {
         SizedBox(height: 16.h),
         InputDataWidget(title: "الاسم باللغة الانجليزية", hint: "Full Name",controller: engNameController,),
         SizedBox(height: 16.h),
-        InputBirthDayWidget(data: "تاريخ الميلاد",),
+        InputDateDayWidget(data: "تاريخ الميلاد",),
         SizedBox(height: 16.h),
         InputDataWidget(title: "البريد الالكتروني", hint: "example@gmail.com",controller: emailController,),
         SizedBox(height: 16.h),

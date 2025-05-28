@@ -33,6 +33,7 @@ flutter:
     - assets/image/tab/
     - assets/image/home/
     - assets/image/person/
+    - assets/image/request/
     - assets/font/
 
 

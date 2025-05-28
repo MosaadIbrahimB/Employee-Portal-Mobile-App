@@ -2,8 +2,8 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/education_page/education_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/skill_page/skill_page_cubit.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/input_birth_day_widget.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_skill/input_skill_data_widget.dart';
+import 'package:employee_portal_mobile_app/core/component/input_date_day_widget.dart';
+import 'package:employee_portal_mobile_app/core/component/input_data_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddEducationWidget extends StatelessWidget {
@@ -34,19 +34,19 @@ class AddEducationWidget extends StatelessWidget {
           ],
         ),
         SizedBox(height: 8.h),
-        InputSkillDataWidget(
+        InputDataWidget(
           title: "جامعة/معهد",
           hint: "اكتب اسم الجامعة/ المعهد",
           controller: nameUnvController,
         ),
         SizedBox(height: 16.h),
-        InputSkillDataWidget(
+        InputDataWidget(
           title: "التخصص",
           hint: "اكتب اسم التخصص",
           controller: filedEduController,
         ),
         SizedBox(height: 16.h),
-        InputBirthDayWidget(
+        InputDateDayWidget(
           data: "التاريخ",
         ),
         SizedBox(height: 44.h),

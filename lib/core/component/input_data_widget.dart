@@ -1,16 +1,17 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
-class InputSkillDataWidget extends StatelessWidget {
-  const InputSkillDataWidget({
+class InputDataWidget extends StatelessWidget {
+  const InputDataWidget({
     super.key,
     required this.title,
     required this.hint,
-    required this.controller,
+    required this.controller, this.suffixIcon,
   });
 
   final String title;
   final String hint;
   final TextEditingController controller;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,8 @@ class InputSkillDataWidget extends StatelessWidget {
           controller: controller,
           style: AppTextStyle.iBMP16w500Black,
           decoration: InputDecoration(
-            suffixIcon: Icon(Icons.keyboard_arrow_down),
+            suffixIcon: suffixIcon??Icon(Icons.keyboard_arrow_down),
+
             hintText: hint,
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xffE6E6E6)),
