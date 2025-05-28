@@ -9,11 +9,15 @@ class ReportModel{
   final bool? isRejected; //تحت التدقيق
   final int? numberOfInstallments;//عدد الأقساط
   final int? amount;
+  final String? dateRequest; //تاريخ الطلب
+
 
   ReportModel(
       {this.typeReport, this.nameReport, this.not, this.isRequestAdvance,
         this.isSickLeave, this.isCertified, this.isUnderReview, this.isRejected,
-        this.numberOfInstallments, this.amount}); // الرصيد
+        this.numberOfInstallments, this.amount,
+      this.dateRequest
+      }); // الرصيد
 
 
 
@@ -34,6 +38,7 @@ class ReportModel{
       isSickLeave: true,
       numberOfInstallments: 2,
       amount: 20,
+      dateRequest: " 30 ديسمبر 2023"
     ),
     ReportModel(
       typeReport: "تقرير الاجازات",
@@ -69,6 +74,23 @@ class ReportModel{
       isRejected: true,
       numberOfInstallments: 2,
       amount: 20,
+    ),
+  ];
+  static List<ReportModel> listManagement=[
+    ReportModel(
+      nameReport: "استقالة",
+      isCertified: true,
+        dateRequest: " 30 ديسمبر 2023"
+    ),
+    ReportModel(
+        nameReport: "نقل",
+        dateRequest: " 30 ديسمبر 2023",
+      isUnderReview: true
+    ),
+    ReportModel(
+        nameReport: "ترقية",
+        dateRequest: " 30 ديسمبر 2023",
+        isRejected: true
     ),
   ];
 }

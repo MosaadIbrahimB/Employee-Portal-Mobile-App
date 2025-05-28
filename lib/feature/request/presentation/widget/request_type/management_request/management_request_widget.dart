@@ -9,7 +9,7 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/r
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-//شاشة اضافة طلب منها هنروح على شاشة
+//طلب ادارى شاشة اضافة
 
 class ManagementRequestWidget extends StatelessWidget {
   ManagementRequestWidget({super.key});

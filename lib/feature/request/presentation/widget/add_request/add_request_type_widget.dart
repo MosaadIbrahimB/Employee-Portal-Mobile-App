@@ -11,12 +11,7 @@ class AddRequestTypeWidget extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
 
-      child: Column(
-        children: [
-          AllManagementRequestWidget()
-        ],
-      ),
-
+child: ManagementRequestWidget(),
       ),
     );
   }

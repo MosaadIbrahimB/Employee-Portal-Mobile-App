@@ -7,7 +7,7 @@ class AppBarManagementRequestWidget extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return             Row(
+    return    Row(
       children: [
         GestureDetector(
           onTap: () {

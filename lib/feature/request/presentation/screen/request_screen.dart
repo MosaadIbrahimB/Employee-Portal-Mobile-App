@@ -4,6 +4,8 @@ import 'package:employee_portal_mobile_app/feature/request/control/request/reque
 import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_request_type_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_screen_body.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/all_management_request_widget.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/management_request_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RequestScreen extends StatelessWidget {
@@ -11,7 +13,8 @@ class RequestScreen extends StatelessWidget {
 
   static final List<Widget> screen = [
     RequestScreenBody(),
-    AddRequestTypeWidget()
+    AllManagementRequestWidget(),
+    ManagementRequestWidget()
   ];
 
   @override
@@ -24,7 +27,7 @@ class RequestScreen extends StatelessWidget {
       ],
       child: BlocBuilder<RequestCubit,int>(
         builder: (context,state) {
-          return screen[state];
+          return SingleChildScrollView(child: screen[state]);
         }
       ),
     );
