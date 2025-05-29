@@ -2,6 +2,7 @@ import 'package:employee_portal_mobile_app/core/component/input_data_widget.dart
 import 'package:employee_portal_mobile_app/core/component/input_date_day_widget.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/user_info_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/notes_input_field.dart';
@@ -27,7 +28,11 @@ class ManagementRequestWidget extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 12.h),
-            AppBarManagementRequestWidget(title: "اضافة طلب ادارى",),
+            AppBarManagementRequestWidget(title: "اضافة طلب ادارى",
+            onTap: (){
+              context.read<TabSwitcherCubit>().changeTab(0);
+            },
+            ),
             SizedBox(height: 8.h),
             InputDataWidget(
               title: "نوع الطلب",
@@ -73,6 +78,7 @@ class ManagementRequestWidget extends StatelessWidget {
             UserInfoWidget(),
             SizedBox(height: 16.h),
             CustomButtonWidget(onTap: (){
+              BlocProvider.of<RequestCubit>(context).changePage(0);
 
             }, title: "قدم الطلب"),
             SizedBox(height: 30.h),
