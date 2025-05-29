@@ -1,32 +1,38 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/header_home_widget.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/last_salary_widget.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget.dart';
+import 'package:employee_portal_mobile_app/feature/home/control/home_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/home/presentation/widget/home_body_widget.dart';
+import 'package:employee_portal_mobile_app/feature/notification/control/tab_notification_cubit/tab_notification_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/notification/presentation/screen/notification_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static final List<Widget> _body = [
+    HomeBodyWidget(),
+    NotificationScreen()
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25).r,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HeaderHomeWidget(title: "اسلام هاني"),
-              Column(
-                children: ReportModel.listReport.map((e) => ReportWidget(reportModel: e,)).toList(),
-              ),
-              SizedBox(height: 20),
-              LastSalaryWidget()
-            ],
+    return MultiBlocProvider(providers: [
+        BlocProvider(
+        create: (context) => HomeCubit(),),
+        BlocProvider(
+        create: (context) => TabNotificationCubit(),),
+
+
+    ], child:  SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0, vertical: 25).r,
+              child: BlocBuilder<HomeCubit,int>(builder: (context, state) => _body[state],)
           ),
         ),
       ),
     );
   }
 }
+
 

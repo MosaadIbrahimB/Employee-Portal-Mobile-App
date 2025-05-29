@@ -5,10 +5,12 @@ class AppBarManagementRequestWidget extends StatelessWidget {
     super.key,
     required this.title,
     this.onTap,
+    this.icon
   });
 
   final String title;
   final void Function()? onTap;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,10 @@ class AppBarManagementRequestWidget extends StatelessWidget {
           onTap:onTap,
           child: Container(
             padding: EdgeInsets.all(8).r,
-            color: Color(0xffF2F5F9),
-            child: Icon(Icons.close),
+
+            color: Theme.of(context).colorScheme.secondary
+            ,
+            child: Icon(icon??Icons.close),
           ),
         ),
         SizedBox(width: 12.w),

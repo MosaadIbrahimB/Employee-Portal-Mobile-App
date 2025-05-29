@@ -6,9 +6,9 @@ class AppThemeColorScheme{
     brightness: Brightness.light,
 
     primary: AppColor.primary,
-    onPrimary: Colors.white,
+    onPrimary: AppColor.oceanBlue,
 
-    secondary: Colors.cyan,
+    secondary: AppColor.cloudMist,
     onSecondary: AppColor.darkGreen,
 
     error: AppColor.red,
@@ -17,9 +17,11 @@ class AppThemeColorScheme{
     surface: AppColor.goldTransparent,
     onSurface: AppColor.orange,
 
-    outline: AppColor.lightGray,
-    background: AppColor.darkGray,
-    shadow: AppColor.gray
+    outline: AppColor.softStone,
+    background: AppColor.snowWhite,
+    shadow: AppColor.gray,
 
+      onPrimaryFixed: AppColor.lightBlueBg,
+      onSecondaryFixed: AppColor.white
   );
 }

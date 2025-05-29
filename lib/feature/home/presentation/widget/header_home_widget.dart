@@ -1,4 +1,5 @@
-import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import 'package:employee_portal_mobile_app/feature/home/control/home_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
 
 class HeaderHomeWidget extends StatelessWidget {
   const HeaderHomeWidget({super.key, required this.title});
@@ -31,7 +32,14 @@ class HeaderHomeWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15).r,
             color: Color(0xffFF9600),
           ),
-          child: Icon(Icons.notifications_none, color: Colors.white),
+          child: GestureDetector(
+              
+              onTap: (){
+                context.read<HomeCubit>().changeScreen(1);
+              },
+              child
+              
+              : Icon(Icons.notifications_none, color: Colors.white)),
         ),
       ],
     );
