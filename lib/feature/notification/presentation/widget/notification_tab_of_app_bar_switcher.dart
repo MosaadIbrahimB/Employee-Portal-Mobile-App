@@ -4,7 +4,7 @@ import 'package:employee_portal_mobile_app/feature/notification/control/tab_noti
 class NotificationTabOfAppBarSwitcher extends StatelessWidget {
   NotificationTabOfAppBarSwitcher({super.key});
 
-  final List<String> tabs = ['الاشعارات','طلب تعميمات الموظفين'];
+  final List<String> tabs = ['الاشعارات',"تعميمات الموظفين"];
 
   @override
   Widget build(BuildContext context) {

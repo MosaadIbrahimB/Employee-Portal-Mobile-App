@@ -25,21 +25,26 @@ class HeaderHomeWidget extends StatelessWidget {
             )
           ],
         ),
-        Container(
-          width: 44.w,
-          height: 44.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15).r,
-            color: Color(0xffFF9600),
+        GestureDetector(
+          onTap: (){
+            context.read<HomeCubit>().changeScreen(1);
+          },
+          child: Container(
+            width: 44.w,
+            height: 44.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15).r,
+              color: Theme.of(context).colorScheme.onSurface,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: Offset(0, 4), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Icon(Icons.notifications_none, color: Colors.white),
           ),
-          child: GestureDetector(
-              
-              onTap: (){
-                context.read<HomeCubit>().changeScreen(1);
-              },
-              child
-              
-              : Icon(Icons.notifications_none, color: Colors.white)),
         ),
       ],
     );
