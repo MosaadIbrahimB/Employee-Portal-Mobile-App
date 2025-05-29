@@ -1,10 +1,14 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_tab_of_app_bar_switcher.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/AppBarTabManagementRequestWidget.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/app_bar_management_request_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/date_request_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/tab_credits_management_request/item_of_tab_credits_request_widget.dart';
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabCreditsManagementRequestWidget extends StatelessWidget {
   const TabCreditsManagementRequestWidget({super.key});
@@ -13,6 +17,15 @@ class TabCreditsManagementRequestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 12.h),
+        AppBarManagementRequestWidget(title: "ادارى قيد الاعتماد",
+            onTap:    (){
+              context.read<RequestCubit>().changePage(0);
+            }
+        ),
+        SizedBox(height: 12.h),
+        RequestTabOfAppBarSwitcher(),
+        SizedBox(height: 12.h),
         AppBarTabManagementRequestWidget(),
         SizedBox(height: 12.h),
         Column(
@@ -21,8 +34,6 @@ class TabCreditsManagementRequestWidget extends StatelessWidget {
               .map((e) => ItemOfTabCreditsRequestWidget(reportModel: e))
               .toList(),
         ),
-        // SizedBox(height: 21.h),
-        // CustomButtonWidget(onTap: (){}, title: "طلب ادارى")
 
       ],
     );

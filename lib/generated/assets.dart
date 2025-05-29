@@ -14,7 +14,6 @@ class Assets {
   static const String homeWaveIcon = 'assets/image/home/wave_icon.svg';
   static const String homeWithdrawalsIcon = 'assets/image/home/withdrawals_icon.svg';
   static const String imageLoginPassword = 'assets/image/login/password.svg';
-  static const String imageRequestUser = 'assets/image/request/user.svg';
   static const String loginEmail = 'assets/image/login/email.png';
   static const String loginMail = 'assets/image/login/mail.svg';
   static const String loginPassword = 'assets/image/login/password.png';
@@ -25,6 +24,7 @@ class Assets {
   static const String personDocPage = 'assets/image/person/doc_page.svg';
   static const String personDocText = 'assets/image/person/doc_text.svg';
   static const String personUpload = 'assets/image/person/upload.svg';
+  static const String requestPdf = 'assets/image/request/pdf.png';
   static const String requestUser = 'assets/image/request/user.png';
   static const String splashLogo = 'assets/image/splash/logo.png';
   static const String tabCalendarPlus = 'assets/image/tab/calendar-plus.svg';
@@ -32,5 +32,4 @@ class Assets {
   static const String tabHome = 'assets/image/tab/home.svg';
   static const String tabMoneyBill = 'assets/image/tab/money-bill.svg';
   static const String tabPerson = 'assets/image/tab/person.svg';
-
 }

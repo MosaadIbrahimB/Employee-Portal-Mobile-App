@@ -1,15 +1,17 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class AddDocumentButtonWidget extends StatelessWidget {
-  const AddDocumentButtonWidget({super.key});
-
+  const AddDocumentButtonWidget({super.key, this.widget, this.title, this.onTap});
+final String ? title;
+  final  Widget? widget;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return    GestureDetector(
-      onTap: (){},
+      onTap: onTap,
 
       child: Container(
-        height: 44.h,
+        height: 54.h,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10).r,
             border: Border.all(
@@ -20,7 +22,7 @@ class AddDocumentButtonWidget extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
+              widget??  Container(
                   width: 14.w,height: 14.h,
                   decoration: BoxDecoration(
                       border: Border.all(
@@ -29,12 +31,12 @@ class AddDocumentButtonWidget extends StatelessWidget {
                   ),
                   child: Center(
                       child: Icon(
-                        Icons.add,color: AppColor.blue,size: 10,
+                         Icons.add,color: AppColor.blue,size: 10,
                       ))),
 
               SizedBox(width: 8.w),
               Text(
-                "اضافة وثائق",
+               title?? "اضافة وثائق",
                 style: AppTextStyle.iBMP16w700Black.copyWith(
                     color: AppColor.blue),
               ),

@@ -6,17 +6,19 @@ class ReportModel{
   final bool? isSickLeave;
   final bool? isCertified; //معتمده
   final bool? isUnderReview; //تحت التدقيق
-  final bool? isRejected; //تحت التدقيق
+  final bool? isRejected; //مرفوض
   final int? numberOfInstallments;//عدد الأقساط
   final int? amount;
   final String? dateRequest; //تاريخ الطلب
+  final String? time; //تاريخ الطلب
 
 
   ReportModel(
       {this.typeReport, this.nameReport, this.not, this.isRequestAdvance,
         this.isSickLeave, this.isCertified, this.isUnderReview, this.isRejected,
         this.numberOfInstallments, this.amount,
-      this.dateRequest
+      this.dateRequest,
+        this.time
       }); // الرصيد
 
 

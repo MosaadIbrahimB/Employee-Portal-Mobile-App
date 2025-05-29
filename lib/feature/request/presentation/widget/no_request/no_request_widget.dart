@@ -2,6 +2,7 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/found_request/custom_button_dropdown_widget.dart';
 
 class NoRequestWidget extends StatelessWidget {
@@ -42,6 +43,7 @@ class NoRequestWidget extends StatelessWidget {
                   CustomElevatedButtonWidget(
                     onPressed: () {
                       context.read<RequestCubit>().changePage(1);
+                      context.read<TabSwitcherCubit>().changeTab(0);
                     },
                     data: "طلب جديد",
                     icon: Icons.keyboard_arrow_down,

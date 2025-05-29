@@ -36,7 +36,7 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
               : TextInputType.visiblePassword,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 16.h),
-        fillColor: AppColor.gray,
+        fillColor: AppColor.grayLight,
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

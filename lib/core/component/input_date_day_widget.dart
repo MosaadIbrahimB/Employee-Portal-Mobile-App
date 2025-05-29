@@ -14,17 +14,20 @@ class _InputDateDayWidgetState extends State<InputDateDayWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var colorTheme = Theme.of(context).colorScheme;
+    var textTheme = Theme.of(context).textTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.data,  style:AppTextStyle.iBMP14w500),
+        Text(widget.data,  style:textTheme.bodyMedium),
         SizedBox(height: 8.h,),
         GestureDetector(
           onTap: _pickDate,
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
+              border: Border.all(color: colorTheme.outline),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -35,20 +38,17 @@ class _InputDateDayWidgetState extends State<InputDateDayWidget> {
                 Text(
                   " ${selectedDate.year}",
                   style:
-                  AppTextStyle.iBMP16w500Black
-                  ,
+                  textTheme.titleMedium                  ,
                 ),
                 Text(
                   " ${_monthName(selectedDate.month)} ",
                   style:
-                AppTextStyle.iBMP16w500Black
-                  ,
+                  textTheme.titleMedium                  ,
                 ),
                 Text(
                   "${selectedDate.day}  ",
                   style:
-                  AppTextStyle.iBMP16w500Black
-                  ,
+                  textTheme.titleMedium                  ,
                 ),
               ],
             ),

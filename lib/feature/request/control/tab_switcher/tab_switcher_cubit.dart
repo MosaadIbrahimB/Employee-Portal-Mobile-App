@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabSwitcherCubit extends Cubit<int> {
@@ -5,5 +6,12 @@ class TabSwitcherCubit extends Cubit<int> {
 
   changeTab(int index){
     emit(index);
+  }
+ late ReportModel _reportModel;
+  setReportModel(ReportModel model){
+    _reportModel = model;
+  }
+  getReportModel(){
+    return _reportModel;
   }
 }

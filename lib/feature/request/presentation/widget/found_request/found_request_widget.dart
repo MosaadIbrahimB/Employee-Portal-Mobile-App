@@ -2,6 +2,7 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoundRequestWidget extends StatelessWidget {
@@ -36,9 +37,9 @@ class FoundRequestWidget extends StatelessWidget {
               child: Align(
                 alignment: AlignmentDirectional.bottomEnd,
                 child: GestureDetector(
-
                   onTap: (){
                     context.read<RequestCubit>().changePage(1);
+                    context.read<TabSwitcherCubit>().changeTab(0);
                   },
                   child: Container(
                     width: 72.w,

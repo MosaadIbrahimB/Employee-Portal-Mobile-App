@@ -12,8 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 //طلب ادارى شاشة اضافة
 
-class ManagementRequestWidget extends StatelessWidget {
-  ManagementRequestWidget({super.key});
+class AddManagementRequestWidget extends StatelessWidget {
+  AddManagementRequestWidget({super.key});
 
   final TextEditingController requestTypeController = TextEditingController();
   final TextEditingController timeController = TextEditingController();

@@ -3,14 +3,16 @@ import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 
 class ReportStatusWidget extends StatelessWidget {
   const ReportStatusWidget({
-    super.key, required this.reportModel,
+    super.key, required this.reportModel, this.isDetailsScreen,
 
   });
-
+final bool ?isDetailsScreen;
 
 final ReportModel reportModel;
   @override
   Widget build(BuildContext context) {
+    var themeText = Theme.of(context).textTheme;
+    var themeColor = Theme.of(context).colorScheme;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -18,9 +20,9 @@ final ReportModel reportModel;
             ? Container(
           padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
           decoration: BoxDecoration(
-            color: Color.fromRGBO(49, 200, 89, .15),
+            color: themeColor.onSecondary,
           ),
-          child: Text("معتمدة", style: AppTextStyle.iBMP12w500Green),
+          child: Text("معتمدة", style: themeText.labelMedium),
         )
             : SizedBox(),
         //قيد التدقيق
@@ -28,22 +30,30 @@ final ReportModel reportModel;
             ? Container(
           padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
           decoration: BoxDecoration(
-            color: Color.fromRGBO(255, 215, 5, 0.1),
+            color: themeColor.surface,
           ),
-          child: Text("قيد التدقيق", style: AppTextStyle.iBMP12w500Orange),
+          child: Text("قيد التدقيق",
+              style: themeText.labelMedium?.copyWith(
+            color: themeColor.onSurface
+          ),
+          ),
         )
             : SizedBox(),
         reportModel. isRejected == true
             ? Container(
           padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
           decoration: BoxDecoration(
-            color: Color.fromRGBO(255, 120, 117, 0.24),
+            color: themeColor.onError,
           ),
-          child: Text("مرفوض", style: AppTextStyle.iBMP12w500Red),
+          child: Text("مرفوض",
+            style: themeText.labelMedium?.copyWith(
+                color: themeColor.error
+            ),
+          ),
         )
             : SizedBox(),
         SizedBox(width: 3.w),
-        Text(reportModel.nameReport ?? "", style: AppTextStyle.iBMP20w600),
+        isDetailsScreen==null?Text(reportModel.nameReport ?? "", style:themeText.displaySmall):SizedBox.shrink(),
       ],
     );
   }
