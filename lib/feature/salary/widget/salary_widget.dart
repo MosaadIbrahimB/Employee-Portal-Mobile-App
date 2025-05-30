@@ -34,7 +34,7 @@ class SalaryWidget extends StatelessWidget {
                   SizedBox(width: 8.w),
                   Text(
                     salaryWidgetModel!.date ?? "يونيو 2024",
-                    style: AppTextStyle.iBMP12w500.copyWith(
+                    style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
                       color: Color(0xff3D4966),
                     ),
                   ),
@@ -50,7 +50,7 @@ class SalaryWidget extends StatelessWidget {
                   SizedBox(width: 8.w),
                   Text(
                     salaryWidgetModel?.money ?? "34,08765400 EG",
-                    style: AppTextStyle.iBMP12w500.copyWith(
+                    style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
                       color: Color(0xff3D4966),
                     ),
                   ),
@@ -65,7 +65,7 @@ class SalaryWidget extends StatelessWidget {
                   children: [
                     Text(
                       "تفاصيل",
-                      style: AppTextStyle.iBMP12w500.copyWith(
+                      style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
                         color: Color(0xff3D4966),
                       ),
                     ),

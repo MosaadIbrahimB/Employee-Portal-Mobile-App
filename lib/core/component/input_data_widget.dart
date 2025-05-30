@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class InputDataWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class InputDataWidget extends StatelessWidget {
         SizedBox(height: 8.h),
         TextField(
           controller: controller,
-          style: AppTextStyle.iBMP16w500Black,
+          style:  context.text.titleMedium ,
           decoration: InputDecoration(
             suffixIcon: suffixIcon??Icon(Icons.keyboard_arrow_down),
 

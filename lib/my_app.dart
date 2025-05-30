@@ -22,8 +22,6 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme:AppTheme.themeLight() ,
-          // theme: AppTheme.themeDark(),
-          // themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
           // onGenerateRoute: AppRoute.onGenerateRoute,
           locale: Locale('ar'),

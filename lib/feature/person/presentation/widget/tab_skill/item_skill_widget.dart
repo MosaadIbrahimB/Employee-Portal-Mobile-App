@@ -37,7 +37,7 @@ class ItemSkillWidget extends StatelessWidget {
                       SvgPicture.asset("assets/image/person/doc_text.svg"),
 
                       SizedBox(width: 8.w),
-                      Text(skillModel.date??"", style: AppTextStyle.iBMP12w500),
+                      Text(skillModel.date??"", style: AppTextStyle.iBMP12w500MidnightBlue),
                     ],
                   ),
                   SizedBox(height: 4.h),
@@ -47,7 +47,7 @@ class ItemSkillWidget extends StatelessWidget {
                       SvgPicture.asset("assets/image/person/doc_page.svg")
                       ,
                       SizedBox(width: 8.w),
-                      Text(skillModel.degree??"", style: AppTextStyle.iBMP12w500),
+                      Text(skillModel.degree??"", style: AppTextStyle.iBMP12w500MidnightBlue),
                     ],
                   ):
                   SizedBox.shrink(),

@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/header_report_widget.dart';
@@ -24,9 +25,9 @@ class ReportWidget extends StatelessWidget {
           // height: 150.h,
           padding: EdgeInsets.all(12).r,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.color.surface,
             borderRadius: BorderRadius.circular(12).r,
-            border: Border.all(color: Colors.black12, width: 1.w),
+            border: Border.all(color:AppColor.black12, width: 1.w),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +44,18 @@ class ReportWidget extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               //عدد الاقساط -- مسحوبات الرصيد
-              reportModel.isRejected==true?SizedBox.shrink(): NumberOfRequestAdvanceAndSickLeave(reportModel: reportModel,),
+              reportModel.isRejected==true?SizedBox.shrink():
+              NumberOfRequestAdvanceAndSickLeave(reportModel: reportModel,),
               SizedBox(height: 12.h),
-              Text("ملاحظات", style: AppTextStyle.iBMP12w600),
+              Text("ملاحظات",
+                  style:context.text.headlineSmall!.copyWith(
+                fontWeight: FontWeight.w600,
+
+              ) ),
               SizedBox(height: 6.h),
               Text(
                 reportModel.not??"لا يوجد ملاحظات مضافة ",
-                style: AppTextStyle.iBMP16w500,
+                style:context.text.titleMedium,
               ),
             ],
           ),

@@ -1,9 +1,8 @@
-import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/found_request/custom_button_dropdown_widget.dart';
 
 class NoRequestWidget extends StatelessWidget {
   const NoRequestWidget({super.key});
@@ -36,9 +35,9 @@ class NoRequestWidget extends StatelessWidget {
                   SizedBox(height: 12.h),
                   Text(
                     "يتم اخد اجازة لاسباب صحية او اضطرارية ",
-                    style: AppTextStyle.iBMP16w500Black,
+                    style: context.text.titleMedium,
                   ),
-                  Text("فقط", style: AppTextStyle.iBMP16w500Black),
+                  Text("فقط", style: context.text.titleMedium),
                   SizedBox(height: 12.h),
                   CustomElevatedButtonWidget(
                     onPressed: () {

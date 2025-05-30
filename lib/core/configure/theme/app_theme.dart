@@ -31,7 +31,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(8.r),
         side: BorderSide(color: Colors.grey.shade300, width: 1.0),
       ),
-      textStyle: AppTextStyle.iBMP16w500Black,
+      textStyle: AppTextStyle.iBMP16w500,
       menuPadding: EdgeInsets.zero,
     );
   }

@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class AppBarTabManagementRequestWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class AppBarTabManagementRequestWidget extends StatelessWidget {
         Text(
           "نوفمبر 2024",
           style:
-          AppTextStyle.iBMP16w500Black
+         context.text.titleMedium
           ,
         ),
         Spacer(),

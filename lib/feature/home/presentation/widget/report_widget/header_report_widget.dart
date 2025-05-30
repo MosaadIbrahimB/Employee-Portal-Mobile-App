@@ -1,11 +1,8 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:flutter_svg/svg.dart';
 
 class HeaderReportWidget extends StatelessWidget {
-  const HeaderReportWidget({
-    super.key,
-    required this.typeReport, this.widget,
-  });
+  const HeaderReportWidget({super.key, required this.typeReport, this.widget});
 
   final String? typeReport;
   final Widget? widget;
@@ -22,10 +19,15 @@ class HeaderReportWidget extends StatelessWidget {
             children: [
               SvgPicture.asset("assets/image/home/report_icon.svg"),
               SizedBox(width: 8.h),
-              Text(typeReport ?? "", style: AppTextStyle.iBMP12w700),
+              Text(
+                typeReport ?? "",
+                style: context.text.headlineSmall!.copyWith(
+                  color: context.color.primaryFixedDim,
+                ),
+              ),
             ],
           ),
-          widget!=null? Icon(Icons.arrow_forward_outlined):SizedBox(),
+          widget != null ? Icon(Icons.arrow_forward_outlined) : SizedBox(),
         ],
       ),
     );

@@ -38,7 +38,7 @@ class NotificationTabOfAppBarSwitcher extends StatelessWidget {
                   child: Center(
                     child: Text(
                       tabs[index],
-                      style: AppTextStyle.iBMP12w500.copyWith(
+                      style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
                         color: isSelected ? Colors.white : Colors.black,
                         fontSize: 12.sp,
                       ),

@@ -30,11 +30,11 @@ final ReportModel reportModel;
             ? Container(
           padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
           decoration: BoxDecoration(
-            color: themeColor.surface,
+            color: themeColor.secondaryFixed,
           ),
           child: Text("قيد التدقيق",
               style: themeText.labelMedium?.copyWith(
-            color: themeColor.onSurface
+            color: themeColor.primaryFixed
           ),
           ),
         )
