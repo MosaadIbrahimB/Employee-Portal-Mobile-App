@@ -16,9 +16,9 @@ class NoRequestWidget extends StatelessWidget {
           height: 215.h,
           padding: EdgeInsets.symmetric(horizontal: 10).r,
           decoration: BoxDecoration(
-            border: Border.all(color: Color(0xffE5E5E5)),
+            border: Border.all(color: context.color.outline),
             borderRadius: BorderRadius.circular(8).r,
-            color: Colors.white,
+            color: context.color.surface,
           ),
           child: Center(
             child: SizedBox(

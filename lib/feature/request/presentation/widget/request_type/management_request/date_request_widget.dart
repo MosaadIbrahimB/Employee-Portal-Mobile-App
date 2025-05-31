@@ -19,11 +19,11 @@ class DateRequestWidget extends StatelessWidget {
                   ? "تاريخ تقديم الطلب  :${reportModel!.dateRequest}"
                   : "تاريخ تقديم الطلب  :غير متاح",
 
-              style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(color: Color(0xff3D4966)),
+              style: AppTextStyle.iBMP12w500MidnightBlue,// Color(0xff3D4966)
             )
             : Text(
               "تاريخ تقديم الطلب  : 30 ديسمبر 2023",
-              style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(color: Color(0xff3D4966)),
+              style: AppTextStyle.iBMP12w500MidnightBlue,
             ),
       ],
     );

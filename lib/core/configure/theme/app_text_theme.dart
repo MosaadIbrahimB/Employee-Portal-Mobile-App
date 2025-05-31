@@ -21,8 +21,6 @@ class AppTextTheme {
       bodyMedium: AppTextStyle.iBMP14w500,
       bodySmall: AppTextStyle.iBMP12w500MidnightBlue,
 
-
-
       labelLarge: AppTextStyle.iBMP14w600Whit,
       labelMedium: AppTextStyle.iBMP12w500Green,
       labelSmall: AppTextStyle.iBMP10w700,

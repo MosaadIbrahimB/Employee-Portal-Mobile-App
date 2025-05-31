@@ -1,4 +1,5 @@
 import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/layout/presentation/screen/layout_screen.dart';
 import 'package:employee_portal_mobile_app/feature/login/presentation/screen/login_screen.dart';
 import 'package:employee_portal_mobile_app/feature/onboarding/presentation/screen/onboarding_screen.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/configure/route/app_route.dart';
 import 'core/configure/theme/app_theme.dart';
+import 'feature/salary/presentation/screen/detail_salary_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           locale: Locale('ar'),
           home: Directionality(
             textDirection: TextDirection.rtl,
-            child: LayoutScreen(),
+            child: PersonScreen(),
           ),
         );
       },

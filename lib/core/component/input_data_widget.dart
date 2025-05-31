@@ -19,7 +19,7 @@ class InputDataWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: AppTextStyle.iBMP14w500),
+        Text(title, style: context.text.bodyMedium ),
         SizedBox(height: 8.h),
         TextField(
           controller: controller,
@@ -29,7 +29,7 @@ class InputDataWidget extends StatelessWidget {
 
             hintText: hint,
             border: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xffE6E6E6)),
+              borderSide: BorderSide(color: context.color.outline),
               borderRadius: BorderRadius.circular(12).r,
             ),
             contentPadding:

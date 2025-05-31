@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/tab_person_screen_cubit/tab_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_education/education_data_widget.dart';
@@ -24,7 +25,7 @@ const  PersonScreen({super.key});
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('الملف الشخصي', style: AppTextStyle.iBMP24w600),
+              Text('الملف الشخصي', style: context.text.displayMedium,),//AppTextStyle.iBMP24w600),
               TabOfAppBarSwitcher(),
             ],
           ),

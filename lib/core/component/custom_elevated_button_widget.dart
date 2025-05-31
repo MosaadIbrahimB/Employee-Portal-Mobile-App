@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class CustomElevatedButtonWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12).r,
-            color: AppColor.primary,
+            color:context.color.primary,// AppColor.primary,
 
           ),
           child:Row(
@@ -27,10 +28,10 @@ class CustomElevatedButtonWidget extends StatelessWidget {
             children: [
               Text(
                 data,
-                style: AppTextStyle.iBMP14w700.copyWith(color: Colors.white),
+                style:context.text.bodyLarge!.copyWith(color: context.color.surface),
               ),
               SizedBox(width: 8.w),
-              Icon(icon, color: Colors.white),
+              Icon(icon, color: context.color.surface),
             ],
           ) ,
         ),

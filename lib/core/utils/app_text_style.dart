@@ -99,7 +99,7 @@ class AppTextStyle {
   //   color:AppColor. darkCharcoal,
   // );
 
-  static TextStyle get iBMP16w400 => TextStyle(
+  static TextStyle get iBMP16w400Black => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     fontFamily: "IBMP",

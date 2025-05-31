@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/salary/presentation/data/earning_or_deductions_model.dart';
 
@@ -10,7 +11,7 @@ class EarningOrDeductionsWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).r,
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.black12)
+          border: Border.all(color:context.color.outline)
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,10 +19,10 @@ class EarningOrDeductionsWidget extends StatelessWidget {
         children: [
           Text(earningOrDeductionsModel?.label??"lable",
             textAlign: TextAlign.right,
-            style: AppTextStyle.iBMP14w500,
+            style:context.text.bodyMedium,// AppTextStyle.iBMP14w500
           ),
           Text( earningOrDeductionsModel?.value??"",
-            style: AppTextStyle.iBMP16w500,
+            style: context.text.titleMedium ,//AppTextStyle.iBMP16w500
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class AddDocumentButtonWidget extends StatelessWidget {
@@ -37,7 +38,7 @@ final String ? title;
               SizedBox(width: 8.w),
               Text(
                title?? "اضافة وثائق",
-                style: AppTextStyle.iBMP16w700Black.copyWith(
+                style:context.text.titleLarge !.copyWith(
                     color: AppColor.blue),
               ),
 

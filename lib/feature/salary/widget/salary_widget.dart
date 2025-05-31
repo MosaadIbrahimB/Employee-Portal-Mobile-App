@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/configure/route/app_route.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/salary/presentation/data/salary_widget_model.dart';
@@ -18,7 +19,7 @@ class SalaryWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12).r,
-            border: Border.all(color: Colors.black12, width: 1.w),
+            border: Border.all(color: context.color.outline, width: 1.w),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,13 +30,15 @@ class SalaryWidget extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     "assets/image/home/opening-times.svg",
-                    color: Color(0xff0072C3),
+                    width: 18.w,
+                    height: 18.h,
+                    color:context.color.primaryContainer,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     salaryWidgetModel!.date ?? "يونيو 2024",
-                    style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
-                      color: Color(0xff3D4966),
+                    style: context.text.bodySmall!.copyWith(
+                        color: AppColor.gray70
                     ),
                   ),
                 ],
@@ -45,13 +48,14 @@ class SalaryWidget extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.account_balance_wallet_outlined,
-                    color: Color(0xff0072C3),
+                    color:context.color.primaryContainer,// Color(0xff0072C3)
+                    size: 20.h,
                   ),
                   SizedBox(width: 8.w),
                   Text(
                     salaryWidgetModel?.money ?? "34,08765400 EG",
-                    style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
-                      color: Color(0xff3D4966),
+                    style: context.text.bodySmall!.copyWith(
+                      color: AppColor.gray70
                     ),
                   ),
                 ],
@@ -65,9 +69,7 @@ class SalaryWidget extends StatelessWidget {
                   children: [
                     Text(
                       "تفاصيل",
-                      style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
-                        color: Color(0xff3D4966),
-                      ),
+                      style: context.text.bodySmall,
                     ),
                     SizedBox(width: 8.w),
                     Icon(Icons.arrow_forward, size: 22),

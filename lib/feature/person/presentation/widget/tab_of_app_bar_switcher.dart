@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/tab_person_screen_cubit/tab_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class TabOfAppBarSwitcher extends StatelessWidget {
         borderRadius: BorderRadius
             .circular(8)
             .r,
-        color: Color(0xffF2F5F9),
+        color:context.color.outline,// Color(0xffF2F5F9),
       ),
       child: BlocBuilder<TabCubit, int>(
         builder: (context, state) {
@@ -31,15 +32,15 @@ class TabOfAppBarSwitcher extends StatelessWidget {
                 },
                 child: Container(
                   height: 32.h,
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  padding: EdgeInsets.symmetric(horizontal: 5).r,
                   decoration: BoxDecoration(
-                    color: isSelected ? Colors.lightBlue : null,
-                    borderRadius: BorderRadius.circular(5),
+                    color: isSelected ? context.color.primary : null,
+                    borderRadius: BorderRadius.circular(5).r,
                   ),
                   child: Center(
                     child: Text(
                       tabs[index],
-                      style: AppTextStyle.iBMP12w500MidnightBlue.copyWith(
+                      style:context.text.bodySmall!. copyWith(
                         color: isSelected ? Colors.white : Colors.black,
                         fontSize: 12.sp,
                       ),

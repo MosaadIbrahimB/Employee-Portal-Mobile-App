@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/skill_page/skill_page_cubit.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
@@ -24,12 +25,13 @@ class AddSkillWidget extends StatelessWidget {
               },
               child: Container(
                 padding: EdgeInsets.all(8).r,
-                color: Color(0xffF2F5F9),
+                color: context.color.secondary,//Color(0xffF2F5F9),
                 child: Icon(Icons.close),
               ),
             ),
             SizedBox(width: 12.w),
-            Text("اضافة مهارة جديدة", style: AppTextStyle.iBMP24w600),
+            Text("اضافة مهارة جديدة", style:context.text.displayMedium
+                ,)//AppTextStyle.iBMP24w600),
           ],
         ),
         SizedBox(height: 8.h),

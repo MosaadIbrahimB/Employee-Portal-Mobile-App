@@ -8,7 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class EducationDataWidget extends StatelessWidget {
   EducationDataWidget({super.key});
 
-  final List<Widget> page = [AllEducationWidget(), AddEducationWidget()];
+  final List<Widget> page = [
+    AllEducationWidget(),
+    AddEducationWidget(),
+  ];
 
   @override
   Widget build(BuildContext context) {

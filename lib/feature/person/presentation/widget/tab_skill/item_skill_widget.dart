@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/app_message.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/data/skill_model.dart';
@@ -5,7 +6,7 @@ import 'package:employee_portal_mobile_app/feature/person/data/skill_model.dart'
 class ItemSkillWidget extends StatelessWidget {
   const ItemSkillWidget({super.key,
     required this.skillModel});
-  static  final IconData _moreVertRounded = IconData(
+  static  const IconData _moreVertRounded = IconData(
     0xf8dc,
     fontFamily: 'MaterialIcons',
   );
@@ -17,7 +18,7 @@ class ItemSkillWidget extends StatelessWidget {
     return  Padding(
       padding: const EdgeInsets.only(bottom: 16.0).r,
       child: Card(
-        color: Colors.white,
+        color:context.color.surface,
         child: Padding(
           padding:
           const EdgeInsets.symmetric(horizontal: 21.0, vertical: 8).r,
@@ -28,7 +29,7 @@ class ItemSkillWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(skillModel.title??"", style: AppTextStyle.iBMP14w700),
+                  Text(skillModel.title??"", style:context.text.bodyLarge),// AppTextStyle.iBMP14w700),
                   SizedBox(height: 4.h),
                   Row(
                     children: [
@@ -37,17 +38,20 @@ class ItemSkillWidget extends StatelessWidget {
                       SvgPicture.asset("assets/image/person/doc_text.svg"),
 
                       SizedBox(width: 8.w),
-                      Text(skillModel.date??"", style: AppTextStyle.iBMP12w500MidnightBlue),
+                      Text(skillModel.date??"",
+                          style: context.text.bodySmall),
                     ],
                   ),
                   SizedBox(height: 4.h),
                   skillModel.degree!=null? Row(
                     children: [
-                      skillModel.isEducation==false?  SvgPicture.asset("assets/image/person/award.svg"):
+                      skillModel.isEducation==false?
+                      SvgPicture.asset("assets/image/person/award.svg"):
                       SvgPicture.asset("assets/image/person/doc_page.svg")
                       ,
                       SizedBox(width: 8.w),
-                      Text(skillModel.degree??"", style: AppTextStyle.iBMP12w500MidnightBlue),
+                      Text(skillModel.degree??"",
+                          style: context.text.bodySmall),
                     ],
                   ):
                   SizedBox.shrink(),
@@ -61,7 +65,7 @@ class ItemSkillWidget extends StatelessWidget {
                   width: 30.w,
                   height: 30.h,
                   decoration: BoxDecoration(
-                  color: Color(0xffF2F5F9),
+                  color: context.color.secondary,//(0xFFF2F5F9),
                     borderRadius: BorderRadius.circular(8).r
                   ),
                   child: Icon(_moreVertRounded),

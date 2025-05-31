@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/tab_person_screen_cubit/tab_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class NextPageDataWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("العنوان", style: AppTextStyle.iBMP16w700Black),
+        Text("العنوان", style:context.text.titleLarge),// AppTextStyle.iBMP16w700Black),
         SizedBox(height: 16.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +78,7 @@ class NextPageDataWidget extends StatelessWidget {
 
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.primary,
+            backgroundColor:context.color.primary,// AppColor.primary,
             minimumSize: Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12).r,
@@ -88,9 +89,9 @@ class NextPageDataWidget extends StatelessWidget {
             children: [
               Text(
                 "حفظ التعديلات",
-                style: AppTextStyle.iBMP14w700.copyWith(color: Colors.white),
+                style: context.text.bodyLarge!.copyWith(color: context.color.surface),
               ),
-              Icon(Icons.arrow_forward, color: Colors.white),
+              Icon(Icons.arrow_forward, color: context.color.surface),
             ],
           ),
         ),

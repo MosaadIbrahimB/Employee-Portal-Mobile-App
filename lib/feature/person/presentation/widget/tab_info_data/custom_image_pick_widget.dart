@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -21,30 +22,42 @@ class _CustomImagePickWidgetState extends State<CustomImagePickWidget> {
         child: Column(
           children: [
             Container(
-              width: 128.w,
-              height: 128.h,
+              width: 140.w,
+              height: 140.h,
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+                border: Border.all(
+                    width: 3,
+                    color: context.color.primaryContainer.withOpacity(.2)),
                 borderRadius: BorderRadius.circular(12).r,
-                color: Color.fromRGBO(15, 103, 254, 0.25),
+                color:context.color.primary.withOpacity(0.20)
               ),
               child:
               _imageFile == null
                   ? Center(
-                child: SizedBox(
-                  width: 48.w,
-                  height: 48.h,
-                  child: SvgPicture.asset(
-                    fit: BoxFit.fill,
-                    "assets/image/person/upload.svg",
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 27.h),
+
+                    SizedBox(
+                      width: 48.w,
+                      height: 48.h,
+                      child: Center(
+                        child: SvgPicture.asset(
+                          "assets/image/person/upload.svg",
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 18.h),
+                    Text("ارفع صورة شخصية", style:context.text.bodyMedium,)// AppTextStyle.iBMP14w500,),
+                    ,SizedBox(height: 14.h),
+
+                  ],
                 ),
               )
                   : Image.file(_imageFile!, fit: BoxFit.fill),
 
             ),
-            SizedBox(height: 8),
-            Text("ارفع صورة شخصية",style:AppTextStyle.iBMP14w500,),
           ],
         ),
       ),

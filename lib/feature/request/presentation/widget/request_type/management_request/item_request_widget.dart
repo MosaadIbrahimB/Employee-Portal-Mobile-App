@@ -20,16 +20,15 @@ class ItemRequestWidget extends StatelessWidget {
       onTap: () {
         context.read<TabSwitcherCubit>().changeTab(3);
         context.read<TabSwitcherCubit>().setReportModel(reportModel);
-
       },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.all(12).r,
         margin: EdgeInsets.only(bottom: 12).r,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(12).r,
-          border: Border.all(color: Colors.black12, width: 1.w),
+          border: Border.all(color:AppColor.black12, width: 1.w),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

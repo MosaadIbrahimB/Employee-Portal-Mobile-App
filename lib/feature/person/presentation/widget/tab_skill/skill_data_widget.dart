@@ -8,7 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SkillDataWidget extends StatelessWidget {
   SkillDataWidget({super.key});
 
-  final List<Widget> page = [AllSkillDataWidget(), AddSkillWidget()];
+  final List<Widget> page = [
+    AllSkillDataWidget(),
+    AddSkillWidget(),
+  ];
 
   @override
   Widget build(BuildContext context) {

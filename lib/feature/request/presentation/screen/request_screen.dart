@@ -12,7 +12,6 @@ class RequestScreen extends StatelessWidget {
   static final List<Widget> screen = [
     RequestScreenBody(),
     AllManagementRequestWidget(),
-    // ManagementRequestWidget(),
   ];
 
   @override

@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class NotesInputField extends StatefulWidget {
@@ -19,7 +20,7 @@ class NotesInputFieldState extends State<NotesInputField> {
       children: [
         Text(
           'ملاحظات اضافية',
-          style: AppTextStyle.iBMP14w500,
+          style:context.text.bodyMedium ,
         ),
         SizedBox(height: 8.h),
 
@@ -28,7 +29,7 @@ class NotesInputFieldState extends State<NotesInputField> {
           EdgeInsets.symmetric(horizontal: 12, vertical: 8).r,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12).r,
-            border: Border.all(color: Color(0xffE6E6E6)),
+            border: Border.all(color: context.color.outline,)
           ),
           child: Column(
             children: [

@@ -18,12 +18,14 @@ class AppColor {
 
 
 
+
   static const Color noSelect = Color(0xFFBAE6FF);
   static const Color buttonLogin = Color(0xFFDCE1E8);
   static const Color conColor = Color(0xFFE3F7FF);
   static const Color titleButton = Color(0xFF4C5057);
   static const Color darkGreen = Color.fromRGBO(49, 200, 89, .15);
   static const Color goldTransparent = Color.fromRGBO(255, 215, 5, 0.1);
+  static const Color black64A = Color.fromRGBO(9, 14, 29, 0.64);
 
   static const Color orange = Color(0xffFF9600);
 
@@ -31,15 +33,19 @@ class AppColor {
   static const Color darkRed = Color.fromRGBO(255, 120, 117, 0.24);
 
   static const Color gray = Colors.grey;
+  static const Color gray70 = Color.fromRGBO(61, 73, 102, 1);
   static const Color steelGrey = Color(0xff50555C);
   static const Color mediumGrey = Color(0xff757575);
   static const Color cloudMist = Color(0xFFF2F5F9);
   static const Color softStone = Color(0xFFE6E6E6);
   static const Color snowWhite = Color(0xFFF5F5F5);
+  static const Color backGroundWhite =  Color(0xffEDF9FF);
 
   static const Color darkCharcoal  =  Color(0xff0D0D0D);
 
   static const Color freshGreen  =  Color(0xff31C859);
+  static const Color lightGreen  = Color(0xff82DAA9);
+  static const Color lightRed  = Color(0xffFFCCCC);
 
 
 

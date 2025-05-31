@@ -15,7 +15,7 @@ class ListEarningOrDeductionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TitleWidget(title: "الاستحقاقات",),
+        TitleWidget(title: title,),
         Column(
           children: list.map((e) => EarningOrDeductionsWidget(
             earningOrDeductionsModel:e ,

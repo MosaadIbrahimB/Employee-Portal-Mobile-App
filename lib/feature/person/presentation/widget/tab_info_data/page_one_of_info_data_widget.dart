@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/page_cubit/page_cubit.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
@@ -21,15 +22,15 @@ class PageOneOfInfoDataWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomImagePickWidget(),
-        SizedBox(height: 21.h),
+        SizedBox(height: 16.h),
         Center(
           child: Text(
             "اخر عملية تسجيل دخول | اليوم 21:31 AM",
-            style: AppTextStyle.iBMP14w500,
+            style:context.text.bodyMedium,// AppTextStyle.iBMP14w500,
           ),
         ),
         SizedBox(height: 16.h),
-        Text("بياناتي", style: AppTextStyle.iBMP16w700Black),
+        Text("بياناتي", style:context.text.titleLarge),// AppTextStyle.iBMP16w700Black),
         SizedBox(height: 16.h),
         InputDataWidget(title: "الاسم باللغة العربية", hint: "الاسم بالكامل",controller: arabicNameController,),
         SizedBox(height: 16.h),

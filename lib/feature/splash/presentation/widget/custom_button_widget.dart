@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class CustomButtonWidget extends StatelessWidget {
@@ -37,7 +37,7 @@ class CustomButtonWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyle.iBMP14w600Whit.copyWith(color: colorTitle),
+                style:context.text.labelLarge!.copyWith(color: colorTitle),
               ),
               SizedBox(width: 8.w),
               Container(

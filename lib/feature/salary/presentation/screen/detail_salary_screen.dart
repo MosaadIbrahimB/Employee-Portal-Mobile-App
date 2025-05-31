@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/salary/widget/detail_salary_body_widget.dart';
 
@@ -10,14 +11,14 @@ class DetailSalaryScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("التفاصيل", style: AppTextStyle.iBMP24w600),
+        title: Text("التفاصيل", style:context.text.displayMedium ),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
           child: Container(
             margin: EdgeInsets.all(12).r,
-            color: Color(0xffF2F5F9),
+            color:context.color.secondary,// Color(0xffF2F5F9)
             child: Icon(Icons.close),
           ),
         ),

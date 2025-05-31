@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/app_message.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
@@ -12,7 +13,10 @@ final String subTitle;
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: AppTextStyle.iBMP16w400),
+          Text(title, style:context.text.titleMedium!.copyWith(
+            color: context.color.onSurface,
+            fontWeight: FontWeight.w400,
+          )),
           GestureDetector(
             onTap: (){
               AppMessage.msgFunction(context);
@@ -21,14 +25,19 @@ final String subTitle;
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(subTitle, style: AppTextStyle.iBMP12w700Black),
+                Text(subTitle, style:
+                context.text.labelMedium!.copyWith(
+                  color:AppColor. black64A,
+                  fontWeight: FontWeight.w700,
+                )),
+
                 SizedBox(height: 10.w),
                 Stack(
                   children: [
-                    Icon(Icons.keyboard_arrow_up_rounded),
+                    Icon(Icons.keyboard_arrow_up_rounded,color: AppColor.black64A,),
                     Positioned(
                       bottom: -11.h,
-                      child: Icon(Icons.keyboard_arrow_down_rounded),
+                      child: Icon(Icons.keyboard_arrow_down_rounded,color: AppColor.black64A,),
                     ),
                   ],
                 ),
