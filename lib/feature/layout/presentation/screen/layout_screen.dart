@@ -1,6 +1,5 @@
 import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
-
-import '../../../request/presentation/widget/dropdown_widget.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/screen/vacation_screen.dart';
 
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
@@ -8,7 +7,7 @@ class LayoutScreen extends StatelessWidget {
   final List<Widget> listScreen = const [
     HomeScreen(),
     RequestScreen(),
-    Text("الاجازات"),
+    VacationScreen() ,
     SalaryScreen(),
     PersonScreen(),
   ];
@@ -20,7 +19,7 @@ class LayoutScreen extends StatelessWidget {
       child: BlocBuilder<LayoutCubit, int>(
         builder: (context, currentIndex) {
           return Scaffold(
-            body: listScreen[currentIndex],
+            body: SafeArea(child: listScreen[currentIndex]),
             bottomNavigationBar:CustomBottomNavigationBarWidget()
           );
         },

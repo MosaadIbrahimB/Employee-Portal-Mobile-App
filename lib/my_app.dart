@@ -1,9 +1,11 @@
 import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/layout/presentation/screen/layout_screen.dart';
 
 import 'core/configure/theme/app_theme.dart';
 import 'feature/day/presentation/widget/day_details_request/day_details_request_widget.dart';
 import 'feature/day/presentation/widget/tab_add_additional/Additional_request_screen.dart';
 import 'feature/day/presentation/day_screen.dart';
+import 'feature/vacation/presentation/screen/vacation_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           // onGenerateRoute: AppRoute.onGenerateRoute,
           home: Directionality(
-              textDirection: TextDirection.rtl,child: DayDetailsRequestWidget()),
+              textDirection: TextDirection.rtl,child: LayoutScreen()),
           locale: Locale('ar'),
 
         );
