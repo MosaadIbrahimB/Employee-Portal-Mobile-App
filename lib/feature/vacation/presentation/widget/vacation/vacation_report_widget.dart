@@ -5,8 +5,8 @@ import 'package:employee_portal_mobile_app/feature/home/presentation/widget/repo
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/item_of_from_to_widget.dart';
 
-class VacationReportWidget extends StatelessWidget {
-  const VacationReportWidget({super.key, required this.reportModel});
+class ItemTabAllVacationWidget extends StatelessWidget {
+  const ItemTabAllVacationWidget({super.key, required this.reportModel});
 
   final ReportModel reportModel;
 

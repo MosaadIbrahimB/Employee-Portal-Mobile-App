@@ -1,9 +1,9 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 
-
 class SubmissionDateWidget extends StatelessWidget {
   const SubmissionDateWidget({super.key, required this.reportModel});
+
   final ReportModel reportModel;
 
   @override
@@ -25,12 +25,13 @@ class SubmissionDateWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(Icons.calendar_today_outlined),
-              SizedBox(width: 8.w),
-              Text(
-                " ${reportModel.dateRequest}",
-                style: textTheme.titleMedium,
+              Icon(
+                Icons.calendar_today_outlined,
+                color: context.color.surfaceContainer,
+                size: 22.r,
               ),
+              SizedBox(width: 8.w),
+              Text(" ${reportModel.dateRequest}", style: textTheme.titleMedium),
             ],
           ),
         ),

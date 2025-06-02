@@ -5,6 +5,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/body_tab_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/tab_all_vacation/tab_all_vacation_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/tab_credits_vacation/tab_credits_vacation_widget.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_details/vacation_details_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/vacation_request_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,8 +15,8 @@ class VacationScreen extends StatelessWidget {
   static final List<Widget> body = [
     const NoVacationWidget(),
     const VacationRequestWidget(),
-    BodyTabWidget()
-
+    const BodyTabWidget(),
+    VacationDetailsWidget(),
   ];
 
   @override
@@ -36,5 +37,3 @@ class VacationScreen extends StatelessWidget {
     );
   }
 }
-
-

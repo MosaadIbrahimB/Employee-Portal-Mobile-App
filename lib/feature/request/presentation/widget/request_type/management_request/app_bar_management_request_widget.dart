@@ -5,7 +5,7 @@ class AppBarManagementRequestWidget extends StatelessWidget {
     super.key,
     required this.title,
     this.onTap,
-    this.icon
+    this.icon,
   });
 
   final String title;
@@ -17,12 +17,11 @@ class AppBarManagementRequestWidget extends StatelessWidget {
     return Row(
       children: [
         GestureDetector(
-          onTap:onTap,
+          onTap: onTap,
           child: Container(
             padding: EdgeInsets.all(8).r,
-            color: Theme.of(context).colorScheme.secondary
-            ,
-            child: Icon(icon??Icons.close),
+            color: Theme.of(context).colorScheme.secondary,
+            child: Icon(icon ?? Icons.close),
           ),
         ),
         SizedBox(width: 12.w),

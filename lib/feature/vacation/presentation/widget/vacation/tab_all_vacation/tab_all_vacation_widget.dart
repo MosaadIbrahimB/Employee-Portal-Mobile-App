@@ -1,7 +1,7 @@
 import 'package:employee_portal_mobile_app/core/component/header_core_widget.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/tab_vacation_of_app_bar_switcher.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/control/vacation_cubit/vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/vacation_report_widget.dart';
 
 class TabAllVacationWidget extends StatelessWidget {
@@ -9,13 +9,19 @@ class TabAllVacationWidget extends StatelessWidget {
 
   final List<ReportModel> reportModel = [
     ReportModel(
+      appBarTitle: "اجازة مرضية",
       nameReport: "اجازة مرضية",
       isUnderReview: true,
       numberOfInstallments: 3,
       isSickLeave: true,
       amount: 234,
+      typeReport:"اجازة مرضية",
+      dateRequest: "22 نوفمبر2024",
+      duration: "12 يوم"
     ),
     ReportModel(
+      appBarTitle: "اجازة حج",
+
       nameReport: "اجازة حج",
       isUnderReview: true,
       numberOfInstallments: 3,
@@ -33,15 +39,18 @@ class TabAllVacationWidget extends StatelessWidget {
         Column(
           children:
               reportModel
-                  .map((e) => VacationReportWidget(reportModel: e))
+                  .map(
+                    (e) => GestureDetector(
+                      onTap: () {
+                        context.read<VacationCubit>().changeTab(3);
+                        context.read<VacationCubit>().setReportModel(e);
+                      },
+                      child: ItemTabAllVacationWidget(reportModel: e),
+                    ),
+                  )
                   .toList(),
         ),
-
       ],
     );
   }
 }
-
-
-
-

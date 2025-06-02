@@ -16,14 +16,15 @@ class BodyTabWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<VacationTabCubit, int>(
       builder: (context, state) {
-        return SingleChildScrollView(child: Column(
-          children: [
-            TabVacationOfAppBarSwitcherWidget(),
-            SizedBox(height: 16.h),
-
-            body[state],
-          ],
-        ));
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              TabVacationOfAppBarSwitcherWidget(),
+              SizedBox(height: 16.h),
+              body[state],
+            ],
+          ),
+        );
       },
     );
   }
