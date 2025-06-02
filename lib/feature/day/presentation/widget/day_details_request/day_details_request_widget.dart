@@ -1,5 +1,7 @@
+import 'package:employee_portal_mobile_app/core/component/input_data_widget.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/day/presentation/widget/day_app_bar_widget.dart';
+import 'package:employee_portal_mobile_app/feature/day/presentation/widget/work_shift_widget.dart';
 
 import '../../../../../generated/assets.dart';
 import '../../../../home/data/report_model.dart';
@@ -57,12 +59,12 @@ class DayDetailsRequestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: DayAppBarWidget(title: "تفاصيل الطلب"),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(12.0).r,
+            padding: const EdgeInsets.symmetric(horizontal: 16).r,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 16.h),
                 // معتمده - تحت الطلب -مرفوض
@@ -74,11 +76,21 @@ class DayDetailsRequestWidget extends StatelessWidget {
                 //النوع
                 TypeWidget(reportModel: reportModel),
                 SizedBox(height: 16.h),
-                TimeWidget(reportModel: reportModel),
-                //المراجع الاول الثانى
+                SubmissionDateWidget(reportModel: reportModel),
                 SizedBox(height: 16.h),
+                TimeWidget(reportModel: reportModel),
+                SizedBox(height: 16.h),
+                WorkShiftWidget(reportModel: reportModel),
+                SizedBox(height: 16.h),
+                InputDataWidget(
+                  controller: TextEditingController(text: reportModel.duration),
+                  hint: "المدة ",
+                  title: "المدة",
+                  fillColor: context.color.onPrimaryContainer,
+                ),
+                SizedBox(height: 16.h),
+                // //المراجع الاول الثانى
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:
                   AccountModel.accountList
                       .map((e) => AccountWidget(accountModel: e))

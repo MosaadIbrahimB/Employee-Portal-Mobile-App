@@ -15,7 +15,7 @@ class TypeWidget extends StatelessWidget {
     return   Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text( reportModel.typeReport??  "النوع", style: textTheme.bodyMedium),
+        Text(   "النوع", style: textTheme.bodyMedium),
         SizedBox(height: 8.h),
         Container(
           width: double.infinity,
