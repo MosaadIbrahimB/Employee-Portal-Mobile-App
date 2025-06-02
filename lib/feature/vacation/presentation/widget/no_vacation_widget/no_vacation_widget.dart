@@ -7,19 +7,16 @@ class NoVacationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0).r,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("الاجازات", style: context.text.displayMedium),
-          SizedBox(height: 20.h),
-          VacationYearCurrentWidget(),
-          SizedBox(height: 36.h),
-          const TextNoVacationWidget(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("الاجازات", style: context.text.displayMedium),
+        SizedBox(height: 20.h),
+        VacationYearCurrentWidget(),
+        SizedBox(height: 36.h),
+        const TextNoVacationWidget(),
 
-        ],
-      ),
+      ],
     );
   }
 }

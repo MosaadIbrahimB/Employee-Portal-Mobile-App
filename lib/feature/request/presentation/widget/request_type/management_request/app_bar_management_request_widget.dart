@@ -20,7 +20,6 @@ class AppBarManagementRequestWidget extends StatelessWidget {
           onTap:onTap,
           child: Container(
             padding: EdgeInsets.all(8).r,
-
             color: Theme.of(context).colorScheme.secondary
             ,
             child: Icon(icon??Icons.close),

@@ -1,24 +1,23 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/header_report_widget.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/number_of_request_advance_and_sick_leave.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/opening_time_widget.dart';
+import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/item_of_from_to_widget.dart';
 
-class ReportWidget extends StatelessWidget {
-  const ReportWidget({super.key, required this.reportModel});
+class VacationReportWidget extends StatelessWidget {
+  const VacationReportWidget({super.key, required this.reportModel});
 
   final ReportModel reportModel;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //نوع الطلب
-        HeaderReportWidget(typeReport: reportModel.typeReport),
-        SizedBox(height: 12.h),
         Container(
           // height: 150.h,
+          margin: EdgeInsets.only(bottom: 12).r,
           padding: EdgeInsets.all(12).r,
           decoration: BoxDecoration(
             color: context.color.surface,
@@ -33,7 +32,7 @@ class ReportWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ReportStatusWidget(reportModel: reportModel),
-                  OpeningTimeWidget(),
+                  OpeningTimeWidget(title: "المدة : 10 أيام"),
                 ],
               ),
               SizedBox(height: 12.h),
@@ -41,19 +40,26 @@ class ReportWidget extends StatelessWidget {
               reportModel.isRejected == true
                   ? SizedBox.shrink()
                   : NumberOfRequestAdvanceAndSickLeave(
-                    reportModel: reportModel,
-                  ),
-              SizedBox(height: 12.h),
-              Text(
-                "ملاحظات",
-                style: context.text.headlineSmall!.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+                reportModel: reportModel,
               ),
-              SizedBox(height: 6.h),
-              Text(
-                reportModel.not ?? "لا يوجد ملاحظات مضافة ",
-                style: context.text.titleMedium,
+              SizedBox(height: 12.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: ItemOfFromToWidget(
+                      title: "من",
+                      date: "22 نوفمبر2024",
+                    ),
+                  ),
+                  SizedBox(width: 8.w),
+                  Expanded(
+                    child: ItemOfFromToWidget(
+                      title: "من",
+                      date: "22 نوفمبر2024",
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
