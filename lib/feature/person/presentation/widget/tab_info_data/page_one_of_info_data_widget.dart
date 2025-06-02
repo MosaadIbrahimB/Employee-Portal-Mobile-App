@@ -1,20 +1,20 @@
+import 'package:employee_portal_mobile_app/core/component/input_data_widget.dart';
 import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/page_cubit/page_cubit.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/custom_image_pick_widget.dart';
 import 'package:employee_portal_mobile_app/core/component/input_date_day_widget.dart';
-import 'package:employee_portal_mobile_app/feature/person/presentation/widget/tab_info_data/input_data_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PageOneOfInfoDataWidget extends StatelessWidget {
    PageOneOfInfoDataWidget({super.key});
-  TextEditingController arabicNameController=TextEditingController();
-  TextEditingController engNameController=TextEditingController();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController telephoneController=TextEditingController();
-  TextEditingController idController=TextEditingController();
-  TextEditingController nIdController=TextEditingController();
+ final TextEditingController arabicNameController=TextEditingController();
+ final TextEditingController engNameController=TextEditingController();
+ final TextEditingController emailController=TextEditingController();
+ final TextEditingController telephoneController=TextEditingController();
+ final TextEditingController idController=TextEditingController();
+ final TextEditingController nIdController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {

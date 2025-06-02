@@ -7,27 +7,22 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/r
 class TabManagementRequestWidget extends StatelessWidget {
   const TabManagementRequestWidget({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: 12.h),
-        AppBarManagementRequestWidget(title:  "طلباتى الادارية",
-             onTap:    (){
-              context.read<RequestCubit>().changePage(0);
-            }
+        AppBarManagementRequestWidget(
+          title: "طلباتى الادارية",
+          onTap: () {
+            context.read<RequestCubit>().changePage(0);
+          },
         ),
         SizedBox(height: 12.h),
         RequestTabOfAppBarSwitcher(),
         SizedBox(height: 12.h),
         BodyTabManagementRequestWidget(),
-
       ],
     );
   }
 }
-
-
-

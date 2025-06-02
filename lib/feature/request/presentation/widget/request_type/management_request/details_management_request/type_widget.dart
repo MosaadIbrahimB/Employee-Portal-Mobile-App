@@ -15,7 +15,7 @@ class TypeWidget extends StatelessWidget {
     return   Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("النوع", style: textTheme.bodyMedium),
+        Text( reportModel.typeReport??  "النوع", style: textTheme.bodyMedium),
         SizedBox(height: 8.h),
         Container(
           width: double.infinity,
@@ -23,7 +23,7 @@ class TypeWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: colorTheme.outline),
             borderRadius: BorderRadius.circular(8),
-            color: colorTheme.background,
+            color: colorTheme.onPrimaryContainer,
           ),
           child: Text(
             " ${reportModel.typeReport ?? "النوع"}",
@@ -34,3 +34,5 @@ class TypeWidget extends StatelessWidget {
     );
   }
 }
+
+

@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/app_image.dart';
 import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
@@ -10,7 +11,7 @@ class CustomInputWidget extends StatefulWidget {
     this.hintText,
     this.obscureText = false,
     this.isPassWordInput = false,
-    this.validator
+    this.validator,
   });
 
   final TextEditingController emailControl;
@@ -18,6 +19,7 @@ class CustomInputWidget extends StatefulWidget {
   bool obscureText;
   bool isPassWordInput;
   String? Function(String?)? validator;
+
   @override
   State<CustomInputWidget> createState() => _CustomInputWidgetState();
 }
@@ -28,7 +30,7 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
     return TextFormField(
       obscureText: widget.obscureText ?? false,
       textDirection: TextDirection.rtl,
-      validator:widget.validator,
+      validator: widget.validator,
       controller: widget.emailControl,
       keyboardType:
           widget.obscureText == false
@@ -36,7 +38,8 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
               : TextInputType.visiblePassword,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 16.h),
-        fillColor: AppColor.cloudMist,
+        fillColor: context.color.secondary,
+        // AppColor.cloudMist,
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -44,11 +47,11 @@ class _CustomInputWidgetState extends State<CustomInputWidget> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppColor.conColor, width: 1),
+          borderSide: BorderSide(color: AppColor.iceBlue, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppColor.primary, width: 1),
+          borderSide: BorderSide(color: context.color.primary, width: 1),
         ),
         hintText: widget.hintText,
         hintStyle: AppTextStyle.iBMP16w500,

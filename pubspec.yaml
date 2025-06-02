@@ -34,6 +34,7 @@ flutter:
     - assets/image/home/
     - assets/image/person/
     - assets/image/request/
+    - assets/image/day/
     - assets/font/
 
 

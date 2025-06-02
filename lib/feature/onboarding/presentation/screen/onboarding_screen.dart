@@ -61,6 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               SizedBox(
                                 width: MediaQuery.sizeOf(context).width * .35,
                                 child: CustomButtonWidget(
+                                  isDisableIcon: true,
                                   color: AppColor.lightBlueBg,
                                   colorTitle: AppColor.primary,
                                   onTap: nextPage,

@@ -32,8 +32,8 @@ class TabEmployeeNotificationWidget extends StatelessWidget {
         SizedBox(height: 12.h),
         ItemNotificationWidget(title: "جديد", backGround:colorTheme.onPrimaryFixed,),
         SizedBox(height: 8.h),
-        ItemNotificationWidget(title: "تم قراتها سابقاً", backGround:colorTheme.onSecondaryFixed,),
-        ItemNotificationWidget( backGround:colorTheme.onSecondaryFixed,),
+        ItemNotificationWidget(title: "تم قراتها سابقاً", backGround:colorTheme.surface,),
+        ItemNotificationWidget( backGround:colorTheme.surface,),
 
       ],
     );

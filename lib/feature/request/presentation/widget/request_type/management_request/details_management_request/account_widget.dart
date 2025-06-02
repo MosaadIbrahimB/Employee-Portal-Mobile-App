@@ -38,7 +38,7 @@ class AccountWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: colorTheme.outline),
                   borderRadius: BorderRadius.circular(8),
-                  color: colorTheme.background,
+                  color: colorTheme.onPrimaryContainer,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

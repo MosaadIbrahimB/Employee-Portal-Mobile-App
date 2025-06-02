@@ -4,13 +4,14 @@ class CustomFooterWidget extends StatelessWidget {
   const CustomFooterWidget({super.key, required this.list, required this.currentPage});
   final List list;
   final int currentPage;
+
   @override
   Widget build(BuildContext context) {
     return    Container(
       height: 16.h,
       width: 66.w,
       decoration: BoxDecoration(
-        color: AppColor.conColor,
+        color: AppColor.iceBlue,
         borderRadius: BorderRadius.circular(5).r,
       ),
       child: Row(
@@ -27,7 +28,7 @@ class CustomFooterWidget extends StatelessWidget {
               color:
               i == currentPage
                   ? AppColor.primary
-                  : AppColor.noSelect,
+                  : AppColor.coolBlue,
               borderRadius: BorderRadius.circular(20),
             ),
           ),

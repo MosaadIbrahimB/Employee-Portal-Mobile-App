@@ -1,3 +1,5 @@
+import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/configure/route/app_route.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/login/presentation/widget/custom_email_input_widget.dart';
@@ -17,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordControl = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     emailControl.dispose();
@@ -30,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: LayoutBuilder(
-          builder: (context, constraints) {
+        builder: (context, constraints) {
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: Form(
@@ -41,7 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 50.h, width: double.infinity),
                   HeaderWidget(),
                   SizedBox(height: 24.h),
-                  Text("البريد الإلكتروني", style: AppTextStyle.iBMP14w700),
+                  Text("البريد الإلكتروني", style:
+                  context.text.bodyLarge ,),//AppTextStyle.iBMP14w700),
                   SizedBox(height: 8.h),
                   CustomInputWidget(
                     emailControl: emailControl,
@@ -51,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   SizedBox(height: 20.h),
-                  Text("كلمة المرور", style: AppTextStyle.iBMP14w700),
+                  Text("كلمة المرور", style: context.text.bodyLarge),
                   SizedBox(height: 8.h),
                   CustomInputWidget(
                     validator: (input) {
@@ -65,96 +69,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 100.h),
 
                   CustomButtonWidget(
+                    isDisableIcon: true,
                     onTap: () {
                       // if (!formKey.currentState!.validate()) {
                       //   return;
                       // }
-Navigator.pushReplacementNamed(context, AppRoute.layout);
+                      Navigator.pushReplacementNamed(context, AppRoute.layout);
                     },
                     title: "تسجيل الدخول",
-                    colorTitle: AppColor.titleButton,
-                    color: AppColor.buttonLogin,
+                    colorTitle:context.color.secondaryContainer,// AppColor.titleButton,
+                    color:context.color.secondaryFixedDim,// AppColor.buttonLogin,
                   ),
                 ],
               ),
             ),
           );
-        }
+        },
       ),
     );
   }
 }
-
-// //name
-// TextFomFieldModel(
-//   text: "Full Name",
-//   controller: nameControl,
-//   valid: (text) {
-//     return ValidUtils.ifValidName(text);
-//   },
-//   suffixIcon: Icon(
-//     Icons.person,
-//     color: Theme.of(context).primaryColor,
-//   ),
-// ),
-// const SizedBox(height: 15),
-// //email
-// TextFomFieldModel(
-//   suffixIcon: Icon(
-//     Icons.email,
-//     color: Theme.of(context).primaryColor,
-//   ),
-//   valid: (email) {
-//     return ValidUtils.ifValidEmail(email);
-//   },
-//   text: "Email",
-//   controller: emailControl,
-//   textInputType: TextInputType.emailAddress,
-// ),
-// const SizedBox(height: 15),
-// //pass
-// TextFomFieldModel(
-//   valid: (text) {
-//     return ValidUtils.ifValidPassword(text);
-//   },
-//   textInputType: TextInputType.number,
-//   text: "Password",
-//   controller: passControl,
-// ),
-// const SizedBox(height: 15),
-//
-// //confPass
-// TextFomFieldModel(
-//   valid: (text) {
-//     return ValidUtils.ifValidPasswordConfirm(
-//       text,
-//       passControl.text,
-//     );
-//   },
-//   textInputType: TextInputType.number,
-//   text: "Conform Password",
-//   controller: ConfpassControl,
-// ),
-// const SizedBox(height: 15),
-// ElevatedButton(
-//   style: ElevatedButton.styleFrom(
-//     padding: const EdgeInsets.symmetric(vertical: 8),
-//   ),
-//   onPressed: () async {
-//     // ValidUtils.register(formKey,emailControl.text,
-//     //     passControl.text,context);
-//
-//     // if( ValidUtils.register(
-//     //     formKey,emailControl.text,passControl.text,context)
-//     // ){
-//     //   Navigator.pushReplacementNamed(context, HomePage.routeName);
-//     // }
-//   },
-//   child: Text("Register"),
-// ),
-// TextButton(
-//   onPressed: () {
-//     // Navigator.pushReplacementNamed(context, loginScreen.routeName);
-//   },
-//   child: Text("Already You have account ? login "),
-// ),

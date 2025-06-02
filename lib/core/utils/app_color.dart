@@ -19,13 +19,13 @@ class AppColor {
 
 
 
-  static const Color noSelect = Color(0xFFBAE6FF);
+  static const Color coolBlue = Color(0xFFBAE6FF);
   static const Color buttonLogin = Color(0xFFDCE1E8);
-  static const Color conColor = Color(0xFFE3F7FF);
+  static const Color iceBlue = Color(0xFFE3F7FF);
   static const Color titleButton = Color(0xFF4C5057);
   static const Color darkGreen = Color.fromRGBO(49, 200, 89, .15);
   static const Color goldTransparent = Color.fromRGBO(255, 215, 5, 0.1);
-  static const Color black64A = Color.fromRGBO(9, 14, 29, 0.64);
+  static const Color deepBlueGlass = Color.fromRGBO(9, 14, 29, 0.64);
 
   static const Color orange = Color(0xffFF9600);
 

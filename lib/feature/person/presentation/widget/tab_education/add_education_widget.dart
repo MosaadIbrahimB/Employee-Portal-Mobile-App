@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/education_page/education_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/skill_page/skill_page_cubit.dart';
@@ -30,7 +31,7 @@ class AddEducationWidget extends StatelessWidget {
               ),
             ),
             SizedBox(width: 12.w),
-            Text("اضافة درجة علمية", style: AppTextStyle.iBMP24w600),
+            Text("اضافة درجة علمية", style:context.text.displayMedium)// AppTextStyle.iBMP24w600),
           ],
         ),
         SizedBox(height: 8.h),

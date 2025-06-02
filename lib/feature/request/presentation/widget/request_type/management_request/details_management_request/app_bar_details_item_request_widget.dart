@@ -8,24 +8,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBarDetailsItemRequestWidget extends StatelessWidget {
   const AppBarDetailsItemRequestWidget({super.key, required this.reportModel});
+
   final ReportModel reportModel;
+
   @override
   Widget build(BuildContext context) {
-    return             Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         AppBarManagementRequestWidget(
-          title: AppString.requestAdministrativeDetails,
+          title: reportModel.appBarTitle??AppString.requestAdministrativeDetails,
           onTap: () {
-            context.read<TabSwitcherCubit>().changeTab(0);
+            // context.read<TabSwitcherCubit>().changeTab(0);
           },
         ),
-        ReportStatusWidget(
-          reportModel: reportModel,
-          isDetailsScreen: true,
-        ),
+        ReportStatusWidget(reportModel: reportModel, isDetailsScreen: true),
       ],
     );
-
   }
 }

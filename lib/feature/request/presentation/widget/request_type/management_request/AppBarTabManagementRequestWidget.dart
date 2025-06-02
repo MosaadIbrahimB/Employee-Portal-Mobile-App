@@ -1,4 +1,3 @@
-import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class AppBarTabManagementRequestWidget extends StatelessWidget {
@@ -6,22 +5,16 @@ class AppBarTabManagementRequestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row (
+    return Row(
       children: [
         Icon(Icons.calendar_today_outlined),
-        SizedBox(width: 8.w,),
-        Text(
-          "نوفمبر 2024",
-          style:
-         context.text.titleMedium
-          ,
-        ),
+        SizedBox(width: 8.w),
+        Text("نوفمبر 2024", style: context.text.titleMedium),
         Spacer(),
         GestureDetector(
-            onTap: (){
-
-            },
-            child: Icon(Icons.keyboard_arrow_down_rounded)),
+          onTap: () {},
+          child: Icon(Icons.keyboard_arrow_down_rounded),
+        ),
       ],
     );
   }

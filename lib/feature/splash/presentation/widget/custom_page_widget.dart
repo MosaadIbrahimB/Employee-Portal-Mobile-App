@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/app_image.dart';
 import 'package:employee_portal_mobile_app/core/utils/app_text_style.dart';
 import 'package:employee_portal_mobile_app/feature/onboarding/data/page_model.dart';
@@ -19,13 +20,13 @@ class CustomPageWidget extends StatelessWidget {
         SizedBox(height: 24.h),
         Text(
           pageModel.title,
-          style: AppTextStyle.iBMP38w700,
+          style:context.text.displayLarge,// AppTextStyle.iBMP38w700,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 24.h),
         Text(
           pageModel.desc,
-          style: AppTextStyle.iBMP16w500,
+          style:context.text. titleMedium,//AppTextStyle.iBMP16w500,
           textAlign: TextAlign.center,
         ),
       ],

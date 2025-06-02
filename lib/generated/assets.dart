@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String dayMoney = 'assets/image/day/money.svg';
   static const String fontIBMPlexSansArabicExtraLight = 'assets/font/IBMPlexSansArabic-ExtraLight.ttf';
   static const String fontIBMPlexSansArabicLight = 'assets/font/IBMPlexSansArabic-Light.ttf';
   static const String fontNunitoRegular = 'assets/font/Nunito-Regular.ttf';
@@ -32,4 +33,5 @@ class Assets {
   static const String tabHome = 'assets/image/tab/home.svg';
   static const String tabMoneyBill = 'assets/image/tab/money-bill.svg';
   static const String tabPerson = 'assets/image/tab/person.svg';
+
 }

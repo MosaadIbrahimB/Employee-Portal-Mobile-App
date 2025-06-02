@@ -50,7 +50,7 @@ class AddManagementRequestWidget extends StatelessWidget {
               controller: timeController,
             ),
             SizedBox(height: 16.h),
-            NotesInputField(controller:noteInputController ,),
+            NotesInputField(controller:noteInputController ),
             SizedBox(height: 44.h),
             AddDocumentButtonWidget(),
             SizedBox(height: 16.h),

@@ -18,16 +18,20 @@ class AppThemeColorScheme {
     onSurface: AppColor.black,
 
     outline: AppColor.softStone,
-    background: AppColor.snowWhite,
+
+    onPrimaryContainer: AppColor.snowWhite,
+    surfaceContainer: AppColor.mediumGrey,
     shadow: AppColor.gray,
 
     onPrimaryFixed: AppColor.lightBlueBg,
-    onSecondaryFixed: AppColor.white,
 
     primaryFixed: AppColor.orange,
     secondaryFixed: AppColor.goldTransparent,
 
     primaryContainer: AppColor.primaryBlue,
     primaryFixedDim: AppColor.deepBlue,
+    onSecondaryFixed: AppColor.deepBlueGlass,
+    secondaryContainer: AppColor.titleButton,
+    secondaryFixedDim: AppColor.buttonLogin,
   );
 }

@@ -1,25 +1,26 @@
+import 'package:employee_portal_mobile_app/core/component/input_data_widget.dart';
 import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/person/control/tab_person_screen_cubit/tab_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'input_data_widget.dart';
 
 class NextPageDataWidget extends StatelessWidget {
   NextPageDataWidget({super.key});
 
-  TextEditingController controllerCity = TextEditingController();
-  TextEditingController controllerSubCity = TextEditingController();
-  TextEditingController controllerAreaCity = TextEditingController();
-  TextEditingController controllerAddressCity = TextEditingController();
-  TextEditingController numberAddressControl = TextEditingController();
-  TextEditingController numberBoxControl = TextEditingController();
+  final TextEditingController controllerCity = TextEditingController();
+  final TextEditingController controllerSubCity = TextEditingController();
+  final TextEditingController controllerAreaCity = TextEditingController();
+  final TextEditingController controllerAddressCity = TextEditingController();
+  final TextEditingController numberAddressControl = TextEditingController();
+  final TextEditingController numberBoxControl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("العنوان", style:context.text.titleLarge),// AppTextStyle.iBMP16w700Black),
+        Text("العنوان", style: context.text.titleLarge),
+        // AppTextStyle.iBMP16w700Black),
         SizedBox(height: 16.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,10 +76,9 @@ class NextPageDataWidget extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             BlocProvider.of<TabCubit>(context).changeTab(1);
-
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor:context.color.primary,// AppColor.primary,
+            backgroundColor: context.color.primary, // AppColor.primary,
             minimumSize: Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12).r,
@@ -89,13 +89,14 @@ class NextPageDataWidget extends StatelessWidget {
             children: [
               Text(
                 "حفظ التعديلات",
-                style: context.text.bodyLarge!.copyWith(color: context.color.surface),
+                style: context.text.bodyLarge!.copyWith(
+                  color: context.color.surface,
+                ),
               ),
               Icon(Icons.arrow_forward, color: context.color.surface),
             ],
           ),
         ),
-
       ],
     );
   }

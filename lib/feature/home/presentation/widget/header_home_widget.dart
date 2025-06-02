@@ -52,7 +52,7 @@ class HeaderHomeWidget extends StatelessWidget {
             ),
             child: Icon(
               Icons.notifications_none,
-              color: context.color.onSecondaryFixed,
+              color: context.color.surface,
               size: 24.sp,
             ),
           ),

@@ -9,6 +9,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.color,
     this.borderColor,
     this.colorTitle,
+    this.isDisableIcon= false,
   });
 
   final void Function() onTap;
@@ -16,6 +17,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? color;
   final Color? borderColor;
   final Color? colorTitle;
+  final bool? isDisableIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,11 @@ class CustomButtonWidget extends StatelessWidget {
         height: 48.h,
         // width: double.infinity,
         decoration: BoxDecoration(
-          color: color ?? AppColor.primary,
+          color: color ??context.color.primary,// AppColor.primary,
           borderRadius: BorderRadius.circular(10).r,
           border: Border.all(
-            color:borderColor!=null? borderColor! : Colors.transparent,
-                      )
+            color: borderColor != null ? borderColor! : Colors.transparent,
+          ),
         ),
         child: Center(
           child: Row(
@@ -37,16 +39,17 @@ class CustomButtonWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style:context.text.labelLarge!.copyWith(color: colorTitle),
+                style: context.text.labelLarge!.copyWith(color: colorTitle),
               ),
               SizedBox(width: 8.w),
-              Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColor.primary
-                    )
+              isDisableIcon == true
+                  ? SizedBox()
+                  : Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColor.primary),
+                    ),
+                    child: Icon(Icons.add, color: AppColor.primary),
                   ),
-                  child: Icon(Icons.add,color: AppColor.primary,))
             ],
           ),
         ),

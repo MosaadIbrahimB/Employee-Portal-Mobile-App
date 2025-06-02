@@ -4,6 +4,7 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class AppTheme {
   static ThemeData themeLight() => ThemeData(
+
     brightness: Brightness.light,
     fontFamily: 'IBMP',
     scaffoldBackgroundColor: Colors.white,
