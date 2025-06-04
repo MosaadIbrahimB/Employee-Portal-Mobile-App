@@ -19,7 +19,7 @@ class AppBarDetailsItemRequestWidget extends StatelessWidget {
         AppBarManagementRequestWidget(
           title: reportModel.appBarTitle??AppString.requestAdministrativeDetails,
           onTap: () {
-            // context.read<TabSwitcherCubit>().changeTab(0);
+            context.read<TabSwitcherCubit>().changeTab(0);
           },
         ),
         ReportStatusWidget(reportModel: reportModel, isDetailsScreen: true),
