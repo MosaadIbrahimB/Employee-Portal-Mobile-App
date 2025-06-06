@@ -2,15 +2,15 @@ import 'package:employee_portal_mobile_app/core/component/input_data_widget.dart
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/account_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/submission_date_widget.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/control/vacation_cubit/vacation_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_details/app_bar_details_vacation_widget.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/account_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/nots_details_widget.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/submission_date_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/type_widget.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_details/app_bar_details_vacation_widget.dart';
+import 'package:employee_portal_mobile_app/generated/assets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VacationDetailsWidget extends StatelessWidget {
   const VacationDetailsWidget({super.key});

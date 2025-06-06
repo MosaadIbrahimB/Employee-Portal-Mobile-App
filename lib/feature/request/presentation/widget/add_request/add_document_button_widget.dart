@@ -7,7 +7,8 @@ final String ? title;
   final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return    GestureDetector(
+    return
+      GestureDetector(
       onTap: onTap,
 
       child: Container(

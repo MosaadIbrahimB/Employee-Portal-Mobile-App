@@ -16,6 +16,12 @@ dependencies:
   flutter_bloc: ^9.1.1
   get_it: ^8.0.3
   connectivity_plus: ^6.0.5
+  dio: ^5.8.0+1
+  dartz: ^0.10.1
+  equatable: ^2.0.7
+  cached_network_image: ^3.4.1
+  easy_localization: ^3.0.7+1
+  intl: ^0.19.0
 
 
 dev_dependencies:
@@ -37,6 +43,7 @@ flutter:
     - assets/image/person/
     - assets/image/request/
     - assets/image/day/
+    - assets/translations/
     - assets/font/
 
 

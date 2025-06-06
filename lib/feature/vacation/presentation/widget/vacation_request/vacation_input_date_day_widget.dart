@@ -1,10 +1,10 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class VacationInputDateDayWidget extends StatefulWidget {
-  const VacationInputDateDayWidget({super.key, required this.title, this.fillColor, });
+  const VacationInputDateDayWidget({super.key, required this.title, this.fillColor, required this.onDateSelected, });
   final String title;
   final Color? fillColor;
-
+  final void Function(DateTime) onDateSelected;
   @override
   State<VacationInputDateDayWidget> createState() => _VacationInputDateDayWidgetState();
 }
@@ -65,13 +65,14 @@ class _VacationInputDateDayWidgetState extends State<VacationInputDateDayWidget>
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
+      firstDate: DateTime(2025),
+      lastDate: DateTime(2200),
     );
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
       });
+      widget.onDateSelected(picked);
     }
   }
 

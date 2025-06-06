@@ -1,7 +1,7 @@
 import 'package:employee_portal_mobile_app/core/component/header_core_widget.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/control/vacation_cubit/vacation_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/vacation_report_widget.dart';
 
 class TabAllVacationWidget extends StatelessWidget {

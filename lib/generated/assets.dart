@@ -33,5 +33,7 @@ class Assets {
   static const String tabHome = 'assets/image/tab/home.svg';
   static const String tabMoneyBill = 'assets/image/tab/money-bill.svg';
   static const String tabPerson = 'assets/image/tab/person.svg';
+  static const String translationsAr = 'assets/translations/ar.json';
+  static const String translationsEn = 'assets/translations/en.json';
 
 }
