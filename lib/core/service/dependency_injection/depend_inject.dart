@@ -1,12 +1,5 @@
-import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/check_handled_alerts_use_case.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/validate_vacation.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/check_handled_alerts/check_handled_alerts_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/date_cubit/date_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/file_picker/file_picker_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/validate_vacation/validate_vacation_cubit.dart';
-import '../../../feature/vacation/domain/use_case/calculate_vacation_duration_use_case.dart';
-import '../../../feature/vacation/presentation/control/calculate_vacation_duration/calculate_vacation_duration_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/submit_vacation_request/submit_vacation_request_cubit.dart';
+
 import 'package_export.dart';
 
 final sl = GetIt.instance;
@@ -75,6 +68,15 @@ Future<void> init() async {
   );
 
   sl.registerFactory(() => CheckHandledAlertsCubit(sl<CheckHandledAlertsUseCase>()));
+
+
+  sl.registerFactory(
+    () => SubmitVacationRequestCubit(
+      calculateVacationDurationCubit: sl<CalculateVacationDurationCubit>(),
+      validateCubit: sl<ValidateVacationCubit>(),
+      alertsCubit: sl<CheckHandledAlertsCubit>(),postVacationCubit: sl<PostVacationCubit>()
+    ),
+  );
 
   // 6. Connectivity
   sl.registerLazySingleton(() => ConnectInternetCubit()..checkConnection());

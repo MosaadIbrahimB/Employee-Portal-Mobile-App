@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class VacationInputDateDayWidget extends StatefulWidget {
@@ -23,7 +24,7 @@ class _VacationInputDateDayWidgetState extends State<VacationInputDateDayWidget>
         Text(widget.title,  style:textTheme.bodyMedium),
         SizedBox(height: 8.h,),
         GestureDetector(
-          onTap: _pickDate,
+          onTap: _showDatePickerDialog,
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
             decoration: BoxDecoration(
@@ -31,66 +32,98 @@ class _VacationInputDateDayWidgetState extends State<VacationInputDateDayWidget>
               border: Border.all(color: colorTheme.outline),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Row(
+            child:   Row(
               children: [
-
                 Text(
-                  " ${selectedDate.year}",
-                  style:
-                  textTheme.titleMedium                  ,
+                  _formatFullDate(selectedDate),
+                  style: textTheme.titleMedium,
                 ),
-                Text(
-                  " ${_monthName(selectedDate.month)} ",
-                  style:
-                  textTheme.titleMedium                  ,
-                ),
-                Text(
-                  "${selectedDate.day}  ",
-                  style:
-                  textTheme.titleMedium                  ,
-                ),
-
-                Spacer(),
-                Icon(Icons.calendar_today_outlined,size: 20.r,),
-
+                const Spacer(),
+                Icon(Icons.calendar_today_outlined, size: 20),
               ],
             ),
           ),
+
         ),
       ],
     );
   }
 
-  Future<void> _pickDate() async {
-    final DateTime? picked = await showDatePicker(
+
+
+  String _formatFullDate(DateTime date) {
+    // تنسيق التاريخ كامل بالعربية، مثلاً: الإثنين، 1 يونيو 2025
+    return DateFormat('EEEE، d MMMM yyyy', 'ar').format(date);
+  }
+
+  void _showDatePickerDialog() async {
+    final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(2025),
-      lastDate: DateTime(2200),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2075),
+      locale: const Locale('ar'),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Theme.of(context).primaryColor, // لون رأس التاريخ
+              onPrimary: Colors.white, // لون نص الرأس
+              onSurface: Colors.black, // لون نص الأيام
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).primaryColor, // لون أزرار النص
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
-    if (picked != null && picked != selectedDate) {
+
+    if (pickedDate != null && pickedDate != selectedDate) {
       setState(() {
-        selectedDate = picked;
+        selectedDate = pickedDate;
       });
-      widget.onDateSelected(picked);
+      widget.onDateSelected(pickedDate);
     }
   }
 
-  String _monthName(int month) {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return months[month - 1];
-  }
+
+
+// Future<void> _pickDate() async {
+  //   final DateTime? picked = await showDatePicker(
+  //     context: context,
+  //     initialDate: selectedDate,
+  //     firstDate: DateTime(2025),
+  //     lastDate: DateTime(2200),
+  //   );
+  //   if (picked != null && picked != selectedDate) {
+  //     setState(() {
+  //       selectedDate = picked;
+  //     });
+  //     widget.onDateSelected(picked);
+  //   }
+  // }
+  //
+  // String _monthName(int month) {
+  //   const months = [
+  //     "January",
+  //     "February",
+  //     "March",
+  //     "April",
+  //     "May",
+  //     "June",
+  //     "July",
+  //     "August",
+  //     "September",
+  //     "October",
+  //     "November",
+  //     "December",
+  //   ];
+  //   return months[month - 1];
+  // }
 }
+
+

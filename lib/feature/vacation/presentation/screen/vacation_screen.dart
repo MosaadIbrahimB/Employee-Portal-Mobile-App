@@ -14,6 +14,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../control/calculate_vacation_duration/calculate_vacation_duration_cubit.dart';
+import '../control/check_handled_alerts/check_handled_alerts_cubit.dart';
 
 class VacationScreen extends StatelessWidget {
   const VacationScreen({super.key});
@@ -37,6 +38,7 @@ class VacationScreen extends StatelessWidget {
         BlocProvider(create: (context) => sl<CalculateVacationDurationCubit>()),
         BlocProvider(create: (context) => sl<DateCubit>()),
         BlocProvider(create: (context) => sl<ValidateVacationCubit>()),
+        BlocProvider(create: (context) => sl<CheckHandledAlertsCubit>()),
       ],
       child: BlocBuilder<VacationCubit, int>(
         builder: (context, state) {

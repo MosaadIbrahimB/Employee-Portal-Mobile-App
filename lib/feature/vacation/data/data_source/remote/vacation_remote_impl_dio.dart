@@ -8,9 +8,9 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/request_default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/response_post_vacation_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
@@ -48,14 +48,14 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   }
 
   @override
-  Future<ResponsePostVacationModel> postVacation({
-    required PostVacationModel postVacationModel,
+  Future<PostVacationResponseModel> postVacation({
+    required PostVacationRequestModel postVacationModel,
   }) async {
     final response = await apiService.postRequest(
       "${EndPoint.baseUrl}${EndPoint.postVacation}",
       postVacationModel.toJson(),
     );
-    return ResponsePostVacationModel.fromJson(response.data);
+    return PostVacationResponseModel.fromJson(response.data);
   }
 
   @override
@@ -79,10 +79,9 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   }
 
   @override
-  Future<ValidateVacationResponseModel> validateVacation({required ValidateVacationRequestModel requestModel})
-
-  async {
-
+  Future<ValidateVacationResponseModel> validateVacation({
+    required ValidateVacationRequestModel requestModel,
+  }) async {
     final queryParams = {
       'vacationTypeId': requestModel.vacationTypeId.toString(),
       'fromDate': requestModel.fromDate.toIso8601String(),
@@ -98,9 +97,6 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     return ValidateVacationResponseModel.fromJson(response.data);
   }
 
-
-
-
   @override
   Future<CheckHandledAlertsResponseModel> checkHandledAlerts({
     required CheckHandledAlertsRequestModel requestModel,
@@ -112,5 +108,3 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     return CheckHandledAlertsResponseModel.fromJson(response.data);
   }
 }
-
-

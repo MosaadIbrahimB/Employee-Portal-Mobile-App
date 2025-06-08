@@ -11,4 +11,13 @@ export 'package:employee_portal_mobile_app/feature/vacation/presentation/control
 export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/post_vacation/post_vacation_cubit.dart';
 export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_type/vacation_type_cubit.dart';
 export 'package:get_it/get_it.dart';
+export 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/check_handled_alerts_use_case.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/validate_vacation.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/check_handled_alerts/check_handled_alerts_cubit.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/date_cubit/date_cubit.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/file_picker/file_picker_cubit.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/validate_vacation/validate_vacation_cubit.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/calculate_vacation_duration_use_case.dart';
+export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/calculate_vacation_duration/calculate_vacation_duration_cubit.dart';
 

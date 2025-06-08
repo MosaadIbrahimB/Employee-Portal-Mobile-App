@@ -30,15 +30,25 @@ class DefaultReviewerModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['EmployeeId'] = this.employeeId;
-    data['Name'] = this.name;
-    data['Code'] = this.code;
-    data['PicPath'] = this.picPath;
-    data['Order'] = this.order;
-    data['SingleApprovalEnabled'] = this.singleApprovalEnabled;
-    data['IsCurrent'] = this.isCurrent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['EmployeeId'] = employeeId;
+    data['Name'] =name;
+    data['Code'] = code;
+    data['PicPath'] = picPath;
+    data['Order'] =order;
+    data['SingleApprovalEnabled'] = singleApprovalEnabled;
+    data['IsCurrent'] = isCurrent;
     return data;
   }
+
+
+  Map<String, dynamic> toJsonPostVacation() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['employeeId'] = employeeId;
+    data['name'] =name;
+    data['code'] = code;
+    return data;
+  }
+
 }

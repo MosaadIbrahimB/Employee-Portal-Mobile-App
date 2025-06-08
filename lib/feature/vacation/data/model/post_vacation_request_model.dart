@@ -1,6 +1,6 @@
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
 
-class PostVacationModel {
+class PostVacationRequestModel {
   int? vacationTypeId;
   String? fromDate;
   String? toDate;
@@ -8,7 +8,7 @@ class PostVacationModel {
   String? notes;
   RequestModel? request;
 
-  PostVacationModel(
+  PostVacationRequestModel(
       {this.vacationTypeId,
         this.fromDate,
         this.toDate,
@@ -16,15 +16,6 @@ class PostVacationModel {
         this.notes,
         this.request});
 
-  PostVacationModel.fromJson(Map<String, dynamic> json) {
-    vacationTypeId = json['vacationTypeId'];
-    fromDate = json['fromDate'];
-    toDate = json['toDate'];
-    duration = json['duration'];
-    notes = json['notes'];
-    request =
-    json['request'] != null ?  RequestModel.fromJson(json['request']) : null;
-  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data =  <String, dynamic>{};
@@ -45,6 +36,32 @@ class RequestModel {
 
   RequestModel({this.reviewers});
 
+
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    if (reviewers != null) {
+      data['reviewers'] = reviewers!.map((v) => v.toJsonPostVacation()).toList();
+    }
+    return data;
+  }
+
+
+
+}
+
+// PostVacationModel.fromJson(Map<String, dynamic> json) {
+//   vacationTypeId = json['vacationTypeId'];
+//   fromDate = json['fromDate'];
+//   toDate = json['toDate'];
+//   duration = json['duration'];
+//   notes = json['notes'];
+//   request =
+//   json['request'] != null ?  RequestModel.fromJson(json['request']) : null;
+
+
+// }
+/*
   RequestModel.fromJson(Map<String, dynamic> json) {
     if (json['reviewers'] != null) {
       reviewers = <DefaultReviewerModel>[];
@@ -53,13 +70,4 @@ class RequestModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
-    if (reviewers != null) {
-      data['reviewers'] = reviewers!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
+ */
