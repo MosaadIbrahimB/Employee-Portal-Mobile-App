@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../../data/model/default_reviewer_model.dart';
+import '../../../data/model/default_reviewer/default_reviewer_model.dart';
 
 class DefaultReviewerState extends Equatable {
   final List<DefaultReviewerModel> reviewers;

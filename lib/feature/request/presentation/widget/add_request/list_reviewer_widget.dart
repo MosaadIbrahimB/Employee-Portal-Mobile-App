@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/default_reviewer/default_reviewer_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

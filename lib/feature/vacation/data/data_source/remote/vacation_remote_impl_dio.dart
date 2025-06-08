@@ -7,11 +7,13 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_response_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_request_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/request_default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_response_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/request_default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type/vacation_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
 
@@ -106,5 +108,15 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
       queryParams: requestModel.toQueryParams(),
     );
     return CheckHandledAlertsResponseModel.fromJson(response.data);
+  }
+  @override
+  Future<VacationBalanceResponseModel> getVacationBalance({required VacationBalanceRequestModel requestModel}) {
+
+
+  final response = apiService.getRequest(
+      "${EndPoint.baseUrl}${EndPoint.getBalance}",
+      queryParams: requestModel.toQueryParams(),
+    );
+    return response.then((value) => VacationBalanceResponseModel.fromJson(value.data));
   }
 }

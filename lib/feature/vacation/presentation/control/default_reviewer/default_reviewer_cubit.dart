@@ -1,5 +1,5 @@
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/request_default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/request_default_reviewer_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/get_default_reviewer_use_case.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/default_reviewer/default_reviewer_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_response_model.dart';
 import 'package:equatable/equatable.dart';
 
 class PostVacationState extends Equatable {

@@ -6,10 +6,12 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_response_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_request_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/request_default_reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/request_default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/entity/vacation_type_entity.dart';
@@ -26,8 +28,9 @@ class VacationRepositoryImpl implements VacationRepository {
       final result = await vacationRemoteDataSource.getVacationType();
       return right(result);
     } catch (e) {
-
-      return left(ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationType  "));
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationType  "),
+      );
     }
   }
 
@@ -41,7 +44,9 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } catch (e) {
-      return left(ServerFailure("${e.toString()}حدث خطأ في الخادمgetDefaultReviewer  "));
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادمgetDefaultReviewer  "),
+      );
     }
   }
 
@@ -56,7 +61,9 @@ class VacationRepositoryImpl implements VacationRepository {
 
       return right(result);
     } catch (e) {
-      return left(ServerFailure("${e.toString()} postVacation حدث خطأ في الخادم"));
+      return left(
+        ServerFailure("${e.toString()} postVacation حدث خطأ في الخادم"),
+      );
     }
   }
 
@@ -73,7 +80,11 @@ class VacationRepositoryImpl implements VacationRepository {
 
         return right(result);
       } catch (e) {
-        return left(ServerFailure("${e.toString()} calculateVacationDuration حدث خطأ في الخادم"));
+        return left(
+          ServerFailure(
+            "${e.toString()} calculateVacationDuration حدث خطأ في الخادم",
+          ),
+        );
       }
     }
   }
@@ -91,7 +102,9 @@ class VacationRepositoryImpl implements VacationRepository {
       final errorMessage = ErrorHandler.getErrorMessage(e);
       return left(ServerFailure(errorMessage));
     } catch (e) {
-      return left(ServerFailure("${e.toString()}حدث خطأ في الخادمvalidateVacation "));
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادمvalidateVacation "),
+      );
     }
   }
 
@@ -108,7 +121,26 @@ class VacationRepositoryImpl implements VacationRepository {
       final errorMessage = ErrorHandler.getErrorMessage(e);
       return left(ServerFailure(errorMessage));
     } catch (e) {
-      return left(ServerFailure("${e.toString()}checkHandledAlertsحدث خطأ في الخادم "));
+      return left(
+        ServerFailure("${e.toString()}checkHandledAlertsحدث خطأ في الخادم "),
+      );
     }
+  }
+
+  @override
+  Future<Either<Failure, VacationBalanceResponseModel>> getVacationBalance({
+    required VacationBalanceRequestModel requestModel,
+  }) async{
+    try {
+      final result = await vacationRemoteDataSource.getVacationBalance(
+        requestModel: requestModel,
+      );
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationBalance"),
+      );
+    }
+
   }
 }

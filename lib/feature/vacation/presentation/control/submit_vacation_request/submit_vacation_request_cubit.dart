@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/calculate_vacation_duration/calculate_vacation_duration_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/check_handled_alerts/check_handled_alerts_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/post_vacation/post_vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/submit_vacation_request/submit_vacation_request_state.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/validate_vacation/validate_vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/validate_vacation/validate_vacation_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class SubmitVacationRequestCubit extends Cubit<SubmitVacationRequestState> {
   final CheckHandledAlertsCubit alertsCubit;
   final PostVacationCubit postVacationCubit;
 
-  SubmitVacationRequestCubit({required this.calculateVacationDurationCubit, required this.validateCubit, required this.alertsCubit, required this.postVacationCubit,}) : super(SubmitInitial());
+  SubmitVacationRequestCubit({  required this.calculateVacationDurationCubit, required this.validateCubit, required this.alertsCubit, required this.postVacationCubit,}) : super(SubmitInitial());
 
   Future<void> submit({required CalculateVacationDurationRequestModel calculateVacationDurationRequestModel, required ValidateVacationRequestModel validateVacationRequestModel, required CheckHandledAlertsRequestModel checkHandledAlertsRequestModel, required PostVacationRequestModel postVacationModel,}) async {
     try {

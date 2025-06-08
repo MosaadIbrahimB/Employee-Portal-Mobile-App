@@ -6,7 +6,8 @@ class EndPoint {
   static const String calculateVacationDuration = "/api/Vacation/CalculateVacationDuration";
   static const String validateVacation = "/api/Vacation/VaildateVacation";
   static const String checkHandledAlerts = "/api/Vacation/CheckForHandledAlerts";
-
+  static const String getBalance = "/api/Vacation/getBalance";
+//
 
 
 }

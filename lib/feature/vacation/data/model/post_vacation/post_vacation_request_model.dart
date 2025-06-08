@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
 
 class PostVacationRequestModel {
   int? vacationTypeId;

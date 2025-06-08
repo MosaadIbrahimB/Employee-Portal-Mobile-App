@@ -1,6 +1,7 @@
 import 'package:employee_portal_mobile_app/core/service/dependency_injection/depend_inject.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/submit_vacation_request/submit_vacation_request_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/submit_vacation_request/submit_vacation_request_state.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/vacation_request_body_widget.dart';
 import '../../../../layout/export_Layout_file.dart';
 
@@ -20,6 +21,14 @@ class VacationRequestWidget extends StatelessWidget {
               } else if (state is SubmitError) {
                 context.showErrorDialog(state.message);
               } else if (state is SubmitAlertsChecked) {
+                // context.showSnackBar(
+                //   "تم تقديم الطلب بنجاح",
+                //   backgroundColor: Colors.green,
+                // );
+
+              }
+              else if (state is SubmitSuccess) {
+                context.read<VacationCubit>().changeTab(0);
                 context.showSnackBar(
                   "تم تقديم الطلب بنجاح",
                   backgroundColor: Colors.green,
