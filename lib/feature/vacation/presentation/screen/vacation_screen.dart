@@ -28,7 +28,7 @@ class VacationScreen extends StatelessWidget {
         builder: (context, state) {
           return Padding(
             padding: const EdgeInsets.all(20.0).r,
-            child: SingleChildScrollView(child: body[2]),
+            child: SingleChildScrollView(child: body[state]),
           );
         },
       ),

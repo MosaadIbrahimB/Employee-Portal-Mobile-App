@@ -1,30 +1,25 @@
 import 'package:dio/dio.dart';
-import 'package:employee_portal_mobile_app/core/error/exception.dart';
+import 'package:employee_portal_mobile_app/core/error/exceptions.dart';
+import 'package:employee_portal_mobile_app/core/service/api_service/dio_helper.dart';
 
 class ApiService {
-  final Dio dio;
-  final String userId;
 
-  ApiService({required this.dio, required this.userId});
+final DioHelper dioHelper;
+  ApiService({required this.dioHelper}) ;
 
-  Options get _headers => Options(
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "userId": userId,
-    },
-  );
 
-  Future<Response> getRequest(String url, {Map<String, dynamic>? queryParams}) async {
-    final uri = Uri.parse(url).replace(queryParameters: queryParams);
-    final response = await dio.get(uri.toString(), options: _headers);
+
+
+  Future<Response> getRequest({required String endPoint, Map<String, dynamic>? queryParams}) async {
+    final uri = Uri.parse(endPoint).replace(queryParameters: queryParams);
+    final response = await dioHelper.dio.get(uri.toString(), );
 
     if (response.statusCode == 200) return response;
     throw ServerException();
   }
 
-  Future<Response> postRequest(String url, dynamic data) async {
-    final response = await dio.post(url, data: data, options: _headers);
+  Future<Response> postRequest({required String endPoint, dynamic data}) async {
+    final response = await dioHelper.dio.post(endPoint, data: data, );
 
     if (response.statusCode == 200 || response.statusCode == 201) return response;
     throw ServerException();

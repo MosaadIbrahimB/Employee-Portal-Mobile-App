@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:employee_portal_mobile_app/core/error/exception.dart';
 import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
 import 'package:employee_portal_mobile_app/core/utils/end_point.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/data_source/remote/vacation_remote_data_source.dart';
@@ -24,9 +23,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
 
   @override
   Future<List<VacationTypeModel>> getVacationType() async {
-    final response = await apiService.getRequest(
-      "${EndPoint.baseUrl}${EndPoint.vacationTypes}",
-    );
+    final response = await apiService.getRequest(endPoint: EndPoint.vacationTypes);
     List<dynamic> listJson = response.data;
     return listJson.map((e) => VacationTypeModel.fromJson(e)).toList();
   }
@@ -42,7 +39,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     };
 
     final response = await apiService.getRequest(
-      "${EndPoint.baseUrl}${EndPoint.defaultReviewer}",
+      endPoint: EndPoint.defaultReviewer,
       queryParams: queryParams,
     );
     List<dynamic> listJson = response.data;
@@ -54,8 +51,9 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     required PostVacationRequestModel postVacationModel,
   }) async {
     final response = await apiService.postRequest(
-      "${EndPoint.baseUrl}${EndPoint.postVacation}",
-      postVacationModel.toJson(),
+      endPoint: EndPoint.postVacation,
+      data: postVacationModel.toJson(),
+
     );
     return PostVacationResponseModel.fromJson(response.data);
   }
@@ -74,7 +72,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     };
 
     final response = await apiService.getRequest(
-      "${EndPoint.baseUrl}${EndPoint.calculateVacationDuration}",
+      endPoint: EndPoint.calculateVacationDuration,
       queryParams: queryParams,
     );
     return CalculateVacationDurationResponseModel.fromJson(response.data);
@@ -93,7 +91,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     };
 
     final response = await apiService.getRequest(
-      "${EndPoint.baseUrl}${EndPoint.validateVacation}",
+     endPoint: EndPoint.validateVacation,
       queryParams: queryParams,
     );
     return ValidateVacationResponseModel.fromJson(response.data);
@@ -104,19 +102,22 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     required CheckHandledAlertsRequestModel requestModel,
   }) async {
     final response = await apiService.getRequest(
-      "${EndPoint.baseUrl}${EndPoint.checkHandledAlerts}",
+      endPoint: EndPoint.checkHandledAlerts,
       queryParams: requestModel.toQueryParams(),
     );
     return CheckHandledAlertsResponseModel.fromJson(response.data);
   }
+
   @override
-  Future<VacationBalanceResponseModel> getVacationBalance({required VacationBalanceRequestModel requestModel}) {
-
-
-  final response = apiService.getRequest(
-      "${EndPoint.baseUrl}${EndPoint.getBalance}",
+  Future<VacationBalanceResponseModel> getVacationBalance({
+    required VacationBalanceRequestModel requestModel,
+  })
+  async
+  {
+    final response = await apiService.getRequest(
+      endPoint: EndPoint.getBalance,
       queryParams: requestModel.toQueryParams(),
     );
-    return response.then((value) => VacationBalanceResponseModel.fromJson(value.data));
+    return VacationBalanceResponseModel.fromJson(response.data);
   }
 }
