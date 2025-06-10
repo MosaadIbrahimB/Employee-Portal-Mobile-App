@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             theme: AppTheme.themeLight(),
             debugShowCheckedModeBanner: false,
-            // onGenerateRoute: AppRoute.onGenerateRoute,
-            home: LayoutScreen(),
+            onGenerateRoute: AppRoute.onGenerateRoute,
+            // home: LayoutScreen(),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

@@ -18,4 +18,5 @@ void initCubits() {
     alertsCubit: sl(),
     postVacationCubit: sl(),
   ));
+  sl.registerFactory(() => ConnectInternetCubit());
 }
