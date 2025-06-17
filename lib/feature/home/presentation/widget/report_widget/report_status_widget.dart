@@ -1,5 +1,6 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
+import 'package:equatable/equatable.dart';
 
 class ReportStatusWidget extends StatelessWidget {
   const ReportStatusWidget({
@@ -57,4 +58,21 @@ final ReportModel reportModel;
       ],
     );
   }
+}
+
+class ReportStatusModel extends Equatable {
+  final bool? isCertified; //معتمده
+  final bool? isUnderReview; //تحت التدقيق
+  final bool? isRejected; //مرفوض
+  final String? nameReport;
+
+  const ReportStatusModel({
+    this.isCertified,
+    this.isUnderReview,
+    this.isRejected,
+    this.nameReport,
+  });
+
+  @override
+  List<Object?> get props => [isCertified, isUnderReview, isRejected, nameReport];
 }

@@ -64,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   isDisableIcon: true,
                                   color: AppColor.lightBlueBg,
                                   colorTitle: AppColor.primary,
-                                  onTap: nextPage,
+                                  onTap: startNow,
                                   title: "تخطي",
                                 ),
                               ),

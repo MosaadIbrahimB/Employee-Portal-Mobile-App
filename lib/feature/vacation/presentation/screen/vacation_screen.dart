@@ -17,7 +17,7 @@ class VacationScreen extends StatelessWidget {
         BlocProvider(create: (context) => sl<VacationCubit>()),
         BlocProvider(create: (context) => VacationTabCubit()),
         BlocProvider(create: (context) => sl<VacationTypeCubit>()..fetchVacationTypes()),
-        BlocProvider(create: (context) => sl<DefaultReviewerCubit>()),
+        BlocProvider(create: (context) => sl<DefaultReviewerCubit>()..fetchDefaultReviewers()),
         BlocProvider(create: (context) => sl<PostVacationCubit>()),
         BlocProvider(create: (context) => sl<CalculateVacationDurationCubit>()),
         BlocProvider(create: (context) => sl<DateCubit>()),

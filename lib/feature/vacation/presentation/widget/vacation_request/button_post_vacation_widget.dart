@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
 import '../../control/vacation_cubit/vacation_cubit.dart';
 import '../vacation_request_helper/vacation_request_helper.dart';
@@ -17,7 +17,10 @@ class ButtonPostVacationWidget extends StatelessWidget {
   }
 
   void postFunction(BuildContext context) {
-    VacationRequestHelper.submitVacationRequest(context);
+//الفاكشن المسسؤلة عن postVacation من خلال  multiCubit
+   VacationRequestHelper.submitVacationRequest(context);
+  
+  context.read<VacationCubit>().changeTab(2);
 
   }
 }

@@ -1,11 +1,9 @@
-import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
+import '../../feature/layout/export_layout_file.dart';
 
-
-
-class TypeWidget extends StatelessWidget {
-  const TypeWidget({super.key, required this.reportModel});
-  final ReportModel reportModel;
+class CustomTitleAndValueWidget extends StatelessWidget {
+  const CustomTitleAndValueWidget({super.key, required this.title, required this.value});
+  final String? title;
+  final String? value;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +13,7 @@ class TypeWidget extends StatelessWidget {
     return   Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(   "النوع", style: textTheme.bodyMedium),
+        Text(  title??"عنوان", style: textTheme.bodyMedium),
         SizedBox(height: 8.h),
         Container(
           width: double.infinity,
@@ -26,7 +24,7 @@ class TypeWidget extends StatelessWidget {
             color: colorTheme.onPrimaryContainer,
           ),
           child: Text(
-            " ${reportModel ?? "النوع"}",
+            " ${value ?? "قيمة"}",
             style: textTheme.titleMedium,
           ),
         ),
@@ -34,5 +32,3 @@ class TypeWidget extends StatelessWidget {
     );
   }
 }
-
-

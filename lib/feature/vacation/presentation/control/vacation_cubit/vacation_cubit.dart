@@ -1,20 +1,20 @@
-
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../data/model/get_employee_vacations_model/get_employee_vacations_model.dart';
 
 class VacationCubit extends Cubit<int> {
   VacationCubit() : super(0);
-  late ReportModel _reportModel;
+  late GetEmployeeVacationsModel _getEmployeeVacationsModel;
 
   changeTab(int index) {
     emit(index);
   }
 
-  setReportModel(ReportModel model){
-    _reportModel = model;
+  setEmployeeVacationsModel(GetEmployeeVacationsModel model){
+    _getEmployeeVacationsModel = model;
   }
-  getReportModel(){
-    return _reportModel;
+  getEmployeeVacationsModel(){
+    return _getEmployeeVacationsModel;
   }
 
 }

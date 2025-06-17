@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
 import 'package:employee_portal_mobile_app/core/utils/end_point.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/data_source/remote/vacation_remote_data_source.dart';
@@ -15,6 +14,8 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vaca
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type/vacation_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
+
+import '../../model/get_employee_vacations_model/get_employee_vacations_model.dart';
 
 class VacationRemoteImplDio implements VacationRemoteDataSource {
   final ApiService apiService;
@@ -119,5 +120,19 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
       queryParams: requestModel.toQueryParams(),
     );
     return VacationBalanceResponseModel.fromJson(response.data);
+  }
+
+  @override
+  Future<List<GetEmployeeVacationsModel>> getEmployeeVacations()
+  async
+  {
+    final response = await apiService.getRequest(
+      endPoint: EndPoint.getVacations,
+    );
+    // return response.data.map<GetVacationsModel>(
+    //   (json) => GetVacationsModel.fromJson(json),
+    // ).toList();
+
+  return Future.value(GetEmployeeVacationsModel.listVacationEmployee);
   }
 }

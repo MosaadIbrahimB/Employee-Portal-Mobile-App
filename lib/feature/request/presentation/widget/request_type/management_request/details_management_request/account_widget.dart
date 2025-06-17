@@ -1,6 +1,7 @@
+import 'package:employee_portal_mobile_app/core/component/custom_status_widget.dart';
+import 'package:employee_portal_mobile_app/core/model/status_model.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/account_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/account_status_widget.dart';
 
 class AccountWidget extends StatelessWidget {
   const AccountWidget({super.key, required this.accountModel});
@@ -27,7 +28,8 @@ class AccountWidget extends StatelessWidget {
                   style: textTheme.bodyMedium,
                 ),
 
-                AccountStatusWidget(accountModel: accountModel),
+                // AccountStatusWidget(accountModel: accountModel),
+                StatusWidget(statusModel: StatusModel(isRejected: true),)
               ],
             ),
             SizedBox(height: 8.h),

@@ -1,4 +1,5 @@
-import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type/vacation_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/entity/vacation_type_entity.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_type/vacation_type_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_type/vacation_type_state.dart';
@@ -29,14 +30,14 @@ class VacationDropdownWidget extends StatelessWidget {
               } else if (state.errorMessage != null) {
                 return Text(state.errorMessage!);
               }
-              return DropdownButton<VacationTypeEntity>(
+              return DropdownButton<VacationTypeModel>(
                 underline: const SizedBox(),
                 hint: const Text('اختر نوع الإجازة'),
                 value: state.selectedVacation,
                 isExpanded: true,
                 items:
                 state.vacationTypes.map((vacation) {
-                  return DropdownMenuItem<VacationTypeEntity>(
+                  return DropdownMenuItem<VacationTypeModel>(
                     value: vacation,
                     child: Text(vacation.name ?? "NAME NOT FOUND"),
                   );

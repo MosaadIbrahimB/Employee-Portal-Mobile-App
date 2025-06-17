@@ -1,9 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:employee_portal_mobile_app/core/service/dependency_injection/depend_inject.dart' as di;
-import 'feature/vacation/data/data_source/remote/vacation_remote_impl_dio.dart';
 import 'my_app.dart';
 
 Future<void> main() async {

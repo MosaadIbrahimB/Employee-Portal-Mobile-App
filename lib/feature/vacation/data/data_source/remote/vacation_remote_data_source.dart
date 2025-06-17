@@ -12,34 +12,27 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
 
+import '../../model/get_employee_vacations_model/get_employee_vacations_model.dart';
+
 abstract class VacationRemoteDataSource {
   Future<List<VacationTypeModel>> getVacationType();
-
   Future<List<DefaultReviewerModel>> getDefaultReviewer({
     required RequestDefaultReviewerModel requestDefaultReviewerModel,
   });
-
-
-
   Future<PostVacationResponseModel> postVacation({
     required PostVacationRequestModel postVacationModel,
   });
-
-
   Future<CalculateVacationDurationResponseModel> calculateVacationDuration(
     CalculateVacationDurationRequestModel calculateVacationDurationRequestModel,
   ) ;
-
-
   Future<ValidateVacationResponseModel> validateVacation({
     required ValidateVacationRequestModel requestModel,
   });
-
   Future<CheckHandledAlertsResponseModel> checkHandledAlerts({
     required CheckHandledAlertsRequestModel requestModel,
   });
-
   Future<VacationBalanceResponseModel> getVacationBalance({
     required VacationBalanceRequestModel requestModel,
   });
+  Future<List<GetEmployeeVacationsModel>> getEmployeeVacations();
 }

@@ -12,7 +12,7 @@ class NoVacationWidget extends StatelessWidget {
       children: [
         Text("الاجازات", style: context.text.displayMedium),
         SizedBox(height: 20.h),
-        VacationYearCurrentWidget(),
+        // VacationYearCurrentWidget(),
         SizedBox(height: 36.h),
         const TextNoVacationWidget(),
 

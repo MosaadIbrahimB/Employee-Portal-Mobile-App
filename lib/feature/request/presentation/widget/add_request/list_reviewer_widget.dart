@@ -10,109 +10,92 @@ class ListReviewerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme=Theme.of(context).textTheme;
-    return
-    SizedBox(
-      height: context.height*0.13,
-      child:
-
-      BlocBuilder<DefaultReviewerCubit, DefaultReviewerState>(
+    return SizedBox(
+      height: context.height * 0.13,
+      child: BlocBuilder<DefaultReviewerCubit, DefaultReviewerState>(
         builder: (context, state) {
-          final defaultReviewerState = context.watch<DefaultReviewerCubit>().state;
+          final defaultReviewerState =
+              context.read<DefaultReviewerCubit>().state;
 
-          List <DefaultReviewerModel> list = defaultReviewerState.reviewers;
+          List<DefaultReviewerModel> list =
+              defaultReviewerState.listSelectedReviewers;
           if (defaultReviewerState.isLoading) {
             return Center(child: Center(child: CircularProgressIndicator()));
           }
 
-            if (defaultReviewerState.errorMessage != null) {
+          if (defaultReviewerState.errorMessage != null) {
             return Center(child: Text(defaultReviewerState.errorMessage!));
           }
-            if (defaultReviewerState.reviewers.isEmpty) {
+          if (defaultReviewerState.reviewers.isEmpty) {
             return Center(child: Text("لا توجد مؤاجعين متاحة"));
           }
 
-            return
-            ListView.separated(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: list.length,
-              separatorBuilder: (context, index) => SizedBox(height: 16.h),
-              itemBuilder: (context, index) {
-                final reviewer = list[index];
-                return Row(
-                  textDirection: TextDirection.rtl,
-                  children: [
-
-                    CachedNetworkImage(
-                      imageUrl: "https://mohrapi.azurewebsites.net/Content/Images/employeeIcon.png",
-                      imageBuilder: (context, imageProvider) => CircleAvatar(
-                        radius: 24.r,
-                        backgroundImage: imageProvider,
-                      ),
-                      placeholder: (context, url) => Center(child: Text("جارى تحميل الصورة")),
-                      errorWidget: (context, url, error) => CircleAvatar(
-                        radius: 24.r,
-                        backgroundImage: AssetImage('assets/image/request/user.png'),
-                      ),
-                    ),
-
-
-
-
-
-
-                    SizedBox(width: 12.w),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          reviewer.id.toString()??"645533",
-                          style: theme.titleSmall,
-                        ),
-                        Text(
-                          reviewer.name??"لاسما",
-                          style: theme.titleLarge,
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              },
-            );
-              Row(
+          return ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: list.length,
+            separatorBuilder: (context, index) => SizedBox(height: 16.h),
+            itemBuilder: (context, index) {
+              final reviewer = list[index];
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 textDirection: TextDirection.rtl,
                 children: [
-                  CircleAvatar(
-                    radius: 24.r,
-                    backgroundImage: AssetImage('assets/image/request/user.png'), // غير المسار حسب صورتك
+                  SizedBox(
+                    width: 48.w,
+                    height: 48.h,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://mohrapi.azurewebsites.net/Content/Images/employeeIcon.png",
+                      imageBuilder:
+                          (context, imageProvider) => CircleAvatar(
+                            radius: 24.r,
+                            backgroundImage: imageProvider,
+                          ),
+                      placeholder:
+                          (context, url) =>
+                              Center(child: Text("جارى تحميل الصورة")),
+                      errorWidget:
+                          (context, url, error) => CircleAvatar(
+                            radius: 24.r,
+                            backgroundImage: AssetImage(
+                              'assets/image/request/user.png',
+                            ),
+                          ),
+                    ),
                   ),
                   SizedBox(width: 12.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '645533',
-                        style: theme.titleSmall,
+                        reviewer.id.toString() ?? "645533",
+                        style: context.text.titleSmall,
                       ),
                       Text(
-                        'محمد فتحى محمد',
-                        style: theme.titleLarge,
+                        reviewer.name ?? "الاسم",
+                        style: context.text.titleLarge,
                       ),
                     ],
                   ),
+                  SizedBox(width: 12.w),
+
+                  GestureDetector(
+                    onTap: (){
+                      context.read<DefaultReviewerCubit>().removeReviewer(reviewer);
+                    },
+                    child: Icon(
+                      Icons.close,
+                      color: context.color.onSurface.withOpacity(0.5),
+                      size: 25.r,
+                    ),
+                  ),
                 ],
               );
-
-
-
+            },
+          );
         },
-      )
+      ),
     );
-
-
-
-
-
   }
 }

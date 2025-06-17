@@ -1,5 +1,5 @@
 import 'package:employee_portal_mobile_app/core/component/custom_elevated_button_widget.dart';
-import 'package:employee_portal_mobile_app/feature/layout/export_Layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
 
 class TextNoVacationWidget extends StatelessWidget {
@@ -37,7 +37,7 @@ class TextNoVacationWidget extends StatelessWidget {
                 data: "طلب اجازة",
                 icon: Icons.add,
                 onPressed: (){
-                  context.read<VacationCubit>().changeTab(1 );
+                  context.read<VacationCubit>().changeTab(1);
                 },
               ),
             ),
