@@ -1,10 +1,12 @@
 
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_employee_vacations_model/get_employee_vacations_model.dart';
 
+import '../../../data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
+
 class GetEmployeeVacationsState{
   bool ?isLoading= false;
   String? errorMessage;
-  List<GetEmployeeVacationsModel>? response;
+  List<GetEmployeeVacationsResponseModel>? response;
 
   GetEmployeeVacationsState({this.isLoading, this.errorMessage, this.response});
 
@@ -12,7 +14,7 @@ class GetEmployeeVacationsState{
   copyWith({
     bool? isLoading,
     String? errorMessage,
-    List<GetEmployeeVacationsModel>? response,
+    List<GetEmployeeVacationsResponseModel>? response,
   }) {
     return GetEmployeeVacationsState(
       isLoading: isLoading ?? this.isLoading,

@@ -17,6 +17,12 @@ class GetEmployeeVacationsModel extends Equatable {
   final String? employeeSecondName;
   final List<ReviewerModel?>? reviewer;
 
+
+
+
+
+
+
   const GetEmployeeVacationsModel({
     this.id,
     this.typeName,
@@ -113,6 +119,53 @@ class GetEmployeeVacationsModel extends Equatable {
       toDate: "22 نوفمبر2024",
       duration: 1,
     ),
+
+    GetEmployeeVacationsModel(
+      typeName: "اجازة مرضية",
+      isUnderReview: true,
+      balanceWithdrawals: 3,
+      availableBalance: 234,
+      fromDate: "10 نوفمبر2024",
+      toDate: "11 نوفمبر2024",
+      duration: 12,
+      employeeSecondName: "محمد فتحى غانم",
+      reviewer:[
+        ReviewerModel(
+          id: "1",
+          name: "محمد علي",
+          isCertified: true,
+        ),
+        ReviewerModel(
+          id: "2",
+          name: "أحمد سعيد",
+          isUnderReview: true,
+        ),
+
+      ],
+      notes: "example notes for sick leave",
+    ),
+    GetEmployeeVacationsModel(
+      typeName: "اجازة حج",
+      isCertified: true,
+      balanceWithdrawals: 1,
+      availableBalance: 100,
+      fromDate: "22 نوفمبر2024",
+      toDate: "22 نوفمبر2024",
+      duration: 20,
+    ),
+    GetEmployeeVacationsModel(
+      typeName: "اجازة عرضة",
+      isRejected: true,
+      balanceWithdrawals: 1,
+      availableBalance: 100,
+      fromDate: "22 نوفمبر2024",
+      toDate: "22 نوفمبر2024",
+      duration: 1,
+    ),
   ];
+
+
+
+
 }
 

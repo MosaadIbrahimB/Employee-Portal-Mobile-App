@@ -16,6 +16,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
 
 import '../../model/get_employee_vacations_model/get_employee_vacations_model.dart';
+import '../../model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 
 class VacationRemoteImplDio implements VacationRemoteDataSource {
   final ApiService apiService;
@@ -123,14 +124,14 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   }
 
   @override
-  Future<List<GetEmployeeVacationsModel>> getEmployeeVacations()
+  Future<List<GetEmployeeVacationsResponseModel>> getEmployeeVacations()
   async
   {
     final response = await apiService.getRequest(
-      endPoint: EndPoint.getVacations,
+      endPoint:  "https://api.hr-sync.com${EndPoint.getVacations}",
     );
-    return response.data.map<GetEmployeeVacationsModel>(
-      (json) => GetEmployeeVacationsModel.fromJson(json),
+    return response.data.map<GetEmployeeVacationsResponseModel>(
+      (json) => GetEmployeeVacationsResponseModel.fromJson(json),
     ).toList();
 
   // return Future.value(GetEmployeeVacationsModel.listVacationEmployee);

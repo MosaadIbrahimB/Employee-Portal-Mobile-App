@@ -1,6 +1,7 @@
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
 
 import '../../data/model/get_employee_vacations_model/get_employee_vacations_model.dart';
+import '../../data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 import '../control/get_employee_vacations/get_employee_vacations_state.dart';
 import 'import_file.dart';
 
@@ -9,7 +10,9 @@ class VacationScreen extends StatelessWidget {
 
   static final List<Widget> body = [
     const NoVacationWidget(),
+
     const VacationRequestWidget(),
+
     const BodyTabWidget(),
     VacationDetailsWidget(),
   ];
@@ -48,8 +51,15 @@ class VacationScreen extends StatelessWidget {
               GetEmployeeVacationsState
             >(
               builder: (context, state) {
-                List<GetEmployeeVacationsModel> vacations =
+                if (state.isLoading == true && state.response == null) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state.errorMessage != null) {
+                  return Center(child: Text(state.errorMessage!));
+                }
+                List<GetEmployeeVacationsResponseModel> vacations =
                     state.response ?? [];
+
 
                 return SingleChildScrollView(
                   child: vacations.isEmpty ? body[stateIndex] : body[2],

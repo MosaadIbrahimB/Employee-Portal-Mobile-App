@@ -16,6 +16,8 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/entity/vacation_type_entity.dart';
 
+import '../../data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
+
 abstract class VacationRepository {
   Future<Either<Failure, List<VacationTypeModel>>> getVacationType();
 
@@ -44,5 +46,5 @@ abstract class VacationRepository {
     required PostVacationRequestModel postVacationModel,
   });
 
-  Future<Either<Failure, List<GetEmployeeVacationsModel>>> getEmployeeVacations();
+  Future<Either<Failure, List<GetEmployeeVacationsResponseModel>>> getEmployeeVacations();
 }
