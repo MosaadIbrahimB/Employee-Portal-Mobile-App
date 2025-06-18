@@ -40,6 +40,7 @@ class VacationScreen extends StatelessWidget {
       ],
       child: BlocBuilder<VacationCubit, int>(
         builder: (context, state) {
+          int stateIndex = state;
           return Padding(
             padding: const EdgeInsets.all(20.0).r,
             child: BlocBuilder<
@@ -49,8 +50,9 @@ class VacationScreen extends StatelessWidget {
               builder: (context, state) {
                 List<GetEmployeeVacationsModel> vacations =
                     state.response ?? [];
+
                 return SingleChildScrollView(
-                  child: vacations.isEmpty ? body[0] : body[2],
+                  child: vacations.isEmpty ? body[stateIndex] : body[2],
                 );
               },
             ),
