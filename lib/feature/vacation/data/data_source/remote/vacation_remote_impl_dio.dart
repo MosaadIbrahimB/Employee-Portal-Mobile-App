@@ -129,10 +129,10 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     final response = await apiService.getRequest(
       endPoint: EndPoint.getVacations,
     );
-    // return response.data.map<GetVacationsModel>(
-    //   (json) => GetVacationsModel.fromJson(json),
-    // ).toList();
+    return response.data.map<GetEmployeeVacationsModel>(
+      (json) => GetEmployeeVacationsModel.fromJson(json),
+    ).toList();
 
-  return Future.value(GetEmployeeVacationsModel.listVacationEmployee);
+  // return Future.value(GetEmployeeVacationsModel.listVacationEmployee);
   }
 }
