@@ -11,6 +11,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_r
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_employee_vacations_model/get_employee_vacations_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_requests/get_vacation_requests_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type/vacation_type_model.dart';
@@ -153,6 +154,20 @@ class VacationRepositoryImpl implements VacationRepository {
   {
 try {
       final result = await vacationRemoteDataSource.getEmployeeVacations();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم getEmployeeVacations"),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GetVacationRequestsResponseModel>>> getVacationRequests()
+  async
+  {
+    try {
+      final result = await vacationRemoteDataSource.getVacationRequests();
       return right(result);
     } catch (e) {
       return left(

@@ -5,6 +5,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/tab_vacation_of_app_bar_switcher.dart';
 
 import '../../control/vacation_cubit/vacation_cubit.dart';
+import '../vacation_request/vacation_request_widget.dart';
 
 class BodyTabWidget extends StatelessWidget {
   const BodyTabWidget({super.key});
@@ -19,41 +20,12 @@ class BodyTabWidget extends StatelessWidget {
     return BlocBuilder<VacationTabCubit, int>(
       builder: (context, state) {
         return SingleChildScrollView(
-          child: Stack(
+          child: Column(
             children: [
-              Column(
-                children: [
-                  TabVacationOfAppBarSwitcherWidget(),
-                  SizedBox(height: 16.h),
-                  body[state],
-                  SizedBox(height: 60.h),
-
-                ],
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                child: Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: GestureDetector(
-                      onTap: (){
-                        // context.read<RequestCubit>().changePage(1);
-                        // context.read<TabSwitcherCubit>().changeTab(0);
-                        context.read<VacationCubit>().changeTab(1);
-
-                      },
-                      child: Container(
-                        width: 60.w,
-                        height: 60.h,
-                        decoration: BoxDecoration(
-                          color: AppColor.primary,
-                          borderRadius: BorderRadius.circular(12).r,
-                        ),
-                        child: const Icon(Icons.add, color: Colors.white, size: 30),
-                      ),
-                    )
-                ),
-              ),
+              TabVacationOfAppBarSwitcherWidget(),
+              SizedBox(height: 16.h),
+              body[state],
+              SizedBox(height: 60.h),
             ],
           ),
         );
@@ -61,3 +33,29 @@ class BodyTabWidget extends StatelessWidget {
     );
   }
 }
+
+// class BodyW extends StatelessWidget {
+//    BodyW({super.key});
+// List<Widget>body=[
+//   BodyTabWidget(),
+//   VacationRequestWidget(),
+// ];
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//       BlocBuilder<NavCubit, int>(
+//           builder: (context, state) {
+//             return body[state];
+//           },
+//         );
+//   }
+// }
+//
+// class NavCubit extends Cubit<int>{
+//   NavCubit() : super(0);
+//
+//   void changeTab(int index) {
+//     emit(index);
+//   }
+//
+// }

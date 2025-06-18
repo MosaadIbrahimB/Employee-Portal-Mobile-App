@@ -4,6 +4,7 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/a
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/notes_input_field.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/app_bar_management_request_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_tab/vacation_tab_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_type/vacation_type_state.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/from_to_date_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/input_duration_widget.dart';
@@ -25,6 +26,7 @@ class VacationRequestBodyWidget extends StatelessWidget {
       children: [
         SizedBox(height: 12.h),
         AppBarManagementRequestWidget(
+          icon: Icons.close,
           title: "طلب اجازة",
           onTap: () {
             context.read<VacationCubit>().changeTab(0);

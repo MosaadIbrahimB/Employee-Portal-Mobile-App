@@ -6,6 +6,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_r
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_requests/get_vacation_requests_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/request_default_reviewer_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_response_model.dart';
@@ -36,4 +37,7 @@ abstract class VacationRemoteDataSource {
     required VacationBalanceRequestModel requestModel,
   });
   Future<List<GetEmployeeVacationsResponseModel>> getEmployeeVacations();
+
+
+  Future<List<GetVacationRequestsResponseModel>> getVacationRequests();
 }

@@ -1,5 +1,7 @@
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
 import '../../../feature/vacation/domain/use_case/get_employee_vacations_use_case.dart';
+import '../../../feature/vacation/domain/use_case/get_vacation_requests_use_case.dart';
+import '../../../feature/vacation/presentation/control/get_vacation_requests/get_vacation_requests_cubit.dart';
 import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
@@ -22,4 +24,5 @@ void initCubits() {
   ));
   sl.registerFactory(() => ConnectInternetCubit());
   sl.registerFactory(() => GetEmployeeVacationsCubit(getEmployeeVacationsUseCase: sl<GetEmployeeVacationsUseCase>()));
+  sl.registerFactory(() => GetVacationRequestsCubit(getVacationRequestsUseCase: sl<GetVacationRequestsUseCase>()));
 }

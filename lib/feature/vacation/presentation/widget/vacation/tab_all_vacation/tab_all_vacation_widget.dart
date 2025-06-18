@@ -7,6 +7,8 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/control
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/tab_all_vacation/item_tab_all_vacation_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../vacation_request/vacation_request_widget.dart';
+
 
 class TabAllVacationWidget extends StatelessWidget {
   const TabAllVacationWidget({super.key});
@@ -49,6 +51,28 @@ class TabAllVacationWidget extends StatelessWidget {
                     .toList(),
               );
             },
+          ),
+          Align(
+            alignment: AlignmentDirectional.bottomEnd,
+            child: GestureDetector(
+              onTap: () {
+                context.read<VacationCubit>().changeTab(1);
+                print("object");
+              },
+              child: Container(
+                width: 60.w,
+                height: 60.h,
+                decoration: BoxDecoration(
+                  color: AppColor.primary,
+                  borderRadius: BorderRadius.circular(12).r,
+                ),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+            ),
           ),
         ],
       ),

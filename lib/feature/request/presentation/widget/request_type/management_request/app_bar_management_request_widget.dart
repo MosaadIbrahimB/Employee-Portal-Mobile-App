@@ -16,7 +16,7 @@ class AppBarManagementRequestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
+      if(icon !=null)  GestureDetector(
           onTap: onTap,
           child: Container(
             padding: EdgeInsets.all(8).r,
@@ -24,7 +24,7 @@ class AppBarManagementRequestWidget extends StatelessWidget {
             child: Icon(icon ?? Icons.close),
           ),
         ),
-        SizedBox(width: 12.w),
+        if(icon !=null) SizedBox(width: 12.w),
         Text(title, style: Theme.of(context).textTheme.headlineLarge),
       ],
     );

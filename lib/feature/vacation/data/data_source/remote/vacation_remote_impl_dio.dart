@@ -8,6 +8,7 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_han
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_balance/vacation_balance_response_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_vacation_requests/get_vacation_requests_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/request_default_reviewer_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vacation/post_vacation_response_model.dart';
@@ -128,12 +129,28 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   async
   {
     final response = await apiService.getRequest(
-      endPoint:  "https://api.hr-sync.com${EndPoint.getVacations}",
+      endPoint: EndPoint.getVacations,
     );
     return response.data.map<GetEmployeeVacationsResponseModel>(
       (json) => GetEmployeeVacationsResponseModel.fromJson(json),
     ).toList();
 
   // return Future.value(GetEmployeeVacationsModel.listVacationEmployee);
+  // return [];
   }
+
+  @override
+  Future<List<GetVacationRequestsResponseModel>> getVacationRequests()
+  async
+  {
+    final response = await apiService.getRequest(
+      endPoint: EndPoint.getVacationRequests,
+    );
+    return response.data.map<GetVacationRequestsResponseModel>(
+          (json) => GetVacationRequestsResponseModel.fromJson(json),
+    ).toList();
+
+    // return Future.value(GetEmployeeVacationsModel.listVacationEmployee);
+  }
+
 }
