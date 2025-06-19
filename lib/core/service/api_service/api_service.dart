@@ -24,4 +24,18 @@ final DioHelper dioHelper;
     if (response.statusCode == 200 || response.statusCode == 201) return response;
     throw ServerException();
   }
+
+  Future<Response> putRequest({required String endPoint, dynamic data}) async {
+    final response = await dioHelper.dio.put(endPoint, data: data);
+
+    if (response.statusCode == 200 || response.statusCode == 201) return response;
+    throw ServerException();
+  }
+
+  Future<Response> deleteRequest({required String endPoint, dynamic data}) async {
+    final response = await dioHelper.dio.delete(endPoint, data: data);
+
+    if (response.statusCode == 200 || response.statusCode == 204) return response;
+    throw ServerException();
+  }
 }

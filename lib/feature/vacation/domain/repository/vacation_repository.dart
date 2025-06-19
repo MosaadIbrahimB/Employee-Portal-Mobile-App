@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:employee_portal_mobile_app/core/error/failure.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
@@ -46,6 +47,10 @@ abstract class VacationRepository {
   Future<Either<Failure, List<GetEmployeeVacationsResponseModel>>> getEmployeeVacations();
 
   Future<Either<Failure, List<GetVacationRequestsResponseModel>>> getVacationRequests();
+
+  Future<Either<Failure, bool>> approveCancelRequest({
+  required  ApproveCancelRequestModel approveCancelRequestModel,
+});
 
 
 }

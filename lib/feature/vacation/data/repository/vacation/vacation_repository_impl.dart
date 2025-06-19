@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:employee_portal_mobile_app/core/error/failure.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/data_source/remote/vacation_remote_data_source.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
@@ -174,5 +175,21 @@ try {
         ServerFailure("${e.toString()}حدث خطأ في الخادم getEmployeeVacations"),
       );
     }
+  }
+
+  @override
+  Future<Either<Failure, bool>> approveCancelRequest({required ApproveCancelRequestModel approveCancelRequestModel})
+  async {
+    try {
+      final result = await vacationRemoteDataSource.approveCancelRequest(
+        approveCancelRequestModel: approveCancelRequestModel,
+      );
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم approveCancelRequest"),
+      );
+    }
+
   }
 }

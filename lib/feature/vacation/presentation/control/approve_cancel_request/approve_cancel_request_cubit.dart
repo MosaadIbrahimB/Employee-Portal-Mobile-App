@@ -1,0 +1,23 @@
+import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/approve_cancel_request_use_case.dart';
+
+import '../../../data/model/approve_cancel/approve_cancel_request_model.dart';
+import 'approve_cancel_request_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+class ApproveCancelRequestCubit extends Cubit<ApproveCancelRequestState>{
+  ApproveCancelRequestCubit({required this.approveCancelRequestUseCase}) : super(ApproveCancelRequestState());
+final  ApproveCancelRequestUseCase approveCancelRequestUseCase;
+
+  Future<void> approveCancelRequest(ApproveCancelRequestModel approveCancelRequestModel) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: false));
+
+    final result = await approveCancelRequestUseCase(approveCancelRequestModel: approveCancelRequestModel);
+    result.fold(
+          (failure) => emit(state.copyWith(isLoading: false, errorMessage: failure.message)),
+          (response) {
+            print("+++++++++++++++ $response");
+            emit(state.copyWith(isLoading: false, isSuccess: response));
+          },
+    );
+  }
+
+}

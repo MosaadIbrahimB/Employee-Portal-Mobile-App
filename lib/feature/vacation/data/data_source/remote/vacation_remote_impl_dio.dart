@@ -1,6 +1,7 @@
 import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
 import 'package:employee_portal_mobile_app/core/utils/end_point.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/data_source/remote/vacation_remote_data_source.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_response_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/check_handled_alerts/check_handled_alerts_request_model.dart';
@@ -151,6 +152,19 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     ).toList();
 
     // return Future.value(GetEmployeeVacationsModel.listVacationEmployee);
+  }
+
+  @override
+  Future<bool> approveCancelRequest({required ApproveCancelRequestModel approveCancelRequestModel})
+
+  async {
+    final response = await apiService.putRequest(
+      endPoint: EndPoint.approveCancelRequest,
+      data: approveCancelRequestModel.toJson(),
+    );
+    // print("---------------- ${response.data}");
+    return response.data ?? false; // Assuming the API returns a success field
+
   }
 
 }

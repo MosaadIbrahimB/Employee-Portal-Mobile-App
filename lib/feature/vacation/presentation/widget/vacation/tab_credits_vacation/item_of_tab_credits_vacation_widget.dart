@@ -2,6 +2,10 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/opening_time_widget.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
+import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/approve_cancel_request/approve_cancel_request_state.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/item_of_from_to_widget.dart';
 
 import '../../../../data/model/get_vacation_requests/get_vacation_requests_response_model.dart';
@@ -14,7 +18,37 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return BlocListener<ApproveCancelRequestCubit, ApproveCancelRequestState>(
+  listener: (context, state) {
+    if(state.isLoading){
+      context.showLoadingDialog();
+    }
+    if ( state.isLoading == false) {
+      context.hideLoadingDialog();
+      if(state.isSuccess){
+        context.viewSnackBar(
+          message: "تمت العملية بنجاح",
+          color: Colors.green,
+        );
+      }else{
+        context.viewSnackBar(
+          message: "لايمكن التعديل",
+          color: Colors.red,
+        );
+      }
+
+    }
+     if (state.errorMessage != null) {
+      context.hideLoadingDialog();
+         context. viewErrorDialog(
+        state.errorMessage ?? "حدث خطأ ما",
+      );
+
+
+    }
+
+  },
+  child: Container(
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 16.h),
       padding: EdgeInsets.all(12).r,
@@ -53,10 +87,6 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
                   ),
                 ],
               ),
-
-
-
-
 
               GestureDetector(
                 onTapDown: (details) {
@@ -101,41 +131,71 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
           ),
         ],
       ),
+    ),
+);
+  }
+
+  dropdownMenu(BuildContext context, TapDownDetails details) async {
+    final position = details.globalPosition;
+    final selected = await showMenu<String>(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        position.dx - 50.h,
+        position.dy + 5.h,
+        position.dx,
+        position.dy,
+      ),
+      items: [
+        const PopupMenuItem(value: 'approve', child: Text('اعتماد')),
+        const PopupMenuItem(
+          value: 'approve_with_note',
+          child: Text('اعتماد مع ملاحظة'),
+        ),
+        const PopupMenuItem(value: 'reject', child: Text('رفض')),
+      ],
     );
-  }
 
-  dropdownMenu(BuildContext context,TapDownDetails details) async {
-        final position = details.globalPosition;
-        final selected = await showMenu<String>(
-          context: context,
-          position: RelativeRect.fromLTRB(
-            position.dx-50.h,
-            position.dy+5.h,
-            position.dx,
-            position.dy,
-          ),
-          items: [
-            const PopupMenuItem(value: 'approve', child: Text('اعتماد')),
-            const PopupMenuItem(value: 'approve_with_note', child: Text('اعتماد مع ملاحظة')),
-            const PopupMenuItem(value: 'reject', child: Text('رفض')),
-          ],
-        );
-
-        if (selected != null) {
-          switch (selected) {
-            case 'approve':
-            // نفّذ عملية الاعتماد
-              break;
-            case 'approve_with_note':
-              _showNoteBottomSheet(context);
-              break;
-            case 'reject':
-            // نفّذ عملية الرفض
-              break;
+    if (selected != null) {
+      switch (selected) {
+        case 'approve':
+          ApproveCancelRequestModel approveCancelRequestModel =
+              ApproveCancelRequestModel(
+                id: model.requestedId.toString(),
+                value: 0,
+                isApproved: true,
+              );
+         if(context.mounted){
+          context.read<ApproveCancelRequestCubit>().approveCancelRequest(
+                approveCancelRequestModel,
+              );
+          print("isApproved: ");
+         }
+          break;
+        case 'approve_with_note':
+          if(context.mounted){
+            _showNoteBottomSheet(context);
           }
-        }
+          break;
+        case 'reject':
+          ApproveCancelRequestModel approveCancelRequestModel =
+          ApproveCancelRequestModel(
+            id: model.requestedId.toString(),
+            value: 0,
+            isApproved: false,
+          );
+          if(context.mounted){
+            context.read<ApproveCancelRequestCubit>().approveCancelRequest(
+              approveCancelRequestModel,
 
+
+            );
+            print("reject: ");
+
+          }          break;
+      }
+    }
   }
+
   void _showNoteBottomSheet(BuildContext context) {
     final TextEditingController noteController = TextEditingController();
 
@@ -158,13 +218,17 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                  onTap: (){
-                    Navigator.pop(context); // اغلق الـ BottomSheet
-                  },
-                  child: const Icon(Icons.close)),
+                onTap: () {
+                  Navigator.pop(context); // اغلق الـ BottomSheet
+                },
+                child: const Icon(Icons.close),
+              ),
               SizedBox(height: 8.h),
 
-              const Text('ضع ملاحظاتك', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'ضع ملاحظاتك',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 12),
               TextField(
                 controller: noteController,
@@ -177,20 +241,29 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   String note = noteController.text;
                   // احفظ الملاحظة أو ابعتها للسيرفر
                   Navigator.pop(context); // اغلق الـ BottomSheet
                 },
                 child: Container(
-                  height: 40.h,width: 60.w,
-                 decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(8).r,
-                   border: Border.all(color: context.color.primary, width: 1.w)
-                 ),
-                  child: Center(child:  Text('حفظ',style: context.text.labelLarge!.copyWith(
-                    color: context.color.primary
-                  ),)),
+                  height: 40.h,
+                  width: 60.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8).r,
+                    border: Border.all(
+                      color: context.color.primary,
+                      width: 1.w,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'حفظ',
+                      style: context.text.labelLarge!.copyWith(
+                        color: context.color.primary,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -200,5 +273,4 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
       },
     );
   }
-
 }

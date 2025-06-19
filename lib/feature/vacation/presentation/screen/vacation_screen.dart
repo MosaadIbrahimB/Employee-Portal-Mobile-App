@@ -1,6 +1,7 @@
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_vacation_requests/get_vacation_requests_cubit.dart';
 import '../../data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
+import '../control/approve_cancel_request/approve_cancel_request_cubit.dart';
 import '../control/get_employee_vacations/get_employee_vacations_state.dart';
 import 'import_file.dart';
 
@@ -71,6 +72,10 @@ class VacationScreen extends StatelessWidget {
       BlocProvider(
         create:
             (context) => sl<GetVacationRequestsCubit>()..getVacationRequests(),
+      ),
+      BlocProvider(
+        create:
+            (context) => sl<ApproveCancelRequestCubit>(),
       ),
 
     ];

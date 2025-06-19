@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/approve_cancel_request_use_case.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/get_employee_vacations_use_case.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/get_vacation_requests_use_case.dart';
 
@@ -15,6 +16,7 @@ void initUseCases() {
   sl.registerLazySingleton(() => GetVacationBalanceUseCase(sl()));
   sl.registerLazySingleton(() => GetEmployeeVacationsUseCase(sl()));
   sl.registerLazySingleton(() => GetVacationRequestsUseCase(sl()));
+  sl.registerLazySingleton(() => ApproveCancelRequestUseCase(sl()));
 
 
 }

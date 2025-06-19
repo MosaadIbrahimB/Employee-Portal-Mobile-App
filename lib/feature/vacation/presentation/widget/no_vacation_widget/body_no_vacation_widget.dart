@@ -3,8 +3,8 @@ import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dar
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/vacation_request_widget.dart';
 
-class TextNoVacationWidget extends StatelessWidget {
-  const TextNoVacationWidget({super.key});
+class BodyNoVacationWidget extends StatelessWidget {
+  const BodyNoVacationWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
