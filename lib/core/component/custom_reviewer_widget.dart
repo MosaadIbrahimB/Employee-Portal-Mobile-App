@@ -6,17 +6,14 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 
 class CustomReviewerWidget extends StatelessWidget {
   const CustomReviewerWidget({
-    super.key,
-    required this.reviewerModel,
-    required this.statusModel,
+    super.key, this.nameReviewer, this.statusReviewer, this.idReviewer,
   });
-
-  final ReviewerModel reviewerModel;
-  final StatusModel statusModel;
+final String?nameReviewer;
+final String?statusReviewer;
+final  String?idReviewer;
 
   @override
   Widget build(BuildContext context) {
-    var colorTheme = Theme.of(context).colorScheme;
     var textTheme = Theme.of(context).textTheme;
 
     return Expanded(
@@ -29,8 +26,7 @@ class CustomReviewerWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("المراجع ", style: textTheme.bodyMedium),
-
-                StatusWidget(statusModel: statusModel),
+                Text(statusReviewer??"موافق ", style: textTheme.bodyMedium),
               ],
             ),
             SizedBox(height: 8.h),
@@ -40,11 +36,11 @@ class CustomReviewerWidget extends StatelessWidget {
 
               children: [
                 Text(
-                  reviewerModel.name ?? " محمد طارق",
+                  nameReviewer ?? " محمد طارق",
                   style: textTheme.bodyLarge,
                 ), // InputDataWidget(
                 Text(
-                  reviewerModel.id ?? "123456",
+                  idReviewer ?? "123456",
                   style: textTheme.bodyLarge,
                 ),
               ],

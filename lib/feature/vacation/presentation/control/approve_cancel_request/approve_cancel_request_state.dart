@@ -1,12 +1,14 @@
-class ApproveCancelRequestState{
+import 'package:equatable/equatable.dart';
+
+class ApproveCancelRequestState extends Equatable{
   final bool isLoading;
   final String? errorMessage;
-  final bool isSuccess;
+  final bool ?isSuccess;
 
-  ApproveCancelRequestState({
+  const ApproveCancelRequestState({
     this.isLoading = false,
     this.errorMessage,
-    this.isSuccess = false,
+    this.isSuccess ,
   });
 
   ApproveCancelRequestState copyWith({
@@ -20,4 +22,11 @@ class ApproveCancelRequestState{
       isSuccess: isSuccess ?? this.isSuccess,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    isLoading,
+    errorMessage,
+    isSuccess,
+  ];
 }

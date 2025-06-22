@@ -1,13 +1,9 @@
-import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/opening_time_widget.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/approve_cancel_request/approve_cancel_request_state.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation/item_of_from_to_widget.dart';
-
 import '../../../../data/model/get_vacation_requests/get_vacation_requests_response_model.dart';
 
 class ItemOfTabCreditsVacationWidget extends StatelessWidget {
@@ -19,120 +15,111 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ApproveCancelRequestCubit, ApproveCancelRequestState>(
-  listener: (context, state) {
-    if(state.isLoading){
-      context.showLoadingDialog();
-    }
-    if ( state.isLoading == false) {
-      context.hideLoadingDialog();
-      if(state.isSuccess){
-        context.viewSnackBar(
-          message: "تمت العملية بنجاح",
-          color: Colors.green,
-        );
-      }else{
-        context.viewSnackBar(
-          message: "لايمكن التعديل",
-          color: Colors.red,
-        );
-      }
 
-    }
-     if (state.errorMessage != null) {
-      context.hideLoadingDialog();
-         context. viewErrorDialog(
-        state.errorMessage ?? "حدث خطأ ما",
-      );
+      listener: (context, state) {
+        if (state.isLoading == true) {
+          context.showLoadingDialog();
+        }
+        if (state.isSuccess == true) {
+          context.hideLoadingDialog();
+          print("state.isSuccess: ${state.isSuccess}");
+        }
 
+        if (state.isSuccess == false) {
+          context.hideLoadingDialog();
+          context.viewSnackBar(message: "لايمكن التعديل", color: Colors.red);
+        }
 
-    }
-
-  },
-  child: Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(bottom: 16.h),
-      padding: EdgeInsets.all(12).r,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12).r,
-        border: Border.all(color: Colors.black12, width: 1.w),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // معتمده - تحت الطلب -مرفوض - التاريخ
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    decoration: BoxDecoration(
-                      color:
-                          model.status == "مرفوض" ? Colors.red : Colors.green,
-                      borderRadius: BorderRadius.circular(8).r,
-                    ),
-                    child: Text(
-                      model.status ?? "معتمده",
-                      style: context.text.titleMedium!.copyWith(
-                        color: context.color.surface,
+        if (state.errorMessage != null) {
+          context.hideLoadingDialog();
+          context.viewErrorDialog(state.errorMessage ?? "حدث خطأ ما");
+        }
+      },
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(bottom: 16.h),
+        padding: EdgeInsets.all(12).r,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12).r,
+          border: Border.all(color: Colors.black12, width: 1.w),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // معتمده - تحت الطلب -مرفوض - التاريخ
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 4.w),
+                      decoration: BoxDecoration(
+                        color:
+                            model.status == "مرفوض" ? Colors.red : Colors.green,
+                        borderRadius: BorderRadius.circular(8).r,
+                      ),
+                      child: Text(
+                        model.status ?? "معتمده",
+                        style: context.text.titleMedium!.copyWith(
+                          color: context.color.surface,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    model.vacationTypeName ?? "عارضة",
-                    style: context.text.titleMedium,
-                  ),
-                ],
-              ),
-
-              GestureDetector(
-                onTapDown: (details) {
-                  dropdownMenu(context, details);
-                },
-
-                child: Icon(moreH),
-              ),
-            ],
-          ),
-          SizedBox(height: 12.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("اسم الموظف  : ${model.employeeName}"),
-              Text(' ${model.jobTitle ?? "مصمم تجربة مستخدم"}'),
-            ],
-          ),
-          SizedBox(height: 12.h),
-          OpeningTimeWidget(
-            title: "المدة : ${model.duration!.toInt()} أيام",
-            color: context.color.shadow,
-          ),
-          SizedBox(height: 12.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: ItemOfFromToWidget(
-                  title: "من",
-                  date: model.fromDate?.substring(0, 10) ?? "22 نوفمبر2024",
+                    SizedBox(width: 8.w),
+                    Text(
+                      model.vacationTypeName ?? "عارضة",
+                      style: context.text.titleMedium,
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(width: 8.w),
-              Expanded(
-                child: ItemOfFromToWidget(
-                  title: "الى",
-                  date: model.toDate?.substring(0, 10) ?? "22 نوفمبر2024",
+
+                GestureDetector(
+                  onTapDown: (details) {
+                    dropdownMenu(context, details);
+                  },
+
+                  child: Icon(moreH),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            SizedBox(height: 12.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("اسم الموظف  : ${model.employeeName}"),
+                Text(' ${model.jobTitle ?? "مصمم تجربة مستخدم"}'),
+              ],
+            ),
+            SizedBox(height: 12.h),
+            OpeningTimeWidget(
+              title: "المدة : ${model.duration!.toInt()} أيام",
+              color: context.color.shadow,
+            ),
+            SizedBox(height: 12.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ItemOfFromToWidget(
+                    title: "من",
+                    date: model.fromDate?.substring(0, 10) ?? "22 نوفمبر2024",
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: ItemOfFromToWidget(
+                    title: "الى",
+                    date: model.toDate?.substring(0, 10) ?? "22 نوفمبر2024",
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-);
+    );
   }
 
   dropdownMenu(BuildContext context, TapDownDetails details) async {
@@ -158,40 +145,28 @@ class ItemOfTabCreditsVacationWidget extends StatelessWidget {
     if (selected != null) {
       switch (selected) {
         case 'approve':
-          ApproveCancelRequestModel approveCancelRequestModel =
-              ApproveCancelRequestModel(
-                id: model.requestedId.toString(),
-                value: 0,
-                isApproved: true,
-              );
-         if(context.mounted){
-          context.read<ApproveCancelRequestCubit>().approveCancelRequest(
-                approveCancelRequestModel,
-              );
-          print("isApproved: ");
-         }
+          ApproveCancelRequestModel approveCancelRequestModel = ApproveCancelRequestModel(id: model.balance?.employeeId.toString() ?? "", value: 0, isApproved: true,);
+          context.read<ApproveCancelRequestCubit>().approveCancelRequest(approveCancelRequestModel);
+
           break;
         case 'approve_with_note':
-          if(context.mounted){
+          if (context.mounted) {
             _showNoteBottomSheet(context);
           }
           break;
         case 'reject':
           ApproveCancelRequestModel approveCancelRequestModel =
-          ApproveCancelRequestModel(
-            id: model.requestedId.toString(),
-            value: 0,
-            isApproved: false,
-          );
-          if(context.mounted){
+              ApproveCancelRequestModel(
+                id: model.id.toString()?? "",
+                value: 0,
+                isApproved: false,
+              );
+          if (context.mounted) {
             context.read<ApproveCancelRequestCubit>().approveCancelRequest(
               approveCancelRequestModel,
-
-
             );
-            print("reject: ");
-
-          }          break;
+          }
+          break;
       }
     }
   }

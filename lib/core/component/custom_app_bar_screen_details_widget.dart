@@ -8,15 +8,11 @@ class CustomAppBarScreenWidget extends StatelessWidget {
     required this.title,
     this.onTap,
     this.icon,
-    required this.statusModel,
-    this.isDetailsScreen,
   });
 
   final String title;
   final void Function()? onTap;
   final IconData? icon;
-  final StatusModel statusModel;
-  final bool? isDetailsScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +28,6 @@ class CustomAppBarScreenWidget extends StatelessWidget {
         ),
         SizedBox(width: 12.w),
         Text(title, style: Theme.of(context).textTheme.headlineLarge),
-        const Spacer(),
-        isDetailsScreen == true
-            ?
-
-        StatusWidget(
-          statusModel: statusModel,
-        ):
-        SizedBox(),
 
       ],
     );

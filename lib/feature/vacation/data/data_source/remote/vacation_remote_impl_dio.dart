@@ -16,8 +16,6 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/post_vaca
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type/vacation_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_vacation/validate_vacation_response_model.dart';
-
-import '../../model/get_employee_vacations_model/get_employee_vacations_model.dart';
 import '../../model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 
 class VacationRemoteImplDio implements VacationRemoteDataSource {
@@ -162,8 +160,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
       endPoint: EndPoint.approveCancelRequest,
       data: approveCancelRequestModel.toJson(),
     );
-    // print("---------------- ${response.data}");
-    return response.data ?? false; // Assuming the API returns a success field
+    return response.data ;
 
   }
 

@@ -14,14 +14,16 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/control
 import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
+
 class VacationDetailsWidget extends StatelessWidget {
   const VacationDetailsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    GetEmployeeVacationsModel model =
+    GetEmployeeVacationsResponseModel model =
         context.read<VacationCubit>().getEmployeeVacationsModel();
-    List<ReviewerModel?> reviewer = model.reviewer ?? [];
+    // List<ReviewerModel?> reviewer = model.reviewer ?? [];
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16).r,
@@ -29,27 +31,28 @@ class VacationDetailsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 16.h),
-            // معتمده - تحت الطلب -مرفوض
 
+            // معتمده - تحت الطلب -مرفوض
             CustomAppBarScreenWidget(
               title: "تفاصيل أجازتى",
               onTap: () {
                 context.read<VacationCubit>().changeTab(2);
               },
-              icon: Icons.close,
-              statusModel: StatusModel.employeeVacationsModel(
-                employeeVacationsModel: model,
-              ),
-              isDetailsScreen: true,
             ),
 
             SizedBox(height: 16.h),
             // // النوع
-            CustomTitleAndValueWidget(title: "العنوان", value: model.typeName),
+            CustomTitleAndValueWidget(
+              title: "العنوان",
+              value: model.vacationTypeName,
+            ),
             SizedBox(height: 16.h),
             // //   التاريخ
             SubmissionDateWidget(
-              reportModel: ReportModel(dateRequest: model.fromDate),
+              reportModel: ReportModel(
+                dateRequest:
+                    model.fromDate?.substring(0, 10) ?? "22 نوفمبر2024",
+              ),
             ),
             SizedBox(height: 16.h),
             Row(
@@ -58,14 +61,14 @@ class VacationDetailsWidget extends StatelessWidget {
                 Expanded(
                   child: CustomFromToDateWidget(
                     title: "من",
-                    date: model.fromDate ?? "22 نوفمبر2024",
+                    date: model.fromDate?.substring(0, 10) ?? "22 نوفمبر2024",
                   ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
                   child: CustomFromToDateWidget(
                     title: "الى",
-                    date: model.toDate ?? "22 نوفمبر2024",
+                    date: model.toDate?.substring(0, 10) ?? "22 نوفمبر2024",
                   ),
                 ),
               ],
@@ -78,24 +81,39 @@ class VacationDetailsWidget extends StatelessWidget {
             SizedBox(height: 16.h),
             CustomTitleAndValueWidget(
               title: "النائب",
-              value: model.employeeSecondName,
+              value: model.replacementName,
             ),
             SizedBox(height: 16.h),
-            if (reviewer.isNotEmpty)
-              Row(
-                children:
-                    reviewer
-                        .map(
-                          (e) => CustomReviewerWidget(
-                            reviewerModel: e!,
-                            statusModel: StatusModel.reviewerModel(model: e),
-                          ),
-                        )
-                        .toList(),
-              ),
+
+
+
+
+            Row(
+              children: [
+                CustomReviewerWidget(
+                  nameReviewer: model.reviewerName!.isEmpty?"اسم": model.reviewerName,
+                  idReviewer: "كود ",
+                  statusReviewer:"حالة" ,
+
+                ),
+              ],
+            ),
+
+            // if (model.reviewer.isNotEmpty)
+            //   Row(
+            //     children:
+            //         reviewer
+            //             .map(
+            //               (e) => CustomReviewerWidget(
+            //                 reviewerModel: e!,
+            //                 statusModel: StatusModel.reviewerModel(model: e),
+            //               ),
+            //             )
+            //             .toList(),
+            //   ),
             SizedBox(height: 16.h),
             AddDocumentButtonWidget(
-              onTap: (){},
+              onTap: () {},
               title: "الوثائق",
               widget: SizedBox(
                 width: 20.w,
@@ -104,8 +122,8 @@ class VacationDetailsWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            CustomNotsOfDetailsScreenWidget(notText: model.notes,),
-            SizedBox(height: 16.h),
+            CustomNotsOfDetailsScreenWidget(notText: "ملاحظات",),
+            // SizedBox(height: 16.h),
           ],
         ),
       ),

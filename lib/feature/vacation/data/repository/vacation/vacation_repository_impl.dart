@@ -181,14 +181,10 @@ try {
   Future<Either<Failure, bool>> approveCancelRequest({required ApproveCancelRequestModel approveCancelRequestModel})
   async {
     try {
-      final result = await vacationRemoteDataSource.approveCancelRequest(
-        approveCancelRequestModel: approveCancelRequestModel,
-      );
+      final result = await vacationRemoteDataSource.approveCancelRequest(approveCancelRequestModel: approveCancelRequestModel,);
       return right(result);
     } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم approveCancelRequest"),
-      );
+      return left(ServerFailure("${e.toString()}حدث خطأ في الخادم approveCancelRequest"),);
     }
 
   }
