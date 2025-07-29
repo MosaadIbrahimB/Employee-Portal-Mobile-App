@@ -27,7 +27,6 @@ class VacationScreen extends StatelessWidget {
                   return Center(child: Text(state.errorMessage!));
                 }
                 List<GetEmployeeVacationsResponseModel> vacations = state.response ?? [];
-
                 return SingleChildScrollView(
                   child: () {
                     if (stateIndex == 1) {
@@ -35,12 +34,9 @@ class VacationScreen extends StatelessWidget {
                     }   else if (stateIndex == 3) {
                       return VacationDetailsWidget();
                     }
-
-
                     else if (vacations.isEmpty) {
                       return NoVacationWidget();
                     }
-
                     else {
                       return const BodyTabWidget();
                     }
@@ -84,7 +80,6 @@ class VacationScreen extends StatelessWidget {
         create:
             (context) => sl<ApproveCancelRequestCubit>(),
       ),
-
     ];
   }
 }

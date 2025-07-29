@@ -1,5 +1,5 @@
 class EndPoint {
-  // static const String baseUrl = "https://mohrapi.azurewebsites.net";
+  static const String baseUrlMohr = "https://mohrapi.azurewebsites.net";
   static const String baseUrl = "https://api.hr-sync.com";
   static const String vacationTypes = "/api/Vacation/VacationTypes";
   static const String defaultReviewer = "/Api/Requests/GetDefaultReviewers";
@@ -11,6 +11,10 @@ class EndPoint {
   static const String getVacations = "/api/Vacation/GetVacations";
   static const String getVacationRequests = "/api/Vacation/Requests/Reviewer/true";
   static const String approveCancelRequest = "/Api/Requests";
+
+//request
+  static const String getRequestFinancial = "/Api/Requests/GetRequestTypes?requestType=6";
+  static const String getRequestAdministrative = "/Api/Requests/GetRequestTypes?requestType=5";
 
 
 }

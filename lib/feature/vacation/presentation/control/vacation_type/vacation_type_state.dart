@@ -1,12 +1,11 @@
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/vacation_type/vacation_type_model.dart';
 import 'package:equatable/equatable.dart';
-import '../../../domain/entity/vacation_type_entity.dart';
 
 class VacationTypeState extends Equatable {
-  final List<VacationTypeModel> vacationTypes;
-  final VacationTypeModel? selectedVacation;
   final bool isLoading;
   final String? errorMessage;
+  final List<VacationTypeModel> vacationTypes;
+  final VacationTypeModel? selectedVacation;
 
   const VacationTypeState({
     this.vacationTypes = const [],

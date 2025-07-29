@@ -4,10 +4,26 @@ import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
 
-void initApi() {
 
+void initApi() {
   sl.registerLazySingleton<ApiService>(
-        () => ApiService(dioHelper: sl<DioHelper>()),
+        () => ApiService(dioHelper: sl<DioHelper>(instanceName: "main")),
+    instanceName: "main",
   );
 
+  sl.registerLazySingleton<ApiService>(
+        () => ApiService(dioHelper: sl<DioHelper>(instanceName: "mohr")),
+    instanceName: "mohr",
+  );
 }
+
+
+
+//
+// void initApi() {
+//
+//   sl.registerLazySingleton<ApiService>(
+//         () => ApiService(dioHelper: sl<DioHelper>()),
+//   );
+//
+// }

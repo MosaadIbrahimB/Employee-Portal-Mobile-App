@@ -1,6 +1,5 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/control/tab_switcher/tab_switcher_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/account_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/account_widget.dart';
@@ -11,6 +10,8 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/r
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/details_management_request/type_widget.dart';
 import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../control/tab_switcher/tab_switcher_cubit.dart';
 
 class DetailsItemOfRequestWidget extends StatelessWidget {
   const DetailsItemOfRequestWidget({super.key});

@@ -28,7 +28,8 @@ class VacationRepositoryImpl implements VacationRepository {
   VacationRepositoryImpl({required this.vacationRemoteDataSource});
 
   @override
-  Future<Either<Failure, List<VacationTypeModel>>> getVacationType() async {
+  Future<Either<Failure, List<VacationTypeModel>>> getVacationType()
+  async {
     try {
       final result = await vacationRemoteDataSource.getVacationType();
       return right(result);

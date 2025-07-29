@@ -2,6 +2,8 @@ import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/appr
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/get_employee_vacations_use_case.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/get_vacation_requests_use_case.dart';
 
+import '../../../feature/request/domain/repository/request_repository.dart';
+import '../../../feature/request/domain/use_case/get_financial_request_use_case.dart';
 import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
@@ -17,6 +19,8 @@ void initUseCases() {
   sl.registerLazySingleton(() => GetEmployeeVacationsUseCase(sl()));
   sl.registerLazySingleton(() => GetVacationRequestsUseCase(sl()));
   sl.registerLazySingleton(() => ApproveCancelRequestUseCase(sl()));
+  // Registering the GetFinancialRequestUseCase
+  sl.registerLazySingleton(() => GetFinancialRequestUseCase(requestRepository: sl<RequestRepository>()));
 
 
 }
