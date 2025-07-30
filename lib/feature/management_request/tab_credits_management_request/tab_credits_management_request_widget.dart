@@ -1,12 +1,13 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_tab_of_app_bar_switcher.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/AppBarTabManagementRequestWidget.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/app_bar_management_request_widget.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/tab_credits_management_request/item_of_tab_credits_request_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../control/request/request_cubit.dart';
+import '../../request/presentation/control/request/request_cubit.dart';
+import '../AppBarTabManagementRequestWidget.dart';
+import '../app_bar_management_request_widget.dart';
+import 'item_of_tab_credits_request_widget.dart';
+
 
 class TabCreditsManagementRequestWidget extends StatelessWidget {
   const TabCreditsManagementRequestWidget({super.key});

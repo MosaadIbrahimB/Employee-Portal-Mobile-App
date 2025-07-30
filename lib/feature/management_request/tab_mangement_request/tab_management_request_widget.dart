@@ -1,9 +1,9 @@
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_tab_of_app_bar_switcher.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/app_bar_management_request_widget.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_type/management_request/tab_mangement_request/body_tab_management_request_widget.dart';
 
-import '../../../../control/request/request_cubit.dart';
+import '../../request/presentation/control/request/request_cubit.dart';
+import '../app_bar_management_request_widget.dart';
+import 'body_tab_management_request_widget.dart';
 
 class TabManagementRequestWidget extends StatelessWidget {
   const TabManagementRequestWidget({super.key});
@@ -14,6 +14,7 @@ class TabManagementRequestWidget extends StatelessWidget {
       children: [
         SizedBox(height: 12.h),
         AppBarManagementRequestWidget(
+          icon: Icons.close,
           title: "طلباتى الادارية",
           onTap: () {
             context.read<RequestCubit>().changePage(0);

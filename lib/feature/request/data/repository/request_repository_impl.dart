@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:employee_portal_mobile_app/core/error/failure.dart';
+import 'package:employee_portal_mobile_app/feature/request/data/model/employee_reviewed_financial_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/financial_request_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/domain/repository/request_repository.dart';
 
@@ -18,6 +19,19 @@ class RequestRepositoryImpl implements RequestRepository {
     } catch (e) {
       return left(
         ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationType  "),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<EmployeeReviewedFinancialRequestModel>>> getEmployeeReviewedAdministrativeRequest()
+  async {
+    try {
+      final result = await requestRemoteDataSource.getEmployeeReviewedAdministrativeRequest();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم getEmployeeReviewedAdministrativeRequest  "),
       );
     }
   }

@@ -16,5 +16,7 @@ class EndPoint {
   static const String getRequestFinancial = "/Api/Requests/GetRequestTypes?requestType=6";
   static const String getRequestAdministrative = "/Api/Requests/GetRequestTypes?requestType=5";
 
+  static const String getEmployeeReviewedFinancialRequest="/api/Financial/Requests/Employee/true";
+
 
 }

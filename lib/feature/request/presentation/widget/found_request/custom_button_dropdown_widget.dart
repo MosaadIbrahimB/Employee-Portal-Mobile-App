@@ -1,6 +1,4 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/request/control/dropdown/dropdown_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/request/control/request/request_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButtonDropdownWidget extends StatelessWidget {
@@ -54,9 +52,9 @@ class CustomButtonDropdownWidget extends StatelessWidget {
 
     if (selectedItem != null) {
       if(context.mounted){
-        context.read<DropdownCubit>().selectItem(selectedItem);
-        final selectedIndex = options.indexOf(selectedItem);
-        context.read<RequestCubit>().changePage(selectedIndex);
+        // context.read<DropdownCubit>().selectItem(selectedItem);
+        // final selectedIndex = options.indexOf(selectedItem);
+        // context.read<RequestCubit>().changePage(selectedIndex);
       }
     }
 
