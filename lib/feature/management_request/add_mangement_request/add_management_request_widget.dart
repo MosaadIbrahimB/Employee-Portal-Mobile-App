@@ -1,4 +1,5 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/control/admin_request_type/get_admin_request_type_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/control/post_administrative_request/post_administrative_request_state.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/notes_input_field.dart';
@@ -83,7 +84,8 @@ class AddManagementRequestWidget extends StatelessWidget {
                           .postAdministrativeRequest(
                             requestPostAdministrativeRequestModel:
                                 RequestPostAdministrativeRequestModel(
-                                  requestType: 0,
+                                  requestType: context
+                                      .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
                                   date:
                                       context
                                           .read<DateCubit>()

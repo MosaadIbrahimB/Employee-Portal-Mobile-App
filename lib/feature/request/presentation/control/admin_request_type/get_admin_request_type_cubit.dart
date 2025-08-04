@@ -36,7 +36,6 @@ class  GetAdminRequestTypeCubit extends Cubit< GetAdminRequestTypeState>{
   }
   void selectedRequestType(FinancialRequestTypeModel selectedRequest) {
     emit(state.copyWith(selectedRequestType: selectedRequest));
-
   }
 }
 

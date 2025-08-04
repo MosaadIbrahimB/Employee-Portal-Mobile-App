@@ -38,12 +38,28 @@ class BodyTabManagementRequestWidget extends StatelessWidget {
           },
         ),
         SizedBox(height: 21.h),
-        CustomButtonWidget(
-          onTap: () {
-            BlocProvider.of<TabSwitcherCubit>(context).changeTab(2);
-          },
-          title: "طلب ادارى",
+        Align(
+          alignment: AlignmentDirectional.bottomEnd,
+          child: GestureDetector(
+            onTap: () {
+              BlocProvider.of<TabSwitcherCubit>(context).changeTab(2);
+            },
+            child: Container(
+              width: 60.w,
+              height: 60.h,
+              decoration: BoxDecoration(
+                color: AppColor.primary,
+                borderRadius: BorderRadius.circular(12).r,
+              ),
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+          ),
         ),
+
       ],
     );
   }
