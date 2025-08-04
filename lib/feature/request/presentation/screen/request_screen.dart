@@ -4,6 +4,7 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/control/
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/request_screen_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/service/dependency_injection/depend_inject.dart';
+import '../../../financial_request/tab_financial_request/all_financial_request_widget.dart';
 import '../../../management_request/tab_mangement_request/all_management_request_widget.dart';
 import '../../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 import '../control/admin_request_type/get_admin_request_type_cubit.dart';
@@ -30,7 +31,12 @@ class RequestScreen extends StatelessWidget {
               if(state == 1) {
                 return AllManagementRequestWidget();
               }
-              return Text("3");
+              if(state == 6) {
+                print(state.toString());
+                print("xxxxxxxxxx");
+                return const AllFinancialRequestWidget();
+              }
+              return Text(state.toString());
             },
           ))),
     );

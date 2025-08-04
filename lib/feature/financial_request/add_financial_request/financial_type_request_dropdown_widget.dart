@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../request/data/model/financial_request_type_model.dart';
 import '../../request/presentation/control/admin_request_type/get_admin_request_type_cubit.dart';
 import '../../request/presentation/control/admin_request_type/get_admin_request_type_state.dart';
+import '../../request/presentation/control/financial_request_type/get_financial_request_type_cubit.dart';
+import '../../request/presentation/control/financial_request_type/get_financial_request_type_state.dart';
 import '../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 class ManagementTypeRequestDropdownWidget extends StatelessWidget {
   const ManagementTypeRequestDropdownWidget({super.key});
@@ -23,7 +25,7 @@ class ManagementTypeRequestDropdownWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(12).r,
             border: Border.all(color: context.color.outline, width: 1.0),
           ),
-          child: BlocBuilder<GetAdminRequestTypeCubit, GetAdminRequestTypeState>(
+          child: BlocBuilder<GetFinancialRequestTypeCubit, GetFinancialRequestTypeState>(
             builder: (context, state) {
               if (state.isLoading==true) {
                 return Center(
@@ -47,7 +49,7 @@ class ManagementTypeRequestDropdownWidget extends StatelessWidget {
                 }).toList(),
                 onChanged: (value) {
                   if (value != null) {
-                    context.read<GetAdminRequestTypeCubit>().selectedRequestType(value);
+                    context.read<GetFinancialRequestTypeCubit>().selectedRequestType(value);
                     context.read<DefaultReviewerCubit>().fetchDefaultReviewers();
                   }
                 },

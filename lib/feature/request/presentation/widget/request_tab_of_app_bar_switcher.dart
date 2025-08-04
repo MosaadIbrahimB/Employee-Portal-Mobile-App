@@ -1,13 +1,12 @@
-import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../control/tab_switcher/tab_switcher_cubit.dart';
 
 class RequestTabOfAppBarSwitcher extends StatelessWidget {
-  RequestTabOfAppBarSwitcher({super.key});
+  const RequestTabOfAppBarSwitcher({super.key,  required this.tabs});
 
-  final List<String> tabs = ['طلب ادارى', 'الاعتمادات الادارية'];
+  final  List<String> tabs ;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +20,7 @@ class RequestTabOfAppBarSwitcher extends StatelessWidget {
       ),
       child: BlocBuilder<TabSwitcherCubit, int>(
         builder: (context, state) {
+
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(tabs.length, (index) {

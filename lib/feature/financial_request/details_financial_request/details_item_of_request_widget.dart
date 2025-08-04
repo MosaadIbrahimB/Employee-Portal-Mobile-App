@@ -4,7 +4,7 @@ import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../request/data/model/response_admin_financial_model.dart';
 import '../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../app_bar_management_request_widget.dart';
+import '../app_bar_financial_request_widget.dart';
 import 'reviewer_widget.dart';
 import 'nots_details_widget.dart';
 import 'submission_date_widget.dart';
@@ -26,7 +26,7 @@ class DetailsItemOfRequestWidget extends StatelessWidget {
             // معتمده - تحت الطلب -مرفوض
             Row(
               children: [
-                AppBarManagementRequestWidget(
+                AppBarFinancialRequestWidget(
                     icon: Icons.close,
                     title: "تفاصيل طلب ادارى",
                     onTap: () {

@@ -5,12 +5,12 @@ import '../../../core/service/dependency_injection/depend_inject.dart';
 import '../../request/presentation/control/get_reviewer_administrative_request/get_reviewer__administrative_request_cubit.dart';
 import '../../request/presentation/control/get_reviewer_administrative_request/get_reviewer_administrative_request_state.dart';
 import '../../request/presentation/control/request/request_cubit.dart';
-import '../app_bar_management_request_widget.dart';
+import '../app_bar_financial_request_widget.dart';
 import 'item_of_tab_credits_request_widget.dart';
 
 
-class TabCreditsManagementRequestWidget extends StatelessWidget {
-  const TabCreditsManagementRequestWidget({super.key});
+class TabCreditsFinancialRequestWidget extends StatelessWidget {
+  const TabCreditsFinancialRequestWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,15 @@ class TabCreditsManagementRequestWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 12.h),
-          AppBarManagementRequestWidget(
+          AppBarFinancialRequestWidget(
               icon: Icons.close,
-              title: "ادارى قيد الاعتماد",
+              title: "مالى قيد الاعتماد",
               onTap: () {
                 context.read<RequestCubit>().changePage(0);
               }
           ),
           SizedBox(height: 12.h),
-          RequestTabOfAppBarSwitcher(tabs: ["طلب ادارى","الاعتمادات الادارية"],),
+          RequestTabOfAppBarSwitcher(tabs: ['طلب مالى', 'الاعتمادات المالية'],),
           // SizedBox(height: 12.h),
           // AppBarTabManagementRequestWidget(),
           SizedBox(height: 12.h),

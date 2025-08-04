@@ -2,7 +2,7 @@ import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/day/presentation/widget/tab_additional_credits/item_credit_widget.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 
-import '../../../../request/presentation/widget/request_type/management_request/AppBarTabManagementRequestWidget.dart';
+import '../../../../request/presentation/widget/request_type/management_request/app_bar_tab_financial_request_widget.dart';
 
 class TabAdditionalCreditsWidget extends StatelessWidget {
   const TabAdditionalCreditsWidget({super.key});

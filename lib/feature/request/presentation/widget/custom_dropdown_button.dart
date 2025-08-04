@@ -6,7 +6,8 @@ import '../control/request/request_cubit.dart';
 
 class CustomDropdownButton extends StatelessWidget {
   CustomDropdownButton({super.key});
-  final  List<FinancialRequestTypeModel>listStatic=[
+
+  final List<FinancialRequestTypeModel> listStatic = [
     FinancialRequestTypeModel(name: "طلب اداري"),
     FinancialRequestTypeModel(name: "طلب اذن"),
     FinancialRequestTypeModel(name: "طلب اضافي"),
@@ -18,31 +19,29 @@ class CustomDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  DropdownButtonHideUnderline(
+    return DropdownButtonHideUnderline(
       child: DropdownButton2<FinancialRequestTypeModel>(
         isExpanded: true,
         // value: value,
         hint: Text(
           'طلب جديد',
-          style: context.text.bodyLarge!.copyWith(
-            color: context.color.surface,
-          ),
+          style: context.text.bodyLarge!.copyWith(color: context.color.surface),
         ),
 
         items:
-        listStatic.map((request) {
-          return DropdownMenuItem<
-              FinancialRequestTypeModel
-          >(
-            value: request,
-            child: Text(request.name ?? " لا يوجد نوع طلبات للمستخدم"),
-
-          );
-        }).toList(),
+            listStatic.map((request) {
+              return DropdownMenuItem<FinancialRequestTypeModel>(
+                value: request,
+                child: Text(request.name ?? " لا يوجد نوع طلبات للمستخدم"),
+              );
+            }).toList(),
         onChanged: (value) {
           if (value != null) {
-            final index = listStatic.indexWhere((element) => element.name == value.name)+1;
-           context.read<RequestCubit>().changePage(index);          }
+            final index =
+                listStatic.indexWhere((element) => element.name == value.name) +
+                1;
+            context.read<RequestCubit>().changePage(index);
+          }
         },
         buttonStyleData: ButtonStyleData(
           height: 50.h,
@@ -60,9 +59,7 @@ class CustomDropdownButton extends StatelessWidget {
           ),
         ),
         dropdownStyleData: DropdownStyleData(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12).r,
-          ),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12).r),
         ),
       ),
     );
