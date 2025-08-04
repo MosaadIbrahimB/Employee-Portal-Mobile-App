@@ -2,9 +2,15 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/control/
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/approve_cancel_request_use_case.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
-import '../../../feature/request/domain/use_case/get_employee_reviewed_administrative_request_use_case.dart';
-import '../../../feature/request/domain/use_case/get_financial_request_use_case.dart';
-import '../../../feature/request/presentation/control/get_employee_reviewed_administrative_request/get_employee_reviewed_administrative_request_cubit.dart';
+import '../../../feature/request/domain/use_case/get_admin_request_type_use_case.dart';
+import '../../../feature/request/domain/use_case/get_employee_administrative_request_use_case.dart';
+import '../../../feature/request/domain/use_case/get_financial_request_type_use_case.dart';
+import '../../../feature/request/domain/use_case/get_reviewer_administrative_request.dart';
+import '../../../feature/request/domain/use_case/post_administrative_request_use_case.dart';
+import '../../../feature/request/presentation/control/admin_request_type/get_admin_request_type_cubit.dart';
+import '../../../feature/request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
+import '../../../feature/request/presentation/control/get_reviewer_administrative_request/get_reviewer__administrative_request_cubit.dart';
+import '../../../feature/request/presentation/control/post_administrative_request/post_administrative_request_cubit.dart';
 import '../../../feature/vacation/domain/use_case/get_employee_vacations_use_case.dart';
 import '../../../feature/vacation/domain/use_case/get_vacation_requests_use_case.dart';
 import '../../../feature/vacation/presentation/control/get_vacation_requests/get_vacation_requests_cubit.dart';
@@ -33,8 +39,11 @@ void initCubits() {
   sl.registerFactory(() => GetVacationRequestsCubit(getVacationRequestsUseCase: sl<GetVacationRequestsUseCase>()));
   sl.registerFactory(() => ApproveCancelRequestCubit(approveCancelRequestUseCase:  sl<ApproveCancelRequestUseCase>()));
   // Registering the GetFinancialRequestCubit
-  sl.registerFactory(() => GetFinancialRequestTypeCubit(getFinancialRequestUseCase:  sl<GetFinancialRequestUseCase>()));
-  sl.registerFactory(() => GetEmployeeReviewedAdministrativeRequestCubit(getEmployeeReviewedAdministrativeRequestUseCase:  sl<GetEmployeeReviewedAdministrativeRequestUseCase>()));
+  sl.registerFactory(() => GetFinancialRequestTypeCubit(getFinancialRequestUseCase:  sl<GetFinancialRequestTypeUseCase>()));
+  sl.registerFactory(() => GetAdminRequestTypeCubit(getAdminRequestTypeUseCase:  sl<GetAdminRequestTypeUseCase>()));
+  sl.registerFactory(() => GetEmployeeAdministrativeRequestCubit(getEmployeeAdministrativeRequestUseCase:  sl<GetEmployeeAdministrativeRequestUseCase>()));
+  sl.registerFactory(() => GetReviewerAdministrativeRequestCubit(getReviewerAdministrativeRequestUseCase:  sl<GetReviewerAdministrativeRequestUseCase>()));
+  sl.registerFactory(() => PostAdministrativeRequestCubit(sl<PostAdministrativeRequestUseCase>()));
 
 
 }

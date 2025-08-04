@@ -55,7 +55,6 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
     final response = await apiService.postRequest(
       endPoint: EndPoint.postVacation,
       data: postVacationModel.toJson(),
-
     );
     return PostVacationResponseModel.fromJson(response.data);
   }

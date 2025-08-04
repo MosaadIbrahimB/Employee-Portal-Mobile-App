@@ -7,11 +7,11 @@ import 'package:employee_portal_mobile_app/feature/vacation/domain/repository/va
 
 import '../../data/model/financial_request_type_model.dart';
 
-class GetFinancialRequestUseCase {
+class GetFinancialRequestTypeUseCase {
  RequestRepository requestRepository;
 
 
- GetFinancialRequestUseCase({required this.requestRepository});
+ GetFinancialRequestTypeUseCase({required this.requestRepository});
 
 
  Future<Either<Failure, List<FinancialRequestTypeModel>>> call() async {

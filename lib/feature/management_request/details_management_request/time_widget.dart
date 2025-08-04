@@ -4,10 +4,10 @@ import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import '../../../../../../../core/component/input_data_widget.dart';
 
 class TimeWidget extends StatelessWidget {
-  const TimeWidget({super.key,  required this.reportModel});
+  const TimeWidget({super.key,  required this.time});
 
   // final TextEditingController controller;
-  final ReportModel reportModel;
+  final String? time;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class TimeWidget extends StatelessWidget {
               SizedBox(width: 8.w),
 
               Text(
-               reportModel. time ?? "09:00 AM",
+                time ?? "09:00 AM",
                 style: textTheme.titleMedium,
               ),
             ],

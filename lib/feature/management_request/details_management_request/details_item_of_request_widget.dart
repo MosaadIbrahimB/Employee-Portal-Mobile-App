@@ -1,17 +1,19 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/account_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_document_button_widget.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../request/data/model/response_admin_financial_model.dart';
 import '../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../details_management_request/account_widget.dart';
-import '../details_management_request/app_bar_details_item_request_widget.dart';
-import '../details_management_request/nots_details_widget.dart';
-import '../details_management_request/submission_date_widget.dart';
-import '../details_management_request/time_widget.dart';
-import '../details_management_request/type_widget.dart';
+import '../app_bar_management_request_widget.dart';
+import 'reviewer_widget.dart';
+import 'app_bar_details_item_request_widget.dart';
+import 'nots_details_widget.dart';
+import 'submission_date_widget.dart';
+import 'time_widget.dart';
+import 'type_widget.dart';
 
 class DetailsItemOfRequestWidget extends StatelessWidget {
   const DetailsItemOfRequestWidget({super.key});
@@ -20,28 +22,49 @@ class DetailsItemOfRequestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TabSwitcherCubit, int>(
       builder: (context, state) {
-        ReportModel reportModel =
-            context.read<TabSwitcherCubit>().getReportModel();
+
+        ResponseAdminFinancialModel model = context.read<TabSwitcherCubit>().getModel();
         return Column(
           children: [
             SizedBox(height: 16.h),
             // معتمده - تحت الطلب -مرفوض
-            AppBarDetailsItemRequestWidget(reportModel: reportModel),
+            Row(
+              children: [
+                AppBarManagementRequestWidget(
+                    icon: Icons.close,
+                    title: "تفاصيل طلب ادارى",
+                    onTap: () {
+                      context.read<TabSwitcherCubit>().changeTab(0);
+                    }
+                ),
+                  Spacer(),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSecondary),
+                  child: Text(
+                    model.status ?? "الحالة",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ),
+
+              ],
+            ),
+
             SizedBox(height: 16.h),
             //   التاريخ
-            SubmissionDateWidget(reportModel: reportModel),
+            SubmissionDateWidget(dateRequest: model.date??"غير متاح"),
             SizedBox(height: 16.h),
             //النوع
-            TypeWidget(reportModel: reportModel),
+            TypeWidget(requestTypeName: model.requestTypeName),
             SizedBox(height: 16.h),
-            TimeWidget(reportModel: reportModel),
+            TimeWidget(time: "9AM"),
             //المراجع الاول الثانى
             SizedBox(height: 16.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:
-                  AccountModel.accountList
-                      .map((e) => AccountWidget(accountModel: e))
+                  model.reviewers!
+                      .map((e) => ReviewerWidget(reviewer: e))
                       .toList(),
             ),
             SizedBox(height: 16.h),
@@ -55,7 +78,7 @@ class DetailsItemOfRequestWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            NotsDetailsWidget(reportModel: reportModel,),
+            NotsDetailsWidget(nots: model.notes,),
             SizedBox(height: 16.h),
 
           ],

@@ -1,16 +1,35 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VacationInputDateDayWidget extends StatefulWidget {
-  const VacationInputDateDayWidget({super.key, required this.title, this.fillColor, required this.onDateSelected, });
+import '../control/date_cubit/date_cubit.dart';
+class RequestDateWidget extends StatelessWidget {
+  const RequestDateWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        InputDateDayWidget(
+          title: " تاريخ الطلب",
+          onDateSelected: (date) {
+            context.read<DateCubit>().updateDate(date);
+          },
+        ),
+      ],
+    );
+  }
+}
+class InputDateDayWidget extends StatefulWidget {
+  const InputDateDayWidget({super.key, required this.title, this.fillColor, required this.onDateSelected, });
   final String title;
   final Color? fillColor;
   final void Function(DateTime) onDateSelected;
   @override
-  State<VacationInputDateDayWidget> createState() => _VacationInputDateDayWidgetState();
+  State<InputDateDayWidget> createState() => _InputDateDayWidgetState();
 }
-
-class _VacationInputDateDayWidgetState extends State<VacationInputDateDayWidget> {
+class _InputDateDayWidgetState extends State<InputDateDayWidget> {
   DateTime selectedDate = DateTime.now();
 
   @override
@@ -93,5 +112,3 @@ class _VacationInputDateDayWidgetState extends State<VacationInputDateDayWidget>
 
 
 }
-
-

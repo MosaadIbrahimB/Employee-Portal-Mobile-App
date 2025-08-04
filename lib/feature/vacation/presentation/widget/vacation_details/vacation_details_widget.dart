@@ -3,17 +3,11 @@ import 'package:employee_portal_mobile_app/core/component/custom_from_to_date_wi
 import 'package:employee_portal_mobile_app/core/component/custom_nots_of_details_screen_widget.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_reviewer_widget.dart';
 import 'package:employee_portal_mobile_app/core/component/custom_title_and_value_widget.dart';
-import 'package:employee_portal_mobile_app/core/model/reviewer_model.dart';
-import 'package:employee_portal_mobile_app/core/model/status_model.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_request/add_document_button_widget.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_employee_vacations_model/get_employee_vacations_model.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_cubit/vacation_cubit.dart';
 import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../management_request/details_management_request/submission_date_widget.dart';
 import '../../../data/model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 
 class VacationDetailsWidget extends StatelessWidget {
@@ -47,13 +41,36 @@ class VacationDetailsWidget extends StatelessWidget {
               value: model.vacationTypeName,
             ),
             SizedBox(height: 16.h),
-            // //   التاريخ
-            SubmissionDateWidget(
-              reportModel: ReportModel(
-                dateRequest:
-                    model.fromDate?.substring(0, 10) ?? "22 نوفمبر2024",
+            // //
+            //
+            // التاريخ
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("تاريخ تقديم الطلب", style: Theme.of(context).textTheme.bodyMedium),
+              SizedBox(height: 8.h),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Theme.of(context).colorScheme.outline),
+                  borderRadius: BorderRadius.circular(8),
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      color: context.color.surfaceContainer,
+                      size: 22.r,
+                    ),
+                    SizedBox(width: 8.w),
+                    Text("${model.fromDate?.substring(0, 10)}", style: Theme.of(context).textTheme.titleMedium),
+                  ],
+                ),
               ),
-            ),
+            ],
+          ),
+
             SizedBox(height: 16.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

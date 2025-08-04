@@ -33,7 +33,6 @@ class _InputDateDayWidgetState extends State<InputDateDayWidget> {
             ),
             child: Row(
               children: [
-
                 Icon(Icons.calendar_today_outlined,size: 20.r,),
                 SizedBox(width: 8.w,),
                 Text(

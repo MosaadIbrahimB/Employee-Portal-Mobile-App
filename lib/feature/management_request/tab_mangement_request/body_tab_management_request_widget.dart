@@ -1,7 +1,7 @@
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
-import '../../request/presentation/control/get_employee_reviewed_administrative_request/get_employee_reviewed_administrative_request_cubit.dart';
-import '../../request/presentation/control/get_employee_reviewed_administrative_request/get_employee_reviewed_administrative_request_state.dart';
+import '../../request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
+import '../../request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_state.dart';
 import '../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../item_request_widget.dart';
 
@@ -15,7 +15,7 @@ class BodyTabManagementRequestWidget extends StatelessWidget {
       children: [
         // AppBarTabManagementRequestWidget(),
         // SizedBox(height: 12.h),
-        BlocBuilder<GetEmployeeReviewedAdministrativeRequestCubit, GetEmployeeReviewedAdministrativeRequestState>(
+        BlocBuilder<GetEmployeeAdministrativeRequestCubit, GetEmployeeAdministrativeRequestState>(
           builder: (context, state) {
             if (state.isLoading==true) {
               return Center(child: CircularProgressIndicator());
@@ -23,6 +23,12 @@ class BodyTabManagementRequestWidget extends StatelessWidget {
             if (state.errorMessage != null) {
               return Center(child: Text("حدث خطأ ما${state.errorMessage}"));
             }
+            if( state.response == null || state.response!.isEmpty) {
+              return SizedBox(
+                  height: 50.h,
+                  child: Center(child: Text("لا توجد طلبات ادارية")));
+            }
+
             return Column(
               children:
               state.response!

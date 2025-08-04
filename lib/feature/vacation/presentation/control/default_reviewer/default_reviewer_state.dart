@@ -5,7 +5,9 @@ class DefaultReviewerState extends Equatable {
   final bool isLoading;
   final String? errorMessage;
   final List<DefaultReviewerModel> reviewers;
+
   final DefaultReviewerModel? selectedReviewer;
+
   final List<DefaultReviewerModel> listSelectedReviewers;
 
   const DefaultReviewerState({

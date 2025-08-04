@@ -1,15 +1,12 @@
-import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
-import 'package:employee_portal_mobile_app/feature/home/presentation/widget/report_widget/report_status_widget.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
 
-import '../request/data/model/employee_reviewed_financial_request_model.dart';
+import '../request/data/model/response_admin_financial_model.dart';
 import '../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import 'date_request_widget.dart';
 
 class ItemRequestWidget extends StatelessWidget {
   const ItemRequestWidget({super.key, required this.model});
 
-  final EmployeeReviewedFinancialRequestModel model;
+  final ResponseAdminFinancialModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class ItemRequestWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.read<TabSwitcherCubit>().changeTab(3);
-        // context.read<TabSwitcherCubit>().setReportModel(model);
+        context.read<TabSwitcherCubit>().setModel(model);
       },
       child: Container(
         width: double.infinity,

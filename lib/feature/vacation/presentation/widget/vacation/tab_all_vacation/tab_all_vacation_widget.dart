@@ -43,7 +43,7 @@ class TabAllVacationWidget extends StatelessWidget {
                         onTap: () {
                           context.read<VacationCubit>().changeTab(3);
                           context.read<VacationCubit>().setEmployeeVacationsModel(e);
-                          log("AAA");
+
                         },
                         child: ItemTabAllVacationWidget(employeeVacationsModel: e),
                       ),
@@ -57,7 +57,6 @@ class TabAllVacationWidget extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 context.read<VacationCubit>().changeTab(1);
-                log("ccc");
               },
               child: Container(
                 width: 60.w,

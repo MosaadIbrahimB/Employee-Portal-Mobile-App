@@ -1,15 +1,16 @@
 import 'package:employee_portal_mobile_app/feature/request/data/model/financial_request_type_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../domain/use_case/get_admin_request_type_use_case.dart';
 import '../../../domain/use_case/get_financial_request_type_use_case.dart';
-import 'get_financial_request_type_state.dart';
+import 'get_admin_request_type_state.dart';
 
 
-class  GetFinancialRequestTypeCubit extends Cubit< GetFinancialRequestTypeState>{
-  GetFinancialRequestTypeCubit({required this.getFinancialRequestUseCase}):super(GetFinancialRequestTypeState());
-  GetFinancialRequestTypeUseCase  getFinancialRequestUseCase  ;
+class  GetAdminRequestTypeCubit extends Cubit< GetAdminRequestTypeState>{
+  GetAdminRequestTypeCubit({required this.getAdminRequestTypeUseCase}):super(GetAdminRequestTypeState());
+  GetAdminRequestTypeUseCase  getAdminRequestTypeUseCase  ;
   List<FinancialRequestTypeModel>? _cachedRequestTypes; // كاش داخلي
 
-  getFinancialRequest() async {
+  getAdminRequest() async {
     if (_cachedRequestTypes != null) {
       emit(state.copyWith(
         response: _cachedRequestTypes,
@@ -23,7 +24,7 @@ class  GetFinancialRequestTypeCubit extends Cubit< GetFinancialRequestTypeState>
 
 
     emit(state.copyWith(isLoading: true));
-    final response = await getFinancialRequestUseCase();
+    final response = await getAdminRequestTypeUseCase();
     response.fold(
       (failure) {
         emit(state.copyWith(isLoading: false, errorMessage: failure.message));

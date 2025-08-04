@@ -1,24 +1,24 @@
 import 'package:equatable/equatable.dart';
-import '../../../data/model/employee_reviewed_financial_request_model.dart';
+import '../../../data/model/response_admin_financial_model.dart';
 import '../../../data/model/financial_request_type_model.dart';
 
-class GetEmployeeReviewedAdministrativeRequestState extends Equatable{
+class GetReviewerAdministrativeRequestState extends Equatable{
   final bool ?isLoading ;
   final  String? errorMessage;
-  final List<EmployeeReviewedFinancialRequestModel>? response;
+  final List<ResponseAdminFinancialModel>? response;
 
 
-  const GetEmployeeReviewedAdministrativeRequestState({ this.isLoading= false, this.errorMessage, this.response});
+  const GetReviewerAdministrativeRequestState({ this.isLoading= false, this.errorMessage, this.response});
 
 
   copyWith({
     bool? isLoading,
     String? errorMessage,
-    List<EmployeeReviewedFinancialRequestModel>? response,
+    List<ResponseAdminFinancialModel>? response,
     FinancialRequestTypeModel? selectedRequestType
 
   }) {
-    return GetEmployeeReviewedAdministrativeRequestState(
+    return GetReviewerAdministrativeRequestState(
       isLoading: isLoading ?? this.isLoading,
       errorMessage: errorMessage ?? this.errorMessage,
       response: response ?? this.response,

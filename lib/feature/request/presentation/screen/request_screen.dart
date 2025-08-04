@@ -3,8 +3,9 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/r
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../management_request/tab_mangement_request/all_management_request_widget.dart';
+import '../../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 import '../control/financial_request_type/get_financial_request_type_cubit.dart';
-import '../control/get_employee_reviewed_administrative_request/get_employee_reviewed_administrative_request_cubit.dart';
+import '../control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
 import '../control/request/request_cubit.dart';
 import '../control/tab_switcher/tab_switcher_cubit.dart';
 
@@ -43,19 +44,14 @@ class RequestScreen extends StatelessWidget {
       BlocProvider(
         create:
             (context) =>
-        sl<GetEmployeeReviewedAdministrativeRequestCubit>()
-          ..getEmployeeReviewedAdministrativeRequest(),
+        sl<GetEmployeeAdministrativeRequestCubit>()
+          ..getEmployeeAdministrativeRequest(),
       ),
+      BlocProvider(
+        create:
+            (context) => sl<DefaultReviewerCubit>()..fetchDefaultReviewers(),
+      ),
+
     ];
   }
 }
-// child: BlocBuilder<RequestCubit,int>(
-//   builder: (context,state) {
-//     return SingleChildScrollView(child: screen[state]);
-//   }
-// ),
-
-// static final List<Widget> screen = [
-//   RequestScreenBody(),
-//   AllManagementRequestWidget(),
-// ];

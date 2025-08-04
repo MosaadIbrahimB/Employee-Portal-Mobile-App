@@ -4,8 +4,8 @@ import 'package:employee_portal_mobile_app/feature/home/data/report_model.dart';
 
 
 class TypeWidget extends StatelessWidget {
-  const TypeWidget({super.key, required this.reportModel});
-  final ReportModel reportModel;
+  const TypeWidget({super.key, required this.requestTypeName});
+  final String? requestTypeName;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class TypeWidget extends StatelessWidget {
             color: colorTheme.onPrimaryContainer,
           ),
           child: Text(
-            " ${reportModel ?? "النوع"}",
+            " ${requestTypeName ?? "النوع"}",
             style: textTheme.titleMedium,
           ),
         ),

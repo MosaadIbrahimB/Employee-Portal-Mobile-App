@@ -3,8 +3,8 @@ import 'package:employee_portal_mobile_app/feature/management_request/tab_mangem
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../tab_credits_management_request/tab_credits_management_request_widget.dart';
-import 'add_management_request_widget.dart';
-import 'details_item_of_request_widget.dart';
+import '../add_mangement_request/add_management_request_widget.dart';
+import '../details_management_request/details_item_of_request_widget.dart';
 
 class AllManagementRequestWidget extends StatelessWidget {
   const AllManagementRequestWidget({super.key});
@@ -12,7 +12,6 @@ class AllManagementRequestWidget extends StatelessWidget {
   static final List<Widget> listBody = [
     TabManagementRequestWidget(),
     TabCreditsManagementRequestWidget(),
-
     AddManagementRequestWidget(),
     DetailsItemOfRequestWidget()
 

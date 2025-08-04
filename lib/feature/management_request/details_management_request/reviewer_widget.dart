@@ -1,12 +1,10 @@
-import 'package:employee_portal_mobile_app/core/component/custom_status_widget.dart';
-import 'package:employee_portal_mobile_app/core/model/status_model.dart';
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:employee_portal_mobile_app/feature/request/data/model/account_model.dart';
+import '../../request/data/model/response_admin_financial_model.dart';
 
-class AccountWidget extends StatelessWidget {
-  const AccountWidget({super.key, required this.accountModel});
+class ReviewerWidget extends StatelessWidget {
+  const ReviewerWidget({super.key, required this.reviewer});
 
-  final AccountModel accountModel;
+  final Reviewers reviewer;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +22,20 @@ class AccountWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "المراجع ${accountModel.title} " ?? "المراجع ",
+                  "المراجع " ?? "المراجع ",
                   style: textTheme.bodyMedium,
                 ),
 
                 // AccountStatusWidget(accountModel: accountModel),
-                StatusWidget(statusModel: StatusModel(isRejected: true),)
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
+                  decoration: BoxDecoration(
+                    color: context.color.secondary,
+                  ),
+                  child: Text(reviewer.status.toString()??"الحالة", style: context.text.labelMedium?.copyWith(
+                    fontWeight: FontWeight.bold
+                  )),
+                )
               ],
             ),
             SizedBox(height: 8.h),
@@ -45,11 +51,11 @@ class AccountWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    accountModel.name ?? " محمد طارق",
+                    reviewer.name ?? " محمد طارق",
                     style: textTheme.bodyLarge,
                   ), // InputDataWidget(
                   Text(
-                    accountModel.value ?? "123456",
+                    reviewer.note ?? "123456",
                     style: textTheme.bodyLarge,
                   ),
                 ],

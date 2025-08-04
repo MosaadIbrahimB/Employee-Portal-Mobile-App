@@ -25,16 +25,9 @@ class FromToDateWidget extends StatelessWidget {
             context.read<CalculateVacationDurationCubit>().calculateDuration(
               calculateVacationDurationRequestModel:
                   CalculateVacationDurationRequestModel(
-                    fromDate:
-                        context.read<DateCubit>().state.fromDate,
+                    fromDate: context.read<DateCubit>().state.fromDate,
                     toDate: context.read<DateCubit>().state.toDate,
-                    vacationTypeId:
-                        context
-                            .read<VacationTypeCubit>()
-                            .state
-                            .selectedVacation
-                            ?.id ??
-                        0,
+                    vacationTypeId: context.read<VacationTypeCubit>().state.selectedVacation?.id ?? 0,
                     unit: 1,
                   ),
             );

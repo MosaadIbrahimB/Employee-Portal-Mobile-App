@@ -16,7 +16,7 @@ class DefaultReviewerCubit extends Cubit<DefaultReviewerState> {
     RequestDefaultReviewerModel requestDefaultReviewerModel = RequestDefaultReviewerModel(
       requestType: "1",
       date: '2025-05-12',
-      requestedTypeId: "",
+      requestedTypeId: "0",
     );
 
     final result = await getDefaultReviewerUseCase(
