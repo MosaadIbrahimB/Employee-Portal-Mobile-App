@@ -60,10 +60,10 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
       final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
 
 
-      // return [
-      //   ...listReviewed,
-      //   ...listPending,
-      // ];
+      return [
+        ...listReviewed,
+        ...listPending,
+      ];
 
 
 
@@ -83,10 +83,10 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
       final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
 
 
-      // return [
-      //   ...listReviewed,
-      //   ...listPending,
-      // ];
+      return [
+        ...listReviewed,
+        ...listPending,
+      ];
 
       return   ResponseAdminFinancialModel.sampleFinancialRequests;
     }
