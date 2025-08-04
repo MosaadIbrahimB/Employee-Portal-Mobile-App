@@ -30,90 +30,75 @@ class AddManagementRequestWidget extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => sl<PostAdministrativeRequestCubit>(),
-            ),
-            BlocProvider(
-              create: (context) => DateCubit(),
-            ),
-            BlocProvider(
-              create: (context) => sl<DefaultReviewerCubit>()..fetchDefaultReviewers(),
-            ),
-
-
-          ],
-          child: BlocBuilder<
+        child:  BlocBuilder<
             PostAdministrativeRequestCubit,
             PostAdministrativeRequestState
-          >(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  SizedBox(height: 12.h),
-                  AppBarManagementRequestWidget(
-                    icon: Icons.close,
-                    title: "اضافة طلب ادارى",
-                    onTap: () {
-                      context.read<TabSwitcherCubit>().changeTab(0);
-                    },
-                  ),
-                  SizedBox(height: 20.h),
-                  ManagementTypeRequestDropdownWidget(),
-                  SizedBox(height: 16.h),
-                  RequestDateWidget(),
-                  SizedBox(height: 16.h),
-                  SizedBox(height: 16.h),
-                  NotesInputField(
-                    controller:
-                        PostAdministrativeRequestCubit.noteInputController,
-                  ),
-                  SizedBox(height: 44.h),
-                  AddDocumentButtonWidget(),
-                  SizedBox(height: 16.h),
-                  ReviewerWidget(),
-                  SizedBox(height: 16.h),
-                  ListReviewerWidget(),
-                  SizedBox(height: 16.h),
+        >(
+          builder: (context, state) {
+            return Column(
+              children: [
+                SizedBox(height: 12.h),
+                AppBarManagementRequestWidget(
+                  icon: Icons.close,
+                  title: "اضافة طلب ادارى",
+                  onTap: () {
+                    context.read<TabSwitcherCubit>().changeTab(0);
+                  },
+                ),
+                SizedBox(height: 20.h),
+                ManagementTypeRequestDropdownWidget(),
+                SizedBox(height: 16.h),
+                RequestDateWidget(),
+                SizedBox(height: 16.h),
+                SizedBox(height: 16.h),
+                NotesInputField(
+                  controller:
+                  PostAdministrativeRequestCubit.noteInputController,
+                ),
+                SizedBox(height: 44.h),
+                AddDocumentButtonWidget(),
+                SizedBox(height: 16.h),
+                ReviewerWidget(),
+                SizedBox(height: 16.h),
+                ListReviewerWidget(),
+                SizedBox(height: 16.h),
 
-                  CustomButtonWidget(
-                    onTap: () {
-                      context
-                          .read<PostAdministrativeRequestCubit>()
-                          .postAdministrativeRequest(
-                            requestPostAdministrativeRequestModel:
-                                RequestPostAdministrativeRequestModel(
-                                  requestType: context
-                                      .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
-                                  date:
-                                      context
-                                          .read<DateCubit>()
-                                          .state.dateTime
-                                          .toString(),
-                                  notes:
-                                      PostAdministrativeRequestCubit
-                                          .noteInputController
-                                          .text,
-                                  reviewers:
-                                      context
-                                          .read<DefaultReviewerCubit>().state
-                                          .listSelectedReviewers,
-                                ),
-                          ).then((value) {
-                            if(context.mounted){
-                              BlocProvider.of<RequestCubit>(context).changePage(0);
+                CustomButtonWidget(
+                  onTap: () {
+                    context
+                        .read<PostAdministrativeRequestCubit>()
+                        .postAdministrativeRequest(
+                      requestPostAdministrativeRequestModel:
+                      RequestPostAdministrativeRequestModel(
+                        requestType: context
+                            .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
+                        date:
+                        context
+                            .read<DateCubit>()
+                            .state.dateTime
+                            .toString(),
+                        notes:
+                        PostAdministrativeRequestCubit
+                            .noteInputController
+                            .text,
+                        reviewers:
+                        context
+                            .read<DefaultReviewerCubit>().state
+                            .listSelectedReviewers,
+                      ),
+                    ).then((value) {
+                      if(context.mounted){
+                        BlocProvider.of<RequestCubit>(context).changePage(0);
 
-                            }
-                      },);
-                    },
-                    title: "قدم الطلب",
-                  ),
-                  SizedBox(height: 30.h),
-                ],
-              );
-            },
-          ),
+                      }
+                    },);
+                  },
+                  title: "قدم الطلب",
+                ),
+                SizedBox(height: 30.h),
+              ],
+            );
+          },
         ),
       ),
     );

@@ -22,4 +22,7 @@ abstract class RequestRepository {
   Future<Either<Failure, ResponsePostAdministrativeRequest>> postAdministrativeRequest({
     required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel,
   });
+
+  Future<Either<Failure, List<ResponseAdminFinancialModel>>>
+  getEmployeeFinancialRequest();
 }

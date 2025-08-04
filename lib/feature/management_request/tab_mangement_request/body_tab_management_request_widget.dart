@@ -38,6 +38,7 @@ class BodyTabManagementRequestWidget extends StatelessWidget {
           },
         ),
         SizedBox(height: 21.h),
+
         Align(
           alignment: AlignmentDirectional.bottomEnd,
           child: GestureDetector(

@@ -60,10 +60,10 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
       final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
 
 
-      return [
-        ...listReviewed,
-        ...listPending,
-      ];
+      // return [
+      //   ...listReviewed,
+      //   ...listPending,
+      // ];
 
 
 
@@ -83,10 +83,10 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
       final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
 
 
-      return [
-        ...listReviewed,
-        ...listPending,
-      ];
+      // return [
+      //   ...listReviewed,
+      //   ...listPending,
+      // ];
 
       return   ResponseAdminFinancialModel.sampleFinancialRequests;
     }
@@ -106,6 +106,30 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
 
     }
   }
+
+  @override
+  Future<List<ResponseAdminFinancialModel>> getEmployeeFinancialRequest()
+  async {
+    {
+      final responseReviewed = await apiService.getRequest(endPoint: EndPoint.getEmployeeReviewedFinancialRequest);
+      final listReviewed  = responseReviewed.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
+
+      final responsePending = await apiService.getRequest(endPoint: EndPoint.getEmployeePendingFinancialRequests);
+      final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
+
+
+      // return [
+      //   ...listReviewed,
+      //   ...listPending,
+      // ];
+
+
+
+
+      return   ResponseAdminFinancialModel.sampleFinancialRequests;
+    }
+  }
+
 
 
 

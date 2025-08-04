@@ -12,55 +12,52 @@ class ManagementTypeRequestDropdownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<GetAdminRequestTypeCubit>()..getAdminRequest(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("نوع الطلب ", style: context.text.bodyMedium),
-          SizedBox(height: 8.h),
-          Container(
-            height: 50.h,
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12).r,
-              border: Border.all(color: context.color.outline, width: 1.0),
-            ),
-            child: BlocBuilder<GetAdminRequestTypeCubit, GetAdminRequestTypeState>(
-              builder: (context, state) {
-                if (state.isLoading==true) {
-                  return Center(
-                    child: const Text('جارى التحميل ...'),
-                  );
-                } else if (state.errorMessage != null) {
-                  return Text(state.errorMessage!);
-                }
-
-                return DropdownButton<FinancialRequestTypeModel>(
-                  underline: const SizedBox(),
-                  hint: const Text('اختر نوع الطلب'),
-                  value: state.selectedRequestType,
-                  isExpanded: true,
-                  items:
-                  state.response?.map((request) {
-                    return DropdownMenuItem<FinancialRequestTypeModel>(
-                      value: request,
-                      child: Text(request.name ?? "NAME NOT FOUND"),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    if (value != null) {
-                      context.read<GetAdminRequestTypeCubit>().selectedRequestType(value);
-                      context.read<DefaultReviewerCubit>().fetchDefaultReviewers();
-                    }
-                  },
-                  icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                );
-              },
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("نوع الطلب ", style: context.text.bodyMedium),
+        SizedBox(height: 8.h),
+        Container(
+          height: 50.h,
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12).r,
+            border: Border.all(color: context.color.outline, width: 1.0),
           ),
-        ],
-      ),
+          child: BlocBuilder<GetAdminRequestTypeCubit, GetAdminRequestTypeState>(
+            builder: (context, state) {
+              if (state.isLoading==true) {
+                return Center(
+                  child: const Text('جارى التحميل ...'),
+                );
+              } else if (state.errorMessage != null) {
+                return Text(state.errorMessage!);
+              }
+
+              return DropdownButton<FinancialRequestTypeModel>(
+                underline: const SizedBox(),
+                hint: const Text('اختر نوع الطلب'),
+                value: state.selectedRequestType,
+                isExpanded: true,
+                items:
+                state.response?.map((request) {
+                  return DropdownMenuItem<FinancialRequestTypeModel>(
+                    value: request,
+                    child: Text(request.name ?? "NAME NOT FOUND"),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    context.read<GetAdminRequestTypeCubit>().selectedRequestType(value);
+                    context.read<DefaultReviewerCubit>().fetchDefaultReviewers();
+                  }
+                },
+                icon: const Icon(Icons.keyboard_arrow_down_rounded),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

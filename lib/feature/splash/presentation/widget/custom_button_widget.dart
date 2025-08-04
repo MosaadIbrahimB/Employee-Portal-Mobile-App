@@ -36,7 +36,7 @@ class CustomButtonWidget extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              isDisableIcon == true?SizedBox():   Text(
+                Text(
                 title,
                 style: context.text.labelLarge!.copyWith(color: colorTitle),
               ),

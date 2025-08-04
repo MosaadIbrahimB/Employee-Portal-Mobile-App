@@ -86,4 +86,19 @@ class RequestRepositoryImpl implements RequestRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, List<ResponseAdminFinancialModel>>> getEmployeeFinancialRequest()
+  async {
+    try {
+      final result = await requestRemoteDataSource
+          .getEmployeeFinancialRequest();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e
+            .toString()}حدث خطأ في الخادم getEmployeeReviewedAdministrativeRequest  "),
+      );
+    }
+  }
+
 }

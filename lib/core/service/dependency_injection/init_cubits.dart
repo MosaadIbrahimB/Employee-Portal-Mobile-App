@@ -4,11 +4,14 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/control
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
 import '../../../feature/request/domain/use_case/get_admin_request_type_use_case.dart';
 import '../../../feature/request/domain/use_case/get_employee_administrative_request_use_case.dart';
+import '../../../feature/request/domain/use_case/get_employee_financial_use_case.dart';
 import '../../../feature/request/domain/use_case/get_financial_request_type_use_case.dart';
 import '../../../feature/request/domain/use_case/get_reviewer_administrative_request.dart';
 import '../../../feature/request/domain/use_case/post_administrative_request_use_case.dart';
 import '../../../feature/request/presentation/control/admin_request_type/get_admin_request_type_cubit.dart';
+import '../../../feature/request/presentation/control/all_request/all_request_cubit.dart';
 import '../../../feature/request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
+import '../../../feature/request/presentation/control/get_employee_financial_request/get_employee_financial_request_cubit.dart';
 import '../../../feature/request/presentation/control/get_reviewer_administrative_request/get_reviewer__administrative_request_cubit.dart';
 import '../../../feature/request/presentation/control/post_administrative_request/post_administrative_request_cubit.dart';
 import '../../../feature/vacation/domain/use_case/get_employee_vacations_use_case.dart';
@@ -44,6 +47,9 @@ void initCubits() {
   sl.registerFactory(() => GetEmployeeAdministrativeRequestCubit(getEmployeeAdministrativeRequestUseCase:  sl<GetEmployeeAdministrativeRequestUseCase>()));
   sl.registerFactory(() => GetReviewerAdministrativeRequestCubit(getReviewerAdministrativeRequestUseCase:  sl<GetReviewerAdministrativeRequestUseCase>()));
   sl.registerFactory(() => PostAdministrativeRequestCubit(sl<PostAdministrativeRequestUseCase>()));
+  sl.registerFactory(() => GetEmployeeFinancialRequestCubit(getEmployeeFinancialRequestUseCase: sl<GetEmployeeFinancialUseCase>()));
+
+  sl.registerFactory(() => AllRequestCubit(adminCubit: sl<GetEmployeeAdministrativeRequestCubit>(),financialCubit: sl<GetEmployeeFinancialRequestCubit>()));
 
 
 }
