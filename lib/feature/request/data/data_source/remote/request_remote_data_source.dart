@@ -7,11 +7,14 @@ abstract class RequestRemoteDataSource {
   Future<List<FinancialRequestTypeModel>> getAdminRequestType();
   Future<List<ResponseAdminFinancialModel>> getEmployeeAdministrativeRequest();
   Future<List<ResponseAdminFinancialModel>> getReviewerAdministrativeRequest();
-  Future<ResponsePostAdministrativeRequest> postAdministrativeRequest({
-    required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel,
+  Future<ResponsePostAdministrativeFinancialRequest> postAdministrativeRequest({
+    required RequestPostAdministrativeFinancialRequestModel requestPostAdministrativeRequestModel,
   });
   //Financial
   Future<List<FinancialRequestTypeModel>> getFinancialRequestType();
   Future<List<ResponseAdminFinancialModel>> getEmployeeFinancialRequest();
+  Future<List<ResponseAdminFinancialModel>>  getReviewerFinancialRequest();
+
+
 }
 

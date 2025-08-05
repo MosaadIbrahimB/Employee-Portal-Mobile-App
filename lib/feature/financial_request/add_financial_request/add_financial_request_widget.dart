@@ -31,8 +31,8 @@ class AddFinancialRequestWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
         child:  BlocBuilder<
-            PostAdministrativeRequestCubit,
-            PostAdministrativeRequestState
+            PostAdministrativeFinancialRequestCubit,
+            PostAdministrativeFinancialRequestState
         >(
           builder: (context, state) {
             return Column(
@@ -40,7 +40,7 @@ class AddFinancialRequestWidget extends StatelessWidget {
                 SizedBox(height: 12.h),
                 AppBarFinancialRequestWidget(
                   icon: Icons.close,
-                  title: "اضافة طلب ادارى",
+                  title: "طلب مالي ",
                   onTap: () {
                     context.read<TabSwitcherCubit>().changeTab(0);
                   },
@@ -53,7 +53,7 @@ class AddFinancialRequestWidget extends StatelessWidget {
                 SizedBox(height: 16.h),
                 NotesInputField(
                   controller:
-                  PostAdministrativeRequestCubit.noteInputController,
+                  PostAdministrativeFinancialRequestCubit.noteInputController,
                 ),
                 SizedBox(height: 44.h),
                 AddDocumentButtonWidget(),
@@ -66,10 +66,10 @@ class AddFinancialRequestWidget extends StatelessWidget {
                 CustomButtonWidget(
                   onTap: () {
                     context
-                        .read<PostAdministrativeRequestCubit>()
-                        .postAdministrativeRequest(
-                      requestPostAdministrativeRequestModel:
-                      RequestPostAdministrativeRequestModel(
+                        .read<PostAdministrativeFinancialRequestCubit>()
+                        .postAdministrativeFinancialRequest(
+                      requestPostAdministrativeFinancialRequestModel:
+                      RequestPostAdministrativeFinancialRequestModel(
                         requestType: context
                             .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
                         date:
@@ -78,7 +78,7 @@ class AddFinancialRequestWidget extends StatelessWidget {
                             .state.dateTime
                             .toString(),
                         notes:
-                        PostAdministrativeRequestCubit
+                        PostAdministrativeFinancialRequestCubit
                             .noteInputController
                             .text,
                         reviewers:

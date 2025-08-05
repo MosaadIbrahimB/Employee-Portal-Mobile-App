@@ -60,10 +60,10 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
       final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
 
 
-      // return [
-      //   ...listReviewed,
-      //   ...listPending,
-      // ];
+      return [
+        ...listReviewed,
+        ...listPending,
+      ];
 
 
 
@@ -83,17 +83,17 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
       final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
 
 
-      // return [
-      //   ...listReviewed,
-      //   ...listPending,
-      // ];
+      return [
+        ...listReviewed,
+        ...listPending,
+      ];
 
       return   ResponseAdminFinancialModel.sampleFinancialRequests;
     }
   }
 
   @override
-  Future<ResponsePostAdministrativeRequest> postAdministrativeRequest({required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel})
+  Future<ResponsePostAdministrativeFinancialRequest> postAdministrativeRequest({required RequestPostAdministrativeFinancialRequestModel requestPostAdministrativeRequestModel})
   async {
     {
       final response = await apiService.postRequest(
@@ -101,7 +101,7 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
         data: requestPostAdministrativeRequestModel.toJson(),
 
       );
-      return ResponsePostAdministrativeRequest.fromJson(response.data);
+      return ResponsePostAdministrativeFinancialRequest.fromJson(response.data);
 
 
     }
@@ -125,6 +125,26 @@ class RequestRemoteImplDio implements RequestRemoteDataSource {
 
 
 
+
+      return   ResponseAdminFinancialModel.sampleFinancialRequests;
+    }
+  }
+
+  @override
+  Future<List<ResponseAdminFinancialModel>> getReviewerFinancialRequest()
+  async {
+    {
+      final responseReviewed = await apiService.getRequest(endPoint: EndPoint.getReviewerReviewedFinancialRequests);
+      final listReviewed  = responseReviewed.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
+
+      final responsePending = await apiService.getRequest(endPoint: EndPoint.getReviewerPendingAdministrativeRequest);
+      final listPending  = responsePending.data.map<ResponseAdminFinancialModel>((json) => ResponseAdminFinancialModel.fromJson(json),).toList();
+
+
+      // return [
+      //   ...listReviewed,
+      //   ...listPending,
+      // ];
 
       return   ResponseAdminFinancialModel.sampleFinancialRequests;
     }

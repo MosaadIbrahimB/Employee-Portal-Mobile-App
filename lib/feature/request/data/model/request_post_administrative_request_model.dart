@@ -1,20 +1,20 @@
 import '../../../vacation/data/model/default_reviewer/default_reviewer_model.dart';
 
-class RequestPostAdministrativeRequestModel {
+class RequestPostAdministrativeFinancialRequestModel {
   int? requestType;
   String? date;
   String? notes;
   String? attachments;
   List<DefaultReviewerModel>? reviewers;
 
-  RequestPostAdministrativeRequestModel(
+  RequestPostAdministrativeFinancialRequestModel(
       {this.requestType,
         this.date,
         this.notes,
         this.attachments,
         this.reviewers});
 
-  RequestPostAdministrativeRequestModel.fromJson(Map<String, dynamic> json) {
+  RequestPostAdministrativeFinancialRequestModel.fromJson(Map<String, dynamic> json) {
     requestType = json['requestType'];
     date = json['date'];
     notes = json['notes'];

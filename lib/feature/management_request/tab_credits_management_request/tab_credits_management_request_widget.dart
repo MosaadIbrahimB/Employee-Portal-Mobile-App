@@ -5,6 +5,7 @@ import '../../../core/service/dependency_injection/depend_inject.dart';
 import '../../request/presentation/control/get_reviewer_administrative_request/get_reviewer__administrative_request_cubit.dart';
 import '../../request/presentation/control/get_reviewer_administrative_request/get_reviewer_administrative_request_state.dart';
 import '../../request/presentation/control/request/request_cubit.dart';
+import '../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../app_bar_management_request_widget.dart';
 import 'item_of_tab_credits_request_widget.dart';
 
@@ -24,6 +25,8 @@ class TabCreditsManagementRequestWidget extends StatelessWidget {
               title: "ادارى قيد الاعتماد",
               onTap: () {
                 context.read<RequestCubit>().changePage(0);
+                context.read<TabSwitcherCubit>().changeTab(0);
+
               }
           ),
           SizedBox(height: 12.h),

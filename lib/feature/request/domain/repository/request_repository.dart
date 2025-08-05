@@ -19,10 +19,17 @@ abstract class RequestRepository {
   Future<Either<Failure, List<ResponseAdminFinancialModel>>>
   getReviewerAdministrativeRequest();
 
-  Future<Either<Failure, ResponsePostAdministrativeRequest>> postAdministrativeRequest({
-    required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel,
+  Future<Either<Failure, ResponsePostAdministrativeFinancialRequest>> postAdministrativeFinancialRequest({
+    required RequestPostAdministrativeFinancialRequestModel requestPostAdministrativeRequestModel,
   });
 
   Future<Either<Failure, List<ResponseAdminFinancialModel>>>
   getEmployeeFinancialRequest();
+
+  Future<Either<Failure, List<ResponseAdminFinancialModel>>>
+  getReviewerFinancialRequest();
+
+
+
+
 }

@@ -1,10 +1,10 @@
-class ResponsePostAdministrativeRequest {
+class ResponsePostAdministrativeFinancialRequest {
   String? message;
   bool? isValid;
 
-  ResponsePostAdministrativeRequest({this.message, this.isValid});
+  ResponsePostAdministrativeFinancialRequest({this.message, this.isValid});
 
-  ResponsePostAdministrativeRequest.fromJson(Map<String, dynamic> json) {
+  ResponsePostAdministrativeFinancialRequest.fromJson(Map<String, dynamic> json) {
     message = json['Message'];
     isValid = json['IsValid'];
   }

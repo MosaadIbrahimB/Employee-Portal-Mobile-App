@@ -1,24 +1,24 @@
 import 'package:employee_portal_mobile_app/feature/request/data/model/response_post_administrative_request.dart';
 import 'package:equatable/equatable.dart';
 
-class PostAdministrativeRequestState extends Equatable {
+class PostAdministrativeFinancialRequestState extends Equatable {
   final bool isLoading;
-  final ResponsePostAdministrativeRequest? response;
+  final ResponsePostAdministrativeFinancialRequest? response;
   final String? errorMessage;
 
-  const PostAdministrativeRequestState({
+  const PostAdministrativeFinancialRequestState({
     this.isLoading = false,
     this.response,
     this.errorMessage,
   })  ;
 
-  PostAdministrativeRequestState copyWith({
+  PostAdministrativeFinancialRequestState copyWith({
     bool? isLoading,
-    ResponsePostAdministrativeRequest? response,
+    ResponsePostAdministrativeFinancialRequest? response,
     String? errorMessage,
   }) {
 
-    return PostAdministrativeRequestState(
+    return PostAdministrativeFinancialRequestState(
       isLoading: isLoading ?? this.isLoading,
       response: response ?? this.response,
       errorMessage: errorMessage ?? this.errorMessage,

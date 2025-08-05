@@ -72,7 +72,7 @@ class RequestRepositoryImpl implements RequestRepository {
   }
 
   @override
-  Future<Either<Failure, ResponsePostAdministrativeRequest>> postAdministrativeRequest({required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel})
+  Future<Either<Failure, ResponsePostAdministrativeFinancialRequest>> postAdministrativeFinancialRequest({required RequestPostAdministrativeFinancialRequestModel requestPostAdministrativeRequestModel})
   async {
     try {
       final result = await requestRemoteDataSource
@@ -97,6 +97,21 @@ class RequestRepositoryImpl implements RequestRepository {
       return left(
         ServerFailure("${e
             .toString()}حدث خطأ في الخادم getEmployeeReviewedAdministrativeRequest  "),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ResponseAdminFinancialModel>>> getReviewerFinancialRequest()
+  async {
+    try {
+      final result = await requestRemoteDataSource
+          .getReviewerFinancialRequest();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e
+            .toString()}حدث خطأ في الخادم getReviewerAdministrativeRequest  "),
       );
     }
   }

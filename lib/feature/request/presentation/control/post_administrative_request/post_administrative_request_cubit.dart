@@ -5,27 +5,27 @@ import 'package:flutter/material.dart';
 
 import '../../../data/model/request_post_administrative_request_model.dart';
 
-class PostAdministrativeRequestCubit
-    extends Cubit<PostAdministrativeRequestState> {
-  final PostAdministrativeRequestUseCase postAdministrativeRequestUseCase;
+class PostAdministrativeFinancialRequestCubit
+    extends Cubit<PostAdministrativeFinancialRequestState> {
+  final PostAdministrativeFinancialRequestUseCase postAdministrativeFinancialRequestUseCase;
 
-  PostAdministrativeRequestCubit(this.postAdministrativeRequestUseCase)
+  PostAdministrativeFinancialRequestCubit(this.postAdministrativeFinancialRequestUseCase)
     : super(
-        PostAdministrativeRequestState(),
+        PostAdministrativeFinancialRequestState(),
       ); // سيحسب start/end/duration تلقائيًا
 
   static final TextEditingController noteInputController = TextEditingController();
   final TextEditingController employSecondController = TextEditingController();
 
-  Future<void> postAdministrativeRequest({
-    required RequestPostAdministrativeRequestModel
-    requestPostAdministrativeRequestModel,
+  Future<void> postAdministrativeFinancialRequest({
+    required RequestPostAdministrativeFinancialRequestModel
+    requestPostAdministrativeFinancialRequestModel,
   }) async {
     emit(state.copyWith(isLoading: true, errorMessage: null));
 
-    final result = await postAdministrativeRequestUseCase(
-      requestPostAdministrativeRequestModel:
-          requestPostAdministrativeRequestModel,
+    final result = await postAdministrativeFinancialRequestUseCase(
+      requestPostAdministrativeFinancialRequestModel:
+          requestPostAdministrativeFinancialRequestModel,
     );
 
     result.fold(

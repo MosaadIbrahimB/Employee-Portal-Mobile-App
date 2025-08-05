@@ -9,16 +9,16 @@ import '../../data/model/financial_request_type_model.dart';
 import '../../data/model/request_post_administrative_request_model.dart';
 import '../../data/model/response_post_administrative_request.dart';
 
-class PostAdministrativeRequestUseCase {
+class PostAdministrativeFinancialRequestUseCase {
   RequestRepository requestRepository;
 
 
-  PostAdministrativeRequestUseCase({required this.requestRepository});
+  PostAdministrativeFinancialRequestUseCase({required this.requestRepository});
 
 
-  Future<Either<Failure, ResponsePostAdministrativeRequest>> call({required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel})
+  Future<Either<Failure, ResponsePostAdministrativeFinancialRequest>> call({required RequestPostAdministrativeFinancialRequestModel requestPostAdministrativeFinancialRequestModel})
   async {
-    return await requestRepository.postAdministrativeRequest(requestPostAdministrativeRequestModel: requestPostAdministrativeRequestModel);
+    return await requestRepository.postAdministrativeFinancialRequest(requestPostAdministrativeRequestModel: requestPostAdministrativeFinancialRequestModel);
   }
 
 }

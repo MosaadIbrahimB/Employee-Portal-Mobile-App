@@ -82,7 +82,7 @@ class RequestScreen extends StatelessWidget {
       BlocProvider(
         create:
             (context) =>
-        sl<PostAdministrativeRequestCubit>(),
+        sl<PostAdministrativeFinancialRequestCubit>(),
       ),
 
 

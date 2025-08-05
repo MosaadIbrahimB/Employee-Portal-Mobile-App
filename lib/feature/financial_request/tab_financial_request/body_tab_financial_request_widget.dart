@@ -1,7 +1,8 @@
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
-import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
 import '../../request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
 import '../../request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_state.dart';
+import '../../request/presentation/control/get_employee_financial_request/get_employee_financial_request_cubit.dart';
+import '../../request/presentation/control/get_employee_financial_request/get_employee_financial_request_state.dart';
 import '../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../item_request_widget.dart';
 
@@ -15,7 +16,7 @@ class BodyTabFinancialRequestWidget extends StatelessWidget {
       children: [
         // AppBarTabManagementRequestWidget(),
         // SizedBox(height: 12.h),
-        BlocBuilder<GetEmployeeAdministrativeRequestCubit, GetEmployeeAdministrativeRequestState>(
+        BlocBuilder<GetEmployeeFinancialRequestCubit, GetEmployeeFinancialRequestState>(
           builder: (context, state) {
             if (state.isLoading==true) {
               return Center(child: CircularProgressIndicator());
