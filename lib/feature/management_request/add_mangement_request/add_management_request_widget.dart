@@ -30,7 +30,9 @@ class AddManagementRequestWidget extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
-        child:  BlocBuilder<
+        child:  BlocProvider(
+          create: (context) =>         sl<GetAdminRequestTypeCubit>()..getAdminRequest(),
+  child: BlocBuilder<
             PostAdministrativeFinancialRequestCubit,
             PostAdministrativeFinancialRequestState
         >(
@@ -65,31 +67,30 @@ class AddManagementRequestWidget extends StatelessWidget {
 
                 CustomButtonWidget(
                   onTap: () {
+                    int? id =
+                        context
+                            .read<GetAdminRequestTypeCubit>()
+                            .state
+                            .selectedRequestType
+                            ?.id;
+
+                    if(id==null){
+                      context.showErrorDialog(
+                         "الرجاء اختيار نوع الطلب",
+                      );
+                      return;
+                    }
+
                     context
                         .read<PostAdministrativeFinancialRequestCubit>()
                         .postAdministrativeFinancialRequest(
-                      requestPostAdministrativeFinancialRequestModel:
-                      RequestPostAdministrativeFinancialRequestModel(
-                        requestType: context
-                            .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
-                        date:
-                        context
-                            .read<DateCubit>()
-                            .state.dateTime
-                            .toString(),
-                        notes:
-                        PostAdministrativeFinancialRequestCubit
-                            .noteInputController
-                            .text,
-                        reviewers:
-                        context
-                            .read<DefaultReviewerCubit>().state
-                            .listSelectedReviewers,
-                      ),
+                      requestPostAdministrativeFinancialRequestModel:getModel(context)
                     ).then((value) {
                       if(context.mounted){
                         BlocProvider.of<RequestCubit>(context).changePage(0);
-
+                        context.showSnackBar(" الطلب قيد الاعتماد",
+                          backgroundColor: Colors.green,
+                        );
                       }
                     },);
                   },
@@ -100,7 +101,30 @@ class AddManagementRequestWidget extends StatelessWidget {
             );
           },
         ),
+),
       ),
     );
   }
+
+  RequestPostAdministrativeFinancialRequestModel getModel(BuildContext context) {
+    return                       RequestPostAdministrativeFinancialRequestModel(
+      requestType: context
+          .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
+      date:
+      context
+          .read<DateCubit>()
+          .state.dateTime
+          .toString(),
+      notes:
+      PostAdministrativeFinancialRequestCubit
+          .noteInputController
+          .text,
+      reviewers:
+      context
+          .read<DefaultReviewerCubit>().state
+          .listSelectedReviewers,
+    );
+
+  }
+
 }

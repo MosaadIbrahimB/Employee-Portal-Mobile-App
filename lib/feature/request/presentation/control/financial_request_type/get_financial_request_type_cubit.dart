@@ -23,6 +23,7 @@ class  GetFinancialRequestTypeCubit extends Cubit< GetFinancialRequestTypeState>
 
 
     emit(state.copyWith(isLoading: true));
+
     final response = await getFinancialRequestUseCase();
     response.fold(
       (failure) {
@@ -33,9 +34,15 @@ class  GetFinancialRequestTypeCubit extends Cubit< GetFinancialRequestTypeState>
       },
     );
   }
+
   void selectedRequestType(FinancialRequestTypeModel selectedRequest) {
     emit(state.copyWith(selectedRequestType: selectedRequest));
 
+  }
+
+  void clearSelectedRequestType() {
+    _cachedRequestTypes == null;
+    emit(state.copyWith(selectedRequestType: null));
   }
 }
 

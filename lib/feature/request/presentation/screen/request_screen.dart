@@ -32,8 +32,6 @@ class RequestScreen extends StatelessWidget {
                 return AllManagementRequestWidget();
               }
               if(state == 6) {
-                print(state.toString());
-                print("xxxxxxxxxx");
                 return const AllFinancialRequestWidget();
               }
               return Text(state.toString());
@@ -46,18 +44,7 @@ class RequestScreen extends StatelessWidget {
     return [
       BlocProvider<RequestCubit>(create: (context) => RequestCubit()),
       BlocProvider<TabSwitcherCubit>(create: (context) => TabSwitcherCubit()),
-      BlocProvider(
-        create:
-            (context) =>
-        sl<GetFinancialRequestTypeCubit>()
-          ..getFinancialRequest(),
-      ),
-      BlocProvider(
-        create:
-            (context) =>
-        sl<GetAdminRequestTypeCubit>()
-          ..getAdminRequest(),
-      ),
+
       BlocProvider(
         create:
             (context) => sl<DefaultReviewerCubit>()..fetchDefaultReviewers(),

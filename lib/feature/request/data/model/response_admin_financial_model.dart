@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/feature/request/data/model/reviewer_model.dart';
 import 'package:equatable/equatable.dart';
 
 class ResponseAdminFinancialModel extends Equatable {
@@ -15,7 +16,7 @@ class ResponseAdminFinancialModel extends Equatable {
   final bool? editable;
   final String? attachments;
   final String? status;
-  final List<Reviewers>? reviewers;
+  final List<ReviewerModel>? reviewers;
 
   const ResponseAdminFinancialModel({
     this.id,
@@ -50,7 +51,7 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: json['Attachments'],
       status: json['Status'],
       reviewers: json['Reviewers'] != null
-          ? List<Reviewers>.from(json['Reviewers'].map((v) => Reviewers.fromJson(v)))
+          ? List<ReviewerModel>.from(json['Reviewers'].map((v) => ReviewerModel.fromJson(v)))
           : null,
     );
   }
@@ -109,8 +110,8 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: "slfa_doc.pdf",
       status: "قيد المراجعة",
       reviewers: [
-        Reviewers(name: "على", status: "موافقة", note: "123"),
-        Reviewers(name: "محمد", status: "قيد الانتظار", note: "123"),
+        ReviewerModel(name: "على", status: "موافقة", note: "123"),
+        ReviewerModel(name: "محمد", status: "قيد الانتظار", note: "123"),
       ],
     ),
     ResponseAdminFinancialModel(
@@ -128,7 +129,7 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: null,
       status: "مرفوض",
       reviewers: [
-        Reviewers(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
+        ReviewerModel(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
       ],
     ),
     ResponseAdminFinancialModel(
@@ -146,8 +147,8 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: "extra_hours.jpg",
       status: "معتمد",
       reviewers: [
-        Reviewers(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
-        Reviewers(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
+        ReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
+        ReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
       ],
     ),
     ResponseAdminFinancialModel(
@@ -165,8 +166,8 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: "extra_hours.jpg",
       status: "معتمد",
       reviewers: [
-        Reviewers(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
-        Reviewers(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
+        ReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
+        ReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
       ],
     ),
     ResponseAdminFinancialModel(
@@ -184,7 +185,7 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: null,
       status: "مرفوض",
       reviewers: [
-        Reviewers(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
+        ReviewerModel(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
       ],
     ),
     ResponseAdminFinancialModel(
@@ -202,8 +203,8 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: "extra_hours.jpg",
       status: "معتمد",
       reviewers: [
-        Reviewers(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
-        Reviewers(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
+        ReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
+        ReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
       ],
     ),
     ResponseAdminFinancialModel(
@@ -221,8 +222,8 @@ class ResponseAdminFinancialModel extends Equatable {
       attachments: "slfa_doc.pdf",
       status: "قيد المراجعة",
       reviewers: [
-        Reviewers(name: "على", status: "موافقة", note: "123"),
-        Reviewers(name: "محمد", status: "قيد الانتظار", note: "123"),
+        ReviewerModel(name: "على", status: "موافقة", note: "123"),
+        ReviewerModel(name: "محمد", status: "قيد الانتظار", note: "123"),
       ],
     ),
 
@@ -230,33 +231,3 @@ class ResponseAdminFinancialModel extends Equatable {
 
 }
 
-class Reviewers extends Equatable {
-  final String? name;
-  final String? status;
-  final String? note;
-
-  const Reviewers({this.name, this.status, this.note});
-
-  factory Reviewers.fromJson(Map<String, dynamic> json) {
-    return Reviewers(
-      name: json['Name'],
-      status: json['Status'],
-      note: json['Note'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'Name': name,
-      'Status': status,
-      'Note': note,
-    };
-  }
-
-  @override
-  List<Object?> get props => [name, status, note];
-
-
-
-
-}

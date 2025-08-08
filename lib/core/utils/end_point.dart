@@ -31,5 +31,12 @@ class EndPoint {
   static const String getReviewerReviewedAdministrativeRequest="/api/Administrative/Requests/Reviewer/true";
   static const String getReviewerPendingAdministrativeRequest="/api/Administrative/Requests/Reviewer/false";
   static const String postRequest="/Api/Requests";
+//mission
+  static const String getMission="/Api/Mission/GetMissions";
+  static const String getReviewerReviewedMissionRequests="/Api/Mission/Requests/Reviewer/true";
+  static const String getReviewerNotReviewedMissionRequests="/Api/Mission/Requests/Reviewer/false";
+
+  static const String getEmployeeNotReviewedMissionRequests="/Api/Mission/Requests/Employee/false";
+  static const String getEmployeeReviewedMissionRequests="/Api/Mission/Requests/Employee/true";
 
 }

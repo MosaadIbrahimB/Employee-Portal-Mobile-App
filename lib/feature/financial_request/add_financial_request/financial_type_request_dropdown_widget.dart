@@ -8,8 +8,8 @@ import '../../request/presentation/control/admin_request_type/get_admin_request_
 import '../../request/presentation/control/financial_request_type/get_financial_request_type_cubit.dart';
 import '../../request/presentation/control/financial_request_type/get_financial_request_type_state.dart';
 import '../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
-class ManagementTypeRequestDropdownWidget extends StatelessWidget {
-  const ManagementTypeRequestDropdownWidget({super.key});
+class FinancialTypeRequestDropdownWidget extends StatelessWidget {
+  const FinancialTypeRequestDropdownWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,8 @@ class ManagementTypeRequestDropdownWidget extends StatelessWidget {
                 return Center(
                   child: const Text('جارى التحميل ...'),
                 );
-              } else if (state.errorMessage != null) {
+              }
+              if (state.errorMessage != null) {
                 return Text(state.errorMessage!);
               }
 
@@ -40,17 +41,16 @@ class ManagementTypeRequestDropdownWidget extends StatelessWidget {
                 hint: const Text('اختر نوع الطلب'),
                 value: state.selectedRequestType,
                 isExpanded: true,
-                items:
-                state.response?.map((request) {
+                items: state.response?.map((request) {
                   return DropdownMenuItem<FinancialRequestTypeModel>(
                     value: request,
                     child: Text(request.name ?? "NAME NOT FOUND"),
                   );
                 }).toList(),
                 onChanged: (value) {
-                  if (value != null) {
-                    context.read<GetFinancialRequestTypeCubit>().selectedRequestType(value);
-                    context.read<DefaultReviewerCubit>().fetchDefaultReviewers();
+
+                  if (value != null||value?.id!=null) {
+                    context.read<GetFinancialRequestTypeCubit>().selectedRequestType(value!);
                   }
                 },
                 icon: const Icon(Icons.keyboard_arrow_down_rounded),

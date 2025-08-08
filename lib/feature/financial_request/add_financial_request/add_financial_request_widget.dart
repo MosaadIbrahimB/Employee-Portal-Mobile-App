@@ -1,5 +1,7 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/control/admin_request_type/get_admin_request_type_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/control/financial_request_type/get_financial_request_type_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/request/presentation/control/financial_request_type/get_financial_request_type_state.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/control/post_administrative_request/post_administrative_request_state.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/notes_input_field.dart';
@@ -30,77 +32,114 @@ class AddFinancialRequestWidget extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0).r,
-        child:  BlocBuilder<
-            PostAdministrativeFinancialRequestCubit,
-            PostAdministrativeFinancialRequestState
-        >(
-          builder: (context, state) {
-            return Column(
-              children: [
-                SizedBox(height: 12.h),
-                AppBarFinancialRequestWidget(
-                  icon: Icons.close,
-                  title: "طلب مالي ",
-                  onTap: () {
-                    context.read<TabSwitcherCubit>().changeTab(0);
-                  },
-                ),
-                SizedBox(height: 20.h),
-                ManagementTypeRequestDropdownWidget(),
-                SizedBox(height: 16.h),
-                RequestDateWidget(),
-                SizedBox(height: 16.h),
-                SizedBox(height: 16.h),
-                NotesInputField(
-                  controller:
-                  PostAdministrativeFinancialRequestCubit.noteInputController,
-                ),
-                SizedBox(height: 44.h),
-                AddDocumentButtonWidget(),
-                SizedBox(height: 16.h),
-                ReviewerWidget(),
-                SizedBox(height: 16.h),
-                ListReviewerWidget(),
-                SizedBox(height: 16.h),
+        child: BlocProvider(
+          create: (context) =>
+          sl<GetFinancialRequestTypeCubit>()
+            ..getFinancialRequest(),
+          child: BlocBuilder<
+              PostAdministrativeFinancialRequestCubit,
+              PostAdministrativeFinancialRequestState
+          >(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  SizedBox(height: 12.h),
+                  AppBarFinancialRequestWidget(
+                    icon: Icons.close,
+                    title: "طلب مالي ",
+                    onTap: () {
+                      context.read<TabSwitcherCubit>().changeTab(0);
+                    },
+                  ),
+                  SizedBox(height: 20.h),
+                  FinancialTypeRequestDropdownWidget(),
+                  SizedBox(height: 16.h),
+                  RequestDateWidget(),
+                  SizedBox(height: 16.h),
+                  SizedBox(height: 16.h),
+                  NotesInputField(
+                    controller:
+                    PostAdministrativeFinancialRequestCubit
+                        .noteInputController,
+                  ),
+                  SizedBox(height: 44.h),
+                  AddDocumentButtonWidget(),
+                  SizedBox(height: 16.h),
+                  ReviewerWidget(),
+                  SizedBox(height: 16.h),
+                  ListReviewerWidget(),
+                  SizedBox(height: 16.h),
 
-                CustomButtonWidget(
-                  onTap: () {
-                    context
-                        .read<PostAdministrativeFinancialRequestCubit>()
-                        .postAdministrativeFinancialRequest(
-                      requestPostAdministrativeFinancialRequestModel:
-                      RequestPostAdministrativeFinancialRequestModel(
-                        requestType: context
-                            .read<GetAdminRequestTypeCubit>().state.selectedRequestType?.id??0,
-                        date:
-                        context
-                            .read<DateCubit>()
-                            .state.dateTime
-                            .toString(),
-                        notes:
-                        PostAdministrativeFinancialRequestCubit
-                            .noteInputController
-                            .text,
-                        reviewers:
-                        context
-                            .read<DefaultReviewerCubit>().state
-                            .listSelectedReviewers,
-                      ),
-                    ).then((value) {
-                      if(context.mounted){
-                        BlocProvider.of<RequestCubit>(context).changePage(0);
-
+                  CustomButtonWidget(
+                    onTap: () {
+                      int? id =
+                          context
+                              .read<GetFinancialRequestTypeCubit>()
+                              .state
+                              .selectedRequestType
+                              ?.id;
+                      if (id == null) {
+                        context.showErrorDialog(
+                          "الرجاء اختيار نوع الطلب المالي",
+                        );
+                        return;
                       }
-                    },);
-                  },
-                  title: "قدم الطلب",
-                ),
-                SizedBox(height: 30.h),
-              ],
-            );
-          },
+
+
+                      context
+                          .read<PostAdministrativeFinancialRequestCubit>()
+                          .postAdministrativeFinancialRequest(
+                        requestPostAdministrativeFinancialRequestModel: getSelectedRequest(
+                            context),
+                      )
+                          .then((value) {
+                        if (context.mounted) {
+                          BlocProvider.of<RequestCubit>(context).changePage(0);
+
+
+
+                          context.showSnackBar(" الطلب قيد الاعتماد",
+                            backgroundColor: Colors.green,
+                          );
+
+                          print("id $id");
+                        }
+                      });
+                    },
+                    title: "قدم الطلب",
+                  ),
+                  SizedBox(height: 30.h),
+                ],
+              );
+            },
+          ),
         ),
       ),
+    );
+  }
+
+  RequestPostAdministrativeFinancialRequestModel getSelectedRequest(
+      BuildContext context) {
+    return RequestPostAdministrativeFinancialRequestModel(
+      requestType:
+      context
+          .read<GetFinancialRequestTypeCubit>()
+          .state
+          .selectedRequestType
+          ?.id ??
+          0,
+      date: context
+          .read<DateCubit>()
+          .state
+          .dateTime
+          .toString(),
+      notes:
+      PostAdministrativeFinancialRequestCubit.noteInputController.text,
+      reviewers:
+      context
+          .read<DefaultReviewerCubit>()
+          .state
+          .listSelectedReviewers,
     );
   }
 }

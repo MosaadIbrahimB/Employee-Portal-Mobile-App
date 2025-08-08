@@ -49,7 +49,7 @@ extension DialogExtensions on BuildContext {
       context: this,
       builder: (context) => AlertDialog(
         backgroundColor: color.background,
-        title: Text("تحذير", style: text.titleLarge?.copyWith(color: color.tertiary)),
+        title: Text("تحذير", style: text.titleLarge?.copyWith(color: color.onPrimary)),
         content: Text(message, style: text.bodyMedium),
         actions: [
           TextButton(
