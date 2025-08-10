@@ -28,7 +28,7 @@ abstract class VacationRepository {
     CalculateVacationDurationRequestModel calculateVacationDurationRequestModel,
   );
 
-  Future<Either<Failure, ValidateVacationResponseModel>> validateVacation({
+  Future<Either<Failure, ValidateMissionResponseModel>> validateVacation({
     required ValidateVacationRequestModel requestModel,
   });
 

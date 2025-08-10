@@ -4,7 +4,8 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/control
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_tab/vacation_tab_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../management_request/app_bar_management_request_widget.dart';
+import '../../../../administrative_request/presentation/widget/app_bar_management_request_widget.dart';
+
 
 class TabVacationOfAppBarSwitcherWidget extends StatelessWidget {
   TabVacationOfAppBarSwitcherWidget({super.key});
@@ -17,7 +18,7 @@ class TabVacationOfAppBarSwitcherWidget extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            AppBarManagementRequestWidget(
+            AppBarAdministrativeRequestWidget(
               title: tabs[state],
               onTap: () {
                 context.read<VacationCubit>().changeTab(0);

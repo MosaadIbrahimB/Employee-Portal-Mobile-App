@@ -9,7 +9,7 @@ class ValidateVacationUseCase {
 
   ValidateVacationUseCase(this.vacationRepository);
 
-  Future<Either<Failure, ValidateVacationResponseModel>> call(
+  Future<Either<Failure, ValidateMissionResponseModel>> call(
     ValidateVacationRequestModel requestModel,
   ) async {
     return await vacationRepository.validateVacation(

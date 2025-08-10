@@ -5,12 +5,12 @@ import '../../../data/model/response_admin_financial_model.dart';
 
 class TabSwitcherCubit extends Cubit<int> {
   TabSwitcherCubit() : super(0);
- late ResponseAdminFinancialModel _model;
+ late dynamic _model;
 
   changeTab(int index){
     emit(index);
   }
-  setModel(ResponseAdminFinancialModel model){
+  setModel(dynamic model){
     _model = model;
   }
   getModel(){

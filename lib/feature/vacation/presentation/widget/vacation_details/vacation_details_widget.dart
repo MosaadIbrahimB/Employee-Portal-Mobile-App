@@ -17,7 +17,7 @@ class VacationDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     GetEmployeeVacationsResponseModel model =
         context.read<VacationCubit>().getEmployeeVacationsModel();
-    // List<ReviewerModel?> reviewer = model.reviewer ?? [];
+    // List<ReviewerModel?> reviewer = mission_model.reviewer ?? [];
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16).r,

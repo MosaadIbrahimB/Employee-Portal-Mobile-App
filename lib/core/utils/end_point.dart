@@ -39,4 +39,8 @@ class EndPoint {
   static const String getEmployeeNotReviewedMissionRequests="/Api/Mission/Requests/Employee/false";
   static const String getEmployeeReviewedMissionRequests="/Api/Mission/Requests/Employee/true";
 
+  static const String validateMission = "/Api/Mission/ValidateMission?from=2023-08-27 10:00:00.000&to=2023-08-27 11:00:00.000&unit=2";
+  static const String checkForHandledAlert = "/Api/Mission/CheckForHandledAlerts?from=2023-08-27 10:00:00.000&to=2023-08-27 11:00:00.000&unit=2";
+  static const String postMission = "/Api/Mission/PostMission";
+
 }

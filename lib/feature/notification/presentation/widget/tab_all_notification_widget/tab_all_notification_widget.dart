@@ -1,10 +1,10 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import 'package:employee_portal_mobile_app/feature/administrative_request/presentation/widget/app_bar_management_request_widget.dart';
 import 'package:employee_portal_mobile_app/feature/home/control/home_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/notification/presentation/widget/item_notification_widget.dart';
 import 'package:employee_portal_mobile_app/feature/notification/presentation/widget/notification_tab_of_app_bar_switcher.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../management_request/app_bar_management_request_widget.dart';
 
 
 class TabAllNotificationWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class TabAllNotificationWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppBarManagementRequestWidget(
+        AppBarAdministrativeRequestWidget(
           title: "الاشعارات",
           icon: Icons.arrow_back,
           onTap: () {

@@ -8,7 +8,7 @@
 // import '../../../../management_request/details_financial_request/app_bar_details_item_request_widget.dart';
 // import '../../../../management_request/details_financial_request/submission_date_widget.dart';
 // import '../../../../management_request/details_financial_request/type_widget.dart';
-// import '../../../../request/data/model/account_model.dart';
+// import '../../../../request/data/mission_model/account_model.dart';
 // import '../../../../request/presentation/widget/add_document_button_widget.dart';
 // import '../../../../request/presentation/widget/request_type/management_request/details_financial_request/reviewer_widget.dart';
 // import '../../../../request/presentation/widget/request_type/management_request/details_financial_request/app_bar_details_item_request_widget.dart';

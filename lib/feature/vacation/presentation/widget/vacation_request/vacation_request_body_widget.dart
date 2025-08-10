@@ -8,8 +8,8 @@ import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/reviewer_widget.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/widget/vacation_request/vacation_dropdown_widget.dart';
 
+import '../../../../administrative_request/presentation/widget/app_bar_management_request_widget.dart';
 import '../../../../layout/export_layout_file.dart';
-import '../../../../management_request/app_bar_management_request_widget.dart';
 import 'button_post_vacation_widget.dart';
 import 'file_picker_widget.dart';
 
@@ -23,7 +23,7 @@ class VacationRequestBodyWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 12.h),
-        AppBarManagementRequestWidget(
+        AppBarAdministrativeRequestWidget(
           icon: Icons.close,
           title: "طلب اجازة",
           onTap: () {

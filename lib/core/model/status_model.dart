@@ -1,8 +1,8 @@
-// import 'package:employee_portal_mobile_app/core/model/reviewer_model.dart';
-// import 'package:employee_portal_mobile_app/feature/vacation/data/model/get_employee_vacations_model/get_employee_vacations_model.dart';
+// import 'package:employee_portal_mobile_app/core/mission_model/reviewer_model.dart';
+// import 'package:employee_portal_mobile_app/feature/vacation/data/mission_model/get_employee_vacations_model/get_employee_vacations_model.dart';
 // import 'package:equatable/equatable.dart';
 //
-// import '../../feature/request/data/model/reviewer_model.dart';
+// import '../../feature/request/data/mission_model/reviewer_model.dart';
 //
 // class StatusModel extends Equatable {
 //   final bool? isCertified; //معتمده
@@ -28,11 +28,11 @@
 //
 //   }
 //   factory StatusModel.reviewerModel(
-//       {required ReviewerModel  model}) {
+//       {required ReviewerModel  mission_model}) {
 //     return StatusModel(
-//       isCertified: model.isCertified,
-//       isUnderReview: model.isUnderReview,
-//       isRejected: model.isRejected,
+//       isCertified: mission_model.isCertified,
+//       isUnderReview: mission_model.isUnderReview,
+//       isRejected: mission_model.isRejected,
 //     );
 //
 //   }

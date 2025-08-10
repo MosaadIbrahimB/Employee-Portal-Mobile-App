@@ -1,18 +1,18 @@
-class ValidateVacationResponseModel {
+class ValidateMissionResponseModel {
   bool? isValid;
   String? message;
   double? duration;
   double? overBalance;
   int? handlingId;
 
-  ValidateVacationResponseModel(
+  ValidateMissionResponseModel(
       {this.isValid,
         this.message,
         this.duration,
         this.overBalance,
         this.handlingId});
 
-  ValidateVacationResponseModel.fromJson(Map<String, dynamic> json) {
+  ValidateMissionResponseModel.fromJson(Map<String, dynamic> json) {
     isValid = json['IsValid'];
     message = json['Message'];
     duration = json['Duration'];

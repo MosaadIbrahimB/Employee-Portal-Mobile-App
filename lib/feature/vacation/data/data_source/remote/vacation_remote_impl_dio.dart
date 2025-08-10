@@ -80,7 +80,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   }
 
   @override
-  Future<ValidateVacationResponseModel> validateVacation({
+  Future<ValidateMissionResponseModel> validateVacation({
     required ValidateVacationRequestModel requestModel,
   }) async {
     final queryParams = {
@@ -95,7 +95,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
      endPoint: EndPoint.validateVacation,
       queryParams: queryParams,
     );
-    return ValidateVacationResponseModel.fromJson(response.data);
+    return ValidateMissionResponseModel.fromJson(response.data);
   }
 
   @override

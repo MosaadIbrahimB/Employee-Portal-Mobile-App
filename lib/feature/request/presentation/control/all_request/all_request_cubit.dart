@@ -1,7 +1,6 @@
-import '../get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
-import '../get_employee_financial_request/get_employee_financial_request_cubit.dart';
+import '../../../../financial_request/presentation/control/get_employee_financial_request/get_employee_financial_request_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:employee_portal_mobile_app/feature/administrative_request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
 import 'all_request_state.dart';
 
 class AllRequestCubit extends Cubit<AllRequestState> {

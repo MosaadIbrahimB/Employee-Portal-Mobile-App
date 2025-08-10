@@ -7,7 +7,7 @@ class ValidateVacationInitial extends ValidateVacationState {}
 class ValidateVacationLoading extends ValidateVacationState {}
 
 class ValidateVacationSucceed extends ValidateVacationState {
-  final ValidateVacationResponseModel response;
+  final ValidateMissionResponseModel response;
 
   ValidateVacationSucceed(this.response);
 }

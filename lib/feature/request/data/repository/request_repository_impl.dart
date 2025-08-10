@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:employee_portal_mobile_app/core/error/failure.dart';
+import 'package:employee_portal_mobile_app/feature/request/data/model/mission_model/response_get_mission_model.dart';
+import 'package:employee_portal_mobile_app/feature/request/data/model/mission_model/response_get_review_mission_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/request_post_administrative_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/response_admin_financial_model.dart';
 import 'package:employee_portal_mobile_app/feature/request/data/model/financial_request_type_model.dart';
@@ -12,18 +14,7 @@ class RequestRepositoryImpl implements RequestRepository {
   RequestRemoteDataSource requestRemoteDataSource;
 
   RequestRepositoryImpl({required this.requestRemoteDataSource});
-
-  @override
-  Future<Either<Failure, List<FinancialRequestTypeModel>>> getFinancialRequestType() async {
-    try {
-      final result = await requestRemoteDataSource.getFinancialRequestType();
-      return right(result);
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationType  "),
-      );
-    }
-  }
+//Admin
   @override
   Future<Either<Failure, List<FinancialRequestTypeModel>>> getAdminRequestType()
   async {
@@ -36,8 +27,6 @@ class RequestRepositoryImpl implements RequestRepository {
       );
     }
   }
-
-
 
   @override
   Future<Either<Failure,
@@ -86,6 +75,19 @@ class RequestRepositoryImpl implements RequestRepository {
     }
   }
 
+//Financial
+  @override
+  Future<Either<Failure, List<FinancialRequestTypeModel>>> getFinancialRequestType() async {
+    try {
+      final result = await requestRemoteDataSource.getFinancialRequestType();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationType  "),
+      );
+    }
+  }
+
   @override
   Future<Either<Failure, List<ResponseAdminFinancialModel>>> getEmployeeFinancialRequest()
   async {
@@ -116,4 +118,95 @@ class RequestRepositoryImpl implements RequestRepository {
     }
   }
 
+  // mission
+
+  @override
+  Future<Either<Failure, List<ResponseGetMissionModel>>> getMission()
+  async {
+    try {
+      final result = await requestRemoteDataSource
+          .getMission();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e
+            .toString()}حدث خطأ في الخادم getEmployeeMissionRequests  "),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ResponseGetReviewMissionRequestModel>>> getEmployeeMissionRequests()
+  async {
+    try {
+      final result = await requestRemoteDataSource
+          .getEmployeeMissionRequests();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e
+            .toString()}حدث خطأ في الخادم getEmployeeMissionRequests  "),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ResponseGetReviewMissionRequestModel>>> getReviewerMissionRequests()
+  async {
+    try {
+      final result = await requestRemoteDataSource
+          .getReviewerMissionRequests();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e
+            .toString()}حدث خطأ في الخادم getReviewerMissionRequests  "),
+      );
+    }
+  }
+
+
+
+
+
+}
+
+class MissionRequestRepositoryImpl implements RequestRepository {
+  final RequestRemoteDataSource requestRemoteDataSource;
+
+  MissionRequestRepositoryImpl({required this.requestRemoteDataSource});
+
+  @override
+  Future<Either<Failure, List<ResponseGetMissionModel>>> getMission() async {
+    try {
+      final result = await requestRemoteDataSource.getMission();
+      return right(result);
+    } catch (e) {
+      return left(ServerFailure("${e.toString()} حدث خطأ في الخادم getMission"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ResponseGetReviewMissionRequestModel>>> getEmployeeMissionRequests() async {
+    try {
+      final result = await requestRemoteDataSource.getEmployeeMissionRequests();
+      return right(result);
+    } catch (e) {
+      return left(ServerFailure("${e.toString()} حدث خطأ في الخادم getEmployeeMissionRequests"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ResponseGetReviewMissionRequestModel>>> getReviewerMissionRequests() async {
+    try {
+      final result = await requestRemoteDataSource.getReviewerMissionRequests();
+      return right(result);
+    } catch (e) {
+      return left(ServerFailure("${e.toString()} حدث خطأ في الخادم getReviewerMissionRequests"));
+    }
+  }
+
+  // ↓ مش هننفذ الباقي هنا لأنهم خاصين بـ Admin & Financial
+  @override
+  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

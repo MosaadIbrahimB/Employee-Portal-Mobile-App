@@ -8,7 +8,7 @@ import '../control/all_request/all_request_cubit.dart';
 
 class RequestScreenBody extends StatelessWidget {
    RequestScreenBody({super.key});
-   List<ResponseAdminFinancialModel>? response;
+   List<dynamic>? response;
 
   @override
   Widget build(BuildContext context) {

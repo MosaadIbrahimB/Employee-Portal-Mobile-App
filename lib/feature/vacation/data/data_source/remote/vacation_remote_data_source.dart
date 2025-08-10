@@ -28,12 +28,15 @@ abstract class VacationRemoteDataSource {
   Future<CalculateVacationDurationResponseModel> calculateVacationDuration(
     CalculateVacationDurationRequestModel calculateVacationDurationRequestModel,
   ) ;
-  Future<ValidateVacationResponseModel> validateVacation({
+  Future<ValidateMissionResponseModel> validateVacation({
     required ValidateVacationRequestModel requestModel,
   });
   Future<CheckHandledAlertsResponseModel> checkHandledAlerts({
     required CheckHandledAlertsRequestModel requestModel,
   });
+
+
+
   Future<VacationBalanceResponseModel> getVacationBalance({
     required VacationBalanceRequestModel requestModel,
   });
