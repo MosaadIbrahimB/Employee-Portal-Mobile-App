@@ -3,8 +3,8 @@ import 'package:employee_portal_mobile_app/feature/administrative_request/presen
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../request/data/model/response_admin_financial_model.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
+import '../../../data/model/response_administrative_model.dart';
 import 'reviewer_widget.dart';
 import 'nots_details_widget.dart';
 import 'submission_date_widget.dart';
@@ -19,7 +19,7 @@ class DetailsItemOfRequestWidget extends StatelessWidget {
     return BlocBuilder<TabSwitcherCubit, int>(
       builder: (context, state) {
 
-        ResponseAdminFinancialModel model = context.read<TabSwitcherCubit>().getModel();
+        ResponseAdministrativeModel model = context.read<TabSwitcherCubit>().getModel();
         return Column(
           children: [
             SizedBox(height: 16.h),

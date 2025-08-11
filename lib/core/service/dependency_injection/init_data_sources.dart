@@ -3,8 +3,8 @@ import 'package:employee_portal_mobile_app/feature/financial_request/data/data_s
 import 'package:employee_portal_mobile_app/feature/financial_request/data/data_source/remote/financial_request_remote_data_source_impl.dart';
 
 import '../../../feature/administrative_request/data/data_source/remote/administrative_request_remote_data_source_impl.dart';
-import '../../../feature/request/data/data_source/remote/request_remote_data_source.dart';
-import '../../../feature/request/data/data_source/remote/request_remote_impl_dio.dart';
+import '../../../feature/mission_request/data/data_source/remote/mission_request_remote_data_source.dart';
+import '../../../feature/mission_request/data/data_source/remote/mission_request_remote_data_source_impl.dart';
 import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
@@ -15,9 +15,9 @@ void initDataSources() {
   );
 
 
-  sl.registerLazySingleton<RequestRemoteDataSource>(
-        () => RequestRemoteImplDio(apiService: sl<ApiService>(instanceName: "mohr")),
-  );
+  // sl.registerLazySingleton<RequestRemoteDataSource>(
+  //       () => RequestRemoteImplDio(apiService: sl<ApiService>(instanceName: "mohr")),
+  // );
 
 
   sl.registerLazySingleton<FinancialRequestRemoteDataSource>(
@@ -27,4 +27,9 @@ void initDataSources() {
   sl.registerLazySingleton<AdministrativeRequestRemoteDataSource>(
         () => AdministrativeRequestRemoteDataSourceImpl(apiService: sl<ApiService>(instanceName: "mohr")),
   );
+
+  sl.registerLazySingleton<MissionRequestRemoteDataSource>(
+        () => MissionRequestRemoteDataSourceImpl(apiService: sl<ApiService>(instanceName: "mohr")),
+  );
+
 }

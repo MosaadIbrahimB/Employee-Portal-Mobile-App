@@ -3,9 +3,8 @@ import 'package:employee_portal_mobile_app/feature/financial_request/data/model/
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/add_document_button_widget.dart';
 import 'package:employee_portal_mobile_app/generated/assets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../request/data/model/response_admin_financial_model.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../app_bar_financial_request_widget.dart';
+import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import 'reviewer_widget.dart';
 import 'nots_details_widget.dart';
 import 'submission_date_widget.dart';
@@ -27,7 +26,7 @@ class DetailsItemOfRequestWidget extends StatelessWidget {
             // معتمده - تحت الطلب -مرفوض
             Row(
               children: [
-                AppBarFinancialRequestWidget(
+                AppBarRequestWidget(
                     icon: Icons.close,
                     title: "تفاصيل طلب ",
                     onTap: () {

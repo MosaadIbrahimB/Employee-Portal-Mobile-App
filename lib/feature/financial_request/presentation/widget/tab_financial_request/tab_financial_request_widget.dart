@@ -3,7 +3,7 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/r
 
 import '../../../../request/presentation/control/request/request_cubit.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../app_bar_financial_request_widget.dart';
+import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import 'body_tab_financial_request_widget.dart';
 
 class TabFinancialRequestWidget extends StatelessWidget {
@@ -14,7 +14,7 @@ class TabFinancialRequestWidget extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 12.h),
-        AppBarFinancialRequestWidget(
+        AppBarRequestWidget(
           icon: Icons.close,
           title: "طلباتى المالية",
           onTap: () {

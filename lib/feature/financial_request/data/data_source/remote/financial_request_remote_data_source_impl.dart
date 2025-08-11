@@ -13,7 +13,8 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
 
   FinancialRequestRemoteDataSourceImpl({required this.apiService});
   @override
-  Future<List<FinancialRequestTypeModel>> getFinancialRequestType() async {
+  Future<List<FinancialRequestTypeModel>> getFinancialRequestType()
+  async {
     final response = await apiService.getRequest(
       endPoint: EndPoint.getRequestFinancial,
     );

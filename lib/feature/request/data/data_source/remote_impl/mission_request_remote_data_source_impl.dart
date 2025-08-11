@@ -1,7 +1,7 @@
 import '../../../../../core/service/api_service/api_service.dart';
 import '../../../../../core/utils/end_point.dart';
-import '../../model/mission_model/response_get_mission_model.dart';
-import '../../model/mission_model/response_get_review_mission_request_model.dart';
+import '../../../../mission_request/model/response_mission_model.dart';
+import '../../../../mission_request/model/response_get_review_mission_request_model.dart';
 import '../remote/mission_request_remote_data_source.dart';
 
 class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSource {
@@ -10,13 +10,13 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
   MissionRequestRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<List<ResponseGetMissionModel>> getMission() async {
+  Future<List<ResponseMissionModel>> getMission() async {
     final response = await apiService.getRequest(endPoint: EndPoint.getMission);
 
     final list =
     response.data
-        .map<ResponseGetMissionModel>(
-          (json) => ResponseGetMissionModel.fromJson(json),
+        .map<ResponseMissionModel>(
+          (json) => ResponseMissionModel.fromJson(json),
     )
         .toList();
 

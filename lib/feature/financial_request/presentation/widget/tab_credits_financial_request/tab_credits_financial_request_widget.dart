@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../../request/presentation/control/request/request_cubit.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../app_bar_financial_request_widget.dart';
+import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import 'item_of_tab_credits_request_widget.dart';
 
 
@@ -20,7 +20,7 @@ class TabCreditsFinancialRequestWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 12.h),
-          AppBarFinancialRequestWidget(
+          AppBarRequestWidget(
               icon: Icons.close,
               title: "مالى قيد الاعتماد",
               onTap: () {

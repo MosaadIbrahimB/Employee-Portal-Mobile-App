@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/feature/request/data/model/reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
 import 'package:equatable/equatable.dart';
 
 class ResponseAdministrativeModel extends Equatable {
@@ -16,7 +16,7 @@ class ResponseAdministrativeModel extends Equatable {
   final bool? editable;
   final String? attachments;
   final String? status;
-  final List<ReviewerModel>? reviewers;
+  final List<DefaultReviewerModel>? reviewers;
 
   const ResponseAdministrativeModel({
     this.id,
@@ -51,7 +51,7 @@ class ResponseAdministrativeModel extends Equatable {
       attachments: json['Attachments'],
       status: json['Status'],
       reviewers: json['Reviewers'] != null
-          ? List<ReviewerModel>.from(json['Reviewers'].map((v) => ReviewerModel.fromJson(v)))
+          ? List<DefaultReviewerModel>.from(json['Reviewers'].map((v) => DefaultReviewerModel.fromJson(v)))
           : null,
     );
   }
@@ -111,8 +111,8 @@ class ResponseAdministrativeModel extends Equatable {
       attachments: 'leave_request.pdf',
       status: 'Pending',
       reviewers: [
-        ReviewerModel( name: 'Sara', status: 'HR Director'),
-        ReviewerModel( name: 'Mohamed', status: 'CEO'),
+        DefaultReviewerModel( name: 'Sara', status: 'HR Director'),
+        DefaultReviewerModel( name: 'Mohamed', status: 'CEO'),
       ],
     ),
     ResponseAdministrativeModel(
@@ -130,8 +130,8 @@ class ResponseAdministrativeModel extends Equatable {
       attachments: 'expense_receipt.pdf',
       status: 'Reviewed',
       reviewers: [
-        ReviewerModel( name: 'Ali', status: 'Finance Manager'),
-        ReviewerModel( name: 'Omar', status: 'CFO'),
+        DefaultReviewerModel( name: 'Ali', status: 'Finance Manager'),
+        DefaultReviewerModel( name: 'Omar', status: 'CFO'),
       ],
     ),
 

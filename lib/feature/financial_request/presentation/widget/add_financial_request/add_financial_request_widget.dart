@@ -5,7 +5,6 @@ import 'package:employee_portal_mobile_app/feature/request/presentation/widget/a
 import 'package:employee_portal_mobile_app/feature/request/presentation/widget/notes_input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
-import '../../../../request/data/model/request_post_administrative_request_model.dart';
 import '../../../../request/presentation/control/date_cubit/date_cubit.dart';
 import '../../../../request/presentation/control/request/request_cubit.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
@@ -18,7 +17,7 @@ import '../../../../vacation/presentation/widget/vacation_request/reviewer_widge
 import '../../../data/model/request_post_financial_request_model.dart';
 import '../../control/post_financial_request/post_financial_request_cubit.dart';
 import '../../control/post_financial_request/post_financial_request_state.dart';
-import '../app_bar_financial_request_widget.dart';
+import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import 'financial_type_request_dropdown_widget.dart';
 
 //طلب ادارى شاشة اضافة
@@ -41,7 +40,7 @@ class AddFinancialRequestWidget extends StatelessWidget {
                   return Column(
                     children: [
                       SizedBox(height: 12.h),
-                      AppBarFinancialRequestWidget(
+                      AppBarRequestWidget(
                         icon: Icons.close,
                         title: "طلب مالي ",
                         onTap: () {
@@ -92,6 +91,7 @@ class AddFinancialRequestWidget extends StatelessWidget {
                                   BlocProvider.of<RequestCubit>(
                                     context,
                                   ).changePage(0);
+                                  context.read<TabSwitcherCubit>().changeTab(0);
 
                                   context.showSnackBar(
                                     " الطلب قيد الاعتماد",

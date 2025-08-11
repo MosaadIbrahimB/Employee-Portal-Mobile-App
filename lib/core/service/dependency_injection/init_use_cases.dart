@@ -13,6 +13,10 @@ import 'package:employee_portal_mobile_app/feature/administrative_request/domain
 import '../../../feature/administrative_request/domain/use_case/get_administrative_request_type_use_case.dart';
 import '../../../feature/administrative_request/domain/use_case/get_employee_administrative_use_case.dart';
 import '../../../feature/administrative_request/domain/use_case/get_reviewer_administrative_request_use_case.dart';
+import '../../../feature/mission_request/domain/repository/mission_repository.dart';
+import '../../../feature/mission_request/domain/use_case/get_employee_mission_request_use_case.dart';
+import '../../../feature/mission_request/domain/use_case/get_mission_use_case.dart';
+import '../../../feature/mission_request/domain/use_case/get_reviewer_mission_request_use_case.dart';
 import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
@@ -34,12 +38,14 @@ void initUseCases() {
   sl.registerLazySingleton(() => GetReviewerFinancialRequestUseCase(repository: sl<FinancialRequestRepository>()));
   sl.registerLazySingleton(() => PostFinancialRequestUseCase(repository: sl<FinancialRequestRepository>()));
 //Administrative
-
-
   sl.registerLazySingleton(() => GetAdministrativeRequestTypeUseCase(repository: sl<AdministrativeRequestRepository>()));
   sl.registerLazySingleton(() => GetEmployeeAdministrativeUseCase(repository: sl<AdministrativeRequestRepository>()));
   sl.registerLazySingleton(() => GetReviewerAdministrativeRequestUseCase(repository: sl<AdministrativeRequestRepository>()));
   sl.registerLazySingleton(() => PostAdministrativeRequestUseCase(repository: sl<AdministrativeRequestRepository>()));
+//mission
+  sl.registerLazySingleton(() => GetMissionUseCase(repository: sl<MissionRequestRepository>()));
+  sl.registerLazySingleton(() => GetEmployeeMissionUseCase(repository: sl<MissionRequestRepository>()));
+  sl.registerLazySingleton(() => GetReviewerMissionUseCase(repository: sl<MissionRequestRepository>()));
 
 
 

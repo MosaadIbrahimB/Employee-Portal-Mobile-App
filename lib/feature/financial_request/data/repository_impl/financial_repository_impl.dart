@@ -16,7 +16,8 @@ class FinancialRequestRepositoryImpl implements FinancialRequestRepository {
 
   @override
   Future<Either<Failure, List<FinancialRequestTypeModel>>>
-  getFinancialRequestType() async {
+  getFinancialRequestType()
+  async {
     try {
       final result =
           await financialRequestRemoteDataSource.getFinancialRequestType();

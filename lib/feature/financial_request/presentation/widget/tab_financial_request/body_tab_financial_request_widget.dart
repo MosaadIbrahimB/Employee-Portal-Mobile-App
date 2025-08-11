@@ -25,7 +25,7 @@ class BodyTabFinancialRequestWidget extends StatelessWidget {
             if( state.response == null || state.response!.isEmpty) {
               return SizedBox(
                   height: 50.h,
-                  child: Center(child: Text("لا توجد طلبات ادارية")));
+                  child: Center(child: Text("لا توجد طلبات مالية")));
             }
 
             return Column(

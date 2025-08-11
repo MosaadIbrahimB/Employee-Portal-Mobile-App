@@ -8,6 +8,10 @@ class DefaultReviewerModel {
   bool? singleApprovalEnabled;
   bool? isCurrent;
 
+  String? status;
+  String? note;
+
+
   DefaultReviewerModel(
       {this.id,
         this.employeeId,
@@ -16,7 +20,12 @@ class DefaultReviewerModel {
         this.picPath,
         this.order,
         this.singleApprovalEnabled,
-        this.isCurrent});
+        this.isCurrent,
+        this.status,
+        this.note,
+
+
+      });
 
   DefaultReviewerModel.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
@@ -27,6 +36,9 @@ class DefaultReviewerModel {
     order = json['Order'];
     singleApprovalEnabled = json['SingleApprovalEnabled'];
     isCurrent = json['IsCurrent'];
+    status = json['Status'];
+    note = json['Note'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -39,6 +51,8 @@ class DefaultReviewerModel {
     data['Order'] =order;
     data['SingleApprovalEnabled'] = singleApprovalEnabled;
     data['IsCurrent'] = isCurrent;
+    data['Status'] = status;
+    data['Note'] = note;
     return data;
   }
 
@@ -48,6 +62,8 @@ class DefaultReviewerModel {
     data['employeeId'] = employeeId;
     data['name'] =name;
     data['code'] = code;
+    data['picPath'] = picPath;
+    data['order'] =order;
     return data;
   }
 

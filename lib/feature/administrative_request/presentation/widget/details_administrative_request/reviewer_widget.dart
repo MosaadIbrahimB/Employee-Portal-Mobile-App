@@ -1,11 +1,9 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import '../../../../request/data/model/response_admin_financial_model.dart';
-import '../../../../request/data/model/reviewer_model.dart';
 
 class ReviewerWidget extends StatelessWidget {
   const ReviewerWidget({super.key, required this.reviewer});
 
-  final ReviewerModel reviewer;
+  final dynamic reviewer;
 
   @override
   Widget build(BuildContext context) {

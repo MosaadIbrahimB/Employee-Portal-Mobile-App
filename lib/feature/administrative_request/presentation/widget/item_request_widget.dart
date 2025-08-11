@@ -1,5 +1,6 @@
 import 'package:employee_portal_mobile_app/feature/financial_request/data/model/response_financial_model.dart';
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
+import 'package:employee_portal_mobile_app/feature/mission_request/data/model/response_mission_model.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../data/model/response_administrative_model.dart';
 
@@ -41,6 +42,11 @@ class ItemRequestWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 3.w),
+                if(model is ResponseMissionModel)
+                Text(
+                  model.destination ?? "missionTypeName",
+                  style: themeText.displaySmall,
+                ) else
                 Text(
                   model.requestTypeName ?? "requestTypeName",
                   style: themeText.displaySmall,
@@ -54,6 +60,13 @@ class ItemRequestWidget extends StatelessWidget {
               children: [
                 Icon(Icons.calendar_today_outlined, size: 15),
                 SizedBox(width: 8.w),
+                if(model is ResponseMissionModel)
+                  Text(
+                    model.from != null
+                        ? "تاريخ بداية الطلب  :${model.from!.substring(0, 10)}"
+                        : "تاريخ بداية الطلب  :غير متاح",
+                    style: AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
+                  )else
                 Text(
                   model.date != null
                       ? "تاريخ تقديم الطلب  :${model.date!.substring(0, 10)}"

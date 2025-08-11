@@ -1,6 +1,5 @@
-import 'package:employee_portal_mobile_app/core/model/reviewer_model.dart';
-import 'package:employee_portal_mobile_app/feature/request/data/model/reviewer_model.dart';
-import 'package:equatable/equatable.dart';
+// import 'package:employee_portal_mobile_app/core/model/reviewer_model.dart';
+// import 'package:equatable/equatable.dart';
 
 
 // class GetEmployeeVacationsModel extends Equatable {

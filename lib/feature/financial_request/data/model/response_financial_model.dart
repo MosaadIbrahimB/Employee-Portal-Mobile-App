@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/feature/request/data/model/reviewer_model.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/data/model/default_reviewer/default_reviewer_model.dart';
 import 'package:equatable/equatable.dart';
 
 class ResponseFinancialModel extends Equatable {
@@ -16,7 +16,7 @@ class ResponseFinancialModel extends Equatable {
   final bool? editable;
   final String? attachments;
   final String? status;
-  final List<ReviewerModel>? reviewers;
+  final List<DefaultReviewerModel>? reviewers;
 
   const ResponseFinancialModel({
     this.id,
@@ -51,7 +51,7 @@ class ResponseFinancialModel extends Equatable {
       attachments: json['Attachments'],
       status: json['Status'],
       reviewers: json['Reviewers'] != null
-          ? List<ReviewerModel>.from(json['Reviewers'].map((v) => ReviewerModel.fromJson(v)))
+          ? List<DefaultReviewerModel>.from(json['Reviewers'].map((v) => DefaultReviewerModel.fromJson(v)))
           : null,
     );
   }
@@ -110,8 +110,8 @@ class ResponseFinancialModel extends Equatable {
       attachments: "slfa_doc.pdf",
       status: "قيد المراجعة",
       reviewers: [
-        ReviewerModel(name: "على", status: "موافقة", note: "123"),
-        ReviewerModel(name: "محمد", status: "قيد الانتظار", note: "123"),
+        DefaultReviewerModel(name: "على", status: "موافقة", note: "123"),
+        DefaultReviewerModel(name: "محمد", status: "قيد الانتظار", note: "123"),
       ],
     ),
     ResponseFinancialModel(
@@ -129,7 +129,7 @@ class ResponseFinancialModel extends Equatable {
       attachments: null,
       status: "مرفوض",
       reviewers: [
-        ReviewerModel(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
+        DefaultReviewerModel(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
       ],
     ),
     ResponseFinancialModel(
@@ -147,8 +147,8 @@ class ResponseFinancialModel extends Equatable {
       attachments: "extra_hours.jpg",
       status: "معتمد",
       reviewers: [
-        ReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
-        ReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
+        DefaultReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
+        DefaultReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
       ],
     ),
     ResponseFinancialModel(
@@ -166,8 +166,8 @@ class ResponseFinancialModel extends Equatable {
       attachments: "extra_hours.jpg",
       status: "معتمد",
       reviewers: [
-        ReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
-        ReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
+        DefaultReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
+        DefaultReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
       ],
     ),
     ResponseFinancialModel(
@@ -185,7 +185,7 @@ class ResponseFinancialModel extends Equatable {
       attachments: null,
       status: "مرفوض",
       reviewers: [
-        ReviewerModel(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
+        DefaultReviewerModel(name: "مدير المشروع", status: "مرفوض", note: "غير مبرر"),
       ],
     ),
     ResponseFinancialModel(
@@ -203,8 +203,8 @@ class ResponseFinancialModel extends Equatable {
       attachments: "extra_hours.jpg",
       status: "معتمد",
       reviewers: [
-        ReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
-        ReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
+        DefaultReviewerModel(name: "المدير المباشر", status: "موافق", note: "تم التأكيد على الساعات"),
+        DefaultReviewerModel(name: "المالية", status: "موافق", note: "تم رصد المبلغ"),
       ],
     ),
     ResponseFinancialModel(
@@ -222,8 +222,8 @@ class ResponseFinancialModel extends Equatable {
       attachments: "slfa_doc.pdf",
       status: "قيد المراجعة",
       reviewers: [
-        ReviewerModel(name: "على", status: "موافقة", note: "123"),
-        ReviewerModel(name: "محمد", status: "قيد الانتظار", note: "123"),
+        DefaultReviewerModel(name: "على", status: "موافقة", note: "123"),
+        DefaultReviewerModel(name: "محمد", status: "قيد الانتظار", note: "123"),
       ],
     ),
 
