@@ -1,7 +1,5 @@
-
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../../../core/utils/import_file.dart';
-import '../../../../vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import '../../../../vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
 import '../../../../vacation/presentation/control/approve_cancel_request/approve_cancel_request_state.dart';
 import '../../../data/model/response_mission_model.dart';
@@ -51,10 +49,8 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               Spacer(),
-
               GestureDetector(
                 onTapDown: (details) {
-                  dropdownMenu(context, details);
                 },
 
                 child: Icon(moreH),
@@ -67,8 +63,8 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(model.empName ?? "اسم الموظف  : محمد فتحى محمد غانم"),
-              Text(model.jobTitle ?? "مصمم تجربة مستخدم"),
+              Text(model.destination ?? "اسم الموظف  : محمد فتحى محمد غانم"),
+              Text(model.destination ?? "مصمم تجربة مستخدم"),
             ],
           ),
           SizedBox(height: 8.h),
@@ -93,153 +89,5 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
 );
   }
 
-  dropdownMenu(BuildContext context, TapDownDetails details) async {
-    final position = details.globalPosition;
-    final selected = await showMenu<String>(
-      context: context,
-      position: RelativeRect.fromLTRB(
-        position.dx - 50.h,
-        position.dy + 5.h,
-        position.dx,
-        position.dy,
-      ),
-      items: [
-        const PopupMenuItem(value: 'approve', child: Text('اعتماد')),
-        const PopupMenuItem(
-          value: 'approve_with_note',
-          child: Text('اعتماد مع ملاحظة'),
-        ),
-        const PopupMenuItem(value: 'reject', child: Text('رفض')),
-      ],
-    );
 
-    if (selected != null) {
-      switch (selected) {
-        case 'approve':
-          ApproveCancelRequestModel approveCancelRequestModel =
-              ApproveCancelRequestModel(
-                id: model.id.toString() ?? "",
-                value: 0,
-                isApproved: true,
-              );
-          if (context.mounted) {
-            context.read<ApproveCancelRequestCubit>().approveCancelRequest(
-              approveCancelRequestModel,
-            );
-            context
-                .read<GetReviewerFinancialRequestCubit>()
-                .getReviewerFinancialRequest();
-          }
-          break;
-        case 'approve_with_note':
-          if (context.mounted) {
-            _showNoteBottomSheet(context);
-          }
-          break;
-        case 'reject':
-          ApproveCancelRequestModel approveCancelRequestModel =
-              ApproveCancelRequestModel(
-                id: model.id.toString() ?? "",
-                value: 0,
-                isApproved: false,
-              );
-          if (context.mounted) {
-            context.read<ApproveCancelRequestCubit>().approveCancelRequest(
-              approveCancelRequestModel,
-            );
-            context
-                .read<GetReviewerFinancialRequestCubit>()
-                .getReviewerFinancialRequest();
-          }
-          break;
-      }
-    }
-  }
-
-  void _showNoteBottomSheet(BuildContext context) {
-    final TextEditingController noteController = TextEditingController();
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-            top: 16,
-            left: 16,
-            right: 16,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context); // اغلق الـ BottomSheet
-                },
-                child: const Icon(Icons.close),
-              ),
-              SizedBox(height: 8.h),
-
-              const Text(
-                'ضع ملاحظاتك',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: noteController,
-                maxLines: 5,
-                maxLength: 500,
-                decoration: const InputDecoration(
-                  hintText: 'نص للملاحظات',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              GestureDetector(
-                onTap: () {
-                  String note = noteController.text;
-                  // احفظ الملاحظة أو ابعتها للسيرفر
-
-                  ApproveCancelRequestModel approveWithNote =
-                      ApproveCancelRequestModel(
-                        id: model.id.toString() ?? "",
-                        value: 0,
-                        isApproved: true,
-                        // note: note, // أضف الملاحظة هنا
-                      );
-
-               // اغلق الـ BottomSheet
-                },
-                child: Container(
-                  height: 40.h,
-                  width: 60.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8).r,
-                    border: Border.all(
-                      color: context.color.primary,
-                      width: 1.w,
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'حفظ',
-                      style: context.text.labelLarge!.copyWith(
-                        color: context.color.primary,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        );
-      },
-    );
-  }
 }

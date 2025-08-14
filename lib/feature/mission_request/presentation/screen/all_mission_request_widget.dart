@@ -1,5 +1,7 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
+import '../../../financial_request/presentation/widget/add_financial_request/add_financial_request_widget.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
+import '../widget/tab_credits_mission_request/tab_credits_mission_request_widget.dart';
 import '../widget/tab_mission_request/tab_mission_request_widget.dart';
 
 class AllMissionRequestWidget extends StatelessWidget {
@@ -7,8 +9,8 @@ class AllMissionRequestWidget extends StatelessWidget {
 
   static final List<Widget> listBody = [
     TabMissionRequestWidget(),
-    // TabCreditsFinancialRequestWidget(),
-    // AddFinancialRequestWidget(),
+    TabCreditsMissionRequestWidget(),
+    AddFinancialRequestWidget(),
     // DetailsItemOfRequestWidget()
   ];
 

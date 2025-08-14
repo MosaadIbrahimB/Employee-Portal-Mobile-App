@@ -11,6 +11,7 @@ import '../../../financial_request/presentation/control/post_financial_request/p
 import '../../../financial_request/presentation/screen/all_financial_request_widget.dart';
 import '../../../mission_request/presentation/control/get_employee_mission/get_employee_mission_cubit.dart';
 import '../../../mission_request/presentation/control/get_mission_request/get_mission_request_cubit.dart';
+import '../../../mission_request/presentation/control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
 import '../../../mission_request/presentation/screen/all_mission_request_widget.dart';
 import '../../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 import '../control/all_request/all_request_cubit.dart';
@@ -95,6 +96,11 @@ class RequestScreen extends StatelessWidget {
         create:
             (context) =>
         sl<GetEmployeeMissionCubit>()..getEmployeeMission(),
+      ),
+      BlocProvider(
+        create:
+            (context) =>
+        sl<GetReviewerMissionRequestCubit>()..getReviewerMissionRequest(),
       ),
 
     ];

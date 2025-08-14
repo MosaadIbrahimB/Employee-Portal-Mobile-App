@@ -45,22 +45,112 @@ class ItemMissionRequestWidget extends StatelessWidget {
                   model.destination ?? "requestTypeName",
                   style: themeText.displaySmall,
                 ),
+                Spacer(),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.calendar_today_outlined, size: 15,color: AppColor.midnightBlue,),
+                    SizedBox(width: 8.w),
+                    Text(
+                      model.duration != null
+                          ? model.duration!
+                          : "duration",
+
+                      style:
+                      AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
+                    ),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 8.h),
 
             Row(
-              mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.calendar_today_outlined, size: 15),
-                SizedBox(width: 8.w),
-                Text(
-                  model.from != null
-                      ? "تاريخ تقديم الطلب  :${model.from!.substring(0, 10)}"
-                      : "تاريخ تقديم الطلب  :غير متاح",
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(8).r,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12).r,
+                      border: Border.all(color: AppColor.black12, width: 1.w),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("من",
+                            style: AppTextStyle.iBMP18w400), // Color(0xff3D4966)),
+                        SizedBox(height: 8.h),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.calendar_today_outlined, size: 16.r),
+                            SizedBox(width: 8.w),
+                            Text(
+                              model.from != null
+                                  ? model.from!.substring(0, 10)
+                                  : "تاريخ تقديم الطلب  :غير متاح",
 
-                  style:
-                      AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
+                              style:
+                                  AppTextStyle.iBMP18w400, // Color(0xff3D4966)
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8.h),
+                        Row(
+                          children: [
+                            Icon(Icons.access_time_outlined, size: 15,color: AppColor.midnightBlue,),
+                            SizedBox(width: 8.w),
+                            Text("9:00 صباحاً",
+                                style: AppTextStyle.iBMP18w400),
+                          ],
+                        ), // Color(0xff3D4966)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(width: 5.w,),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(8).r,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12).r,
+                      border: Border.all(color: AppColor.black12, width: 1.w),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("الى",
+                            style: AppTextStyle.iBMP18w400), // Color(0xff3D4966)),
+                        SizedBox(height: 8.h),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.calendar_today_outlined, size: 16.r),
+                            SizedBox(width: 8.w),
+                            Text(
+                              model.to != null
+                                  ? model.to!.substring(0, 10)
+                                  : "تاريخ تقديم الطلب  :غير متاح",
+
+                              style:
+                                  AppTextStyle.iBMP18w400, // Color(0xff3D4966)
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8.h),
+                        Row(
+                          children: [
+                            Icon(Icons.access_time_outlined, size: 15,color: AppColor.midnightBlue,),
+                            SizedBox(width: 8.w),
+                            Text("9:00 صباحاً",
+                                style: AppTextStyle.iBMP18w400),
+                          ],
+                        ), // Color(0xff3D4966)),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
