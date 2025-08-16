@@ -9,5 +9,12 @@ class DateCubit extends Cubit<DateState> {
   void updateDate(DateTime date) {
     emit(state.copyWith(dateTime: date));
   }
+  setFromDate(DateTime date) {
+    emit(state.copyWith(fromDate: date));
+  }
+  setToDate(DateTime date) {
+    emit(state.copyWith(toDate: date));
+  }
+
 
 }

@@ -19,7 +19,11 @@ class CustomNotsOfDetailsScreenWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(12).r,
             border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
-          child: Text(notText??'نص الملاحظات'),
+          child:
+          notText == null || notText!.isEmpty
+              ? Text('لا توجد ملاحظات',style: AppTextStyle.iBMP14w500,textAlign:TextAlign.start,)
+              :
+          Text(notText??'نص الملاحظات',style: AppTextStyle.iBMP14w500,textAlign:TextAlign.start,),
         ),
       ],
     );

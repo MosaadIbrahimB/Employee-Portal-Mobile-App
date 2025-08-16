@@ -1,18 +1,18 @@
-class PostMissionResponseModel {
+class ResponsePostMissionModel {
   bool? isValid;
   String? message;
   double? duration;
   double? overBalance;
   int? handlingId;
 
-  PostMissionResponseModel(
+  ResponsePostMissionModel(
       {this.isValid,
         this.message,
         this.duration,
         this.overBalance,
         this.handlingId});
 
-  PostMissionResponseModel.fromJson(Map<String, dynamic> json) {
+  ResponsePostMissionModel.fromJson(Map<String, dynamic> json) {
     isValid = json['IsValid'];
     message = json['Message'];
     duration = json['Duration'];

@@ -1,5 +1,7 @@
 import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
 import 'package:employee_portal_mobile_app/feature/mission_request/data/data_source/remote/mission_request_remote_data_source.dart';
+import 'package:employee_portal_mobile_app/feature/mission_request/data/model/post_mission/post_mission_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/mission_request/data/model/post_mission/response_post_mission_model.dart';
 import '../../../../../core/utils/end_point.dart';
 import '../../model/response_mission_model.dart';
 
@@ -87,6 +89,17 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
     ];
 
   }
+
+  @override
+  Future<ResponsePostMissionModel> postMissionRequests(RequestPostMissionModel postMissionRequestModel)
+  async {
+    final response = await apiService.postRequest(
+      endPoint: EndPoint.postMission,
+      data: postMissionRequestModel.toJson(),
+    );
+    return ResponsePostMissionModel.fromJson(response.data);
+  }
+
 
 
 

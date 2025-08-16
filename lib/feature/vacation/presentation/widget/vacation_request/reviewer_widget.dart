@@ -1,6 +1,7 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../data/model/default_reviewer/default_reviewer_model.dart';
 import '../../control/default_reviewer/default_reviewer_state.dart';
 
@@ -10,68 +11,67 @@ class ReviewerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("إضافة مراجع", style: context.text.bodyMedium),
-        SizedBox(height: 8.h),
-        Container(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("إضافة مراجع", style: context.text.bodyMedium),
+          SizedBox(height: 8.h),
+          Container(
 
-          height: 50.h,
-          padding: EdgeInsets.only(right: 12.w),
-          decoration: BoxDecoration(
+            height: 50.h,
+            padding: EdgeInsets.only(right: 12.w),
+            decoration: BoxDecoration(
 
-            borderRadius: BorderRadius.circular(12).r,
-            border: Border.all(color: context.color.outline, width: 1.0),
-          ),
-          child: BlocBuilder<DefaultReviewerCubit, DefaultReviewerState>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                return Center(
-                  child: const Text('جارى التحميل ...'),
-                );
-              } else if (state.errorMessage != null) {
-                return Text(state.errorMessage!);
-              }
-              return DropdownButton<DefaultReviewerModel>(
-                underline: const SizedBox(),
-                hint: const Text('"إضافة مراجع"'),
-                value: state.selectedReviewer,
-                isExpanded: true,
-                items:
-                state.reviewers.map((reviewer) {
-                  return DropdownMenuItem<DefaultReviewerModel>(
-                    value: reviewer,
-                    child: Text(reviewer.name ?? "NAME NOT FOUND"),
+              borderRadius: BorderRadius.circular(12).r,
+              border: Border.all(color: context.color.outline, width: 1.0),
+            ),
+            child: BlocBuilder<DefaultReviewerCubit, DefaultReviewerState>(
+              builder: (context, state) {
+                if (state.isLoading) {
+                  return Center(
+                    child: const Text('جارى التحميل ...'),
                   );
-                }).toList(),
-                onChanged: (value) {
-                  if (value != null) {
-                    context.read<DefaultReviewerCubit>().selectReviewer(value);
-                    context.read<DefaultReviewerCubit>().addReviewer(value);
-                  }
-                },
-                icon:
-                       Padding(
-                  padding: const EdgeInsets.all(BorderSide.strokeAlignOutside),
-                  child: Container(
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      color: Color(0xffEDF9FF),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12).r,
-                        bottomLeft: Radius.circular(12).r,
-                      ),
-                    ),
-                    child: Icon(Icons.add, color: Color(0xff1783B5), size: 30),
-                  ),
-                ),
+                } else if (state.errorMessage != null) {
+                  return Text(state.errorMessage!);
+                }
+                return DropdownButton<DefaultReviewerModel>(
+                  underline: const SizedBox(),
+                  hint: const Text('"إضافة مراجع"'),
+                  value: state.selectedReviewer,
+                  isExpanded: true,
+                  items: state.reviewers.map((reviewer) {
+                    return DropdownMenuItem<DefaultReviewerModel>(
+                      value: reviewer,
+                      child: Text(reviewer.name ?? "NAME NOT FOUND"),
+                    );
+                  }).toList(),
 
-              );
-            },
+                  onChanged: (value) {
+                    if (value != null) {
+                      context.read<DefaultReviewerCubit>().selectReviewer(value);
+                      context.read<DefaultReviewerCubit>().addReviewer(value);
+                    }
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.all(BorderSide.strokeAlignOutside),
+                    child: Container(
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                        color: Color(0xffEDF9FF),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12).r,
+                          bottomLeft: Radius.circular(12).r,
+                        ),
+                      ),
+                      child: Icon(Icons.add, color: Color(0xff1783B5), size: 30),
+                    ),
+                  ),
+
+                );
+              },
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
   }
 }
 

@@ -7,7 +7,7 @@ import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit
 import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import '../../control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
 import '../../control/get_reviewer_mission_request/get_reviewer_mission_request_state.dart';
-
+import 'package:employee_portal_mobile_app/feature/mission_request/presentation/widget/tab_credits_mission_request/item_of_tab_credits_mission_request_widget.dart';
 
 class TabCreditsMissionRequestWidget extends StatelessWidget {
   const TabCreditsMissionRequestWidget({super.key});
@@ -63,7 +63,7 @@ class TabCreditsMissionRequestWidget extends StatelessWidget {
               return Column(
                 children:
                 state.response!
-                    .map((e) => Text("data"))
+                    .map((e) => ItemOfTabCreditsRequestWidget(model: e))
                     .toList(),
               );
             },

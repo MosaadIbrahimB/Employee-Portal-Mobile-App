@@ -1,7 +1,7 @@
 
 import '../../../../vacation/data/model/default_reviewer/default_reviewer_model.dart';
 
-class PostMissionRequestModel {
+class RequestPostMissionModel {
   String? destination;
   String? from;
   String? to;
@@ -10,7 +10,7 @@ class PostMissionRequestModel {
   String? notes;
   Request? request;
 
-  PostMissionRequestModel(
+  RequestPostMissionModel(
       {this.destination,
         this.from,
         this.to,
@@ -19,7 +19,7 @@ class PostMissionRequestModel {
         this.notes,
         this.request});
 
-  PostMissionRequestModel.fromJson(Map<String, dynamic> json) {
+  RequestPostMissionModel.fromJson(Map<String, dynamic> json) {
     destination = json['destination'];
     from = json['from'];
     to = json['to'];
