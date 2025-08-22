@@ -4,10 +4,10 @@ import '../repository/permission_repository.dart';
 
 import '../../data/model/get_permissions_model.dart';
 
-class GetMissionUseCase {
+class GetPerMissionUseCase {
   PerMissionRequestRepository repository;
 
-  GetMissionUseCase({required this.repository});
+  GetPerMissionUseCase({required this.repository});
 
   Future<Either<Failure, List<GetPermissionsModel>>> call() async {
     return await repository.getPermissions();
