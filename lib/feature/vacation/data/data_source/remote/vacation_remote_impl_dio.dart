@@ -82,7 +82,8 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   @override
   Future<ValidateMissionResponseModel> validateVacation({
     required ValidateVacationRequestModel requestModel,
-  }) async {
+  })
+  async {
     final queryParams = {
       'vacationTypeId': requestModel.vacationTypeId.toString(),
       'fromDate': requestModel.fromDate.toIso8601String(),

@@ -28,6 +28,7 @@ abstract class VacationRemoteDataSource {
   Future<CalculateVacationDurationResponseModel> calculateVacationDuration(
     CalculateVacationDurationRequestModel calculateVacationDurationRequestModel,
   ) ;
+
   Future<ValidateMissionResponseModel> validateVacation({
     required ValidateVacationRequestModel requestModel,
   });

@@ -8,6 +8,8 @@ abstract class MissionRequestRepository {
   Future<Either<Failure, List<ResponseMissionModel>>> getMission();
   Future<Either<Failure, List<ResponseMissionModel>>> getReviewerMissionRequests();
   Future<Either<Failure, List<ResponseMissionModel>>> getEmployeeMissionRequests();
+
+
   Future<Either<Failure,  ResponsePostMissionModel>>
   postMissionRequests(RequestPostMissionModel postMissionRequestModel);
 
