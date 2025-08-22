@@ -14,7 +14,8 @@ class MissionRepositoryImpl implements  MissionRequestRepository {
   });
 
   @override
-  Future<Either<Failure, List<ResponseMissionModel>>> getMission() async {
+  Future<Either<Failure, List<ResponseMissionModel>>> getMission()
+  async {
     try {
       final result =
       await missionRequestRemoteDataSource.getMission();
@@ -28,7 +29,8 @@ class MissionRepositoryImpl implements  MissionRequestRepository {
 
   @override
   Future<Either<Failure,
-      List<ResponseMissionModel>>> getEmployeeMissionRequests() async {
+      List<ResponseMissionModel>>> getEmployeeMissionRequests()
+  async {
     try {
       final result =
       await missionRequestRemoteDataSource.getEmployeeMissionRequests();
@@ -59,7 +61,8 @@ class MissionRepositoryImpl implements  MissionRequestRepository {
 
   @override
   Future<Either<Failure, ResponsePostMissionModel>> postMissionRequests(
-      RequestPostMissionModel requestPostMissionModel) async {
+      RequestPostMissionModel requestPostMissionModel)
+  async {
     try {
       final result = await missionRequestRemoteDataSource
           .postMissionRequests(requestPostMissionModel);
