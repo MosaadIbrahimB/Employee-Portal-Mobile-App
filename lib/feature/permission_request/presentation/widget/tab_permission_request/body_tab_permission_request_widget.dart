@@ -2,18 +2,15 @@ import 'package:employee_portal_mobile_app/core/configure/extension/app_context_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/utils/app_color.dart';
+import '../../../../mission_request/presentation/widget/item_mission_request_widget.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../../../data/model/response_mission_model.dart';
-import '../../control/get_employee_mission/get_employee_mission_cubit.dart';
-import '../../control/get_employee_mission/get_employee_mission_state.dart';
-import '../../control/get_mission_request/get_mission_request_cubit.dart';
-import '../../control/get_mission_request/get_mission_request_state.dart';
-import '../item_mission_request_widget.dart';
+import '../../../data/model/response_permission_request_model.dart';
+import '../../control/get_employee_permission/get_employee_permission_cubit.dart';
+import '../../control/get_employee_permission/get_employee_permission_state.dart';
 
-class BodyTabMissionRequestWidget extends StatelessWidget {
-  const BodyTabMissionRequestWidget({super.key});
+class BodyTabPerMissionRequestWidget extends StatelessWidget {
+  const BodyTabPerMissionRequestWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ class BodyTabMissionRequestWidget extends StatelessWidget {
       children: [
         SizedBox(
           height: context.height* 0.65,
-          child:         BlocBuilder<GetEmployeeMissionCubit, GetEmployeeMissionRequestState>(
+          child:         BlocBuilder<GetEmployeePerMissionRequestCubit, GetEmployeePerMissionRequestState>(
             builder: (context, state) {
               if (state.isLoading==true) {
                 return Center(child: CircularProgressIndicator());
@@ -37,7 +34,7 @@ class BodyTabMissionRequestWidget extends StatelessWidget {
                     height: 50.h,
                     child: Center(child: Text("لا توجد طلبات مأموريات")));
               }
-              List<ResponseMissionModel>? response = state.response;
+              List<ResponsePermissionRequestModel>? response = state.response;
 
               return ListView.builder(
                 itemCount: response!.length,

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/model/get_allowed_permission_model.dart';
 import '../../../domain/use_case/get_allowed_permission_use_case.dart';
 import '../../../domain/use_case/get_permission_use_case.dart';
 import 'get_allowed_permission_state.dart';
@@ -21,6 +22,10 @@ class GetAllowedPerMissionRequestCubit extends Cubit<GetAllowedPerMissionRequest
         emit(state.copyWith(isLoading: false, response: resulte));
       },
     );
+  }
+
+  selectedRequestType(GetAllowedPermissionModel requestType) {
+    emit(state.copyWith(selectedRequestType: requestType));
   }
 
 }

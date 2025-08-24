@@ -5,6 +5,8 @@ import 'package:employee_portal_mobile_app/feature/financial_request/data/data_s
 import '../../../feature/administrative_request/data/data_source/remote/administrative_request_remote_data_source_impl.dart';
 import '../../../feature/mission_request/data/data_source/remote/mission_request_remote_data_source.dart';
 import '../../../feature/mission_request/data/data_source/remote/mission_request_remote_data_source_impl.dart';
+import '../../../feature/permission_request/data/data_source/remote/permission_request_remote_data_source.dart';
+import '../../../feature/permission_request/data/data_source/remote/permission_request_remote_data_source_impl.dart';
 import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
@@ -32,4 +34,7 @@ void initDataSources() {
         () => MissionRequestRemoteDataSourceImpl(apiService: sl<ApiService>(instanceName: "mohr")),
   );
 
+  sl.registerLazySingleton<PermissionRequestRemoteDataSource>(
+        () => PermissionRequestRemoteDataSourceImpl(apiService: sl<ApiService>(instanceName: "mohr")),
+  );
 }

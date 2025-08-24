@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,13 +17,11 @@ class MissionRequestDateWidgetState extends State<MissionRequestDateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var colorTheme = Theme.of(context).colorScheme;
-    var textTheme = Theme.of(context).textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.title,  style:textTheme.bodyMedium),
+        Text(widget.title,  style:context.text.bodyMedium),
         SizedBox(height: 8.h,),
         GestureDetector(
           onTap: _showDatePickerDialog,
@@ -30,7 +29,7 @@ class MissionRequestDateWidgetState extends State<MissionRequestDateWidget> {
             padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
             decoration: BoxDecoration(
               color: widget.fillColor,
-              border: Border.all(color: colorTheme.outline),
+              border: Border.all(color: context.color.outline),
               borderRadius: BorderRadius.circular(8),
             ),
             child:   Row(
@@ -39,7 +38,7 @@ class MissionRequestDateWidgetState extends State<MissionRequestDateWidget> {
                 SizedBox(width: 8.w,),
                 Text(
                   _formatFullDate(selectedDate),
-                  style: textTheme.titleMedium,
+                  style: context.text.titleMedium,
                 ),
               ],
             ),

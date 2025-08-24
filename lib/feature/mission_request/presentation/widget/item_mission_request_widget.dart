@@ -6,7 +6,7 @@ import 'from_to_mission_widget.dart';
 class ItemMissionRequestWidget extends StatelessWidget {
   const ItemMissionRequestWidget({super.key, required this.model});
 
-  final ResponseMissionModel model;
+  final dynamic model;
 
   @override
   Widget build(BuildContext context) {

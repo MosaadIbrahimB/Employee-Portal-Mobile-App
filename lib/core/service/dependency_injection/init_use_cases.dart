@@ -18,6 +18,12 @@ import '../../../feature/mission_request/domain/use_case/get_employee_mission_re
 import '../../../feature/mission_request/domain/use_case/get_mission_use_case.dart';
 import '../../../feature/mission_request/domain/use_case/get_reviewer_mission_request_use_case.dart';
 import '../../../feature/mission_request/domain/use_case/post_mission_requests.dart';
+import '../../../feature/permission_request/domain/repository/permission_repository.dart';
+import '../../../feature/permission_request/domain/use_case/get_allowed_permission_use_case.dart';
+import '../../../feature/permission_request/domain/use_case/get_employee_permission_request_use_case.dart';
+import '../../../feature/permission_request/domain/use_case/get_permission_use_case.dart';
+import '../../../feature/permission_request/domain/use_case/get_reviewer_permission_use_case.dart';
+import '../../../feature/permission_request/domain/use_case/post_permission_use_case.dart';
 import 'export_file/package_export.dart';
 import 'depend_inject.dart';
 
@@ -48,6 +54,14 @@ void initUseCases() {
   sl.registerLazySingleton(() => GetEmployeeMissionUseCase(repository: sl<MissionRequestRepository>()));
   sl.registerLazySingleton(() => GetReviewerMissionUseCase(repository: sl<MissionRequestRepository>()));
   sl.registerLazySingleton(() => PostMissionUseCase(repository: sl<MissionRequestRepository>()));
+
+  //permission
+ sl.registerLazySingleton(() => GetPerMissionUseCase(repository: sl<PerMissionRequestRepository>()));
+ sl.registerLazySingleton(() => GetAllowedPermissionUseCase(repository: sl<PerMissionRequestRepository>()));
+ sl.registerLazySingleton(() => GetEmployeePermissionRequestUseCase(repository: sl<PerMissionRequestRepository>()));
+ sl.registerLazySingleton(() => GetReviewerPermissionUseCase(repository: sl<PerMissionRequestRepository>()));
+ sl.registerLazySingleton(() => PostPermissionUseCase(repository: sl<PerMissionRequestRepository>()));
+
 
 
 

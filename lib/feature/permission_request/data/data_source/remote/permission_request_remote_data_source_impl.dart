@@ -114,7 +114,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
   Future<ResponsePostPermissionModel> postPermissionRequest({ required RequestPostPermissionModel requestPostPermissionModel})
   async {
     final response = await apiService.postRequest(
-      endPoint: EndPoint.postRequest,
+      endPoint: EndPoint.postPermission,
       data: requestPostPermissionModel.toJson(),
     );
     return ResponsePostPermissionModel.fromJson(response.data);

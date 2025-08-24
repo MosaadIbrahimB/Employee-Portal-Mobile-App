@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../request/presentation/control/date_cubit/date_cubit.dart';
-import '../../../../request/presentation/control/request/request_cubit.dart';
+import '../../../../request/presentation/control/date_cubit/date_state.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../../request/presentation/widget/add_document_button_widget.dart';
 import '../../../../request/presentation/widget/app_bar_request_widget.dart';
@@ -18,6 +18,7 @@ import '../../../data/model/post_mission/post_mission_request_model.dart';
 import '../../control/post_mission_request/post_mission_request_cubit.dart';
 import '../../control/post_mission_request/post_mission_request_state.dart';
 import '../mission_request_date_widget.dart';
+import '../mission_request_time_widget.dart';
 
 class AddMissionRequestWidget extends StatelessWidget {
   const AddMissionRequestWidget({super.key});
@@ -79,46 +80,18 @@ class AddMissionRequestWidget extends StatelessWidget {
                   Row(
                     children: [
                       MissionRequestDateWidget(
-                        title: " من يوم",
+                        title: ' من يوم',
                         onDateSelected: (date) {
                           context.read<DateCubit>().setFromDate(date);
                         },
                       ),
                       SizedBox(width: 8.w),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("من الساعة"),
-                            SizedBox(height: 8.h),
-                            Container(
-                              padding:
-                                  EdgeInsets.symmetric(
-                                    vertical: 14,
-                                    horizontal: 12,
-                                  ).r,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: context.color.outline,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.access_time_outlined,
-                                    size: 15,
-                                    color: AppColor.midnightBlue,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    "9:00 صباحاً",
-                                    style: context.text.titleSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: MissionRequestTimeWidget(
+                          title: "من الساعة",
+                          onTimeSelected: (time) {
+                            context.read<DateCubit>().setFromTime(time);
+                          },
                         ),
                       ),
                     ],
@@ -134,52 +107,48 @@ class AddMissionRequestWidget extends StatelessWidget {
                       ),
                       SizedBox(width: 8.w),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("من الساعة"),
-                            SizedBox(height: 8.h),
-                            Container(
-                              padding:
-                                  EdgeInsets.symmetric(
-                                    vertical: 14,
-                                    horizontal: 12,
-                                  ).r,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: context.color.outline,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.access_time_outlined,
-                                    size: 15,
-                                    color: AppColor.midnightBlue,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    "9:00 صباحاً",
-                                    style: context.text.titleSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: MissionRequestTimeWidget(
+                          title: "الى الساعة",
+                          onTimeSelected: (time) {
+                            context.read<DateCubit>().setToTime(time);
+                          },
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 16.h),
                   Text("المدة", style: context.text.titleSmall),
-                  TextFormField(
-                    controller: PostMissionRequestCubit.durationController,
-                    decoration: InputDecoration(
-                      hintText: " الرجاء إدخال المدة ",
-                      border: OutlineInputBorder(),
+
+                  SizedBox(height: 8.h),
+
+                  Container(
+                    width: double.infinity,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: context.color.outline),
+                      borderRadius: BorderRadius.circular(8),
                     ),
+                    child: BlocBuilder<DateCubit, DateState>(
+              builder: (context, state) {
+              final duration = state.duration;
+              if (duration == null) {
+              return Text("المدة غير محددة", style: context.text.bodyMedium);
+              }
+
+              final days = duration.inDays;
+              final hours = duration.inHours.remainder(24);
+              final minutes = duration.inMinutes.remainder(60);
+              print(duration.toString().substring(0,8));
+              
+              return Text(
+              "$days يوم - $hours ساعة - $minutes دقيقة",
+              style: context.text.bodyMedium,
+              );
+              },
+              ),
                   ),
+
                   SizedBox(height: 16.h),
                   NotesInputField(
                     controller: PostMissionRequestCubit.noteInputController,
@@ -221,14 +190,13 @@ class AddMissionRequestWidget extends StatelessWidget {
 
   RequestPostMissionModel getSelectedRequest(BuildContext context) {
     int duration =
-        int.tryParse(PostMissionRequestCubit.durationController.text) ?? 0;
+        int.tryParse(context.read<DateCubit>().state.duration.toString()) ?? 0;
     return RequestPostMissionModel(
       destination: PostMissionRequestCubit.destinationController.text,
       duration: duration,
       from: context.read<DateCubit>().state.fromDate.toString(),
       to: context.read<DateCubit>().state.toDate.toString(),
       unit: 1,
-      // Assuming 1 is the unit for days
       notes: PostMissionRequestCubit.noteInputController.text,
       request: Request(
         reviewers:
