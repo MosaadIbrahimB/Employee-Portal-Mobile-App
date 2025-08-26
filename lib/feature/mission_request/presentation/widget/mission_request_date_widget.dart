@@ -90,6 +90,56 @@ class MissionRequestDateWidgetState extends State<MissionRequestDateWidget> {
     }
   }
 
+  // void _showDatePickerDialog() async {
+  //   final DateTime? pickedDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: selectedDate,
+  //     firstDate: DateTime(2020),
+  //     lastDate: DateTime(2075),
+  //     locale: const Locale('ar'),
+  //     builder: (context, child) {
+  //       return Theme(
+  //         data: Theme.of(context).copyWith(
+  //           colorScheme: ColorScheme.light(
+  //             primary: Theme.of(context).primaryColor,
+  //             onPrimary: Colors.white,
+  //             onSurface: Colors.black,
+  //           ),
+  //           textButtonTheme: TextButtonThemeData(
+  //             style: TextButton.styleFrom(
+  //               foregroundColor: Theme.of(context).primaryColor,
+  //             ),
+  //           ),
+  //         ),
+  //         child: child!,
+  //       );
+  //     },
+  //   );
+  //
+  //   if (pickedDate != null) {
+  //     // بعد اختيار التاريخ، نفتح الـ TimePicker
+  //     final TimeOfDay? pickedTime = await showTimePicker(
+  //       context: context,
+  //       initialTime: TimeOfDay.fromDateTime(selectedDate),
+  //     );
+  //
+  //     if (pickedTime != null) {
+  //       final DateTime finalDateTime = DateTime(
+  //         pickedDate.year,
+  //         pickedDate.month,
+  //         pickedDate.day,
+  //         pickedTime.hour,
+  //         pickedTime.minute,
+  //       );
+  //
+  //       setState(() {
+  //         selectedDate = finalDateTime;
+  //       });
+  //
+  //       widget.onDateSelected(finalDateTime);
+  //     }
+  //   }
+  // }
 
 
 }

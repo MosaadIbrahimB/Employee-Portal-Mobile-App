@@ -55,7 +55,7 @@ class PerMissionRepositoryImpl implements  PerMissionRequestRepository {
     } catch (e) {
       return left(
         ServerFailure(
-            "${e.toString()}حدث خطأ في الخادم getEmployeeMissionRequests  "),
+            "${e.toString()}حدث خطأ في الخادم getEmployeePermissionRequest  "),
       );
     }
   }

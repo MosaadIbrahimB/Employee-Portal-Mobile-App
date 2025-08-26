@@ -1,12 +1,18 @@
-import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
+import 'package:flutter/material.dart';
+
+import '../../../mission_request/presentation/widget/from_to_mission_widget.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../../data/model/response_mission_model.dart';
-import 'from_to_mission_widget.dart';
+import '../../data/model/response_permission_request_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/configure/extension/app_context_extension_theme.dart';
+import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_text_style.dart';
 
-class ItemMissionRequestWidget extends StatelessWidget {
-  const ItemMissionRequestWidget({super.key, required this.model});
+class ItemPermissionRequestWidget extends StatelessWidget {
+  const ItemPermissionRequestWidget({super.key, required this.model});
 
-  final dynamic model;
+  final ResponsePermissionRequestModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +46,30 @@ class ItemMissionRequestWidget extends StatelessWidget {
                 ),
                 SizedBox(width: 3.w),
                 Text(
-                  model.destination ?? "requestTypeName",
+                  model.permissionTypeName ?? "PermissionTypeName",
                   style: context.text.displaySmall,
                 ),
                 Spacer(),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.calendar_today_outlined, size: 15,color: AppColor.midnightBlue,),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 15,
+                      color: AppColor.midnightBlue,
+                    ),
                     SizedBox(width: 8.w),
-                    Text(
-                      model.duration != null
-                          ? model.duration!
-                          : "duration",
+                    model.duration != null
+                        ? Text(
+                      model.duration!.toString(),
+                      style: AppTextStyle.iBMP12w500MidnightBlue,
+                    )
+                        : Text(
+                      "duration",
 
                       style:
-                      AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
+                      AppTextStyle
+                          .iBMP12w500MidnightBlue, // Color(0xff3D4966)
                     ),
                   ],
                 ),
@@ -68,7 +82,7 @@ class ItemMissionRequestWidget extends StatelessWidget {
                   child: FromToMissionWidget(
                     title: "من",
                     date: model.from,
-                    time: model.from.toString().substring(11)??"9:00 صباحاً",
+                    time: model.from?.substring(11)??"9:00 صباحاً",
                   ),
                 ),
                 SizedBox(width: 8.w),
@@ -76,11 +90,11 @@ class ItemMissionRequestWidget extends StatelessWidget {
                   child: FromToMissionWidget(
                     title: "إلى",
                     date: model.to,
-                    time: model.to.toString().substring(11)?? "9:00 صباحاً",
+                    time: model.to?.substring(11)??"9:00 صباحاً",
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

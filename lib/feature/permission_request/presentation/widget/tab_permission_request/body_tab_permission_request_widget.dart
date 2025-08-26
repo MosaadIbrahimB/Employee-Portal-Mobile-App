@@ -3,48 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/app_color.dart';
-import '../../../../mission_request/presentation/widget/item_mission_request_widget.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../data/model/response_permission_request_model.dart';
 import '../../control/get_employee_permission/get_employee_permission_cubit.dart';
 import '../../control/get_employee_permission/get_employee_permission_state.dart';
+import '../item_permission_request_widget.dart';
 
 class BodyTabPerMissionRequestWidget extends StatelessWidget {
   const BodyTabPerMissionRequestWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-  
-
-
-    return   Column(
+    return Column(
       children: [
         SizedBox(
-          height: context.height* 0.65,
-          child:         BlocBuilder<GetEmployeePerMissionRequestCubit, GetEmployeePerMissionRequestState>(
+          height: context.height * 0.65,
+          child: BlocBuilder<
+            GetEmployeePerMissionRequestCubit,
+            GetEmployeePerMissionRequestState
+          >(
             builder: (context, state) {
-              if (state.isLoading==true) {
+              if (state.isLoading == true) {
                 return Center(child: CircularProgressIndicator());
               }
               if (state.errorMessage != null) {
                 return Center(child: Text("حدث خطأ ما${state.errorMessage}"));
               }
-              if( state.response == null || state.response!.isEmpty) {
+              if (state.response == null || state.response!.isEmpty) {
                 return SizedBox(
-                    height: 50.h,
-                    child: Center(child: Text("لا توجد طلبات مأموريات")));
+                  height: 50.h,
+                  child: Center(child: Text("لا توجد طلبات مأموريات")),
+                );
               }
               List<ResponsePermissionRequestModel>? response = state.response;
-
               return ListView.builder(
                 itemCount: response!.length,
                 itemBuilder: (context, index) {
-                  return ItemMissionRequestWidget(model: response[index]);
+                  return ItemPermissionRequestWidget(model: response[index]);
                 },
               );
             },
           ),
-
         ),
         Align(
           alignment: AlignmentDirectional.bottomEnd,
@@ -59,11 +58,7 @@ class BodyTabPerMissionRequestWidget extends StatelessWidget {
                 color: AppColor.primary,
                 borderRadius: BorderRadius.circular(12).r,
               ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 30,
-              ),
+              child: const Icon(Icons.add, color: Colors.white, size: 30),
             ),
           ),
         ),
@@ -71,3 +66,4 @@ class BodyTabPerMissionRequestWidget extends StatelessWidget {
     );
   }
 }
+

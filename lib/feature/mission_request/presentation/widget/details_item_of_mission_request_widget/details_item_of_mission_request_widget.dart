@@ -11,7 +11,6 @@ import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit
 import '../../../../request/presentation/widget/add_document_button_widget.dart';
 import '../../../data/model/response_mission_model.dart';
 import '../custom_title_and_value_widget.dart';
-import '../from_to_mission_widget.dart';
 class DetailsItemOfMissionRequestWidget extends StatelessWidget {
   const DetailsItemOfMissionRequestWidget({super.key});
 
@@ -61,7 +60,7 @@ class DetailsItemOfMissionRequestWidget extends StatelessWidget {
                   child: FromToMissionWidget(
                     title: "من",
                     date: model.from,
-                    time: "9:00 صباحاً",
+                    time: model.from.toString().substring(11)??"9:00 صباحاً",
                   ),
                 ),
                 SizedBox(width: 8.w),
@@ -69,7 +68,7 @@ class DetailsItemOfMissionRequestWidget extends StatelessWidget {
                   child: FromToMissionWidget(
                     title: "إلى",
                     date: model.to,
-                    time: "9:00 صباحاً",
+                    time: model.to.toString().substring(11)?? "9:00 صباحاً",
                   ),
                 ),
               ],

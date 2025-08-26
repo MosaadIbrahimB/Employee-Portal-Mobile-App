@@ -64,6 +64,12 @@ class DefaultReviewerModel {
     data['code'] = code;
     data['picPath'] = picPath;
     data['order'] =order;
+    data['singleApprovalEnabled'] = singleApprovalEnabled;
+    data['isCurrent'] = isCurrent;
+    data['status'] = status;
+    data['note'] = note;
+
+
     return data;
   }
 

@@ -48,9 +48,18 @@ class AddMissionRequestWidget extends StatelessWidget {
                     " الطلب قيد الاعتماد",
                     backgroundColor: Colors.green,
                   );
-                  PostMissionRequestCubit.destinationController.clear();
-                  PostMissionRequestCubit.durationController.clear();
                   PostMissionRequestCubit.noteInputController.clear();
+                  // context.read<DateCubit>().setFromDate(DateTime.now());
+                  // context.read<DateCubit>().setToDate(DateTime.now());
+                  // context.read<DateCubit>().setFromTime(TimeOfDay.now());
+                  // context.read<DateCubit>().setToTime(TimeOfDay.now());
+                  context.read<DateCubit>().state.copyWith(
+                    duration: null,
+                    fromDate: null,
+                    toDate: null,
+                    fromTime: null,
+                    toTime: null,
+                  );
                 }
               }
             },
@@ -82,6 +91,7 @@ class AddMissionRequestWidget extends StatelessWidget {
                       MissionRequestDateWidget(
                         title: ' من يوم',
                         onDateSelected: (date) {
+                          print("$date------******555245");
                           context.read<DateCubit>().setFromDate(date);
                         },
                       ),
@@ -130,23 +140,25 @@ class AddMissionRequestWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: BlocBuilder<DateCubit, DateState>(
-              builder: (context, state) {
-              final duration = state.duration;
-              if (duration == null) {
-              return Text("المدة غير محددة", style: context.text.bodyMedium);
-              }
+                      builder: (context, state) {
+                        final duration = state.duration;
+                        if (duration == null) {
+                          return Text(
+                            "المدة غير محددة",
+                            style: context.text.bodyMedium,
+                          );
+                        }
 
-              final days = duration.inDays;
-              final hours = duration.inHours.remainder(24);
-              final minutes = duration.inMinutes.remainder(60);
-              print(duration.toString().substring(0,8));
-              
-              return Text(
-              "$days يوم - $hours ساعة - $minutes دقيقة",
-              style: context.text.bodyMedium,
-              );
-              },
-              ),
+                        final days = duration.inDays;
+                        final hours = duration.inHours.remainder(24);
+                        final minutes = duration.inMinutes.remainder(60);
+
+                        return Text(
+                          "$days يوم - $hours ساعة - $minutes دقيقة",
+                          style: context.text.bodyMedium,
+                        );
+                      },
+                    ),
                   ),
 
                   SizedBox(height: 16.h),
@@ -163,13 +175,28 @@ class AddMissionRequestWidget extends StatelessWidget {
 
                   CustomButtonWidget(
                     onTap: () {
-                      String? destination =
-                          PostMissionRequestCubit.destinationController.text;
-                      if (destination.isEmpty) {
-                        context.showErrorDialog("الرجاء إدخال الوجهة");
-                        return;
-                      }
 
+                      // print(
+                      //   "${context.read<DateCubit>().state.fromDate}*********------",
+                      // );
+                      //
+                      // if (context.read<DateCubit>().state.fromDate == null) {
+                      //   context.showErrorDialog("الرجاء إدخال تاريخ البداية");
+                      //   return;
+                      // }
+                      // if (context.read<DateCubit>().state.toDate == null) {
+                      //   context.showErrorDialog("الرجاء إدخال تاريخ النهاية");
+                      //   return;
+                      // }
+                      // if (context.read<DateCubit>().state.fromTime == null) {
+                      //   context.showErrorDialog("الرجاء إدخال وقت البداية");
+                      //   return;
+                      // }
+                      // if (context.read<DateCubit>().state.toTime == null) {
+                      //   context.showErrorDialog("الرجاء إدخال وقت النهاية");
+                      //   return;
+                      // }
+                      //
                       context
                           .read<PostMissionRequestCubit>()
                           .postMissionRequest(
@@ -189,19 +216,56 @@ class AddMissionRequestWidget extends StatelessWidget {
   }
 
   RequestPostMissionModel getSelectedRequest(BuildContext context) {
-    int duration =
-        int.tryParse(context.read<DateCubit>().state.duration.toString()) ?? 0;
-    return RequestPostMissionModel(
-      destination: PostMissionRequestCubit.destinationController.text,
-      duration: duration,
-      from: context.read<DateCubit>().state.fromDate.toString(),
-      to: context.read<DateCubit>().state.toDate.toString(),
+    // final fromDate = context.read<DateCubit>().state.fromDate!;
+    // final fromTime = context.read<DateCubit>().state.fromTime;
+    // final toDate = context.read<DateCubit>().state.toDate!;
+    // final toTime = context.read<DateCubit>().state.toTime;
+    //
+    // final dateFrom = DateTime(
+    //   fromDate.year,
+    //   fromDate.month,
+    //   fromDate.day,
+    //   fromTime?.hour ?? 0,
+    //   fromTime?.minute ?? 0,
+    // );
+    //
+    // final dateTo = DateTime(
+    //   toDate.year,
+    //   toDate.month,
+    //   toDate.day,
+    //   toTime?.hour ?? 0,
+    //   toTime?.minute ?? 0,
+    // );
+    //
+    // context.read<DateCubit>().setFromDate(dateFrom);
+    // context.read<DateCubit>().setToDate(dateTo);
+    //
+    // final duration = context.read<DateCubit>().state.duration?.inMinutes ?? 0;
+    //
+    // final r = RequestPostMissionModel(
+    //   destination: PostMissionRequestCubit.destinationController.text,
+    //   duration: duration,
+    //   from: dateFrom.toIso8601String(),
+    //   to: dateTo.toIso8601String(),
+    //   unit: 1,
+    //   notes: PostMissionRequestCubit.noteInputController.text,
+    //   request: Request(
+    //     reviewers: context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
+    //   ),
+    // );
+    final x = RequestPostMissionModel(
+      destination: "A120",
+      duration: 300,
+      from: "2025-09-26T16:43:47.77",
+      to: "2025-09-26T19:40:47.77",
       unit: 1,
       notes: PostMissionRequestCubit.noteInputController.text,
       request: Request(
-        reviewers:
-            context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
+        reviewers: context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
       ),
     );
+    print("${x.from} --------------------- r.from ---------------------------");
+
+    return x;
   }
 }

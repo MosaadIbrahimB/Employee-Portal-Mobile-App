@@ -4,7 +4,7 @@ class ResponsePermissionRequestModel {
   String? requestDate;
   String? from;
   String? to;
-  int? duration;
+  double ?  duration;
   String? notes;
   String? permissionTypeName;
   String? attachments;
