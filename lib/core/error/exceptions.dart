@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 
 class ServerException implements Exception {
@@ -11,8 +10,6 @@ class ServerException implements Exception {
   @override
   String toString() => 'ServerException: $message (status code: $statusCode)';
 }
-
-/// Exception يُستخدم في حالة عدم الاتصال بالإنترنت أو فشل الشبكة
 class NetworkException implements Exception {
   final String message;
 
@@ -21,8 +18,6 @@ class NetworkException implements Exception {
   @override
   String toString() => 'NetworkException: $message';
 }
-
-/// Exception يُستخدم عند فشل التعامل مع التخزين المؤقت (Cache)
 class CacheException implements Exception {
   final String message;
 
@@ -31,8 +26,6 @@ class CacheException implements Exception {
   @override
   String toString() => 'CacheException: $message';
 }
-
-/// Exception يُستخدم عندما لا يتم العثور على العنصر المطلوب
 class NotFoundException implements Exception {
   final String message;
 
@@ -41,8 +34,6 @@ class NotFoundException implements Exception {
   @override
   String toString() => 'NotFoundException: $message';
 }
-
-/// Exception يُستخدم عند وجود خطأ في البيانات القادمة من السيرفر
 class InvalidDataException implements Exception {
   final String message;
 
@@ -51,8 +42,6 @@ class InvalidDataException implements Exception {
   @override
   String toString() => 'InvalidDataException: $message';
 }
-
-/// Exception عام (fallback) لأي نوع آخر من الأخطاء غير المحددة
 class UnknownException implements Exception {
   final String message;
 
@@ -61,8 +50,6 @@ class UnknownException implements Exception {
   @override
   String toString() => 'UnknownException: $message';
 }
-
-/// ✅ دالة لتحويل DioException إلى Exception مخصص
 Exception handleDioException(DioException dioError) {
   switch (dioError.type) {
     case DioExceptionType.connectionTimeout:

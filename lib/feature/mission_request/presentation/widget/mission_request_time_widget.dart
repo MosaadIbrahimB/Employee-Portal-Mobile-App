@@ -55,43 +55,43 @@ class _MissionRequestTimeWidgetState extends State<MissionRequestTimeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return  GestureDetector(
+      onTap: _pickTime,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
 
-      children: [
-        Text(widget.title??"اختر الوقت", style:context.text.bodyMedium),
-        SizedBox(height: 8.h),
+        children: [
+          Text(widget.title??"اختر الوقت", style:context.text.bodyMedium),
+          SizedBox(height: 8.h),
 
-        Container(
-          padding:
-          EdgeInsets.symmetric(
-            vertical: 14,
-            horizontal: 12,
-          ).r,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: context.color.outline,
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.access_time_outlined,
-                size: 15,
-                color: AppColor.midnightBlue,
+          Container(
+            padding:
+            EdgeInsets.symmetric(
+              vertical: 14,
+              horizontal: 12,
+            ).r,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: context.color.outline,
               ),
-              SizedBox(width: 8.w),
-              GestureDetector(
-                onTap: _pickTime,
-                child: Text(selectedTime == null
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.access_time_outlined,
+                  size: 15,
+                  color: AppColor.midnightBlue,
+                ),
+                SizedBox(width: 8.w),
+                Text(selectedTime == null
                     ? "اختر الوقت"
                     : selectedTime!.format(context)),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

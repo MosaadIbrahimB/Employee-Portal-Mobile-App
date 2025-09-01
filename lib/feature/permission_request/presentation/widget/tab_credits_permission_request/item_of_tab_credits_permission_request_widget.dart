@@ -1,17 +1,18 @@
+import 'package:employee_portal_mobile_app/feature/permission_request/data/model/response_permission_request_model.dart';
+
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../../../core/utils/import_file.dart';
 import '../../../../home/presentation/widget/report_widget/opening_time_widget.dart';
+import '../../../../mission_request/presentation/widget/from_to_mission_widget.dart';
 import '../../../../vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import '../../../../vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
 import '../../../../vacation/presentation/control/approve_cancel_request/approve_cancel_request_state.dart';
-import '../../../data/model/response_mission_model.dart';
-import '../../control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
-import '../from_to_mission_widget.dart';
+import '../../control/get_reviewer_permission/get_reviewer_permission_cubit.dart';
 
-class ItemOfTabCreditsRequestWidget extends StatelessWidget {
-  const ItemOfTabCreditsRequestWidget({super.key, required this.model});
+class ItemOfTabCreditsPermissionRequestWidget extends StatelessWidget {
+  const ItemOfTabCreditsPermissionRequestWidget({super.key, required this.model});
 
-  final ResponseMissionModel model;
+  final ResponsePermissionRequestModel model;
 
   static const IconData moreH = IconData(0xe402, fontFamily: 'MaterialIcons');
 
@@ -48,7 +49,7 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
               ),
               SizedBox(width: 3.w),
               Text(
-                model.destination ?? "requestTypeName",
+                model.permissionTypeName ?? "requestTypeName",
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               Spacer(),
@@ -73,7 +74,7 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           OpeningTimeWidget(
-            title:model.duration!=null? "المدة : ${model.duration!.toString()} دقيقة":"المدة :غير متاح",
+            title:model.duration!=null? "المدة : ${model.duration!} دقيقة":"المدة :غير متاح",
             color: context.color.shadow,
           ),
 
@@ -97,6 +98,10 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
               ),
             ],
           ),
+
+
+
+
         ],
       ),
     );
@@ -104,6 +109,7 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
 ),
 );
   }
+
   dropdownMenu(BuildContext context, TapDownDetails details) async {
     final position = details.globalPosition;
     final selected = await showMenu<String>(
@@ -138,8 +144,8 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
               approveCancelRequestModel,
             );
             context
-                .read<GetReviewerMissionRequestCubit>()
-                .getReviewerMissionRequest();
+                .read<GetReviewerPerMissionRequestCubit>()
+                .getReviewerPerMission();
           }
           break;
         case 'approve_with_note':
@@ -159,8 +165,8 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
               approveCancelRequestModel,
             );
             context
-                .read<GetReviewerMissionRequestCubit>()
-                .getReviewerMissionRequest();
+                .read<GetReviewerPerMissionRequestCubit>()
+                .getReviewerPerMission();
           }
           break;
       }
@@ -253,6 +259,4 @@ class ItemOfTabCreditsRequestWidget extends StatelessWidget {
       },
     );
   }
-
-
 }

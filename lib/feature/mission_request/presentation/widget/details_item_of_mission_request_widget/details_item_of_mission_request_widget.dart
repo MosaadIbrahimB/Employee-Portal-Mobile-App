@@ -57,18 +57,30 @@ class DetailsItemOfMissionRequestWidget extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: FromToMissionWidget(
-                    title: "من",
-                    date: model.from,
-                    time: model.from.toString().substring(11)??"9:00 صباحاً",
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("من", style: Theme.of(context).textTheme.bodyMedium),
+                      SizedBox(height: 8.h),
+                      FromToMissionWidget(
+                        date: model.from,
+                        time: model.from.toString().substring(11)??"9:00 صباحاً",
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: FromToMissionWidget(
-                    title: "إلى",
-                    date: model.to,
-                    time: model.to.toString().substring(11)?? "9:00 صباحاً",
+                  child:  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("الى", style: Theme.of(context).textTheme.bodyMedium),
+                      SizedBox(height: 8.h),
+                      FromToMissionWidget(
+                        date: model.to,
+                        time: model.to.toString().substring(11)?? "9:00 صباحاً",
+                      ),
+                    ],
                   ),
                 ),
               ],

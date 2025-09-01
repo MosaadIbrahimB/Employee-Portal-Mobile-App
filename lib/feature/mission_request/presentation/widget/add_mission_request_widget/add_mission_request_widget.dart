@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
-import '../../../../../core/utils/app_color.dart';
 import '../../../../request/presentation/control/date_cubit/date_cubit.dart';
 import '../../../../request/presentation/control/date_cubit/date_state.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
@@ -49,10 +48,6 @@ class AddMissionRequestWidget extends StatelessWidget {
                     backgroundColor: Colors.green,
                   );
                   PostMissionRequestCubit.noteInputController.clear();
-                  // context.read<DateCubit>().setFromDate(DateTime.now());
-                  // context.read<DateCubit>().setToDate(DateTime.now());
-                  // context.read<DateCubit>().setFromTime(TimeOfDay.now());
-                  // context.read<DateCubit>().setToTime(TimeOfDay.now());
                   context.read<DateCubit>().state.copyWith(
                     duration: null,
                     fromDate: null,
@@ -91,7 +86,6 @@ class AddMissionRequestWidget extends StatelessWidget {
                       MissionRequestDateWidget(
                         title: ' من يوم',
                         onDateSelected: (date) {
-                          print("$date------******555245");
                           context.read<DateCubit>().setFromDate(date);
                         },
                       ),
@@ -176,27 +170,7 @@ class AddMissionRequestWidget extends StatelessWidget {
                   CustomButtonWidget(
                     onTap: () {
 
-                      // print(
-                      //   "${context.read<DateCubit>().state.fromDate}*********------",
-                      // );
-                      //
-                      // if (context.read<DateCubit>().state.fromDate == null) {
-                      //   context.showErrorDialog("الرجاء إدخال تاريخ البداية");
-                      //   return;
-                      // }
-                      // if (context.read<DateCubit>().state.toDate == null) {
-                      //   context.showErrorDialog("الرجاء إدخال تاريخ النهاية");
-                      //   return;
-                      // }
-                      // if (context.read<DateCubit>().state.fromTime == null) {
-                      //   context.showErrorDialog("الرجاء إدخال وقت البداية");
-                      //   return;
-                      // }
-                      // if (context.read<DateCubit>().state.toTime == null) {
-                      //   context.showErrorDialog("الرجاء إدخال وقت النهاية");
-                      //   return;
-                      // }
-                      //
+
                       context
                           .read<PostMissionRequestCubit>()
                           .postMissionRequest(
@@ -216,56 +190,56 @@ class AddMissionRequestWidget extends StatelessWidget {
   }
 
   RequestPostMissionModel getSelectedRequest(BuildContext context) {
-    // final fromDate = context.read<DateCubit>().state.fromDate!;
-    // final fromTime = context.read<DateCubit>().state.fromTime;
-    // final toDate = context.read<DateCubit>().state.toDate!;
-    // final toTime = context.read<DateCubit>().state.toTime;
-    //
-    // final dateFrom = DateTime(
-    //   fromDate.year,
-    //   fromDate.month,
-    //   fromDate.day,
-    //   fromTime?.hour ?? 0,
-    //   fromTime?.minute ?? 0,
-    // );
-    //
-    // final dateTo = DateTime(
-    //   toDate.year,
-    //   toDate.month,
-    //   toDate.day,
-    //   toTime?.hour ?? 0,
-    //   toTime?.minute ?? 0,
-    // );
-    //
-    // context.read<DateCubit>().setFromDate(dateFrom);
-    // context.read<DateCubit>().setToDate(dateTo);
-    //
-    // final duration = context.read<DateCubit>().state.duration?.inMinutes ?? 0;
-    //
-    // final r = RequestPostMissionModel(
-    //   destination: PostMissionRequestCubit.destinationController.text,
-    //   duration: duration,
-    //   from: dateFrom.toIso8601String(),
-    //   to: dateTo.toIso8601String(),
-    //   unit: 1,
-    //   notes: PostMissionRequestCubit.noteInputController.text,
-    //   request: Request(
-    //     reviewers: context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
-    //   ),
-    // );
-    final x = RequestPostMissionModel(
-      destination: "A120",
-      duration: 300,
-      from: "2025-09-26T16:43:47.77",
-      to: "2025-09-26T19:40:47.77",
+    final fromDate = context.read<DateCubit>().state.fromDate!;
+    final fromTime = context.read<DateCubit>().state.fromTime;
+    final toDate = context.read<DateCubit>().state.toDate!;
+    final toTime = context.read<DateCubit>().state.toTime;
+
+    final dateFrom = DateTime(
+      fromDate.year,
+      fromDate.month,
+      fromDate.day,
+      fromTime?.hour ?? 0,
+      fromTime?.minute ?? 0,
+    );
+
+    final dateTo = DateTime(
+      toDate.year,
+      toDate.month,
+      toDate.day,
+      toTime?.hour ?? 0,
+      toTime?.minute ?? 0,
+    );
+
+    context.read<DateCubit>().setFromDate(dateFrom);
+    context.read<DateCubit>().setToDate(dateTo);
+
+    final duration = context.read<DateCubit>().state.duration?.inMinutes ?? 0;
+
+    final r = RequestPostMissionModel(
+      destination: PostMissionRequestCubit.destinationController.text,
+      duration: duration,
+      from: dateFrom.toIso8601String(),
+      to: dateTo.toIso8601String(),
       unit: 1,
       notes: PostMissionRequestCubit.noteInputController.text,
       request: Request(
         reviewers: context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
       ),
     );
-    print("${x.from} --------------------- r.from ---------------------------");
 
-    return x;
+    return r;
   }
 }
+// final x = RequestPostMissionModel(
+//   destination: "A120",
+//   duration: 300,
+//   from: "2025-09-26T16:43:47.77",
+//   to: "2025-09-26T19:40:47.77",
+//   unit: 1,
+//   notes: PostMissionRequestCubit.noteInputController.text,
+//   request: Request(
+//     reviewers: context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
+//   ),
+// );
+// print("${x.from} --------------------- r.from ---------------------------");

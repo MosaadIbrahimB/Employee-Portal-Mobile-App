@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:employee_portal_mobile_app/core/error/failure.dart';
+import 'package:employee_portal_mobile_app/core/error/exceptions.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/data_source/remote/vacation_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/calculate_vacation_duration/calculate_vacation_duration_request_model.dart';
@@ -23,20 +24,19 @@ import 'package:employee_portal_mobile_app/feature/vacation/domain/repository/va
 import '../../model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 
 class VacationRepositoryImpl implements VacationRepository {
-  VacationRemoteDataSource vacationRemoteDataSource;
+  final VacationRemoteDataSource vacationRemoteDataSource;
 
   VacationRepositoryImpl({required this.vacationRemoteDataSource});
 
   @override
-  Future<Either<Failure, List<VacationTypeModel>>> getVacationType()
-  async {
+  Future<Either<Failure, List<VacationTypeModel>>> getVacationType() async {
     try {
       final result = await vacationRemoteDataSource.getVacationType();
       return right(result);
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
     } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationType  "),
-      );
+      return left(ServerFailure("حدث خطأ غير متوقع في getVacationType"));
     }
   }
 
@@ -49,10 +49,10 @@ class VacationRepositoryImpl implements VacationRepository {
         requestDefaultReviewerModel: requestDefaultReviewerModel,
       );
       return right(result);
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
     } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادمgetDefaultReviewer  "),
-      );
+      return left(ServerFailure("حدث خطأ غير متوقع في getDefaultReviewer"));
     }
   }
 
@@ -64,34 +64,29 @@ class VacationRepositoryImpl implements VacationRepository {
       final result = await vacationRemoteDataSource.postVacation(
         postVacationModel: postVacationModel,
       );
-
       return right(result);
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()} postVacation حدث خطأ في الخادم"),
-      );
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في postVacation"));
     }
   }
 
   @override
   Future<Either<Failure, CalculateVacationDurationResponseModel>>
   calculateVacationDuration(
-    CalculateVacationDurationRequestModel calculateVacationDurationRequestModel,
-  ) async {
-    {
-      try {
-        final result = await vacationRemoteDataSource.calculateVacationDuration(
-          calculateVacationDurationRequestModel,
-        );
-
-        return right(result);
-      } catch (e) {
-        return left(
-          ServerFailure(
-            "${e.toString()} calculateVacationDuration حدث خطأ في الخادم",
-          ),
-        );
-      }
+      CalculateVacationDurationRequestModel calculateVacationDurationRequestModel,
+      ) async {
+    try {
+      final result =
+      await vacationRemoteDataSource.calculateVacationDuration(
+        calculateVacationDurationRequestModel,
+      );
+      return right(result);
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في calculateVacationDuration"));
     }
   }
 
@@ -105,12 +100,9 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      final errorMessage = ErrorHandler.getErrorMessage(e);
-      return left(ServerFailure(errorMessage));
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادمvalidateVacation "),
-      );
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في validateVacation"));
     }
   }
 
@@ -122,71 +114,69 @@ class VacationRepositoryImpl implements VacationRepository {
       final result = await vacationRemoteDataSource.checkHandledAlerts(
         requestModel: requestModel,
       );
-      return Right(result);
+      return right(result);
     } on DioException catch (e) {
-      final errorMessage = ErrorHandler.getErrorMessage(e);
-      return left(ServerFailure(errorMessage));
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}checkHandledAlertsحدث خطأ في الخادم "),
-      );
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في checkHandledAlerts"));
     }
   }
 
   @override
   Future<Either<Failure, VacationBalanceResponseModel>> getVacationBalance({
     required VacationBalanceRequestModel requestModel,
-  }) async{
+  }) async {
     try {
       final result = await vacationRemoteDataSource.getVacationBalance(
         requestModel: requestModel,
       );
       return right(result);
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getVacationBalance"),
-      );
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في getVacationBalance"));
     }
-
   }
 
   @override
-  Future<Either<Failure, List<GetEmployeeVacationsResponseModel>>> getEmployeeVacations()
-  async
-  {
-try {
+  Future<Either<Failure, List<GetEmployeeVacationsResponseModel>>>
+  getEmployeeVacations() async {
+    try {
       final result = await vacationRemoteDataSource.getEmployeeVacations();
       return right(result);
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getEmployeeVacations"),
-      );
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في getEmployeeVacations"));
     }
   }
 
   @override
-  Future<Either<Failure, List<GetVacationRequestsResponseModel>>> getVacationRequests()
-  async
-  {
+  Future<Either<Failure, List<GetVacationRequestsResponseModel>>>
+  getVacationRequests() async {
     try {
       final result = await vacationRemoteDataSource.getVacationRequests();
       return right(result);
-    } catch (e) {
-      return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getEmployeeVacations"),
-      );
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في getVacationRequests"));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> approveCancelRequest({required ApproveCancelRequestModel approveCancelRequestModel})
-  async {
+  Future<Either<Failure, bool>> approveCancelRequest({
+    required ApproveCancelRequestModel approveCancelRequestModel,
+  }) async {
     try {
-      final result = await vacationRemoteDataSource.approveCancelRequest(approveCancelRequestModel: approveCancelRequestModel,);
+      final result = await vacationRemoteDataSource.approveCancelRequest(
+        approveCancelRequestModel: approveCancelRequestModel,
+      );
       return right(result);
-    } catch (e) {
-      return left(ServerFailure("${e.toString()}حدث خطأ في الخادم approveCancelRequest"),);
+    } on DioException catch (e) {
+      return left(ServerFailure(handleDioException(e).toString()));
+    } catch (_) {
+      return left(ServerFailure("حدث خطأ غير متوقع في approveCancelRequest"));
     }
-
   }
 }

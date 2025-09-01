@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../mission_request/presentation/widget/mission_request_date_widget.dart';
+import '../../../../mission_request/presentation/widget/mission_request_time_widget.dart';
 import '../../../../request/presentation/control/date_cubit/date_cubit.dart';
+import '../../../../request/presentation/control/date_cubit/date_state.dart';
 import '../../../../request/presentation/control/request/request_cubit.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../../request/presentation/widget/add_document_button_widget.dart';
@@ -52,9 +54,15 @@ class AddPerMissionRequestWidget extends StatelessWidget {
                     " الطلب قيد الاعتماد",
                     backgroundColor: Colors.green,
                   );
-                  PostPerMissionRequestCubit.destinationController.clear();
-                  PostPerMissionRequestCubit.durationController.clear();
+
                   PostPerMissionRequestCubit.noteInputController.clear();
+                  context.read<DateCubit>().state.copyWith(
+                    duration: null,
+                    fromDate: null,
+                    toDate: null,
+                    fromTime: null,
+                    toTime: null,
+                  );
                 }
               }
             },
@@ -76,46 +84,18 @@ class AddPerMissionRequestWidget extends StatelessWidget {
                   Row(
                     children: [
                       MissionRequestDateWidget(
-                        title: " من يوم",
+                        title: ' من يوم',
                         onDateSelected: (date) {
                           context.read<DateCubit>().setFromDate(date);
                         },
                       ),
                       SizedBox(width: 8.w),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("من الساعة"),
-                            SizedBox(height: 8.h),
-                            Container(
-                              padding:
-                                  EdgeInsets.symmetric(
-                                    vertical: 14,
-                                    horizontal: 12,
-                                  ).r,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: context.color.outline,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.access_time_outlined,
-                                    size: 15,
-                                    color: AppColor.midnightBlue,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    "9:00 صباحاً",
-                                    style: context.text.titleSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: MissionRequestTimeWidget(
+                          title: "من الساعة",
+                          onTimeSelected: (time) {
+                            context.read<DateCubit>().setFromTime(time);
+                          },
                         ),
                       ),
                     ],
@@ -131,50 +111,47 @@ class AddPerMissionRequestWidget extends StatelessWidget {
                       ),
                       SizedBox(width: 8.w),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("من الساعة"),
-                            SizedBox(height: 8.h),
-                            Container(
-                              padding:
-                                  EdgeInsets.symmetric(
-                                    vertical: 14,
-                                    horizontal: 12,
-                                  ).r,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: context.color.outline,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.access_time_outlined,
-                                    size: 15,
-                                    color: AppColor.midnightBlue,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    "9:00 صباحاً",
-                                    style: context.text.titleSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: MissionRequestTimeWidget(
+                          title: "الى الساعة",
+                          onTimeSelected: (time) {
+                            context.read<DateCubit>().setToTime(time);
+                          },
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 16.h),
                   Text("المدة", style: context.text.titleSmall),
-                  TextFormField(
-                    controller: PostPerMissionRequestCubit.durationController,
-                    decoration: InputDecoration(
-                      hintText: " الرجاء إدخال المدة ",
-                      border: OutlineInputBorder(),
+
+                  SizedBox(height: 8.h),
+
+                  Container(
+                    width: double.infinity,
+                    padding:
+                    EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: context.color.outline),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: BlocBuilder<DateCubit, DateState>(
+                      builder: (context, state) {
+                        final duration = state.duration;
+                        if (duration == null) {
+                          return Text(
+                            "المدة غير محددة",
+                            style: context.text.bodyMedium,
+                          );
+                        }
+
+                        final days = duration.inDays;
+                        final hours = duration.inHours.remainder(24);
+                        final minutes = duration.inMinutes.remainder(60);
+
+                        return Text(
+                          "$days يوم - $hours ساعة - $minutes دقيقة",
+                          style: context.text.bodyMedium,
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: 16.h),
@@ -188,10 +165,9 @@ class AddPerMissionRequestWidget extends StatelessWidget {
                   SizedBox(height: 16.h),
                   ListReviewerWidget(),
                   SizedBox(height: 16.h),
+
                   CustomButtonWidget(
                     onTap: () {
-                      // String? destination =
-                      //     PostPerMissionRequestCubit.destinationController.text;
                       int ?permissionType =
                           context
                               .read<GetAllowedPerMissionRequestCubit>()
@@ -222,12 +198,39 @@ class AddPerMissionRequestWidget extends StatelessWidget {
   }
 
   RequestPostPermissionModel getSelectedRequest(BuildContext context) {
-    int duration =  int.tryParse(PostPerMissionRequestCubit.durationController.text) ?? 0;
+    final fromDate = context.read<DateCubit>().state.fromDate!;
+    final fromTime = context.read<DateCubit>().state.fromTime;
+    final toDate = context.read<DateCubit>().state.toDate!;
+    final toTime = context.read<DateCubit>().state.toTime;
+
+    final dateFrom = DateTime(
+      fromDate.year,
+      fromDate.month,
+      fromDate.day,
+      fromTime?.hour ?? 0,
+      fromTime?.minute ?? 0,
+    );
+
+    final dateTo = DateTime(
+      toDate.year,
+      toDate.month,
+      toDate.day,
+      toTime?.hour ?? 0,
+      toTime?.minute ?? 0,
+    );
+
+    context.read<DateCubit>().setFromDate(dateFrom);
+    context.read<DateCubit>().setToDate(dateTo);
+
+    final duration = context.read<DateCubit>().state.duration?.inMinutes ?? 0;
+
+
+
     int permissionType = context.read<GetAllowedPerMissionRequestCubit>().state.selectedRequestType?.id??1;
     return RequestPostPermissionModel(
       permissionType: permissionType,
-      fromDate: context.read<DateCubit>().state.fromDate.toString(),
-      toDate: context.read<DateCubit>().state.toDate.toString(),
+      fromDate:dateFrom.toIso8601String(),
+      toDate: dateTo.toIso8601String(),
       notes: PostPerMissionRequestCubit.noteInputController.text,
       request: Request(
         reviewers:

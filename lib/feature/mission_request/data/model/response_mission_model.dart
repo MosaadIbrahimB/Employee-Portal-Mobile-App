@@ -1,6 +1,18 @@
 import '../../../vacation/data/model/default_reviewer/default_reviewer_model.dart';
 
 class ResponseMissionModel {
+  /*
+  I don't know response credit API cause endPoint no response data,
+  so add  id, empName, empCode, empDepartment, jobTitle
+   like ResponseFinancialModel
+   */
+
+  int? id;
+  String? empName;
+  String? empCode;
+  String? empDepartment;
+  String? jobTitle;
+
   String? from;
   String? to;
   String? destination;
@@ -14,20 +26,24 @@ class ResponseMissionModel {
 
   List<DefaultReviewerModel>? reviewers;
 
-  ResponseMissionModel(
-      {this.from,
-        this.to,
-        this.destination,
-        this.duration,
-        this.notes,
-        this.modifiedBy,
-        this.requestDate,
-        this.attachments,
-        this.editable,
-        this.status,
-        this.reviewers
-
-      });
+  ResponseMissionModel({
+    this.from,
+    this.to,
+    this.destination,
+    this.duration,
+    this.notes,
+    this.modifiedBy,
+    this.requestDate,
+    this.attachments,
+    this.editable,
+    this.status,
+    this.reviewers,
+    this.id,
+    this.empName,
+    this.empCode,
+    this.empDepartment,
+    this.jobTitle,
+  });
 
   ResponseMissionModel.fromJson(Map<String, dynamic> json) {
     from = json['From'];
@@ -43,10 +59,14 @@ class ResponseMissionModel {
     if (json['Reviewers'] != null) {
       reviewers = <DefaultReviewerModel>[];
       json['Reviewers'].forEach((v) {
-        reviewers!.add( DefaultReviewerModel.fromJson(v));
+        reviewers!.add(DefaultReviewerModel.fromJson(v));
       });
     }
-
+    id = json['Id'];
+    empName = json['EmployeeName'];
+    empCode = json['EmployeeCode'];
+    empDepartment = json['Department'];
+    jobTitle = json['JobTitle'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,20 +84,31 @@ class ResponseMissionModel {
     if (reviewers != null) {
       data['Reviewers'] = reviewers!.map((v) => v.toJson()).toList();
     }
+    data['Id'] = id;
+    data['EmployeeName'] = empName;
+    data['EmployeeCode'] = empCode;
+    data['Department'] = empDepartment;
+    data['JobTitle'] = jobTitle;
 
     return data;
   }
 
-  static final List<ResponseMissionModel>listMission = [
+  static final List<ResponseMissionModel> listMission = [
     ResponseMissionModel(
-        from: "2025-04-07T00:00:00",
-        to: "2025-04-08T23:59:59",
-        destination: "البنك",
-        duration: "2",
-        notes: " هذه مأمورية تحتوي على 2 أيام غياب وتم معالجة هذه الأيام ك مأمورية ",
-       modifiedBy: "Agent",
+      id: 1,
+      empName: "أحمد محمد علي",
+      empCode: "EMP001",
+      empDepartment: "تكنولوجيا المعلومات",
+      jobTitle: "مصمم تجربة مستخدم",
+
+      from: "2025-04-07T00:00:00",
+      to: "2025-04-08T23:59:59",
+      destination: "الرياض",
+      duration: "2",
+      notes:
+          " هذه مأمورية تحتوي على 2 أيام غياب وتم معالجة هذه الأيام ك مأمورية ",
+      modifiedBy: "Agent",
       status: "معتمد",
     ),
-
   ];
 }
