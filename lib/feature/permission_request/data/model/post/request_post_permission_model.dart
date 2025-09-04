@@ -1,11 +1,12 @@
 import '../../../../vacation/data/model/default_reviewer/default_reviewer_model.dart';
+import '../../../../vacation/data/model/post_vacation/post_vacation_request_model.dart';
 
 class RequestPostPermissionModel {
   String? fromDate;
   String? toDate;
   int? permissionType;
   String? notes;
-  Request? request;
+  RequestModel? request;
 
   RequestPostPermissionModel(
       {this.fromDate,
@@ -20,7 +21,7 @@ class RequestPostPermissionModel {
     permissionType = json['permissionType'];
     notes = json['notes'];
     request =
-    json['request'] != null ? new Request.fromJson(json['request']) : null;
+    json['request'] != null ? new RequestModel.fromJson(json['request']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -35,27 +36,3 @@ class RequestPostPermissionModel {
     return data;
   }
 }
-
-class Request {
-  List<DefaultReviewerModel>? reviewers;
-
-  Request({this.reviewers});
-
-  Request.fromJson(Map<String, dynamic> json) {
-    if (json['reviewers'] != null) {
-      reviewers = <DefaultReviewerModel>[];
-      json['reviewers'].forEach((v) {
-        reviewers!.add(DefaultReviewerModel.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (reviewers != null) {
-      data['reviewers'] = this.reviewers!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-

@@ -8,6 +8,21 @@ final DioHelper dioHelper;
   ApiService({required this.dioHelper}) ;
 
 
+Future<Response> getRequestWithBody({
+  required String endPoint,
+  Map<String, dynamic>? queryParams,
+  required Map<String, dynamic> data,
+}) async {
+  final response = await dioHelper.dio.request(
+    endPoint,
+    data: data,
+    queryParameters: queryParams,
+    options: Options(method: 'GET'),
+  );
+
+  if (response.statusCode == 200) return response;
+  throw ServerException();
+}
 
 
   Future<Response> getRequest({required String endPoint, Map<String, dynamic>? queryParams}) async {

@@ -10,7 +10,8 @@ abstract class PerMissionRequestRepository {
   Future<Either<Failure,List<GetPermissionsModel>>> getPermissions();
   Future<Either<Failure,List<GetAllowedPermissionModel>>> getAllowedPermission();
 
-  Future<Either<Failure, List<ResponsePermissionRequestModel>>> getReviewerPermissionRequest();
+  Future<Either<Failure, List<ResponsePermissionRequestModel>>>
+  getReviewerPermissionRequest();
   Future<Either<Failure, List<ResponsePermissionRequestModel>>> getEmployeePermissionRequest();
 
   Future<Either<Failure,  ResponsePostPermissionModel>>

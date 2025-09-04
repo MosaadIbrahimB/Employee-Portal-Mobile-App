@@ -232,7 +232,7 @@ class AddPerMissionRequestWidget extends StatelessWidget {
       fromDate:dateFrom.toIso8601String(),
       toDate: dateTo.toIso8601String(),
       notes: PostPerMissionRequestCubit.noteInputController.text,
-      request: Request(
+      request: RequestModel(
         reviewers:
             context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
       ),
