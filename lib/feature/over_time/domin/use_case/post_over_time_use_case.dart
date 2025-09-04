@@ -13,5 +13,4 @@ class PostOverTimeUseCase{
   }){
     return overTimeRepository.postOverTimeRequest(requestPostOverTimeModel: requestPostOverTimeModel);
   }
-
 }
