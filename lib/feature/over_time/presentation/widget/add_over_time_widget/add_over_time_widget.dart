@@ -1,5 +1,6 @@
 import 'package:employee_portal_mobile_app/core/configure/extension/app_context_extension_theme.dart';
 import 'package:employee_portal_mobile_app/feature/over_time/presentation/control/post_over_time/post_over_time_request_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/over_time/presentation/widget/add_over_time_widget/type_over_time_request_dropdown_widget.dart';
 import 'package:employee_portal_mobile_app/feature/splash/presentation/widget/custom_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,8 +75,8 @@ class AddOverTimeWidget extends StatelessWidget {
                   TabOfAppBarSwitcherWidget(
                       tabs: ['اضافة طلب اضافى', 'طلباتى للاضافى','اعتمادات الاضافى']),
                   SizedBox(height: 12.h),
-                  // SizedBox(height: 20.h),
-                  // Text("الوجهة", style: context.text.titleSmall),
+                  SizedBox(height: 20.h),
+                  TypeOverTimeRequestDropdownWidget(),
                   // SizedBox(height: 8.h),
                   // TextFormField(
                   //   controller: PostMissionRequestCubit.destinationController,

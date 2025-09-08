@@ -1,5 +1,4 @@
 import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
-import '../../../mission_request/presentation/widget/from_to_mission_widget.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../data/model/response_over_time_model.dart';
 
@@ -12,7 +11,7 @@ class ItemOverTimeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<TabSwitcherCubit>().changeTab(2);
+        context.read<TabSwitcherCubit>().changeTab(3);
         context.read<TabSwitcherCubit>().setModel(model);
       },
       child: Container(
