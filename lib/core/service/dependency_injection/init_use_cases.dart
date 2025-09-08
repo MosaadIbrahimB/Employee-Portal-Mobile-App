@@ -18,6 +18,12 @@ import '../../../feature/mission_request/domain/use_case/get_employee_mission_re
 import '../../../feature/mission_request/domain/use_case/get_mission_use_case.dart';
 import '../../../feature/mission_request/domain/use_case/get_reviewer_mission_request_use_case.dart';
 import '../../../feature/mission_request/domain/use_case/post_mission_requests.dart';
+import '../../../feature/over_time/domin/repository/over_time_repository.dart';
+import '../../../feature/over_time/domin/use_case/get_alert_over_time_use_case.dart';
+import '../../../feature/over_time/domin/use_case/get_alerts_over_time_use_case.dart';
+import '../../../feature/over_time/domin/use_case/get_employee_over_time_use_case.dart';
+import '../../../feature/over_time/domin/use_case/get_reviewer_over_time_use_case.dart';
+import '../../../feature/over_time/domin/use_case/post_over_time_use_case.dart';
 import '../../../feature/permission_request/domain/repository/permission_repository.dart';
 import '../../../feature/permission_request/domain/use_case/get_allowed_permission_use_case.dart';
 import '../../../feature/permission_request/domain/use_case/get_employee_permission_request_use_case.dart';
@@ -61,7 +67,13 @@ void initUseCases() {
  sl.registerLazySingleton(() => GetEmployeePermissionRequestUseCase(repository: sl<PerMissionRequestRepository>()));
  sl.registerLazySingleton(() => GetReviewerPermissionUseCase(repository: sl<PerMissionRequestRepository>()));
  sl.registerLazySingleton(() => PostPermissionUseCase(repository: sl<PerMissionRequestRepository>()));
+//overtime
 
+  sl.registerLazySingleton(() => GetAlertOverTimeUseCase(repository: sl<OverTimeRepository>()));
+  sl.registerLazySingleton(() => GetAlertsOverTimeUseCase(repository: sl<OverTimeRepository>()));
+  sl.registerLazySingleton(() => GetEmployeeOverTimeUseCase(repository: sl<OverTimeRepository>()));
+  sl.registerLazySingleton(() => GetReviewerOverTimeUseCase(repository: sl<OverTimeRepository>()));
+  sl.registerLazySingleton(() => PostOverTimeUseCase(repository: sl<OverTimeRepository>()));
 
 
 

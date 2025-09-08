@@ -5,11 +5,11 @@ import '../../data/model/response_over_time_model.dart';
 import '../repository/over_time_repository.dart';
 
 class GetReviewerOverTimeUseCase {
-  OverTimeRepository overTimeRepository;
-  GetReviewerOverTimeUseCase({required this.overTimeRepository});
+  OverTimeRepository repository;
+  GetReviewerOverTimeUseCase({required this.repository});
 
   Future<Either<Failure, List<ResponseOverTimeModel>>> call()async{
-    return await overTimeRepository.getReviewerOverTimeRequest();
+    return await repository.getReviewerOverTimeRequest();
   }
 
 

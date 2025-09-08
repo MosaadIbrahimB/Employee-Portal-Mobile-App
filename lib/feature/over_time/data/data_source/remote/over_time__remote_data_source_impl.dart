@@ -68,6 +68,9 @@ class OverTimeRequestRemoteDataSourceImpl
               (json) => ResponseOverTimeModel.fromJson(json),
             )
             .toList();
+
+
+
     return [...listReviewed, ...listPending];
   }
 
@@ -85,13 +88,11 @@ class OverTimeRequestRemoteDataSourceImpl
 
   @override
   Future<AlertModel> getAlertOverTimeRequest({
-    required RequestAlertModel requestAlertModel,
     int? id,
   })
   async {
-    final response = await apiService.getRequestWithBody(
+    final response = await apiService.getRequest(
       endPoint: EndPoint.getAlert,
-      data: requestAlertModel.toJson(),
       queryParams: {'id': id??0},
     );
     return AlertModel.fromJson(response.data);
@@ -99,14 +100,12 @@ class OverTimeRequestRemoteDataSourceImpl
 
   @override
   Future<List<AlertModel>> getAlertsOverTimeRequest({
-    required RequestAlertModel requestAlertModel,
     String ?fromDate,
     String ?toDate,
   })
   async {
-    final response = await apiService.getRequestWithBody(
+    final response = await apiService.getRequest(
       endPoint: EndPoint.getAlerts,
-      data: requestAlertModel.toJson(),
       queryParams: {
         if (fromDate != null) 'fromDate': fromDate,
         if (toDate != null) 'toDate': toDate,

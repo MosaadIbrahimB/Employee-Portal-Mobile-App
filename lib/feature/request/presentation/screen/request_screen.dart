@@ -12,6 +12,9 @@ import '../../../mission_request/presentation/control/get_employee_mission/get_e
 import '../../../mission_request/presentation/control/get_mission_request/get_mission_request_cubit.dart';
 import '../../../mission_request/presentation/control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
 import '../../../mission_request/presentation/screen/all_mission_request_widget.dart';
+import '../../../over_time/presentation/control/get_employee_over_time/get_employee_over_time_cubit.dart';
+import '../../../over_time/presentation/control/get_reviewer_over_time/get_reviewer_over_time_cubit.dart';
+import '../../../over_time/presentation/screen/all_over_time_request_widget.dart';
 import '../../../permission_request/presentation/control/get_allowed_permission/get_allowed_permission_cubit.dart';
 import '../../../permission_request/presentation/control/get_employee_permission/get_employee_permission_cubit.dart';
 import '../../../permission_request/presentation/control/get_permission_request/get_permission_request_cubit.dart';
@@ -41,6 +44,9 @@ class RequestScreen extends StatelessWidget {
               if(state == 2) {
                 return AllPerMissionRequestWidget();
               }
+              if(state == 3) {
+                return AllOverTimeRequestWidget();
+              }
               if(state == 6) {
                 return const AllFinancialRequestWidget();
               }
@@ -64,11 +70,7 @@ class RequestScreen extends StatelessWidget {
         create:
             (context) => sl<DefaultReviewerCubit>()..fetchDefaultReviewers(),
       ),
-      BlocProvider(
-        create:
-            (context) =>
-            sl<AllRequestCubit>(),
-      ),
+
       BlocProvider(
         create:
             (context) =>
@@ -125,6 +127,24 @@ class RequestScreen extends StatelessWidget {
         create:
             (context) =>
         sl<GetReviewerPerMissionRequestCubit>()..getReviewerPerMission(),
+      ),
+      BlocProvider(
+        create:
+            (context) =>
+            sl<AllRequestCubit>(),
+      ),
+
+
+//over time
+      BlocProvider(
+          create:
+              (context) =>
+          sl<GetEmployeeOverTimeCubit>()..getEmployeeOverTime()
+      ),
+      BlocProvider(
+          create:
+              (context) =>
+          sl<GetReviewerOverTimeCubit>()..getReviewerOverTime()
       ),
 
     ];

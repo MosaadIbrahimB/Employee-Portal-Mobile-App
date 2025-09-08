@@ -1,6 +1,4 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../control/tab_switcher/tab_switcher_cubit.dart';
 
 class RequestTabOfAppBarSwitcher extends StatelessWidget {

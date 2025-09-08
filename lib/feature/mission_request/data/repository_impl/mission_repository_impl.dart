@@ -46,7 +46,8 @@ class MissionRepositoryImpl implements  MissionRequestRepository {
 
   @override
   Future<Either<Failure,
-      List<ResponseMissionModel>>> getReviewerMissionRequests() async {
+      List<ResponseMissionModel>>> getReviewerMissionRequests()
+  async {
     try {
       final result =
       await missionRequestRemoteDataSource.getReviewerMissionRequests();

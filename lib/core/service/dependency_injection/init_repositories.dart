@@ -8,6 +8,9 @@ import '../../../feature/financial_request/data/data_source/remote/financial_req
 import '../../../feature/mission_request/data/data_source/remote/mission_request_remote_data_source.dart';
 import '../../../feature/mission_request/data/repository_impl/mission_repository_impl.dart';
 import '../../../feature/mission_request/domain/repository/mission_repository.dart';
+import '../../../feature/over_time/data/data_source/remote/over_time_remote_data_source.dart';
+import '../../../feature/over_time/data/repository_impl/over_time_repository_impl.dart';
+import '../../../feature/over_time/domin/repository/over_time_repository.dart';
 import '../../../feature/permission_request/data/data_source/remote/permission_request_remote_data_source.dart';
 import '../../../feature/permission_request/data/repository_impl/permission_repository_impl.dart';
 import '../../../feature/permission_request/domain/repository/permission_repository.dart';
@@ -23,4 +26,5 @@ void initRepositories() {
   sl.registerLazySingleton<AdministrativeRequestRepository>(() => AdministrativeRequestRepositoryImpl(administrativeRequestRemoteDataSource: sl<AdministrativeRequestRemoteDataSource>()));
   sl.registerLazySingleton<MissionRequestRepository>(() => MissionRepositoryImpl(missionRequestRemoteDataSource: sl<MissionRequestRemoteDataSource>()));
   sl.registerLazySingleton<PerMissionRequestRepository>(() => PerMissionRepositoryImpl(permissionRequestRemoteDataSource: sl<PermissionRequestRemoteDataSource>()));
+  sl.registerLazySingleton<OverTimeRepository>(() => OverTimeRepositoryImpl(overTimeRequestRemoteDataSource: sl<OverTimeRequestRemoteDataSource>()));
 }

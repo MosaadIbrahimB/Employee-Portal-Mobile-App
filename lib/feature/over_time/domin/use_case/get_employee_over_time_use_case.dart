@@ -5,11 +5,11 @@ import '../repository/over_time_repository.dart';
 
 class GetEmployeeOverTimeUseCase{
 
-  OverTimeRepository overTimeRepository;
-  GetEmployeeOverTimeUseCase({required this.overTimeRepository});
+  OverTimeRepository repository;
+  GetEmployeeOverTimeUseCase({required this.repository});
 
   Future<Either<Failure, List<ResponseOverTimeModel>>> call()async{
-    return await overTimeRepository.getEmployeeOverTimeRequest();
+    return await repository.getEmployeeOverTimeRequest();
   }
 
 }

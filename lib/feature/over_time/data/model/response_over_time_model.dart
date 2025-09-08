@@ -7,16 +7,25 @@ class ResponseOverTimeModel {
   String? empDepartment;
   String? jobTitle;
 
+  String? requestDate;
+  String? notes;
+  bool? editable;
+  String? status;
   String? from;
   String? to;
   String? destination;
   String? duration;
-  String? notes;
   String? modifiedBy;
-  String? requestDate;
   String? attachments;
-  bool? editable;
-  String? status;
+
+
+  String? requestTypeName;
+  String? date;
+  double? value;
+
+
+
+
 
   List<DefaultReviewerModel>? reviewers;
 
@@ -37,6 +46,10 @@ class ResponseOverTimeModel {
     this.empCode,
     this.empDepartment,
     this.jobTitle,
+    this.requestTypeName,
+    this.date,
+    this.value,
+
   });
 
   ResponseOverTimeModel.fromJson(Map<String, dynamic> json) {
@@ -61,6 +74,10 @@ class ResponseOverTimeModel {
     empCode = json['EmployeeCode'];
     empDepartment = json['Department'];
     jobTitle = json['JobTitle'];
+    requestTypeName = json['RequestTypeName'];
+    date = json['Date'];
+    value = json['Value'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -83,11 +100,15 @@ class ResponseOverTimeModel {
     data['EmployeeCode'] = empCode;
     data['Department'] = empDepartment;
     data['JobTitle'] = jobTitle;
+    data['RequestTypeName'] = requestTypeName;
+    data['Date'] = date;
+    data['Value'] = value;
+
 
     return data;
   }
 
-  static final List<ResponseOverTimeModel> listMission = [
+  static final List<ResponseOverTimeModel> listOverTime = [
     ResponseOverTimeModel(
       id: 1,
       empName: "أحمد محمد علي",
@@ -103,6 +124,13 @@ class ResponseOverTimeModel {
           " هذه مأمورية تحتوي على 2 أيام غياب وتم معالجة هذه الأيام ك مأمورية ",
       modifiedBy: "Agent",
       status: "معتمد",
+      requestDate: "2025-04-01T10:30:00",
+      attachments: "attachment1.pdf,attachment2.jpg",
+      editable: true,
+      requestTypeName: "مأمورية داخلية",
+      date: "2025-04-07",
+      value: 1,
+
     ),
   ];
 }

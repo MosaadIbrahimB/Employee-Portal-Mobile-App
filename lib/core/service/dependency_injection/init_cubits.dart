@@ -1,51 +1,20 @@
 import 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/approve_cancel_request_use_case.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
-import '../../../feature/administrative_request/domain/use_case/get_administrative_request_type_use_case.dart';
-import '../../../feature/administrative_request/domain/use_case/get_employee_administrative_use_case.dart';
-import '../../../feature/administrative_request/domain/use_case/get_reviewer_administrative_request_use_case.dart';
-import '../../../feature/administrative_request/domain/use_case/post_administrative_request_use_case.dart';
-import '../../../feature/administrative_request/presentation/control/administrative_request_type/get_administrative_request_type_cubit.dart';
-import '../../../feature/administrative_request/presentation/control/get_reviewer_administrative_request/get_reviewer_administrative_request_cubit.dart';
-import '../../../feature/administrative_request/presentation/control/post_administrative_request/post_administrative_request_cubit.dart';
-import '../../../feature/mission_request/domain/use_case/get_employee_mission_request_use_case.dart';
-import '../../../feature/mission_request/domain/use_case/get_mission_use_case.dart';
-import '../../../feature/mission_request/domain/use_case/get_reviewer_mission_request_use_case.dart';
-import '../../../feature/mission_request/domain/use_case/post_mission_requests.dart';
-import '../../../feature/mission_request/presentation/control/get_employee_mission/get_employee_mission_cubit.dart';
+import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
+import '../../../feature/administrative_request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
+import '../../../feature/financial_request/presentation/control/get_employee_financial_request/get_employee_financial_request_cubit.dart';
 import '../../../feature/mission_request/presentation/control/get_mission_request/get_mission_request_cubit.dart';
-import '../../../feature/mission_request/presentation/control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
-import '../../../feature/mission_request/presentation/control/post_mission_request/post_mission_request_cubit.dart';
-import '../../../feature/permission_request/domain/use_case/get_allowed_permission_use_case.dart';
-import '../../../feature/permission_request/domain/use_case/get_employee_permission_request_use_case.dart';
-import '../../../feature/permission_request/domain/use_case/get_permission_use_case.dart';
-import '../../../feature/permission_request/domain/use_case/get_reviewer_permission_use_case.dart';
-import '../../../feature/permission_request/domain/use_case/post_permission_use_case.dart';
-import '../../../feature/permission_request/presentation/control/get_allowed_permission/get_allowed_permission_cubit.dart';
-import '../../../feature/permission_request/presentation/control/get_employee_permission/get_employee_permission_cubit.dart';
-import '../../../feature/permission_request/presentation/control/get_permission_request/get_permission_request_cubit.dart';
-import '../../../feature/permission_request/presentation/control/get_reviewer_permission/get_reviewer_permission_cubit.dart';
-import '../../../feature/permission_request/presentation/control/post_permission_request/post_permission_request_cubit.dart';
+import '../../../feature/request/presentation/control/all_request/all_request_cubit.dart';
 import '../../../feature/vacation/domain/use_case/get_employee_vacations_use_case.dart';
 import '../../../feature/vacation/domain/use_case/get_vacation_requests_use_case.dart';
 import '../../../feature/vacation/presentation/control/get_vacation_requests/get_vacation_requests_cubit.dart';
-import 'package:employee_portal_mobile_app/feature/vacation/presentation/control/get_employee_vacations/get_employee_vacations_cubit.dart';
-
-import '../../../feature/request/presentation/control/all_request/all_request_cubit.dart';
-
-import '../../../feature/administrative_request/presentation/control/get_employee_administrative_request/get_employee_administrative_request_cubit.dart';
-
-import 'package:employee_portal_mobile_app/feature/financial_request/presentation/control/financial_request_type/get_financial_request_type_cubit.dart';
-import '../../../feature/financial_request/presentation/control/post_financial_request/post_financial_request_cubit.dart';
-import '../../../feature/financial_request/domain/use_case/get_employee_financial_use_case.dart';
-import '../../../feature/financial_request/domain/use_case/get_financial_request_type_use_case.dart';
-import '../../../feature/financial_request/domain/use_case/get_reviewer_financial_request_use_case.dart';
-import '../../../feature/financial_request/domain/use_case/post_financial_request_use_case.dart';
-import '../../../feature/financial_request/presentation/control/get_employee_financial_request/get_employee_financial_request_cubit.dart';
-import '../../../feature/financial_request/presentation/control/get_reviewer_financial_request/get_reviewer_financial_request_cubit.dart';
-
 import 'depend_inject.dart';
 import 'export_file/package_export.dart';
+import 'init_cubit/init_administrative_cubit.dart';
+import 'init_cubit/init_financial_cubit.dart';
 import 'init_cubit/init_mission_cubit.dart';
+import 'init_cubit/init_over_time_cubit.dart';
+import 'init_cubit/init_permission_cubit.dart';
 
 void initCubits() {
   sl.registerFactory(() => FilePickerCubit());
@@ -82,6 +51,18 @@ void initCubits() {
       approveCancelRequestUseCase: sl<ApproveCancelRequestUseCase>(),
     ),
   );
+
+  // Financial
+  initFinancialCubit();
+  //Administrative
+  initAdministrativeCubit();
+  //mission
+  initMissionCubit();
+  //permission
+  initPermissionCubit();
+  //over time
+  initOverTimeCubit();
+// All Request
   sl.registerFactory(
         () => AllRequestCubit(
       adminCubit: sl<GetEmployeeAdministrativeRequestCubit>(),
@@ -89,64 +70,4 @@ void initCubits() {
       missionCubit: sl<GetMissionRequestCubit>(),
     ),
   );
-  // Financial
-  sl.registerFactory(
-    () => GetEmployeeFinancialRequestCubit(
-      getEmployeeFinancialRequestUseCase: sl<GetEmployeeFinancialUseCase>(),
-    ),
-  );
-  sl.registerFactory(
-    () => GetReviewerFinancialRequestCubit(
-      getReviewerFinancialRequestUseCase:
-          sl<GetReviewerFinancialRequestUseCase>(),
-    ),
-  );
-  sl.registerFactory(
-    () => GetFinancialRequestTypeCubit(
-      getFinancialRequestUseCase: sl<GetFinancialRequestTypeUseCase>(),
-    ),
-  );
-  sl.registerFactory(
-    () => PostFinancialRequestCubit(sl<PostFinancialRequestUseCase>()),
-  );
-  //Administrative
-  sl.registerFactory(
-    () => GetAdministrativeRequestTypeCubit(
-      getAdministrativeRequestUseCase:
-          sl<GetAdministrativeRequestTypeUseCase>(),
-    ),
-  );
-  sl.registerFactory(
-    () => GetEmployeeAdministrativeRequestCubit(
-      getEmployeeAdministrativeRequestUseCase:
-          sl<GetEmployeeAdministrativeUseCase>(),
-    ),
-  );
-  sl.registerFactory(
-    () => GetReviewerAdministrativeRequestCubit(
-      getReviewerAdministrativeRequestUseCase:
-          sl<GetReviewerAdministrativeRequestUseCase>(),
-    ),
-  );
-  sl.registerFactory(
-    () =>
-        PostAdministrativeRequestCubit(sl<PostAdministrativeRequestUseCase>()),
-  );
-  //mission
-  sl.registerFactory(
-    () => GetMissionRequestCubit(getMissionUseCase: sl<GetMissionUseCase>()),
-  );
-  sl.registerFactory(
-        () => GetEmployeeMissionCubit(getEmployeeMissionUseCase: sl<GetEmployeeMissionUseCase>()),
-  );
-  sl.registerFactory(
-        () => GetReviewerMissionRequestCubit(getReviewerMissionUseCase: sl<GetReviewerMissionUseCase>()),
-  );
-  sl.registerFactory(
-        () => PostMissionRequestCubit(sl<PostMissionUseCase>()),
-  );
-//permission
-  initMissionCubits();
 }
-
-

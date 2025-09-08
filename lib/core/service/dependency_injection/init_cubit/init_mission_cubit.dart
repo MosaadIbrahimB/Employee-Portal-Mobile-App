@@ -1,32 +1,25 @@
-import '../../../../feature/permission_request/domain/use_case/get_allowed_permission_use_case.dart';
-import '../../../../feature/permission_request/domain/use_case/get_employee_permission_request_use_case.dart';
-import '../../../../feature/permission_request/domain/use_case/get_permission_use_case.dart';
-import '../../../../feature/permission_request/domain/use_case/get_reviewer_permission_use_case.dart';
-import '../../../../feature/permission_request/domain/use_case/post_permission_use_case.dart';
-import '../../../../feature/permission_request/presentation/control/get_allowed_permission/get_allowed_permission_cubit.dart';
-import '../../../../feature/permission_request/presentation/control/get_employee_permission/get_employee_permission_cubit.dart';
-import '../../../../feature/permission_request/presentation/control/get_permission_request/get_permission_request_cubit.dart';
-import '../../../../feature/permission_request/presentation/control/get_reviewer_permission/get_reviewer_permission_cubit.dart';
-import '../../../../feature/permission_request/presentation/control/post_permission_request/post_permission_request_cubit.dart';
+import '../../../../feature/mission_request/domain/use_case/get_employee_mission_request_use_case.dart';
+import '../../../../feature/mission_request/domain/use_case/get_mission_use_case.dart';
+import '../../../../feature/mission_request/domain/use_case/get_reviewer_mission_request_use_case.dart';
+import '../../../../feature/mission_request/domain/use_case/post_mission_requests.dart';
+import '../../../../feature/mission_request/presentation/control/get_employee_mission/get_employee_mission_cubit.dart';
+import '../../../../feature/mission_request/presentation/control/get_mission_request/get_mission_request_cubit.dart';
+import '../../../../feature/mission_request/presentation/control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
+import '../../../../feature/mission_request/presentation/control/post_mission_request/post_mission_request_cubit.dart';
 import '../depend_inject.dart';
 
-void initMissionCubits() {
+void initMissionCubit() {
   sl.registerFactory(
-        () => GetAllowedPerMissionRequestCubit(getUseCase: sl<GetAllowedPermissionUseCase>()),
+        () => GetMissionRequestCubit(getMissionUseCase: sl<GetMissionUseCase>()),
   );
   sl.registerFactory(
-        () => GetEmployeePerMissionRequestCubit(getUseCase: sl<GetEmployeePermissionRequestUseCase>()),
+        () => GetEmployeeMissionCubit(getEmployeeMissionUseCase: sl<GetEmployeeMissionUseCase>()),
   );
-
   sl.registerFactory(
-        () => GetPerMissionRequestCubit(getUseCase: sl<GetPerMissionUseCase>()),
+        () => GetReviewerMissionRequestCubit(getReviewerMissionUseCase: sl<GetReviewerMissionUseCase>()),
   );
-
   sl.registerFactory(
-        () => GetReviewerPerMissionRequestCubit(getUseCase: sl<GetReviewerPermissionUseCase>()),
+        () => PostMissionRequestCubit(sl<PostMissionUseCase>()),
   );
 
-  sl.registerFactory(
-        () => PostPerMissionRequestCubit( sl<PostPermissionUseCase>()),
-  );
 }
