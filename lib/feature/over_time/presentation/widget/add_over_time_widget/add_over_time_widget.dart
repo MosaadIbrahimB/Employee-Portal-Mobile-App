@@ -182,15 +182,10 @@ class AddOverTimeWidget extends StatelessWidget {
             ?.toInt() ??
             0;
     List<DefaultReviewerModel>? reviewers =
-    [
-      DefaultReviewerModel(
-        employeeId: 121, code: "", name: "",
-      ),
-      DefaultReviewerModel(
-        employeeId: 121, code: "", name: "",
-      ),
-
-    ];
+        context
+            .read<DefaultReviewerCubit>()
+            .state
+            .listSelectedReviewers;
     List<AlertModel>? alerts=  context
         .read<GetAlertsOverTimeCubit>()
         .state
