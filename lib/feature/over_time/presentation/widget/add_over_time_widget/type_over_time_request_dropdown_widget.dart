@@ -2,10 +2,9 @@ import 'package:employee_portal_mobile_app/core/configure/extension/app_context_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../permission_request/data/model/get_allowed_permission_model.dart';
-import '../../../../permission_request/presentation/control/get_allowed_permission/get_allowed_permission_cubit.dart';
-import '../../../../permission_request/presentation/control/get_allowed_permission/get_allowed_permission_state.dart';
+import '../../../data/model/type_over_time_model.dart';
+import '../../control/get_type_over_time/get_type_over_time_cubit.dart';
+import '../../control/get_type_over_time/get_type_over_time_state.dart';
 class TypeOverTimeRequestDropdownWidget extends StatelessWidget {
   const TypeOverTimeRequestDropdownWidget({super.key});
 
@@ -23,7 +22,7 @@ class TypeOverTimeRequestDropdownWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(12).r,
             border: Border.all(color: context.color.outline, width: 1.0),
           ),
-          child: BlocBuilder<GetAllowedPerMissionRequestCubit, GetAllowedPerMissionRequestState>(
+          child: BlocBuilder<GetTypeOverTimeCubit, GetTypeOverTimeState>(
             builder: (context, state) {
               if (state.isLoading==true) {
                 return Center(
@@ -34,21 +33,21 @@ class TypeOverTimeRequestDropdownWidget extends StatelessWidget {
                 return Text(state.errorMessage!);
               }
 
-              return DropdownButton<GetAllowedPermissionModel>(
+              return DropdownButton<TypeOverTimeModel>(
                 underline: const SizedBox(),
-                hint: const Text('اختر نوع الاذن'),
+                hint: const Text('اختر نوع '),
                 value: state.selectedRequestType,
                 isExpanded: true,
                 items: state.response?.map((request) {
-                  return DropdownMenuItem<GetAllowedPermissionModel>(
+                  return DropdownMenuItem<TypeOverTimeModel>(
                     value: request,
-                    child: Text(request.text ?? "NAME NOT FOUND"),
+                    child: Text(request.name ?? "NAME NOT FOUND"),
                   );
                 }).toList(),
                 onChanged: (value) {
 
                   if (value != null||value?.id!=null) {
-                    context.read<GetAllowedPerMissionRequestCubit>().selectedRequestType(value!);
+                    context.read<GetTypeOverTimeCubit>().selectedRequestType(value!);
                   }
                 },
                 icon: const Icon(Icons.keyboard_arrow_down_rounded),

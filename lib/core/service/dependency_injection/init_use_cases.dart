@@ -23,6 +23,7 @@ import '../../../feature/over_time/domin/use_case/get_alert_over_time_use_case.d
 import '../../../feature/over_time/domin/use_case/get_alerts_over_time_use_case.dart';
 import '../../../feature/over_time/domin/use_case/get_employee_over_time_use_case.dart';
 import '../../../feature/over_time/domin/use_case/get_reviewer_over_time_use_case.dart';
+import '../../../feature/over_time/domin/use_case/get_type_over_time_use_case.dart';
 import '../../../feature/over_time/domin/use_case/post_over_time_use_case.dart';
 import '../../../feature/permission_request/domain/repository/permission_repository.dart';
 import '../../../feature/permission_request/domain/use_case/get_allowed_permission_use_case.dart';
@@ -69,6 +70,7 @@ void initUseCases() {
  sl.registerLazySingleton(() => PostPermissionUseCase(repository: sl<PerMissionRequestRepository>()));
 //overtime
 
+  sl.registerLazySingleton(() => GetTypeOverTimeUseCase(repository: sl<OverTimeRepository>()));
   sl.registerLazySingleton(() => GetAlertOverTimeUseCase(repository: sl<OverTimeRepository>()));
   sl.registerLazySingleton(() => GetAlertsOverTimeUseCase(repository: sl<OverTimeRepository>()));
   sl.registerLazySingleton(() => GetEmployeeOverTimeUseCase(repository: sl<OverTimeRepository>()));

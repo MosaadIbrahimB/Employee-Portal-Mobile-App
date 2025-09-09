@@ -76,12 +76,13 @@ class EndPoint {
   static const String postPermission = "$permission/PostPermission";
   //Overtime
   static const String overtime = "/api/Overtime/Requests";
+  static const String getTypeOvertime = "/Api/Requests/GetRequestTypes?requestType=7";
   static const String getReviewerOvertimeTrue= "$overtime/Reviewer/true";
   static const String getReviewerOvertimeFalse= "$overtime/Reviewer/false";
   static const String getEmployeeOvertimeTrue= "$overtime/Employee/true";
   static const String getEmployeeOvertimeFalse= "$overtime/Employee/false";
-  static const String getAlert= "/api/OvertimeRequests?id=1022322";
-  static const String getAlerts= "/api/OvertimeRequests?fromDate=2025-05-01&toDate=2025-05-31";
+  static const String getAlert= "/api/OvertimeRequests";
+  static const String getAlerts= "/api/OvertimeRequests";
 
   static const String postOvertime= "/Api/OvertimeRequests";
 

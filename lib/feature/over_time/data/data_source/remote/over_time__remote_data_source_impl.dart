@@ -1,5 +1,6 @@
 import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
 import 'package:employee_portal_mobile_app/feature/over_time/data/model/alert_model.dart';
+import 'package:employee_portal_mobile_app/feature/over_time/data/model/type_over_time_model.dart';
 import 'package:employee_portal_mobile_app/feature/permission_request/data/data_source/remote/permission_request_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/permission_request/data/model/get_allowed_permission_model.dart';
 import 'package:employee_portal_mobile_app/feature/permission_request/data/model/get_permissions_model.dart';
@@ -21,8 +22,7 @@ class OverTimeRequestRemoteDataSourceImpl
   OverTimeRequestRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<List<ResponseOverTimeModel>> getEmployeeOverTimeRequest()
-  async {
+  Future<List<ResponseOverTimeModel>> getEmployeeOverTimeRequest() async {
     final responseReviewed = await apiService.getRequest(
       endPoint: EndPoint.getEmployeeOvertimeTrue,
     );
@@ -47,8 +47,7 @@ class OverTimeRequestRemoteDataSourceImpl
   }
 
   @override
-  Future<List<ResponseOverTimeModel>> getReviewerOverTimeRequest()
-  async {
+  Future<List<ResponseOverTimeModel>> getReviewerOverTimeRequest() async {
     final responseReviewed = await apiService.getRequest(
       endPoint: EndPoint.getReviewerOvertimeTrue,
     );
@@ -69,16 +68,13 @@ class OverTimeRequestRemoteDataSourceImpl
             )
             .toList();
 
-
-
     return [...listReviewed, ...listPending];
   }
 
   @override
   Future<ResponsePostOverTimeModel> postOverTimeRequest({
     required RequestPostOverTimeModel requestPostOverTimeModel,
-  })
-  async {
+  }) async {
     final response = await apiService.postRequest(
       endPoint: EndPoint.postOvertime,
       data: requestPostOverTimeModel.toJson(),
@@ -87,37 +83,45 @@ class OverTimeRequestRemoteDataSourceImpl
   }
 
   @override
-  Future<AlertModel> getAlertOverTimeRequest({
-    int? id,
-  })
-  async {
+  Future<AlertModel> getAlertOverTimeRequest({int? id}) async {
     final response = await apiService.getRequest(
       endPoint: EndPoint.getAlert,
-      queryParams: {'id': id??0},
+      queryParams: {'id': id ?? 0},
     );
     return AlertModel.fromJson(response.data);
   }
 
   @override
   Future<List<AlertModel>> getAlertsOverTimeRequest({
-    String ?fromDate,
-    String ?toDate,
-  })
-  async {
+    String? fromDate,
+    String? toDate,
+  }) async {
     final response = await apiService.getRequest(
       endPoint: EndPoint.getAlerts,
       queryParams: {
         if (fromDate != null) 'fromDate': fromDate,
         if (toDate != null) 'toDate': toDate,
       },
-
     );
-
-    List<AlertModel> list =
-        response.data
-            .map<AlertModel>((json) => AlertModel.fromJson(json))
-            .toList();
+    final List<AlertModel> list = response.data
+        .expand((inner) => inner as List) // هنا بنأكد إنها List
+        .map<AlertModel>((json) => AlertModel.fromJson(json as Map<String, dynamic>))
+        .toList();
 
     return list;
+  }
+
+  @override
+  Future<List<TypeOverTimeModel>> getTypeOverTime() async {
+    final response = await apiService.getRequest(
+      endPoint: EndPoint.getTypeOvertime,
+    );
+
+    final List<TypeOverTimeModel> overTimeList =
+        response.data
+            .map<TypeOverTimeModel>((json) => TypeOverTimeModel.fromJson(json))
+            .toList();
+
+    return overTimeList;
   }
 }

@@ -4,6 +4,7 @@ import 'package:employee_portal_mobile_app/feature/over_time/data/model/alert_mo
 import 'package:employee_portal_mobile_app/feature/over_time/data/model/post/request_post_over_time_model.dart';
 import 'package:employee_portal_mobile_app/feature/over_time/data/model/post/response_post_over_time_model.dart';
 import 'package:employee_portal_mobile_app/feature/over_time/data/model/response_over_time_model.dart';
+import 'package:employee_portal_mobile_app/feature/over_time/data/model/type_over_time_model.dart';
 import '../../domin/repository/over_time_repository.dart';
 import '../data_source/remote/over_time_remote_data_source.dart';
 
@@ -96,4 +97,19 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<TypeOverTimeModel>>> getTypeOverTime()
+  async {
+    try {
+      final result =
+      await overTimeRequestRemoteDataSource.getTypeOverTime();
+      return right(result);
+    } catch (e) {
+      return left(
+        ServerFailure("${e.toString()}حدث خطأ في الخادم getTypeOverTime  "),
+      );
+    }
+  }
+
 }

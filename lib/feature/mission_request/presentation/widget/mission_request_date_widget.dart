@@ -26,7 +26,7 @@ class MissionRequestDateWidgetState extends State<MissionRequestDateWidget> {
         GestureDetector(
           onTap: _showDatePickerDialog,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
+            padding: EdgeInsets.symmetric(vertical: 14, horizontal:4).r,
             decoration: BoxDecoration(
               color: widget.fillColor,
               border: Border.all(color: context.color.outline),
@@ -34,11 +34,13 @@ class MissionRequestDateWidgetState extends State<MissionRequestDateWidget> {
             ),
             child:   Row(
               children: [
-                Icon(Icons.calendar_today_outlined, size: 20),
+                Icon(Icons.calendar_today_outlined, size: 16),
                 SizedBox(width: 8.w,),
                 Text(
                   _formatFullDate(selectedDate),
-                  style: context.text.titleMedium,
+                  style: context.text.titleMedium!.copyWith(
+                    fontSize: 14.sp,
+                  ),
                 ),
               ],
             ),
