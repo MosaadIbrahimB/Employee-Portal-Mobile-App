@@ -4,28 +4,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/model/post/request_post_over_time_model.dart';
 import '../../../domin/use_case/post_over_time_use_case.dart';
 
+
+
 class PostOverTimeRequestCubit extends Cubit<PostOverTimeRequestState> {
   final PostOverTimeUseCase postOverTimeUseCase;
 
   PostOverTimeRequestCubit(this.postOverTimeUseCase)
-    : super(PostOverTimeRequestState()); // سيحسب start/end/duration تلقائيًا
+      : super(const PostOverTimeRequestState());
 
-  static final TextEditingController noteInputController = TextEditingController();
-  final TextEditingController employSecondController = TextEditingController();
-  static final TextEditingController destinationController = TextEditingController();
-  static final TextEditingController durationController = TextEditingController();
+  static final TextEditingController noteInputController =
+  TextEditingController();
 
   Future<void> postOverTimeRequest({
     required RequestPostOverTimeModel requestPostOverTimeModel,
   }) async {
     emit(state.copyWith(isLoading: true, errorMessage: null));
 
-    final result = await postOverTimeUseCase(requestPostOverTimeModel: requestPostOverTimeModel);
+    final result = await postOverTimeUseCase(
+      requestPostOverTimeModel: requestPostOverTimeModel,
+    );
 
     result.fold(
-      (failure) =>
-          emit(state.copyWith(isLoading: false, errorMessage: failure.message)),
-      (response) => emit(state.copyWith(isLoading: false, response: response)),
+          (failure) {
+        emit(state.copyWith(isLoading: false, errorMessage: failure.message));
+      },
+          (responseList) {
+        emit(state.copyWith(isLoading: false, response: responseList));
+      },
     );
   }
 }
+
+

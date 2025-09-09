@@ -16,7 +16,7 @@ abstract class OverTimeRepository {
 
   Future<Either<Failure, List<ResponseOverTimeModel>>> getReviewerOverTimeRequest();
 
-  Future<Either<Failure, ResponsePostOverTimeModel>> postOverTimeRequest({
+  Future<Either<Failure, List<ResponsePostOverTimeModel>>> postOverTimeRequest({
     required RequestPostOverTimeModel requestPostOverTimeModel,
   });
 

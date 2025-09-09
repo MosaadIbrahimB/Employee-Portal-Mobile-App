@@ -3,7 +3,7 @@ import '../../../data/model/post/response_post_over_time_model.dart';
 
 class PostOverTimeRequestState extends Equatable {
   final bool ?isLoading;
-  final ResponsePostOverTimeModel? response;
+  final List<ResponsePostOverTimeModel>? response;
   final String? errorMessage;
 
   const PostOverTimeRequestState({
@@ -14,7 +14,7 @@ class PostOverTimeRequestState extends Equatable {
 
   PostOverTimeRequestState copyWith({
     bool? isLoading,
-    ResponsePostOverTimeModel? response,
+    final List<ResponsePostOverTimeModel>? response,
     String? errorMessage,
   }) {
 
@@ -30,6 +30,7 @@ class PostOverTimeRequestState extends Equatable {
     isLoading,
     response,
     errorMessage,
+
   ];
 }
 

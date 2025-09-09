@@ -50,18 +50,9 @@ class AlertModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['OriginalDuration'] = originalDuration;
-    data['IsHandled'] = isHandled;
-    data['Id'] = id;
-    data['Date'] = date;
-    data['Time'] = time;
-    data['Duration'] = duration;
-    data['TimeTable'] = timeTable;
-    data['PlanDetailId'] = planDetailId;
-    data['Type'] = type;
-    data['TransactionType'] = transactionType;
-    data['AlertType'] = alertType;
-    data['Status'] = status;
+    data['id'] = id;
+    data['date'] = date;
+    data['duration'] = duration;
     data['notes'] = notes;
     return data;
   }

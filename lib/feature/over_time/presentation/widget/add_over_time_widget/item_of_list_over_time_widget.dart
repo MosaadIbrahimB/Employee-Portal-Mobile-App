@@ -1,11 +1,13 @@
 import '../../../../../core/utils/import_file.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../data/model/alert_model.dart';
+import '../../control/get_alerts_over_time/get_alerts_over_time_cubit.dart';
 
 class ItemOfListOverTimeWidget extends StatelessWidget {
-  const ItemOfListOverTimeWidget({super.key, required this.model});
+  const ItemOfListOverTimeWidget({super.key, required this.model,required this.isSelected});
 
   final AlertModel model;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,14 @@ class ItemOfListOverTimeWidget extends StatelessWidget {
                 Spacer(),
                 Checkbox(
                   materialTapTargetSize:MaterialTapTargetSize.shrinkWrap ,
-                  value:false,
-                  onChanged: (v){},
+                  value:isSelected,
+                  onChanged: (value){
+                    context.read<GetAlertsOverTimeCubit>().toggleAlertSelection(
+                      model,
+                      value ?? false,
+                    );
+
+                  },
                 )
 
               ],

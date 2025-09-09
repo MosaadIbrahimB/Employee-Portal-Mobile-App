@@ -43,16 +43,16 @@ class DefaultReviewerModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Id'] = id;
-    data['EmployeeId'] = employeeId;
+    data['id'] = id;
+    data['employeeId'] = employeeId;
     data['Name'] =name;
-    data['Code'] = code;
-    data['PicPath'] = picPath;
-    data['Order'] =order;
-    data['SingleApprovalEnabled'] = singleApprovalEnabled;
-    data['IsCurrent'] = isCurrent;
-    data['Status'] = status;
-    data['Note'] = note;
+    data['code'] = code;
+    data['picPath'] = picPath;
+    data['order'] =order;
+    data['singleApprovalEnabled'] = singleApprovalEnabled;
+    data['isCurrent'] = isCurrent;
+    data['status'] = status;
+    data['note'] = note;
     return data;
   }
 

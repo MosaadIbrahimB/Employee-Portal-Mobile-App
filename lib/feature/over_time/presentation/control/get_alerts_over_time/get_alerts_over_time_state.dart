@@ -5,13 +5,16 @@ class GetAlertsOverTimeState extends Equatable {
   final bool? isLoading;
   final String? errorMessage;
   final List<AlertModel>? response;
+  final List<AlertModel>? listOverTimeSelected;
   final AlertModel? selectedRequestType;
+
 
   const GetAlertsOverTimeState({
     this.selectedRequestType,
     this.isLoading = false,
     this.errorMessage,
     this.response,
+    this.listOverTimeSelected,
   });
 
   copyWith({
@@ -19,12 +22,14 @@ class GetAlertsOverTimeState extends Equatable {
     String? errorMessage,
     List<AlertModel>? response,
     AlertModel? selectedRequestType,
+    List<AlertModel>? listOverTimeSelected,
   }) {
     return GetAlertsOverTimeState(
       isLoading: isLoading ?? this.isLoading,
       errorMessage: errorMessage ?? this.errorMessage,
       response: response ?? this.response,
       selectedRequestType: selectedRequestType ?? this.selectedRequestType,
+      listOverTimeSelected: listOverTimeSelected ?? this.listOverTimeSelected,
     );
   }
 
@@ -34,5 +39,7 @@ class GetAlertsOverTimeState extends Equatable {
     selectedRequestType,
     isLoading,
     errorMessage,
+    listOverTimeSelected
+
   ];
 }

@@ -9,7 +9,7 @@ class PostOverTimeUseCase{
   OverTimeRepository repository;
   PostOverTimeUseCase({required this.repository});
 
-  Future<Either<Failure, ResponsePostOverTimeModel>> call({
+  Future<Either<Failure, List<ResponsePostOverTimeModel>>> call({
     required RequestPostOverTimeModel requestPostOverTimeModel,
   }){
     return repository.postOverTimeRequest(requestPostOverTimeModel: requestPostOverTimeModel);

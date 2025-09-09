@@ -82,7 +82,7 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
   }
 
   @override
-  Future<Either<Failure, ResponsePostOverTimeModel>> postOverTimeRequest({
+  Future<Either<Failure, List<ResponsePostOverTimeModel>>> postOverTimeRequest({
     required RequestPostOverTimeModel requestPostOverTimeModel,
   })
   async {

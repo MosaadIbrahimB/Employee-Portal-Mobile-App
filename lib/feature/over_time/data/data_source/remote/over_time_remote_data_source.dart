@@ -8,7 +8,7 @@ abstract class OverTimeRequestRemoteDataSource {
 
   Future<List<ResponseOverTimeModel>> getEmployeeOverTimeRequest();
   Future<List<ResponseOverTimeModel>> getReviewerOverTimeRequest();
-  Future<ResponsePostOverTimeModel> postOverTimeRequest({
+  Future<List<ResponsePostOverTimeModel>> postOverTimeRequest({
     required  RequestPostOverTimeModel requestPostOverTimeModel,
   });
 

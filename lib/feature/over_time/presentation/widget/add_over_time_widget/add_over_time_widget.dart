@@ -11,6 +11,13 @@ import '../../../../request/presentation/control/date_cubit/date_cubit.dart';
 import '../../../../request/presentation/control/request/request_cubit.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../../request/presentation/widget/app_bar_request_widget.dart';
+import '../../../../splash/presentation/widget/custom_button_widget.dart';
+import '../../../../vacation/data/model/default_reviewer/default_reviewer_model.dart';
+import '../../../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
+import '../../../data/model/alert_model.dart';
+import '../../../data/model/post/request_of_post_over_time_model.dart';
+import '../../../data/model/post/request_post_over_time_model.dart';
+import '../../../data/model/post/response_post_over_time_model.dart';
 import '../../control/get_alerts_over_time/get_alerts_over_time_cubit.dart';
 import '../../control/post_over_time/post_over_time_request_state.dart';
 import '../tab_of_app_bar_switcher_widget.dart';
@@ -27,40 +34,42 @@ class AddOverTimeWidget extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => sl<PostOverTimeRequestCubit>()),
-            BlocProvider(create: (context) => sl<GetAlertsOverTimeCubit>()..getAlertOverTime(DateTime.now().toString(), DateTime.now().toString())),
-            BlocProvider(create: (context) => sl<GetTypeOverTimeCubit>()..getTypeOverTime()),
+            BlocProvider(
+              create:
+                  (context) =>
+                      sl<GetAlertsOverTimeCubit>()..getAlertOverTime(
+                        DateTime.now().toString(),
+                        DateTime.now().toString(),
+                      ),
+            ),
+            BlocProvider(
+              create:
+                  (context) => sl<GetTypeOverTimeCubit>()..getTypeOverTime(),
+            ),
           ],
           child: BlocConsumer<
             PostOverTimeRequestCubit,
             PostOverTimeRequestState
           >(
             listener: (context, state) {
-              if (state.response != null) {
-                if (state.response!.isValid == false) {
-                  context.showErrorDialog(
-                    state.response?.message ?? "حدث خطأ ما",
-                  );
-                  return;
-                }
-
-                if (context.mounted) {
-                  // BlocProvider.of<RequestCubit>(context).changePage(0);
-                  context.read<TabSwitcherCubit>().changeTab(0);
-
-                  context.showSnackBar(
-                    " الطلب قيد الاعتماد",
-                    backgroundColor: Colors.green,
-                  );
-                  PostOverTimeRequestCubit.noteInputController.clear();
-                  context.read<DateCubit>().state.copyWith(
-                    duration: null,
-                    fromDate: null,
-                    toDate: null,
-                    fromTime: null,
-                    toTime: null,
-                  );
-                }
+              if(state.errorMessage!=null){
+               context.showErrorDialog(state.errorMessage??"Error");
               }
+              if (state.response != null) {
+                List <ResponsePostOverTimeModel>? r= state.response ?? [];
+                for (var e in r) {
+                  if (e.isValid == false) {
+                    context.showErrorDialog(e.message ?? "Error");
+                  }
+                  if (e.isValid == true) {
+                    context.showSnackBar(e.message ?? "Success");
+                    context.read<RequestCubit>().changePage(0);
+                    context.read<TabSwitcherCubit>().changeTab(0);
+                  }
+                }
+
+              }
+
             },
             builder: (context, state) {
               return Column(
@@ -103,27 +112,45 @@ class AddOverTimeWidget extends StatelessWidget {
                           title: " الى يوم",
                           onDateSelected: (date) {
                             context.read<DateCubit>().setToDate(date);
-                            String fromDate = context
-                                .read<DateCubit>()
-                                .state
-                                .fromDate
-                                .toString();
-                            String toDate = context
-                                .read<DateCubit>()
-                                .state
-                                .toDate
-                                .toString();
-                            
-                            
-                            context.read<GetAlertsOverTimeCubit>().getAlertOverTime(fromDate, toDate);
+                            String fromDate =
+                                context
+                                    .read<DateCubit>()
+                                    .state
+                                    .fromDate
+                                    .toString();
+                            String toDate =
+                                context
+                                    .read<DateCubit>()
+                                    .state
+                                    .toDate
+                                    .toString();
 
+                            context
+                                .read<GetAlertsOverTimeCubit>()
+                                .getAlertOverTime(fromDate, toDate);
                           },
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 16.h),
-                  CustomListAlertsOverTimeWidget()
+                  SizedBox(
+                    height: context.height * .40,
+                    child: CustomListAlertsOverTimeWidget(),
+                  ),
+                  SizedBox(height: 16.h),
+                  CustomButtonWidget(
+                    onTap: () {
+                      RequestPostOverTimeModel  postOverTime= requestPostOverTime(context);
+                      context
+                          .read<PostOverTimeRequestCubit>()
+                          .postOverTimeRequest(
+                        requestPostOverTimeModel:postOverTime
+                       ,
+                      );
+                    },
+                    title: "قدم الطلب",
+                  ),
                 ],
               );
             },
@@ -132,13 +159,59 @@ class AddOverTimeWidget extends StatelessWidget {
       ),
     );
   }
+
+  RequestPostOverTimeModel requestPostOverTime(BuildContext context) {
+    int? requestType =
+        context
+            .read<GetTypeOverTimeCubit>()
+            .state
+            .selectedRequestType
+            ?.id;
+    String? date =
+    context
+        .read<DateCubit>()
+        .state
+        .fromDate
+        ?.toString();
+    int? value =
+        context
+            .read<GetAlertsOverTimeCubit>()
+            .state
+            .listOverTimeSelected?[0]
+            .duration
+            ?.toInt() ??
+            0;
+    List<DefaultReviewerModel>? reviewers =
+    [
+      DefaultReviewerModel(
+        employeeId: 121, code: "", name: "",
+      ),
+      DefaultReviewerModel(
+        employeeId: 121, code: "", name: "",
+      ),
+
+    ];
+    List<AlertModel>? alerts=  context
+        .read<GetAlertsOverTimeCubit>()
+        .state
+        .listOverTimeSelected;
+
+    RequestPostOverTimeModel requestPostOverTimeModel =
+    RequestPostOverTimeModel(
+      request: RequestOfPostOverTimeModel(
+        requestType: requestType,
+        date: date,
+        value: value,
+        reviewers: reviewers,
+      ),
+      alerts:alerts,
+
+    );
+
+
+    return requestPostOverTimeModel;
+  }
 }
-
-
-
-
-
-
 
 // final x = RequestPostMissionModel(
 //   destination: "A120",
@@ -193,3 +266,29 @@ class AddOverTimeWidget extends StatelessWidget {
 //
 //   return r;
 // }
+/*
+ final RequestPostOverTimeModel jsonData = RequestPostOverTimeModel(
+      request: RequestOfPostOverTimeModel(
+        requestType: 7,
+        date: "2025-05-12 20:30:00.000",
+        value: 78,
+        reviewers: [
+          DefaultReviewerModel(
+              employeeId: 121, code: "", name: "",
+          ),
+          DefaultReviewerModel(
+            employeeId: 121, code: "", name: "",
+          ),
+
+        ]
+      ),
+      alerts: [
+        AlertModel(
+          id: 1223557,
+          date: "2025-05-17T10:00:00.000",
+          duration: 78,
+        notes: "sadadadasdasdasd"
+        )
+      ]
+    );
+ */

@@ -34,13 +34,20 @@ class CustomListAlertsOverTimeWidget extends StatelessWidget {
           );
         }
         final response=state.response;
+
+
+
         if(response!=null&&response.isNotEmpty){
           return SizedBox(
             height: context.height,
             child: ListView.builder(
               itemCount: response.length,
-              itemBuilder: (context, index) =>
-                  ItemOfListOverTimeWidget(model: response[index],)
+              itemBuilder: (context, index) {
+                final alert = response[index];
+                final isSelected = state.listOverTimeSelected?.contains(alert) ?? false;
+
+                return ItemOfListOverTimeWidget(model: alert,isSelected: isSelected,);
+              }
                 ),
           );
         }

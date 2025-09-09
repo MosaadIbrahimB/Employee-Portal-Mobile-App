@@ -72,18 +72,26 @@ class OverTimeRequestRemoteDataSourceImpl
   }
 
   @override
-  Future<ResponsePostOverTimeModel> postOverTimeRequest({
+  Future<List<ResponsePostOverTimeModel>> postOverTimeRequest({
     required RequestPostOverTimeModel requestPostOverTimeModel,
-  }) async {
+  })
+  async {
     final response = await apiService.postRequest(
       endPoint: EndPoint.postOvertime,
       data: requestPostOverTimeModel.toJson(),
     );
-    return ResponsePostOverTimeModel.fromJson(response.data);
+    final list =
+    response.data
+        .map<ResponsePostOverTimeModel>(
+          (json) => ResponsePostOverTimeModel.fromJson(json),
+    )
+        .toList();
+    return list;
   }
 
   @override
-  Future<AlertModel> getAlertOverTimeRequest({int? id}) async {
+  Future<AlertModel> getAlertOverTimeRequest({int? id})
+  async {
     final response = await apiService.getRequest(
       endPoint: EndPoint.getAlert,
       queryParams: {'id': id ?? 0},
@@ -95,7 +103,8 @@ class OverTimeRequestRemoteDataSourceImpl
   Future<List<AlertModel>> getAlertsOverTimeRequest({
     String? fromDate,
     String? toDate,
-  }) async {
+  })
+  async {
     final response = await apiService.getRequest(
       endPoint: EndPoint.getAlerts,
       queryParams: {

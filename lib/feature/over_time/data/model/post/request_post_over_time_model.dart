@@ -1,15 +1,16 @@
-import '../../../../mission_request/data/model/post_mission/post_mission_request_model.dart';
+import 'package:employee_portal_mobile_app/feature/over_time/data/model/post/request_of_post_over_time_model.dart';
 import '../alert_model.dart';
 
+
 class RequestPostOverTimeModel {
-  Request? request;
+  RequestOfPostOverTimeModel? request;
   List<AlertModel>? alerts;
 
   RequestPostOverTimeModel({this.request, this.alerts});
 
   RequestPostOverTimeModel.fromJson(Map<String, dynamic> json) {
     request =
-    json['request'] != null ? Request.fromJson(json['request']) : null;
+    json['request'] != null ? RequestOfPostOverTimeModel.fromJson(json['request']) : null;
     if (json['alerts'] != null) {
       alerts = <AlertModel>[];
       json['alerts'].forEach((v) {
@@ -19,7 +20,7 @@ class RequestPostOverTimeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (request != null) {
       data['request'] = request!.toJson();
     }
@@ -29,6 +30,5 @@ class RequestPostOverTimeModel {
     return data;
   }
 }
-
 
 
