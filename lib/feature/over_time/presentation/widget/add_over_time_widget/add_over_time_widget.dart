@@ -1,3 +1,5 @@
+import '../../../../request/presentation/widget/list_reviewer_widget.dart';
+import '../../../../vacation/presentation/widget/vacation_request/reviewer_widget.dart';
 import 'file_export.dart';
 
 class AddOverTimeWidget extends StatelessWidget {
@@ -116,6 +118,10 @@ class AddOverTimeWidget extends StatelessWidget {
                     child: CustomListAlertsOverTimeWidget(),
                   ),
                   SizedBox(height: 16.h),
+                  ReviewerWidget(),
+                  SizedBox(height: 16.h),
+                  ListReviewerWidget(),
+                  SizedBox(height: 16.h),
                   CustomButtonWidget(
                     onTap: () {
                       RequestPostOverTimeModel  postOverTime= requestPostOverTime(context);
@@ -138,18 +144,9 @@ class AddOverTimeWidget extends StatelessWidget {
   }
 
   RequestPostOverTimeModel requestPostOverTime(BuildContext context) {
-    int? requestType =
-        context
-            .read<GetTypeOverTimeCubit>()
-            .state
-            .selectedRequestType
-            ?.id;
-    String? date =
-    context
-        .read<DateCubit>()
-        .state
-        .fromDate
-        ?.toString();
+    int? requestType = 7;
+
+    String? date =DateTime.now().toString();
     int? value =
         context
             .read<GetAlertsOverTimeCubit>()
@@ -163,20 +160,21 @@ class AddOverTimeWidget extends StatelessWidget {
             .read<DefaultReviewerCubit>()
             .state
             .listSelectedReviewers;
+
     List<AlertModel>? alerts=  context
         .read<GetAlertsOverTimeCubit>()
         .state
         .listOverTimeSelected;
-
+   // print("+++++++++++${alerts?[0].toJson()}");
     RequestPostOverTimeModel requestPostOverTimeModel =
     RequestPostOverTimeModel(
       request: RequestOfPostOverTimeModel(
-        requestType: requestType,
-        date: date,
-        value: value,
+        requestType: 7,
+        date: DateTime.now().toIso8601String(),
+        value: 78,
         reviewers: reviewers,
       ),
-      alerts:alerts,
+      alerts: alerts,
 
     );
 

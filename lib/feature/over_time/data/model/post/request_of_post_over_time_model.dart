@@ -21,7 +21,7 @@ class RequestOfPostOverTimeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['requestType'] = requestType;
     data['date'] = date;
     data['value'] = value;

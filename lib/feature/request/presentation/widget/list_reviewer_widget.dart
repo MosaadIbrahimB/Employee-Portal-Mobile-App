@@ -27,7 +27,7 @@ class ListReviewerWidget extends StatelessWidget {
             return Center(child: Text(defaultReviewerState.errorMessage!));
           }
           if (defaultReviewerState.reviewers.isEmpty) {
-            return Center(child: Text("لا توجد مؤاجعين متاحة"));
+            return Center(child: Text("لا توجد مراجعين متاحة"));
           }
 
           return ListView.separated(

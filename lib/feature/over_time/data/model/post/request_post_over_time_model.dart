@@ -20,7 +20,7 @@ class RequestPostOverTimeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (request != null) {
       data['request'] = request!.toJson();
     }

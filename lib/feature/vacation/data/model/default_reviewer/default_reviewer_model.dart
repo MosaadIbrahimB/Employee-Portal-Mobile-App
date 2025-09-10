@@ -45,7 +45,7 @@ class DefaultReviewerModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['employeeId'] = employeeId;
-    data['Name'] =name;
+    data['name'] =name;
     data['code'] = code;
     data['picPath'] = picPath;
     data['order'] =order;
