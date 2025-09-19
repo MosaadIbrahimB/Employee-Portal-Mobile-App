@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart' ;
+import 'package:employee_portal_mobile_app/core/service/api_service/dio_consumer.dart';
 import 'package:employee_portal_mobile_app/feature/permission_request/data/data_source/remote/permission_request_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/permission_request/data/model/get_allowed_permission_model.dart';
 import 'package:employee_portal_mobile_app/feature/permission_request/data/model/get_permissions_model.dart';
@@ -9,14 +9,14 @@ import 'package:employee_portal_mobile_app/feature/permission_request/data/model
 import '../../../../../core/utils/end_point.dart';
 
 class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDataSource {
-  final ApiService apiService;
+  final DioConsumer apiService;
 
   PermissionRequestRemoteDataSourceImpl({required this.apiService});
 
   @override
   Future<List<GetAllowedPermissionModel>> getAllowedPermission()
   async {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getAllowedPermission,
     );
 
@@ -34,7 +34,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
   @override
   Future<List<ResponsePermissionRequestModel>> getEmployeePermissionRequest()
   async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getEmployeeTrue,
     );
     final listReviewed =
@@ -44,7 +44,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
     )
         .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getEmployeeFalse,
     );
     final listPending =
@@ -65,7 +65,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
   @override
   Future<List<GetPermissionsModel>> getPermissions()
   async {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getPermission,
     );
 
@@ -83,7 +83,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
   @override
   Future<List<ResponsePermissionRequestModel>> getReviewerPermissionRequest()
   async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getReviewerTrue,
     );
     final listReviewed =
@@ -93,7 +93,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
     )
         .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getReviewerFalse,
     );
     final listPending =
@@ -113,7 +113,7 @@ class PermissionRequestRemoteDataSourceImpl implements PermissionRequestRemoteDa
   @override
   Future<ResponsePostPermissionModel> postPermissionRequest({ required RequestPostPermissionModel requestPostPermissionModel})
   async {
-    final response = await apiService.postRequest(
+    final response = await apiService.post(
       endPoint: EndPoint.postPermission,
       data: requestPostPermissionModel.toJson(),
     );

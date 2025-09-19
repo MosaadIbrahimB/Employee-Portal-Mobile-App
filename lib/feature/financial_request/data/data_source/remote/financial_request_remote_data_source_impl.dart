@@ -1,5 +1,5 @@
 
-import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart' ;
+import 'package:employee_portal_mobile_app/core/service/api_service/dio_consumer.dart';
 import 'package:employee_portal_mobile_app/feature/financial_request/data/data_source/remote/financial_request_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/financial_request/data/model/financial_request_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/financial_request/data/model/request_post_financial_request_model.dart';
@@ -9,13 +9,13 @@ import 'package:employee_portal_mobile_app/feature/financial_request/data/model/
 import '../../../../../core/utils/end_point.dart';
 
 class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteDataSource {
-  final ApiService apiService;
+  final DioConsumer apiService;
 
   FinancialRequestRemoteDataSourceImpl({required this.apiService});
   @override
   Future<List<FinancialRequestTypeModel>> getFinancialRequestType()
   async {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getRequestFinancial,
     );
 
@@ -33,7 +33,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
     required RequestPostFinancialRequestModel requestPostFinancialRequestModel,
   })
   async {
-    final response = await apiService.postRequest(
+    final response = await apiService.post(
       endPoint: EndPoint.postRequest,
       data: requestPostFinancialRequestModel.toJson(),
     );
@@ -44,7 +44,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
   Future<List<ResponseFinancialModel>>
   getEmployeeFinancialRequest()
   async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getEmployeeReviewedFinancialRequest,
     );
     final listReviewed =
@@ -54,7 +54,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
     )
         .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getEmployeePendingFinancialRequests,
     );
     final listPending =
@@ -76,7 +76,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
   Future<List<ResponseFinancialModel>>
   getReviewerFinancialRequest()
   async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getReviewerReviewedFinancialRequests,
     );
     final listReviewed =
@@ -86,7 +86,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
     )
         .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getReviewerPendingFinancialRequests,
     );
     final listPending =

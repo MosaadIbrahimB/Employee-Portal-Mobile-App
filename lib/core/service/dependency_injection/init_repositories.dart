@@ -5,6 +5,9 @@ import 'package:employee_portal_mobile_app/feature/financial_request/domain/repo
 import '../../../feature/administrative_request/data/data_source/remote/administrative_request_remote_data_source.dart';
 import '../../../feature/administrative_request/data/repository_impl/administrative_repository_impl.dart';
 import '../../../feature/financial_request/data/data_source/remote/financial_request_remote_data_source.dart';
+import '../../../feature/loan/data/data_source/loan_remote_data_source.dart';
+import '../../../feature/loan/data/repository/loan_repository_imp.dart';
+import '../../../feature/loan/domain/repository/loan_repository.dart';
 import '../../../feature/mission_request/data/data_source/remote/mission_request_remote_data_source.dart';
 import '../../../feature/mission_request/data/repository_impl/mission_repository_impl.dart';
 import '../../../feature/mission_request/domain/repository/mission_repository.dart';
@@ -27,4 +30,5 @@ void initRepositories() {
   sl.registerLazySingleton<MissionRequestRepository>(() => MissionRepositoryImpl(missionRequestRemoteDataSource: sl<MissionRequestRemoteDataSource>()));
   sl.registerLazySingleton<PerMissionRequestRepository>(() => PerMissionRepositoryImpl(permissionRequestRemoteDataSource: sl<PermissionRequestRemoteDataSource>()));
   sl.registerLazySingleton<OverTimeRepository>(() => OverTimeRepositoryImpl(overTimeRequestRemoteDataSource: sl<OverTimeRequestRemoteDataSource>()));
+  sl.registerLazySingleton<LoanRepository>(() => LoanRepositoryImp(loanRemoteDataSource: sl<LoanRemoteDataSource>()));
 }

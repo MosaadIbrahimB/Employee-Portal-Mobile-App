@@ -1,5 +1,5 @@
 
-import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart' ;
+import 'package:employee_portal_mobile_app/core/service/api_service/dio_consumer.dart';
 import 'package:employee_portal_mobile_app/feature/administrative_request/data/data_source/remote/administrative_request_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/administrative_request/data/model/administrative_request_type_model.dart';
 import 'package:employee_portal_mobile_app/feature/administrative_request/data/model/request_post_administrative_request_model.dart';
@@ -9,13 +9,13 @@ import 'package:employee_portal_mobile_app/feature/administrative_request/data/m
 import '../../../../../core/utils/end_point.dart';
 
 class AdministrativeRequestRemoteDataSourceImpl implements AdministrativeRequestRemoteDataSource {
-  final ApiService apiService;
+  final DioConsumer apiService;
 
   AdministrativeRequestRemoteDataSourceImpl({required this.apiService});
   @override
   Future<List<AdministrativeRequestTypeModel>> getAdministrativeRequestType()
   async {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getRequestAdministrative,
     );
 
@@ -32,7 +32,7 @@ class AdministrativeRequestRemoteDataSourceImpl implements AdministrativeRequest
   @override
   Future<List<ResponseAdministrativeModel>> getEmployeeAdministrativeRequest()
   async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getEmployeeReviewedAdministrativeRequest,
     );
     final listReviewed =
@@ -42,7 +42,7 @@ class AdministrativeRequestRemoteDataSourceImpl implements AdministrativeRequest
     )
         .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getEmployeePendingFinancialRequests,
     );
     final listPending =
@@ -64,7 +64,7 @@ class AdministrativeRequestRemoteDataSourceImpl implements AdministrativeRequest
   @override
   Future<List<ResponseAdministrativeModel>> getReviewerAdministrativeRequest()
   async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getReviewerReviewedAdministrativeRequest,
     );
     final listReviewed =
@@ -74,7 +74,7 @@ class AdministrativeRequestRemoteDataSourceImpl implements AdministrativeRequest
     )
         .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getReviewerPendingFinancialRequests,
     );
     final listPending =
@@ -96,7 +96,7 @@ class AdministrativeRequestRemoteDataSourceImpl implements AdministrativeRequest
   @override
   Future<ResponsePostAdministrativeRequest> postAdministrativeRequest({required RequestPostAdministrativeRequestModel requestPostAdministrativeRequestModel})
   async {
-    final response = await apiService.postRequest(
+    final response = await apiService.post(
       endPoint: EndPoint.postRequest,
       data: requestPostAdministrativeRequestModel.toJson(),
     );

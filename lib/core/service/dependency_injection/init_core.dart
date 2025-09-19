@@ -12,6 +12,7 @@ void initCore() {
   // sl.registerLazySingleton<String>(() => "b64f7a02-b625-46b7-8126-d3a20defdff8");
   // sl.registerLazySingleton<String>(() => "f3176e6f-bd11-4a6b-a859-fa9c39f6213c");
   sl.registerLazySingleton<String>(() => "7ef59402-fd25-4925-a8e7-a3faee95d2a3");
+  // sl.registerLazySingleton<String>(() => "ac77ba45-1b0b-4668-bd31-f9fa4d699819");
   // DioHelper الأساسي (baseUrl)
   sl.registerLazySingleton<DioHelper>(
         () => DioHelper(

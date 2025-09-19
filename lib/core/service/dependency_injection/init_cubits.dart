@@ -12,6 +12,7 @@ import 'depend_inject.dart';
 import 'export_file/package_export.dart';
 import 'init_cubit/init_administrative_cubit.dart';
 import 'init_cubit/init_financial_cubit.dart';
+import 'init_cubit/init_loan_cubit.dart';
 import 'init_cubit/init_mission_cubit.dart';
 import 'init_cubit/init_over_time_cubit.dart';
 import 'init_cubit/init_permission_cubit.dart';
@@ -62,6 +63,8 @@ void initCubits() {
   initPermissionCubit();
   //over time
   initOverTimeCubit();
+  //loan
+  initLoanCubit();
 // All Request
   sl.registerFactory(
         () => AllRequestCubit(

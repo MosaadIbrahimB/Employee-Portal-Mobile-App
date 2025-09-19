@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
+import 'package:employee_portal_mobile_app/core/service/api_service/dio_consumer.dart';
 import 'package:employee_portal_mobile_app/feature/mission_request/data/data_source/remote/mission_request_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/mission_request/data/model/post_mission/post_mission_request_model.dart';
 import 'package:employee_portal_mobile_app/feature/mission_request/data/model/post_mission/response_post_mission_model.dart';
@@ -6,13 +6,13 @@ import '../../../../../core/utils/end_point.dart';
 import '../../model/response_mission_model.dart';
 
 class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSource {
-  final ApiService apiService;
+  final DioConsumer apiService;
 
   MissionRequestRemoteDataSourceImpl({required this.apiService});
 
   @override
   Future<List<ResponseMissionModel>> getMission() async {
-    final response = await apiService.getRequest(endPoint: EndPoint.getMission);
+    final response = await apiService.get(endPoint: EndPoint.getMission);
 
     final financialList =
         response.data
@@ -27,7 +27,7 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
 
   @override
   Future<List<ResponseMissionModel>> getReviewerMissionRequests() async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getReviewerReviewedMissionRequests,
     );
     final listReviewed =
@@ -37,7 +37,7 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
             )
             .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getReviewerNotReviewedMissionRequests,
     );
     final listPending =
@@ -54,7 +54,7 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
 
   @override
   Future<List<ResponseMissionModel>> getEmployeeMissionRequests() async {
-    final responseReviewed = await apiService.getRequest(
+    final responseReviewed = await apiService.get(
       endPoint: EndPoint.getEmployeeReviewedMissionRequests,
     );
     final listReviewed =
@@ -64,7 +64,7 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
             )
             .toList();
 
-    final responsePending = await apiService.getRequest(
+    final responsePending = await apiService.get(
       endPoint: EndPoint.getEmployeeNotReviewedMissionRequests,
     );
     final listPending =
@@ -81,7 +81,7 @@ class MissionRequestRemoteDataSourceImpl implements MissionRequestRemoteDataSour
   Future<ResponsePostMissionModel> postMissionRequests(
     RequestPostMissionModel postMissionRequestModel,
   ) async {
-    final response = await apiService.postRequest(endPoint: EndPoint.postMission, data: postMissionRequestModel.toJson());
+    final response = await apiService.post(endPoint: EndPoint.postMission, data: postMissionRequestModel.toJson());
     return ResponsePostMissionModel.fromJson(response.data);
   }
 

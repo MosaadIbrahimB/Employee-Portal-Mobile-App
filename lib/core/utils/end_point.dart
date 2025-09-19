@@ -83,8 +83,17 @@ class EndPoint {
   static const String getEmployeeOvertimeFalse= "$overtime/Employee/false";
   static const String getAlert= "/api/OvertimeRequests";
   static const String getAlerts= "/api/OvertimeRequests";
-
   static const String postOvertime= "/Api/OvertimeRequests";
-
+//loan
+  static const String loan = "/api/Loan";
+  static const String requests= "$loan/Requests";
+  static const String getLoan = "$loan/GetLoans";
+  static const String getTypeLoan = "$loan/LoanTypes";
+  static const String getReviewerLoanTrue= "$requests/Reviewer/true";
+  static const String getReviewerLoanFalse= "$requests/Reviewer/false";
+  static const String getEmployeeLoanTrue= "$requests/Employee/true";
+  static const String getEmployeeLoanFalse= "$requests/Employee/false";
+  static const String validateLoan= "$loan/VaildateLoan?loanTypeId=14&installments=1&value=3000&startDate=2025-10-01";
+  static const String postLoan= loan;
 
 }

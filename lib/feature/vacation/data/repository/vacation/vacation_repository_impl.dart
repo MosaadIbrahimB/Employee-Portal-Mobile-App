@@ -34,7 +34,7 @@ class VacationRepositoryImpl implements VacationRepository {
       final result = await vacationRemoteDataSource.getVacationType();
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (e) {
       return left(ServerFailure("حدث خطأ غير متوقع في getVacationType"));
     }
@@ -50,7 +50,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (e) {
       return left(ServerFailure("حدث خطأ غير متوقع في getDefaultReviewer"));
     }
@@ -66,7 +66,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في postVacation"));
     }
@@ -84,7 +84,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في calculateVacationDuration"));
     }
@@ -100,7 +100,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في validateVacation"));
     }
@@ -116,7 +116,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في checkHandledAlerts"));
     }
@@ -132,7 +132,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في getVacationBalance"));
     }
@@ -145,7 +145,7 @@ class VacationRepositoryImpl implements VacationRepository {
       final result = await vacationRemoteDataSource.getEmployeeVacations();
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في getEmployeeVacations"));
     }
@@ -158,7 +158,7 @@ class VacationRepositoryImpl implements VacationRepository {
       final result = await vacationRemoteDataSource.getVacationRequests();
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في getVacationRequests"));
     }
@@ -174,7 +174,7 @@ class VacationRepositoryImpl implements VacationRepository {
       );
       return right(result);
     } on DioException catch (e) {
-      return left(ServerFailure(handleDioException(e).toString()));
+      return left(ServerFailure(e.message ?? "حدث خطأ في الخادم"));
     } catch (_) {
       return left(ServerFailure("حدث خطأ غير متوقع في approveCancelRequest"));
     }

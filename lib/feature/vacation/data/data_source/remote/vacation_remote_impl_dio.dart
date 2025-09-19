@@ -1,4 +1,4 @@
-import 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
+import 'package:employee_portal_mobile_app/core/service/api_service/dio_consumer.dart';
 import 'package:employee_portal_mobile_app/core/utils/end_point.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/data_source/remote/vacation_remote_data_source.dart';
 import 'package:employee_portal_mobile_app/feature/vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
@@ -19,13 +19,13 @@ import 'package:employee_portal_mobile_app/feature/vacation/data/model/validate_
 import '../../model/get_employee_vacations_model/get_employee_vacations_response_model.dart';
 
 class VacationRemoteImplDio implements VacationRemoteDataSource {
-  final ApiService apiService;
+  final DioConsumer apiService;
 
   VacationRemoteImplDio({required this.apiService});
 
   @override
   Future<List<VacationTypeModel>> getVacationType() async {
-    final response = await apiService.getRequest(endPoint: EndPoint.vacationTypes);
+    final response = await apiService.get(endPoint: EndPoint.vacationTypes);
     List<dynamic> listJson = response.data;
     return listJson.map((e) => VacationTypeModel.fromJson(e)).toList();
   }
@@ -40,7 +40,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
       "requestedTypeId": requestDefaultReviewerModel.requestedTypeId,
     };
 
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.defaultReviewer,
       queryParams: queryParams,
     );
@@ -52,7 +52,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   Future<PostVacationResponseModel> postVacation({
     required PostVacationRequestModel postVacationModel,
   }) async {
-    final response = await apiService.postRequest(
+    final response = await apiService.post(
       endPoint: EndPoint.postVacation,
       data: postVacationModel.toJson(),
     );
@@ -72,7 +72,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
         'replacementId': requestModel.replacementId.toString(),
     };
 
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.calculateVacationDuration,
       queryParams: queryParams,
     );
@@ -92,7 +92,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
       'id': requestModel.id?.toString() ?? '0', // Default to 0 if id is null
     };
 
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
      endPoint: EndPoint.validateVacation,
       queryParams: queryParams,
     );
@@ -103,7 +103,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   Future<CheckHandledAlertsResponseModel> checkHandledAlerts({
     required CheckHandledAlertsRequestModel requestModel,
   }) async {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.checkHandledAlerts,
       queryParams: requestModel.toQueryParams(),
     );
@@ -116,7 +116,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   })
   async
   {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getBalance,
       queryParams: requestModel.toQueryParams(),
     );
@@ -127,7 +127,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   Future<List<GetEmployeeVacationsResponseModel>> getEmployeeVacations()
   async
   {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getVacations,
     );
     return response.data.map<GetEmployeeVacationsResponseModel>(
@@ -142,7 +142,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   Future<List<GetVacationRequestsResponseModel>> getVacationRequests()
   async
   {
-    final response = await apiService.getRequest(
+    final response = await apiService.get(
       endPoint: EndPoint.getVacationRequests,
     );
     return response.data.map<GetVacationRequestsResponseModel>(
@@ -156,7 +156,7 @@ class VacationRemoteImplDio implements VacationRemoteDataSource {
   Future<bool> approveCancelRequest({required ApproveCancelRequestModel approveCancelRequestModel})
 
   async {
-    final response = await apiService.putRequest(
+    final response = await apiService.put(
       endPoint: EndPoint.approveCancelRequest,
       data: approveCancelRequestModel.toJson(),
     );

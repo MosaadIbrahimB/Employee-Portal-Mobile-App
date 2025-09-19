@@ -10,7 +10,7 @@ export 'package:employee_portal_mobile_app/feature/vacation/presentation/control
 export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/post_vacation/post_vacation_cubit.dart';
 export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/vacation_type/vacation_type_cubit.dart';
 export 'package:get_it/get_it.dart';
-export 'package:employee_portal_mobile_app/core/service/api_service/api_service.dart';
+export 'package:employee_portal_mobile_app/core/service/api_service/dio_consumer.dart';
 export 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/check_handled_alerts_use_case.dart';
 export 'package:employee_portal_mobile_app/feature/vacation/domain/use_case/validate_vacation.dart';
 export 'package:employee_portal_mobile_app/feature/vacation/presentation/control/check_handled_alerts/check_handled_alerts_cubit.dart';

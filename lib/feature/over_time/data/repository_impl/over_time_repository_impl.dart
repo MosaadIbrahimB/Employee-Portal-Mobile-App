@@ -11,21 +11,19 @@ import '../data_source/remote/over_time_remote_data_source.dart';
 class OverTimeRepositoryImpl extends OverTimeRepository {
   OverTimeRequestRemoteDataSource overTimeRequestRemoteDataSource;
 
-  OverTimeRepositoryImpl({
-    required this.overTimeRequestRemoteDataSource,
-  });
-
+  OverTimeRepositoryImpl({required this.overTimeRequestRemoteDataSource});
 
   @override
-  Future<Either<Failure, AlertModel>> getAlertOverTimeRequest({int? id})
-  async {
+  Future<Either<Failure, AlertModel>> getAlertOverTimeRequest({int? id}) async {
     try {
-      final result =
-      await overTimeRequestRemoteDataSource.getAlertOverTimeRequest(id: id);
+      final result = await overTimeRequestRemoteDataSource
+          .getAlertOverTimeRequest(id: id);
       return right(result);
     } catch (e) {
       return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getAlertOverTimeRequest  "),
+        ServerFailure(
+          "${e.toString()}حدث خطأ في الخادم getAlertOverTimeRequest  ",
+        ),
       );
     }
   }
@@ -34,19 +32,19 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
   Future<Either<Failure, List<AlertModel>>> getAlertsOverTimeRequest({
     String? fromDate,
     String? toDate,
-  })
-  async {
+  }) async {
     try {
-      final result =
-      await overTimeRequestRemoteDataSource.getAlertsOverTimeRequest(fromDate: fromDate,toDate:toDate );
+      final result = await overTimeRequestRemoteDataSource
+          .getAlertsOverTimeRequest(fromDate: fromDate, toDate: toDate);
       return right(result);
     } catch (e) {
       return left(
-        ServerFailure("${e.toString()}حدث خطأ في الخادم getAlertsOverTimeRequest  "),
+        ServerFailure(
+          "${e.toString()}حدث خطأ في الخادم getAlertsOverTimeRequest  ",
+        ),
       );
     }
   }
-
 
   @override
   Future<Either<Failure, List<ResponseOverTimeModel>>>
@@ -54,29 +52,29 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
   async {
     try {
       final result =
-      await overTimeRequestRemoteDataSource.getEmployeeOverTimeRequest();
+          await overTimeRequestRemoteDataSource.getEmployeeOverTimeRequest();
       return right(result);
     } catch (e) {
       return left(
         ServerFailure(
-            "${e.toString()}حدث خطأ في الخادم getEmployeeOverTimeRequest  "),
+          "${e.toString()}حدث خطأ في الخادم getEmployeeOverTimeRequest  ",
+        ),
       );
     }
   }
 
-
   @override
   Future<Either<Failure, List<ResponseOverTimeModel>>>
-  getReviewerOverTimeRequest()
-  async {
+  getReviewerOverTimeRequest() async {
     try {
       final result =
-      await overTimeRequestRemoteDataSource.getReviewerOverTimeRequest();
+          await overTimeRequestRemoteDataSource.getReviewerOverTimeRequest();
       return right(result);
     } catch (e) {
       return left(
         ServerFailure(
-            "${e.toString()}حدث خطأ في الخادم getReviewerOverTimeRequest  "),
+          "${e.toString()}حدث خطأ في الخادم getReviewerOverTimeRequest  ",
+        ),
       );
     }
   }
@@ -87,23 +85,21 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
   })
   async {
     try {
-      final result = await overTimeRequestRemoteDataSource
-          .postOverTimeRequest(requestPostOverTimeModel:requestPostOverTimeModel );
+      final result = await overTimeRequestRemoteDataSource.postOverTimeRequest(
+        requestPostOverTimeModel: requestPostOverTimeModel,
+      );
       return right(result);
     } catch (e) {
       return left(
-        ServerFailure("${e
-            .toString()}حدث خطأ في الخادم postOverTimeRequest  "),
+        ServerFailure(e.toString()),
       );
     }
   }
 
   @override
-  Future<Either<Failure, List<TypeOverTimeModel>>> getTypeOverTime()
-  async {
+  Future<Either<Failure, List<TypeOverTimeModel>>> getTypeOverTime() async {
     try {
-      final result =
-      await overTimeRequestRemoteDataSource.getTypeOverTime();
+      final result = await overTimeRequestRemoteDataSource.getTypeOverTime();
       return right(result);
     } catch (e) {
       return left(
@@ -111,5 +107,4 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
       );
     }
   }
-
 }
