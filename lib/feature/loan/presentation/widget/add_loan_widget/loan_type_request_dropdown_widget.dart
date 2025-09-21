@@ -17,6 +17,7 @@ class LoanTypeRequestDropdownWidget extends StatelessWidget {
         Text("نوع السلفة ", style: context.text.bodyMedium),
         SizedBox(height: 8.h),
         Container(
+
           height: 50.h,
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           decoration: BoxDecoration(

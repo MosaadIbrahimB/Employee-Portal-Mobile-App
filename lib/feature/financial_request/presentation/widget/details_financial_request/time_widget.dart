@@ -22,10 +22,6 @@ class TimeWidget extends StatelessWidget {
       children: [
         Text("الوقت", style: textTheme.bodyMedium),
         SizedBox(height: 8.h),
-
-
-
-
         Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),

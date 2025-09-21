@@ -9,14 +9,19 @@ class PostLoanCubit extends Cubit<PostLoanState> {
 
   PostLoanCubit({required this.postLoanUseCase}) : super(const PostLoanState());
 
-  static final TextEditingController noteInputController = TextEditingController();
+  static final TextEditingController noteInputController =
+      TextEditingController();
+  static final TextEditingController totalMoneyController =
+      TextEditingController();
 
   Future<void> postLoan({
     required PostLoanRequestModel postLoanRequestModel,
   }) async {
-    emit(state.copyWith(isLoading: true,response: null, errorMessage: null));
+    emit(state.copyWith(isLoading: true, response: null, errorMessage: null));
 
-    final result = await postLoanUseCase(postLoanRequestModel: postLoanRequestModel);
+    final result = await postLoanUseCase(
+      postLoanRequestModel: postLoanRequestModel,
+    );
 
     result.fold(
       (failure) {
@@ -28,3 +33,5 @@ class PostLoanCubit extends Cubit<PostLoanState> {
     );
   }
 }
+
+

@@ -106,13 +106,7 @@ class LoanRemoteDataSourceImp implements LoanRemoteDataSource  {
       endPoint: EndPoint.postLoan,
       data: requestPostLoanModel.toJson(),
     );
-    final list =
-    response.data
-        .map<PostLoanResponseModel>(
-          (json) => PostLoanResponseModel.fromJson(json),
-    )
-        .toList();
-    return list;
+    return PostLoanResponseModel.fromJson(response.data);
   }
 
 
