@@ -100,7 +100,7 @@ class LoanRemoteDataSourceImp implements LoanRemoteDataSource  {
 
 
   @override
-  Future<List<PostLoanResponseModel>> postLoan({required PostLoanRequestModel requestPostLoanModel})
+  Future<PostLoanResponseModel> postLoan({required PostLoanRequestModel requestPostLoanModel})
   async {
     final response = await apiService.post(
       endPoint: EndPoint.postLoan,

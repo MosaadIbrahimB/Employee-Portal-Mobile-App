@@ -3,7 +3,7 @@ import '../../../data/model/post/post_loan_response_model.dart';
 
 class PostLoanState extends Equatable {
   final bool ?isLoading;
-  final List<PostLoanResponseModel>? response;
+  final PostLoanResponseModel? response;
   final String? errorMessage;
 
   const PostLoanState({
@@ -14,7 +14,7 @@ class PostLoanState extends Equatable {
 
   PostLoanState copyWith({
     bool? isLoading,
-    final List<PostLoanResponseModel>? response,
+    final PostLoanResponseModel? response,
     String? errorMessage,
   }) {
 

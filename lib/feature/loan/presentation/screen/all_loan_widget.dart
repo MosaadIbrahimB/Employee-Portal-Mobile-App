@@ -1,5 +1,8 @@
 import 'package:employee_portal_mobile_app/core/utils/import_file.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
+import '../widget/add_loan_widget/add_loan_widget.dart';
+import '../widget/tab_credits_loan_request/tab_credits_loan_widget.dart';
+import '../widget/tab_loan_request/tab_loan_widget.dart';
 
 class AllLoanWidget extends StatelessWidget {
   const AllLoanWidget({super.key});
@@ -10,7 +13,10 @@ class AllLoanWidget extends StatelessWidget {
     // TabCreditsOverTimeWidget(),
     // DetailsItemOverTimeWidget(),
     // DetailsAlertOverTimeWidget(),
-    Center(child: Text('AllLoanWidget'),)
+    TabLoanWidget(),
+    TabCreditsLoanWidget(),
+    AddLoanWidget()
+    // Center(child: Text('AllLoanWidget'),)
   ];
 
   @override

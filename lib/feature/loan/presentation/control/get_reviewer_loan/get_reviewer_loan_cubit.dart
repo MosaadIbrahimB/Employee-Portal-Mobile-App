@@ -7,7 +7,7 @@ class GetReviewerLoanCubit extends Cubit<GetReviewerLoanState> {
     : super(GetReviewerLoanState());
   GetReviewerLoanUseCase getReviewerLoanUseCase;
 
-  getEmployeeLoan() async {
+  getReviewerLoan() async {
     emit(state.copyWith(isLoading: true));
     final response = await getReviewerLoanUseCase();
     response.fold(

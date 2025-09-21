@@ -10,7 +10,7 @@ class PostLoanUseCase {
 
   PostLoanUseCase(this.repository);
 
-  Future<Either<Failure, List<PostLoanResponseModel>>> call({
+  Future<Either<Failure, PostLoanResponseModel>> call({
     required PostLoanRequestModel postLoanRequestModel,
   }) {
     return repository.postLoan(requestPostLoanModel: postLoanRequestModel);

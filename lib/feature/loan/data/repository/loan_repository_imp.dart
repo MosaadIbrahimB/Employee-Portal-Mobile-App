@@ -90,7 +90,7 @@ class LoanRepositoryImp implements LoanRepository  {
 
 
   @override
-  Future<Either<Failure, List<PostLoanResponseModel>>> postLoan({required PostLoanRequestModel requestPostLoanModel})
+  Future<Either<Failure, PostLoanResponseModel>> postLoan({required PostLoanRequestModel requestPostLoanModel})
 
   async {
     try {

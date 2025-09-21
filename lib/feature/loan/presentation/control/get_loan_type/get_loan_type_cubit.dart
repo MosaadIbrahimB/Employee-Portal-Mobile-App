@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/model/loan_type_model.dart';
 import '../../../domain/use_case/get_loan_type_use_case.dart';
 import 'get_loan_type_state.dart';
 
@@ -19,4 +20,12 @@ class GetLoanTypeCubit extends Cubit<GetLoanTypeState> {
       },
     );
   }
+
+
+
+  void selectedRequestType(LoanTypeModel selectedRequest) {
+    emit(state.copyWith(selectedRequestType: selectedRequest));
+
+  }
+
 }

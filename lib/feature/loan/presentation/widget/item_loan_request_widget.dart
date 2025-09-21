@@ -1,9 +1,21 @@
-import 'package:employee_portal_mobile_app/feature/layout/export_layout_file.dart';
+import '../../../../core/utils/import_file.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import 'from_to_mission_widget.dart';
-
-class ItemMissionRequestWidget extends StatelessWidget {
-  const ItemMissionRequestWidget({super.key, required this.model});
+import 'from_and_to_loan_date_widget.dart';
+/*
+ {
+        "Value": 12000.0,
+        "Date": "2025-09-09T00:00:00",
+        "LoanTypeName": "Loan",
+        "Installments": 6,
+        "StartDate": "2025-09-01T00:00:00",
+        "InstallmentValue": 2000.0,
+        "LastDate": "2026-02-01T00:00:00",
+        "Paid": 0.0,
+        "Status": "Accepted"
+    }
+ */
+class ItemLoanRequestWidget extends StatelessWidget {
+  const ItemLoanRequestWidget({super.key, required this.model});
 
   final dynamic model;
 
@@ -63,19 +75,18 @@ class ItemMissionRequestWidget extends StatelessWidget {
             SizedBox(height: 8.h),
             Row(
               children: [
+
                 Expanded(
-                  child: FromToMissionWidget(
+                  child: FromAndToLoanDateWidget(
                     title: "من",
-                    date: model.from,
-                    time: model.from.toString().substring(11)??"9:00 صباحاً",
+                    date: model.from.toString()??"0",
                   ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: FromToMissionWidget(
+                  child: FromAndToLoanDateWidget(
                     title: "إلى",
-                    date: model.to,
-                    time: model.to.toString().substring(11)?? "9:00 صباحاً",
+                    date: model.to.toString()??"0",
                   ),
                 ),
               ],

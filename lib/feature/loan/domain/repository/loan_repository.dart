@@ -16,7 +16,7 @@ abstract class LoanRepository {
   Future<Either<Failure,ValidateLoanResponseModel>> validateLoan({
     required ValidateLoanRequestModel requestModel,
   });
-  Future<Either<Failure,List<PostLoanResponseModel>>> postLoan({
+  Future<Either<Failure,PostLoanResponseModel>> postLoan({
     required  PostLoanRequestModel requestPostLoanModel,
   });
 

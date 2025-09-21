@@ -14,7 +14,7 @@ abstract class LoanRemoteDataSource {
   Future<ValidateLoanResponseModel> validateLoan({
     required ValidateLoanRequestModel requestModel,
   });
-  Future<List<PostLoanResponseModel>> postLoan({
+  Future<PostLoanResponseModel> postLoan({
     required  PostLoanRequestModel requestPostLoanModel,
   });
 }

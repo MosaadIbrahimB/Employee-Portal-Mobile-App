@@ -17,7 +17,6 @@ import '../../control/post_financial_request/post_financial_request_state.dart';
 import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import 'financial_type_request_dropdown_widget.dart';
 
-//طلب ادارى شاشة اضافة
 
 class AddFinancialRequestWidget extends StatelessWidget {
   const AddFinancialRequestWidget({super.key});

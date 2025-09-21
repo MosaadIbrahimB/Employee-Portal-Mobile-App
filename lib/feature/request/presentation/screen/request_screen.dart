@@ -1,3 +1,4 @@
+import 'package:employee_portal_mobile_app/feature/loan/presentation/screen/all_loan_widget.dart';
 import 'package:employee_portal_mobile_app/feature/request/presentation/screen/provide_cubit.dart';
 import 'export_file.dart';
 
@@ -22,6 +23,9 @@ class RequestScreen extends StatelessWidget {
               }
               if(state == 3) {
                 return AllOverTimeRequestWidget();
+              }
+              if(state == 5) {
+                return AllLoanWidget();
               }
               if(state == 6) {
                 return const AllFinancialRequestWidget();

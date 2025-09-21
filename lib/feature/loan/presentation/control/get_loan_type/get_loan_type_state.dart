@@ -6,7 +6,7 @@ class GetLoanTypeState extends Equatable {
   final bool? isLoading;
   final String? errorMessage;
   final List<LoanTypeModel>? response;
-  final LoanModel? selectedRequestType;
+  final LoanTypeModel? selectedRequestType;
 
   const GetLoanTypeState({
     this.selectedRequestType,
@@ -19,7 +19,7 @@ class GetLoanTypeState extends Equatable {
     bool? isLoading,
     String? errorMessage,
     List<LoanTypeModel>? response,
-    LoanModel? selectedRequestType,
+    LoanTypeModel? selectedRequestType,
   }) {
     return GetLoanTypeState(
       isLoading: isLoading ?? this.isLoading,

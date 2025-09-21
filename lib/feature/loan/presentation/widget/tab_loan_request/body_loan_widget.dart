@@ -4,24 +4,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
-import '../../../data/model/response_mission_model.dart';
-import '../../control/get_employee_mission/get_employee_mission_cubit.dart';
-import '../../control/get_employee_mission/get_employee_mission_state.dart';
-import '../item_mission_request_widget.dart';
+import '../../control/get_employee_loan/get_employee_loan_cubit.dart';
+import '../../control/get_employee_loan/get_employee_loan_state.dart';
+import '../item_loan_request_widget.dart';
 
-class BodyTabMissionRequestWidget extends StatelessWidget {
-  const BodyTabMissionRequestWidget({super.key});
+class BodyLoanWidget extends StatelessWidget {
+  const BodyLoanWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-  
+
 
 
     return   Column(
       children: [
         SizedBox(
           height: context.height* 0.65,
-          child:         BlocBuilder<GetEmployeeMissionCubit, GetEmployeeMissionRequestState>(
+          child:  BlocBuilder<GetEmployeeLoanCubit, GetEmployeeLoanState>(
             builder: (context, state) {
               if (state.isLoading==true) {
                 return Center(child: CircularProgressIndicator());
@@ -32,14 +31,14 @@ class BodyTabMissionRequestWidget extends StatelessWidget {
               if( state.response == null || state.response!.isEmpty) {
                 return SizedBox(
                     height: 50.h,
-                    child: Center(child: Text("لا توجد طلبات مأموريات")));
+                    child: Center(child: Text("لا توجد طلبات ")));
               }
-              List<ResponseMissionModel>? response = state.response;
+             final response = state.response;
 
               return ListView.builder(
                 itemCount: response!.length,
                 itemBuilder: (context, index) {
-                  return ItemMissionRequestWidget(model: response[index]);
+                  return ItemLoanRequestWidget(model: response[index]);
                 },
               );
             },
@@ -50,7 +49,7 @@ class BodyTabMissionRequestWidget extends StatelessWidget {
           alignment: AlignmentDirectional.bottomEnd,
           child: GestureDetector(
             onTap: () {
-              BlocProvider.of<TabSwitcherCubit>(context).changeTab(3);
+              BlocProvider.of<TabSwitcherCubit>(context).changeTab(2);
             },
             child: Container(
               width: 60.w,
