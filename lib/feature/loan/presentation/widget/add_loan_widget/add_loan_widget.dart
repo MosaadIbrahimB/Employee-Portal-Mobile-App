@@ -3,8 +3,6 @@ import 'package:employee_portal_mobile_app/feature/loan/presentation/control/get
 import 'package:employee_portal_mobile_app/feature/loan/presentation/control/post_loan/post_loan_cubit.dart';
 import 'package:employee_portal_mobile_app/feature/loan/presentation/control/post_loan/post_loan_state.dart';
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
-import '../../../../financial_request/presentation/control/financial_request_type/get_financial_request_type_cubit.dart';
-import '../../../../financial_request/presentation/control/post_financial_request/post_financial_request_cubit.dart';
 import '../../../../request/presentation/control/date_cubit/date_cubit.dart';
 import '../../../../request/presentation/control/request/request_cubit.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
@@ -19,7 +17,7 @@ import '../../../../vacation/presentation/widget/vacation_request/reviewer_widge
 import '../../../data/model/post/post_loan_request_model.dart';
 import '../../../data/model/request_model.dart';
 import '../../control/money_cubit/money_cubit.dart';
-import '../../installment_widget.dart';
+import '../installment_widget.dart';
 import '../total_installments_widget.dart';
 import '../total_money_widget.dart';
 import 'loan_type_request_dropdown_widget.dart';
@@ -42,29 +40,20 @@ class AddLoanWidget extends StatelessWidget {
           ],
           child: BlocConsumer<PostLoanCubit, PostLoanState>(
             listener: (context, state) {
-              print(state.response);
-              if(state.response?.isValid==false){
-
-                context.showErrorDialog(state.response?.message??"حدث خطأ ما");
-              }else if(state.response?.isValid==true){
-
+              if (state.response?.isValid == false) {
+                context.showErrorDialog(
+                  state.response?.message ?? "حدث خطأ ما",
+                );
+              } else if (state.response?.isValid == true) {
                 if (context.mounted) {
-                  BlocProvider.of<RequestCubit>(
-                    context,
-                  ).changePage(0);
+                  BlocProvider.of<RequestCubit>(context).changePage(0);
                   context.read<TabSwitcherCubit>().changeTab(0);
 
                   context.showSnackBar(
                     " الطلب قيد الاعتماد",
                     backgroundColor: Colors.green,
                   );
-
                 }
-
-
-
-
-
               }
             },
 
@@ -161,21 +150,15 @@ class AddLoanWidget extends StatelessWidget {
                               .selectedRequestType
                               ?.id;
                       if (id == null) {
-                        context.showErrorDialog(
-                          "الرجاء اختيار نوع الطلب ",
-                        );
+                        context.showErrorDialog("الرجاء اختيار نوع الطلب ");
                         return;
                       }
 
                       context
                           .read<PostLoanCubit>()
                           .postLoan(
-                        postLoanRequestModel:
-                        getSelectedRequest(context),
-                      )
-                          .then((value) {
-
-                      });
+                            postLoanRequestModel: getSelectedRequest(context),
+                          );
                     },
                     title: "قدم الطلب",
                   ),
@@ -189,41 +172,20 @@ class AddLoanWidget extends StatelessWidget {
     );
   }
 
-  PostLoanRequestModel getSelectedRequest(BuildContext context,) {
+  PostLoanRequestModel getSelectedRequest(BuildContext context) {
     return PostLoanRequestModel(
-        date: context
-            .read<DateCubit>()
-            .state
-            .dateTime
-            .toString(),
-        value:int.tryParse(MoneyCubit.totalMoneyController.text)?? 0,
-        startDate:context
-            .read<DateCubit>()
-            .state
-            .fromDate
-            .toString(),
-        installments:context
-            .read<MoneyCubit>()
-            .state.installmentValue.toInt(),
-        isRequest:true,
-
-        notes: PostLoanCubit.noteInputController.text,
-
-        loanTypeId:
-        context
-            .read<GetLoanTypeCubit>()
-            .state
-            .selectedRequestType
-            ?.id ??
-            0,
-        request: RequestModel(
-          reviewers: context
-              .read<DefaultReviewerCubit>()
-              .state
-              .listSelectedReviewers,
-        )
-
+      date: context.read<DateCubit>().state.dateTime.toString(),
+      value: int.tryParse(MoneyCubit.totalMoneyController.text) ?? 0,
+      startDate: context.read<DateCubit>().state.fromDate.toString(),
+      installments: context.read<MoneyCubit>().state.installmentValue.toInt(),
+      isRequest: true,
+      notes: PostLoanCubit.noteInputController.text,
+      loanTypeId:
+          context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,
+      request: RequestModel(
+        reviewers:
+            context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
+      ),
     );
   }
 }
-

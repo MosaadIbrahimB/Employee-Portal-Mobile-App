@@ -1,108 +1,111 @@
 import '../../../../../core/service/dependency_injection/depend_inject.dart';
 import '../../../../../core/utils/import_file.dart';
-import '../../../../home/presentation/widget/report_widget/opening_time_widget.dart';
 import '../../../../mission_request/presentation/control/get_reviewer_mission_request/get_reviewer_mission_request_cubit.dart';
-import '../../../../mission_request/presentation/widget/from_to_mission_widget.dart';
 import '../../../../vacation/data/model/approve_cancel/approve_cancel_request_model.dart';
 import '../../../../vacation/presentation/control/approve_cancel_request/approve_cancel_request_cubit.dart';
 import '../../../../vacation/presentation/control/approve_cancel_request/approve_cancel_request_state.dart';
+import '../../../data/model/response_loan_model.dart';
+import '../amount_widget.dart';
+import '../text_amount_widget.dart';
 
 class ItemTabCreditLoanWidget extends StatelessWidget {
   const ItemTabCreditLoanWidget({super.key, required this.model});
 
-  final dynamic model;
+  final LoanModel model;
 
   static const IconData moreH = IconData(0xe402, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-  create: (context) => sl<ApproveCancelRequestCubit>(),
-  child: BlocBuilder<ApproveCancelRequestCubit, ApproveCancelRequestState>(
-  builder: (context, state) {
-    return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(bottom: 16.h),
-      padding: EdgeInsets.all(12).r,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12).r,
-        border: Border.all(color: Colors.black12, width: 1.w),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSecondary,
-                ),
-                child: Text(
-                  model.status ?? "الحالة",
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-              ),
-              SizedBox(width: 3.w),
-              Text(
-                model.destination ?? "requestTypeName",
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-              Spacer(),
-              GestureDetector(
-                onTapDown: (details) {
-                  dropdownMenu(context, details);
-                },
+      create: (context) => sl<ApproveCancelRequestCubit>(),
+      child: BlocBuilder<ApproveCancelRequestCubit, ApproveCancelRequestState>(
+        builder: (context, state) {
+          return Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(bottom: 16.h),
+            padding: EdgeInsets.all(12).r,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12).r,
+              border: Border.all(color: Colors.black12, width: 1.w),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 6.5, vertical: 3).r,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                      child: Text(
+                        model.status == null || model.status!.isEmpty
+                            ? "الحالة"
+                            : model.status!,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                    ),
+                    SizedBox(width: 3.w),
+                    Text(
+                      model.loanTypeName ?? "requestTypeName",
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTapDown: (details) {
+                        dropdownMenu(context, details);
+                      },
 
-                child: Icon(moreH),
-              ),
-              // Icon(moreH)
-            ],
-          ),
-
-          SizedBox(height: 8.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("اسم الموظف: ${model.empName}"),
-              Text(model.jobTitle ?? "مصمم تجربة مستخدم"),
-            ],
-          ),
-          SizedBox(height: 8.h),
-          OpeningTimeWidget(
-            title:model.duration!=null? "المدة : ${model.duration!.toString()} دقيقة":"المدة :غير متاح",
-            color: context.color.shadow,
-          ),
-
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Expanded(
-                child: FromToMissionWidget(
-                  title: "من",
-                  date: model.from,
-                  time: model.from?.substring(11)??"9:00 صباحاً",
+                      child: Icon(moreH),
+                    ),
+                    // Icon(moreH)
+                  ],
                 ),
-              ),
-              SizedBox(width: 8.w),
-              Expanded(
-                child: FromToMissionWidget(
-                  title: "إلى",
-                  date: model.to,
-                  time: model.to?.substring(11)??"9:00 صباحاً",
+
+                SizedBox(height: 8.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("اسم الموظف: ${model.employeeName}"),
+                    Text(model.jobTitle ?? "مصمم تجربة مستخدم"),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ],
+                SizedBox(height: 8.h),
+                AmountWidget(title: model.value.toString()),
+                SizedBox(height: 12.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextAndValueWidget(
+                        title: "من ",
+                        value: model.startDate.toString().substring(0, 10),
+                        isDate: true,
+                        bgColor: context.color.surface,
+                      ),
+                    ),
+                    SizedBox(width: 4.w),
+                    Expanded(
+                      child: TextAndValueWidget(
+                        title: "الى",
+                        value: model.lastDate.toString().substring(0, 10),
+                        isDate: true,
+                        bgColor: context.color.surface,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
-  },
-),
-);
   }
+
   dropdownMenu(BuildContext context, TapDownDetails details) async {
     final position = details.globalPosition;
     final selected = await showMenu<String>(
@@ -127,11 +130,11 @@ class ItemTabCreditLoanWidget extends StatelessWidget {
       switch (selected) {
         case 'approve':
           ApproveCancelRequestModel approveCancelRequestModel =
-          ApproveCancelRequestModel(
-            id: model.id.toString() ?? "",
-            value: 0,
-            isApproved: true,
-          );
+              ApproveCancelRequestModel(
+                id: model.id.toString() ?? "",
+                value: 0,
+                isApproved: true,
+              );
           if (context.mounted) {
             context.read<ApproveCancelRequestCubit>().approveCancelRequest(
               approveCancelRequestModel,
@@ -148,11 +151,11 @@ class ItemTabCreditLoanWidget extends StatelessWidget {
           break;
         case 'reject':
           ApproveCancelRequestModel approveCancelRequestModel =
-          ApproveCancelRequestModel(
-            id: model.id.toString() ?? "",
-            value: 0,
-            isApproved: false,
-          );
+              ApproveCancelRequestModel(
+                id: model.id.toString() ?? "",
+                value: 0,
+                isApproved: false,
+              );
           if (context.mounted) {
             context.read<ApproveCancelRequestCubit>().approveCancelRequest(
               approveCancelRequestModel,
@@ -216,12 +219,12 @@ class ItemTabCreditLoanWidget extends StatelessWidget {
                   // احفظ الملاحظة أو ابعتها للسيرفر
 
                   ApproveCancelRequestModel approveWithNote =
-                  ApproveCancelRequestModel(
-                    id: model.id.toString() ?? "",
-                    value: 0,
-                    isApproved: true,
-                    // note: note, // أضف الملاحظة هنا
-                  );
+                      ApproveCancelRequestModel(
+                        id: model.id.toString() ?? "",
+                        value: 0,
+                        isApproved: true,
+                        // note: note, // أضف الملاحظة هنا
+                      );
 
                   // اغلق الـ BottomSheet
                 },
@@ -252,6 +255,4 @@ class ItemTabCreditLoanWidget extends StatelessWidget {
       },
     );
   }
-
-
 }

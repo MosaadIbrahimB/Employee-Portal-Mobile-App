@@ -1,29 +1,21 @@
+import 'package:employee_portal_mobile_app/feature/loan/presentation/widget/total_money_widget.dart';
+
 import '../../../../core/utils/import_file.dart';
 import '../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
+import '../../data/model/response_loan_model.dart';
+import 'amount_widget.dart';
 import 'from_and_to_loan_date_widget.dart';
-/*
- {
-        "Value": 12000.0,
-        "Date": "2025-09-09T00:00:00",
-        "LoanTypeName": "Loan",
-        "Installments": 6,
-        "StartDate": "2025-09-01T00:00:00",
-        "InstallmentValue": 2000.0,
-        "LastDate": "2026-02-01T00:00:00",
-        "Paid": 0.0,
-        "Status": "Accepted"
-    }
- */
+
 class ItemLoanRequestWidget extends StatelessWidget {
   const ItemLoanRequestWidget({super.key, required this.model});
 
-  final dynamic model;
+  final LoanModel model;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<TabSwitcherCubit>().changeTab(2);
+        context.read<TabSwitcherCubit>().changeTab(3);
         context.read<TabSwitcherCubit>().setModel(model);
       },
       child: Container(
@@ -51,27 +43,29 @@ class ItemLoanRequestWidget extends StatelessWidget {
                 ),
                 SizedBox(width: 3.w),
                 Text(
-                  model.destination ?? "requestTypeName",
+                  model.loanTypeName ?? "loanTypeName",
                   style: context.text.displaySmall,
-                ),
-                Spacer(),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.calendar_today_outlined, size: 15,color: AppColor.midnightBlue,),
-                    SizedBox(width: 8.w),
-                    Text(
-                      model.duration != null
-                          ? model.duration!
-                          : "duration",
-
-                      style:
-                      AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
-                    ),
-                  ],
                 ),
               ],
             ),
+            SizedBox(height: 8.h),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.calendar_today_outlined, size: 15,color: AppColor.midnightBlue,),
+                SizedBox(width: 8.w),
+
+                Text("تاريخ السلفة  : ${ model.date != null
+                    ? model.date!.substring(0, 10)
+                    : "date"}",
+
+                  style:
+                  AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
+                ),
+              ],
+            ),
+            SizedBox(height: 8.h),
+            AmountWidget(title: model.value.toString() ),
             SizedBox(height: 8.h),
             Row(
               children: [
@@ -79,14 +73,14 @@ class ItemLoanRequestWidget extends StatelessWidget {
                 Expanded(
                   child: FromAndToLoanDateWidget(
                     title: "من",
-                    date: model.from.toString()??"0",
+                    date: model.startDate.toString()??"0",
                   ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
                   child: FromAndToLoanDateWidget(
                     title: "إلى",
-                    date: model.to.toString()??"0",
+                    date: model.lastDate.toString()??"0",
                   ),
                 ),
               ],

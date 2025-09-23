@@ -1,6 +1,6 @@
-import '../../../core/utils/import_file.dart';
-import 'control/money_cubit/money_cubit.dart';
-import 'control/money_cubit/money_state.dart';
+import '../../../../core/utils/import_file.dart';
+import '../control/money_cubit/money_cubit.dart';
+import '../control/money_cubit/money_state.dart';
 
 class InstallmentWidget extends StatelessWidget {
   const InstallmentWidget({super.key});

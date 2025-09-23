@@ -10,7 +10,6 @@ class AppThemeColorScheme {
 
     secondary: AppColor.cloudMist,
     onSecondary: AppColor.darkGreen,
-
     error: AppColor.red,
     onError: AppColor.darkRed,
 

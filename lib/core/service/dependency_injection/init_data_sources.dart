@@ -47,7 +47,7 @@ void initDataSources() {
   );
 
   sl.registerLazySingleton<LoanRemoteDataSource>(
-        () => LoanRemoteDataSourceImp(apiService: sl<DioConsumer>(instanceName: "mohr")),
+        () => LoanRemoteDataSourceImp(apiService: sl<DioConsumer>(instanceName: "main")),
   );
 
 }

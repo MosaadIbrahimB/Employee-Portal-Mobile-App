@@ -1,7 +1,6 @@
 class EndPoint {
   static const String baseUrlMohr = "https://mohrapi.azurewebsites.net";
-  // static const String baseUrl = "https://api.hr-sync.com";
-  static const String baseUrl = "https://mohrapi.azurewebsites.net";
+  static const String baseUrlSync = "https://api.hr-sync.com";
   static const String vacationTypes = "/api/Vacation/VacationTypes";
   static const String defaultReviewer = "/Api/Requests/GetDefaultReviewers";
   static const String postVacation = "/api/Vacation/PostVacation";

@@ -13,7 +13,7 @@ class DioHelper {
   })
   {
     dio.options = BaseOptions(
-      baseUrl: customBaseUrl ?? EndPoint.baseUrl,
+      baseUrl: customBaseUrl ?? EndPoint.baseUrlSync,
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
       headers: {
