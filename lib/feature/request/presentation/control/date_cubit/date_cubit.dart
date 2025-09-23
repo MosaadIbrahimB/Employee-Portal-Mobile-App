@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'date_state.dart';
 import 'package:flutter/material.dart';
@@ -10,60 +11,103 @@ class DateCubit extends Cubit<DateState> {
   }
 
   void setFromDate(DateTime date) {
-    emit(state.copyWith(
-      fromDate: date,
-      duration: _calculateDuration(
-        date,
-        state.toDate,
-        state.fromTime,
-        state.toTime,
+    emit(
+      state.copyWith(
+        fromDate: date,
+        duration: _calculateDuration(
+          date,
+          state.toDate,
+          state.fromTime,
+          state.toTime,
+        ),
       ),
-    ));
+    );
   }
 
-  void setToDate(DateTime date) {
-    emit(state.copyWith(
-      toDate: date,
-      duration: _calculateDuration(
-        state.fromDate,
-        date,
-        state.fromTime,
-        state.toTime,
+  endInstallmentDate(int numberOfInstallments)
+  {
+
+    final fromDate = state.fromDate ?? DateTime.now();
+
+    final toDate = DateTime(
+      fromDate.year,
+      fromDate.month + numberOfInstallments,
+      fromDate.day,
+    );
+    final formattedToDate = DateFormat('EEEE, d MMMM, y', 'ar').format(toDate);
+
+    emit(
+      state.copyWith(
+        formattedToDate: formattedToDate,
+        toDate: toDate,
+        duration: _calculateDuration(
+          fromDate,
+          toDate,
+          state.fromTime,
+          state.toTime,
+        ),
       ),
-    ));
+    );
+  }
+
+
+
+
+
+  void setToDate(DateTime date) {
+    emit(
+      state.copyWith(
+        toDate: date,
+        duration: _calculateDuration(
+          state.fromDate,
+          date,
+          state.fromTime,
+          state.toTime,
+        ),
+      ),
+    );
   }
 
   void setFromTime(TimeOfDay time) {
-    emit(state.copyWith(
-      fromTime: time,
-      duration: _calculateDuration(
-        state.fromDate,
-        state.toDate,
-        time,
-        state.toTime,
+    emit(
+      state.copyWith(
+        fromTime: time,
+        duration: _calculateDuration(
+          state.fromDate,
+          state.toDate,
+          time,
+          state.toTime,
+        ),
       ),
-    ));
+    );
   }
 
   void setToTime(TimeOfDay time) {
-    emit(state.copyWith(
-      toTime: time,
-      duration: _calculateDuration(
-        state.fromDate,
-        state.toDate,
-        state.fromTime,
-        time,
+    emit(
+      state.copyWith(
+        toTime: time,
+        duration: _calculateDuration(
+          state.fromDate,
+          state.toDate,
+          state.fromTime,
+          time,
+        ),
       ),
-    ));
+    );
   }
 
   Duration? _calculateDuration(
-      DateTime? fromDate,
-      DateTime? toDate,
-      TimeOfDay? fromTime,
-      TimeOfDay? toTime,
-      ) {
-    if (fromDate == null || toDate == null || fromTime == null || toTime == null) {
+    DateTime? fromDate,
+    DateTime? toDate,
+    TimeOfDay? fromTime,
+    TimeOfDay? toTime,
+
+  )
+  {
+    if (fromDate == null ||
+        toDate == null ||
+        fromTime == null ||
+        toTime == null) {
       return null;
     }
 
@@ -108,4 +152,16 @@ class DateCubit extends Cubit<DateState> {
 
     return parts.join(" و ");
   }
+void clearAll(){
+  emit(
+    state.copyWith(
+      toDate: null,
+      fromDate: null,
+      toTime: null,
+      fromTime: null,
+    ),
+  );
+
+
+}
 }

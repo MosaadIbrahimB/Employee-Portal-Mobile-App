@@ -20,6 +20,7 @@ import '../../../data/model/valid/validate_loan_request_model.dart';
 import '../../control/money_cubit/money_cubit.dart';
 import '../../control/validate_loan/validate_loan_cubit.dart';
 import '../../control/validate_loan/validate_loan_state.dart';
+import '../end_date_installment_widget.dart';
 import '../installment_widget.dart';
 import '../total_installments_widget.dart';
 import '../total_money_widget.dart';
@@ -43,164 +44,157 @@ class AddLoanWidget extends StatelessWidget {
             BlocProvider(create: (context) => MoneyCubit()),
           ],
           child: BlocListener<ValidateLoanCubit, ValidateLoanState>(
-  listener: (context, state) {
-
-    if (state.errorMessage != null) {
-      context.showErrorDialog(
-        state.errorMessage ?? "حدث خطأ ما",
-      );
-    }
-
-
-    if (state.response?.isValid == false) {
-      context.showErrorDialog(
-        state.response?.message ?? "حدث خطأ ما",
-      );
-    }
-    else if (state.response?.isValid == true) {
-      context.read<PostLoanCubit>().postLoan(
-        postLoanRequestModel:  getSelectedRequest(context),
-      );
-    }
-  },
-  child: BlocConsumer<PostLoanCubit, PostLoanState>(
             listener: (context, state) {
               if (state.errorMessage != null) {
-                context.showErrorDialog(
-                  state.errorMessage ?? "حدث خطأ ما",
-                );
+                context.showErrorDialog(state.errorMessage ?? "حدث خطأ ما");
               }
-
 
               if (state.response?.isValid == false) {
                 context.showErrorDialog(
-                  state.response?.message ?? "aaaحدث خطأ ما",
+                  state.response?.message ?? "حدث خطأ ما",
                 );
-              } 
-              else if (state.response?.isValid == true) {
-                if (context.mounted) {
-                  BlocProvider.of<RequestCubit>(context).changePage(0);
-                  context.read<TabSwitcherCubit>().changeTab(0);
-
-                  context.showSnackBar(
-                    " الطلب قيد الاعتماد",
-                    backgroundColor: Colors.green,
-                  );
-                }
+              } else if (state.response?.isValid == true) {
+                context.read<PostLoanCubit>().postLoan(
+                  postLoanRequestModel: getSelectedRequest(context),
+                );
               }
             },
+            child: BlocConsumer<PostLoanCubit, PostLoanState>(
+              listener: (context, state) {
+                if (state.errorMessage != null) {
+                  context.showErrorDialog(state.errorMessage ?? "حدث خطأ ما");
+                }
 
-            builder: (context, state) {
-              return Column(
-                children: [
-                  SizedBox(height: 12.h),
-                  AppBarRequestWidget(
-                    icon: Icons.close,
-                    title: "طلب سلفة ",
-                    onTap: () {
-                      context.read<TabSwitcherCubit>().changeTab(0);
-                    },
-                  ),
-                  SizedBox(height: 20.h),
-                  LoanTypeRequestDropdownWidget(),
-                  SizedBox(height: 16.h),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: InputDateDayWidget(
-                          isRightIcon: true,
-                          title: 'تاريخ السلفة',
-                          onDateSelected: (date) {
-                            context.read<DateCubit>().updateDate(date);
-                          },
-                        ),
-                      ),
-                      SizedBox(width: 4.w),
-                      Expanded(
-                        child: TotalMoneyWidget(
-                          title: "اجمالى المبلغ",
-                          controller: MoneyCubit.totalMoneyController,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16.h),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TotalInstallmentsWidget(
-                          title: "عدد الاقساط",
-                          controller: MoneyCubit.numberOfInstallmentsController,
-                        ),
-                      ),
-                      SizedBox(width: 4.w),
-                      Expanded(
-                        child: InputDateDayWidget(
-                          isRightIcon: true,
-                          title: 'تاريخ البداية',
-                          onDateSelected: (date) {
-                            context.read<DateCubit>().setFromDate(date);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                if (state.response?.isValid == false) {
+                  context.showErrorDialog(
+                    state.response?.message ?? "حدث خطأ ما",
+                  );
+                } else if (state.response?.isValid == true) {
+                  if (context.mounted) {
+                    BlocProvider.of<RequestCubit>(context).changePage(0);
+                    context.read<TabSwitcherCubit>().changeTab(0);
 
-                  SizedBox(height: 16.h),
-                  Row(
-                    children: [
-                      Expanded(child: InstallmentWidget()),
-                      SizedBox(width: 4.w),
-                      Expanded(
-                        child: InputDateDayWidget(
-                          isRightIcon: true,
-                          title: 'تاريخ اخر قسط',
-                          onDateSelected: (date) {
-                            context.read<DateCubit>().setToDate(date);
-                          },
+                    context.showSnackBar(
+                      " الطلب قيد الاعتماد",
+                      backgroundColor: Colors.green,
+                    );
+                  }
+                }
+              },
+
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    SizedBox(height: 12.h),
+                    AppBarRequestWidget(
+                      icon: Icons.close,
+                      title: "طلب سلفة ",
+                      onTap: () {
+                        context.read<TabSwitcherCubit>().changeTab(0);
+                        context.read<DateCubit>().clearAll();
+                      },
+                    ),
+                    SizedBox(height: 20.h),
+                    LoanTypeRequestDropdownWidget(),
+                    SizedBox(height: 16.h),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: InputDateDayWidget(
+                            isRightIcon: true,
+                            title: 'تاريخ السلفة',
+                            onDateSelected: (date) {
+                              context.read<DateCubit>().updateDate(date);
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16.h),
-                  NotesInputField(
-                    controller: PostLoanCubit.noteInputController,
-                  ),
-                  SizedBox(height: 44.h),
-                  AddDocumentButtonWidget(),
-                  SizedBox(height: 16.h),
-                  ReviewerWidget(),
-                  SizedBox(height: 16.h),
-                  ListReviewerWidget(),
-                  SizedBox(height: 16.h),
+                        SizedBox(width: 4.w),
+                        Expanded(
+                          child: TotalMoneyWidget(
+                            title: "اجمالى المبلغ",
+                            controller: MoneyCubit.totalMoneyController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TotalInstallmentsWidget(
+                            title: "عدد الاقساط",
+                            controller:
+                                MoneyCubit.numberOfInstallmentsController,
+                          ),
+                        ),
+                        SizedBox(width: 4.w),
+                        Expanded(
+                          child: InputDateDayWidget(
+                            isRightIcon: true,
+                            title: 'تاريخ البداية',
+                            onDateSelected: (date) {
+                              context.read<DateCubit>().setFromDate(date);
+                              int number = int.tryParse(
+                                      MoneyCubit
+                                          .numberOfInstallmentsController.text ??
+                                          '0') ??
+                                  0;
+                              context.read<DateCubit>().endInstallmentDate(number);
 
-                  CustomButtonWidget(
-                    onTap: () {
-                      int? id =
-                          context
-                              .read<GetLoanTypeCubit>()
-                              .state
-                              .selectedRequestType
-                              ?.id;
-                      if (id == null) {
-                        context.showErrorDialog("الرجاء اختيار نوع الطلب ");
-                        return;
-                      }
-                      context
-                          .read<ValidateLoanCubit>()
-                          .validateLoan(
-                        requestModel: validateLoanRequestModel(context),
-                      );
 
-                    },
-                    title: "قدم الطلب",
-                  ),
-                  SizedBox(height: 30.h),
-                ],
-              );
-            },
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16.h),
+                    Row(
+                      children: [
+                        Expanded(child: InstallmentWidget()),
+                        SizedBox(width: 4.w),
+                        Expanded(
+                          child: EndDateInstallmentWidget()
+                        ),
+
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    NotesInputField(
+                      controller: PostLoanCubit.noteInputController,
+                    ),
+                    SizedBox(height: 44.h),
+                    AddDocumentButtonWidget(),
+                    SizedBox(height: 16.h),
+                    ReviewerWidget(),
+                    SizedBox(height: 16.h),
+                    ListReviewerWidget(),
+                    SizedBox(height: 16.h),
+
+                    CustomButtonWidget(
+                      onTap: () {
+                        int? id =
+                            context
+                                .read<GetLoanTypeCubit>()
+                                .state
+                                .selectedRequestType
+                                ?.id;
+                        if (id == null) {
+                          context.showErrorDialog("الرجاء اختيار نوع الطلب ");
+                          return;
+                        }
+                        context.read<ValidateLoanCubit>().validateLoan(
+                          requestModel: validateLoanRequestModel(context),
+                        );
+                      },
+                      title: "قدم الطلب",
+                    ),
+                    SizedBox(height: 30.h),
+                  ],
+                );
+              },
+            ),
           ),
-),
         ),
       ),
     );
@@ -223,7 +217,7 @@ class AddLoanWidget extends StatelessWidget {
     );
   }
 
-  ValidateLoanRequestModel    validateLoanRequestModel(BuildContext context) {
+  ValidateLoanRequestModel validateLoanRequestModel(BuildContext context) {
     return ValidateLoanRequestModel(
       loanTypeId:
           context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,

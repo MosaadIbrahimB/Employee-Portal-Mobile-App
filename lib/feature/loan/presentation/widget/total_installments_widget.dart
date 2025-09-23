@@ -1,4 +1,5 @@
 import '../../../../core/utils/import_file.dart';
+import '../../../request/presentation/control/date_cubit/date_cubit.dart';
 import '../control/money_cubit/money_cubit.dart';
 
 class TotalInstallmentsWidget extends StatelessWidget {
@@ -29,7 +30,8 @@ class TotalInstallmentsWidget extends StatelessWidget {
                 child: TextFormField(
                   onChanged: (_) {
                     context.read<MoneyCubit>().calculateOneInstallment();
-
+                    int number= int.tryParse(controller?.text ?? '0') ?? 0;
+                    context.read<DateCubit>().endInstallmentDate(number);
                   },
                   controller: controller,
                   keyboardType: TextInputType.number,

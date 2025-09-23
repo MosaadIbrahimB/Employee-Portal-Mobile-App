@@ -8,6 +8,7 @@ class DateState {
   final TimeOfDay? fromTime;
   final TimeOfDay? toTime;
   final Duration? duration;
+  final String? formattedToDate;
 
   DateState({
     this.fromTime,
@@ -16,6 +17,7 @@ class DateState {
     this.toDate,
     required this.dateTime,
     this.duration,
+    this.formattedToDate,
   });
 
   DateState copyWith({
@@ -25,6 +27,7 @@ class DateState {
     TimeOfDay? fromTime,
     TimeOfDay? toTime,
     Duration? duration,
+    String? formattedToDate,
   }) {
     return DateState(
       dateTime: dateTime ?? this.dateTime,
@@ -33,6 +36,7 @@ class DateState {
       fromTime: fromTime ?? this.fromTime,
       toTime: toTime ?? this.toTime,
       duration: duration ?? this.duration,
+      formattedToDate: formattedToDate ?? this.formattedToDate,
     );
   }
 }
