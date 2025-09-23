@@ -2,7 +2,11 @@ class ValidateLoanRequestModel {
   final int loanTypeId;
   final int installments;
   final double value;
-  final DateTime startDate;
+  final String startDate;
+
+
+
+
 
   ValidateLoanRequestModel({
     required this.loanTypeId,
@@ -16,7 +20,7 @@ class ValidateLoanRequestModel {
       'loanTypeId': loanTypeId.toString(),
       'installments': installments.toString(),
       'value': value.toString(),
-      'startDate': startDate.toIso8601String().split('T')[0],
+      'startDate': startDate,
     };
   }
 }

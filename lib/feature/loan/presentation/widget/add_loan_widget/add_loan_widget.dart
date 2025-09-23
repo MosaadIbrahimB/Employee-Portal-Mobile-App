@@ -16,7 +16,10 @@ import '../../../../vacation/presentation/control/default_reviewer/default_revie
 import '../../../../vacation/presentation/widget/vacation_request/reviewer_widget.dart';
 import '../../../data/model/post/post_loan_request_model.dart';
 import '../../../data/model/request_model.dart';
+import '../../../data/model/valid/validate_loan_request_model.dart';
 import '../../control/money_cubit/money_cubit.dart';
+import '../../control/validate_loan/validate_loan_cubit.dart';
+import '../../control/validate_loan/validate_loan_state.dart';
 import '../installment_widget.dart';
 import '../total_installments_widget.dart';
 import '../total_money_widget.dart';
@@ -36,15 +39,45 @@ class AddLoanWidget extends StatelessWidget {
               create: (context) => sl<GetLoanTypeCubit>()..getLoanType(),
             ),
             BlocProvider(create: (context) => sl<PostLoanCubit>()),
+            BlocProvider(create: (context) => sl<ValidateLoanCubit>()),
             BlocProvider(create: (context) => MoneyCubit()),
           ],
-          child: BlocConsumer<PostLoanCubit, PostLoanState>(
+          child: BlocListener<ValidateLoanCubit, ValidateLoanState>(
+  listener: (context, state) {
+
+    if (state.errorMessage != null) {
+      context.showErrorDialog(
+        state.errorMessage ?? "حدث خطأ ما",
+      );
+    }
+
+
+    if (state.response?.isValid == false) {
+      context.showErrorDialog(
+        state.response?.message ?? "حدث خطأ ما",
+      );
+    }
+    else if (state.response?.isValid == true) {
+      context.read<PostLoanCubit>().postLoan(
+        postLoanRequestModel:  getSelectedRequest(context),
+      );
+    }
+  },
+  child: BlocConsumer<PostLoanCubit, PostLoanState>(
             listener: (context, state) {
+              if (state.errorMessage != null) {
+                context.showErrorDialog(
+                  state.errorMessage ?? "حدث خطأ ما",
+                );
+              }
+
+
               if (state.response?.isValid == false) {
                 context.showErrorDialog(
-                  state.response?.message ?? "حدث خطأ ما",
+                  state.response?.message ?? "aaaحدث خطأ ما",
                 );
-              } else if (state.response?.isValid == true) {
+              } 
+              else if (state.response?.isValid == true) {
                 if (context.mounted) {
                   BlocProvider.of<RequestCubit>(context).changePage(0);
                   context.read<TabSwitcherCubit>().changeTab(0);
@@ -153,12 +186,12 @@ class AddLoanWidget extends StatelessWidget {
                         context.showErrorDialog("الرجاء اختيار نوع الطلب ");
                         return;
                       }
-
                       context
-                          .read<PostLoanCubit>()
-                          .postLoan(
-                            postLoanRequestModel: getSelectedRequest(context),
-                          );
+                          .read<ValidateLoanCubit>()
+                          .validateLoan(
+                        requestModel: validateLoanRequestModel(context),
+                      );
+
                     },
                     title: "قدم الطلب",
                   ),
@@ -167,6 +200,7 @@ class AddLoanWidget extends StatelessWidget {
               );
             },
           ),
+),
         ),
       ),
     );
@@ -186,6 +220,16 @@ class AddLoanWidget extends StatelessWidget {
         reviewers:
             context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
       ),
+    );
+  }
+
+  ValidateLoanRequestModel    validateLoanRequestModel(BuildContext context) {
+    return ValidateLoanRequestModel(
+      loanTypeId:
+          context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,
+      installments: context.read<MoneyCubit>().state.installmentValue.toInt(),
+      value: double.tryParse(MoneyCubit.totalMoneyController.text) ?? 0,
+      startDate: context.read<DateCubit>().state.fromDate.toString(),
     );
   }
 }
