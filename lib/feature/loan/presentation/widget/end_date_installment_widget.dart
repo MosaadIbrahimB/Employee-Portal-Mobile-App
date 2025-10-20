@@ -9,7 +9,7 @@ class EndDateInstallmentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DateCubit, DateState>(
       builder: (context, state) {
-        print(state.toDate);
+        print("state.formattedToDate =${state.formattedToDate}");
         return Column(
           children: [
             Align(
@@ -33,16 +33,12 @@ class EndDateInstallmentWidget extends StatelessWidget {
                     color: context.color.shadow,
                   ),
                   SizedBox(width: 8.w),
-                  state.toDate?.month.toString().padLeft(2, '0')==DateTime.now().month.toString().padLeft(2, '0')?
-                  Text(
-                    "0",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ):
-                  Text(
-                    // "${state.toDate?.year ?? '----'}/${state.toDate?.month.toString().padLeft(2, '0') ?? '--'}/${state.toDate?.day.toString().padLeft(2, '0') ?? '--'}",
-                  "${state.formattedToDate}",
+                  state.toDate?.month == DateTime.now().month &&
+                      state.toDate?.year == DateTime.now().year
+                      ? Text("0", style: TextStyle(fontWeight: FontWeight.bold))
+                      : Text("${state.formattedToDate}")
 
-                  ),
+
                 ],
               ),
             ),

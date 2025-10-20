@@ -98,7 +98,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void startNow() {
-    // انتقل إلى شاشة تسجيل الدخول أو الرئيسية
     Navigator.pushReplacementNamed(context, AppRoute.login);
   }
 }

@@ -78,6 +78,10 @@ class AddLoanWidget extends StatelessWidget {
                       " الطلب قيد الاعتماد",
                       backgroundColor: Colors.green,
                     );
+                    context.read<DateCubit>().setToDate(DateTime.now());
+                    context.read<DateCubit>().setToDate(DateTime.now());
+                    MoneyCubit.numberOfInstallmentsController.text='';
+                    MoneyCubit.totalMoneyController.text='';
                   }
                 }
               },
@@ -91,7 +95,10 @@ class AddLoanWidget extends StatelessWidget {
                       title: "طلب سلفة ",
                       onTap: () {
                         context.read<TabSwitcherCubit>().changeTab(0);
-                        context.read<DateCubit>().clearAll();
+                        context.read<DateCubit>().setToDate(DateTime.now());
+                        context.read<DateCubit>().setToDate(DateTime.now());
+                        MoneyCubit.numberOfInstallmentsController.text='';
+                        MoneyCubit.totalMoneyController.text='';
                       },
                     ),
                     SizedBox(height: 20.h),
@@ -140,7 +147,6 @@ class AddLoanWidget extends StatelessWidget {
                                           '0') ??
                                   0;
                               context.read<DateCubit>().endInstallmentDate(number);
-
 
                             },
                           ),
