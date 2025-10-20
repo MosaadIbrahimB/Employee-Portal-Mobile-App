@@ -42,6 +42,8 @@ class AddLoanWidget extends StatelessWidget {
             BlocProvider(create: (context) => sl<PostLoanCubit>()),
             BlocProvider(create: (context) => sl<ValidateLoanCubit>()),
             BlocProvider(create: (context) => MoneyCubit()),
+            BlocProvider(create: (context) => DateCubit()),
+
           ],
           child: BlocListener<ValidateLoanCubit, ValidateLoanState>(
             listener: (context, state) {
@@ -131,7 +133,7 @@ class AddLoanWidget extends StatelessWidget {
                           child: TotalInstallmentsWidget(
                             title: "عدد الاقساط",
                             controller:
-                                MoneyCubit.numberOfInstallmentsController,
+                            MoneyCubit.numberOfInstallmentsController,
                           ),
                         ),
                         SizedBox(width: 4.w),
@@ -142,9 +144,9 @@ class AddLoanWidget extends StatelessWidget {
                             onDateSelected: (date) {
                               context.read<DateCubit>().setFromDate(date);
                               int number = int.tryParse(
-                                      MoneyCubit
-                                          .numberOfInstallmentsController.text ??
-                                          '0') ??
+                                  MoneyCubit
+                                      .numberOfInstallmentsController.text ??
+                                      '0') ??
                                   0;
                               context.read<DateCubit>().endInstallmentDate(number);
 
@@ -160,7 +162,7 @@ class AddLoanWidget extends StatelessWidget {
                         Expanded(child: InstallmentWidget()),
                         SizedBox(width: 4.w),
                         Expanded(
-                          child: EndDateInstallmentWidget()
+                            child: EndDateInstallmentWidget()
                         ),
 
                       ],
@@ -179,19 +181,31 @@ class AddLoanWidget extends StatelessWidget {
 
                     CustomButtonWidget(
                       onTap: () {
+
                         int? id =
                             context
                                 .read<GetLoanTypeCubit>()
                                 .state
                                 .selectedRequestType
                                 ?.id;
+
+                        var fromData=context.read<DateCubit>().state.fromDate;
                         if (id == null) {
                           context.showErrorDialog("الرجاء اختيار نوع الطلب ");
                           return;
                         }
+
+                        if (fromData== null) {
+                          context.showErrorDialog("الرجاء اختيار تاريخ البداية ");
+                          return;
+                        }
+
+
+
                         context.read<ValidateLoanCubit>().validateLoan(
                           requestModel: validateLoanRequestModel(context),
                         );
+
                       },
                       title: "قدم الطلب",
                     ),
@@ -211,14 +225,14 @@ class AddLoanWidget extends StatelessWidget {
       date: context.read<DateCubit>().state.dateTime.toString(),
       value: int.tryParse(MoneyCubit.totalMoneyController.text) ?? 0,
       startDate: context.read<DateCubit>().state.fromDate.toString(),
-      installments: context.read<MoneyCubit>().state.installmentValue.toInt(),
+      installments: int.parse(MoneyCubit.numberOfInstallmentsController.text??"0"),
       isRequest: true,
       notes: PostLoanCubit.noteInputController.text,
       loanTypeId:
-          context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,
+      context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,
       request: RequestModel(
         reviewers:
-            context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
+        context.read<DefaultReviewerCubit>().state.listSelectedReviewers,
       ),
     );
   }
@@ -226,8 +240,8 @@ class AddLoanWidget extends StatelessWidget {
   ValidateLoanRequestModel validateLoanRequestModel(BuildContext context) {
     return ValidateLoanRequestModel(
       loanTypeId:
-          context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,
-      installments: context.read<MoneyCubit>().state.installmentValue.toInt(),
+      context.read<GetLoanTypeCubit>().state.selectedRequestType?.id ?? 0,
+      installments: int.parse(MoneyCubit.numberOfInstallmentsController.text??"0"),
       value: double.tryParse(MoneyCubit.totalMoneyController.text) ?? 0,
       startDate: context.read<DateCubit>().state.fromDate.toString(),
     );

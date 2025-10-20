@@ -11,17 +11,12 @@ class DateCubit extends Cubit<DateState> {
   }
 
   void setFromDate(DateTime date) {
+    emit( state.copyWith(fromDate: date, duration: _calculateDuration(date, state.toDate, state.fromTime, state.toTime,),),);
+  }
+void setStartDate(DateTime date) {
     emit(
       state.copyWith(
-        fromDate: date,
-        duration: _calculateDuration(
-          date,
-          state.toDate,
-          state.fromTime,
-          state.toTime,
-        ),
-      ),
-    );
+        fromDate: date));
   }
 
   endInstallmentDate(int numberOfInstallments)
@@ -49,9 +44,6 @@ class DateCubit extends Cubit<DateState> {
       ),
     );
   }
-
-
-
 
 
   void setToDate(DateTime date) {

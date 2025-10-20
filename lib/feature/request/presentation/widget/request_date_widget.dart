@@ -58,7 +58,7 @@ class _InputDateDayWidgetState extends State<InputDateDayWidget> {
           onTap: _showDatePickerDialog,
           child: Container(
               height: 52.h,
-            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 12).r,
+            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 10).r,
             decoration: BoxDecoration(
               color: widget.fillColor,
               // color: Colors.red,

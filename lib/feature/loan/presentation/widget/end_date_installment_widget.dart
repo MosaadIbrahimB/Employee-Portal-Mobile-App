@@ -9,7 +9,6 @@ class EndDateInstallmentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DateCubit, DateState>(
       builder: (context, state) {
-        print("state.formattedToDate =${state.formattedToDate}");
         return Column(
           children: [
             Align(
@@ -37,8 +36,6 @@ class EndDateInstallmentWidget extends StatelessWidget {
                       state.toDate?.year == DateTime.now().year
                       ? Text("0", style: TextStyle(fontWeight: FontWeight.bold))
                       : Text("${state.formattedToDate}")
-
-
                 ],
               ),
             ),

@@ -55,9 +55,9 @@ class EndPoint {
       "/Api/Mission/Requests/Employee/true";
 
   static const String validateMission =
-      "/Api/Mission/ValidateMission?from=2023-08-27 10:00:00.000&to=2023-08-27 11:00:00.000&unit=2";
+      "/Api/Mission/ValidateMission";
   static const String checkForHandledAlert =
-      "/Api/Mission/CheckForHandledAlerts?from=2023-08-27 10:00:00.000&to=2023-08-27 11:00:00.000&unit=2";
+      "/Api/Mission/CheckForHandledAlerts";
   static const String postMission = "/Api/Mission/PostMission";
   //Permission
   static const String permission = "/Api/Permission";
@@ -92,7 +92,7 @@ class EndPoint {
   static const String getReviewerLoanFalse= "$requests/Reviewer/false";
   static const String getEmployeeLoanTrue= "$requests/Employee/true";
   static const String getEmployeeLoanFalse= "$requests/Employee/false";
-  static const String validateLoan= "$loan/VaildateLoan?loanTypeId=14&installments=1&value=3000&startDate=2025-10-01";
+  static const String validateLoan= "$loan/VaildateLoan";
   static const String postLoan= loan;
 
 }

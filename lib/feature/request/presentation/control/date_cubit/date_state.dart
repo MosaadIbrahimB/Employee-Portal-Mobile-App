@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 
 class DateState {
   final DateTime dateTime;
-  final DateTime? fromDate;
-  final DateTime? toDate;
 
+  final DateTime? fromDate;
   final TimeOfDay? fromTime;
+
+  final DateTime? toDate;
   final TimeOfDay? toTime;
+
   final Duration? duration;
+
   final String? formattedToDate;
 
   DateState({
-    this.fromTime,
-    this.toTime,
-    this.fromDate,
-    this.toDate,
     required this.dateTime,
+    this.fromDate,
+    this.fromTime,
+    this.toDate,
+    this.toTime,
     this.duration,
     this.formattedToDate,
   });
@@ -23,8 +26,8 @@ class DateState {
   DateState copyWith({
     DateTime? dateTime,
     DateTime? fromDate,
-    DateTime? toDate,
     TimeOfDay? fromTime,
+    DateTime? toDate,
     TimeOfDay? toTime,
     Duration? duration,
     String? formattedToDate,
@@ -32,8 +35,8 @@ class DateState {
     return DateState(
       dateTime: dateTime ?? this.dateTime,
       fromDate: fromDate ?? this.fromDate,
-      toDate: toDate ?? this.toDate,
       fromTime: fromTime ?? this.fromTime,
+      toDate: toDate ?? this.toDate,
       toTime: toTime ?? this.toTime,
       duration: duration ?? this.duration,
       formattedToDate: formattedToDate ?? this.formattedToDate,
