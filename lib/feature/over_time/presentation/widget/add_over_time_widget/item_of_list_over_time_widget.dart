@@ -2,16 +2,21 @@ import '../../../../../core/utils/import_file.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../data/model/alert_model.dart';
 import '../../control/get_alerts_over_time/get_alerts_over_time_cubit.dart';
-import 'convert_hijri_to_gregorian.dart';
+import 'convert_arabic_date.dart';
 
 class ItemOfListOverTimeWidget extends StatelessWidget {
-  const ItemOfListOverTimeWidget({super.key, required this.model,required this.isSelected});
+  const ItemOfListOverTimeWidget({
+    super.key,
+    required this.model,
+    required this.isSelected,
+  });
 
   final AlertModel model;
   final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
+    final date = model.date.toString().substring(0, 10);
     return GestureDetector(
       onTap: () {
         context.read<TabSwitcherCubit>().changeTab(4);
@@ -38,17 +43,16 @@ class ItemOfListOverTimeWidget extends StatelessWidget {
                 ),
                 Spacer(),
                 Checkbox(
-                  materialTapTargetSize:MaterialTapTargetSize.shrinkWrap ,
-                  value:isSelected,
-                  onChanged: (value){
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  value: isSelected,
+                  onChanged: (value) {
+                    model.date = convertArabicDate(model.date.toString());
                     context.read<GetAlertsOverTimeCubit>().toggleAlertSelection(
                       model,
                       value ?? false,
                     );
-
                   },
-                )
-
+                ),
               ],
             ),
             SizedBox(height: 8.h),
@@ -61,8 +65,8 @@ class ItemOfListOverTimeWidget extends StatelessWidget {
                     Icon(Icons.calendar_today_outlined, size: 16.r),
                     SizedBox(width: 8.w),
                     Text(
-                      hijriToGregorian()??"تاريخ تقديم الطلب  :غير متاح",
-
+                      model.date.toString().substring(0, 10) ??
+                          "تاريخ تقديم الطلب  :غير متاح",
                       style: context.text.titleSmall, // Color(0xff3D4966)
                     ),
                   ],
@@ -83,21 +87,16 @@ class ItemOfListOverTimeWidget extends StatelessWidget {
                           : "duration",
 
                       style:
-                      AppTextStyle.iBMP12w500MidnightBlue, // Color(0xff3D4966)
+                          AppTextStyle
+                              .iBMP12w500MidnightBlue, // Color(0xff3D4966)
                     ),
                   ],
                 ),
-
-
               ],
             ),
           ],
         ),
       ),
     );
-  }
-String  hijriToGregorian(){
-    String hijriDateString = model.date ?? "";
-   return convertHijriToGregorian(hijriDateString);
   }
 }

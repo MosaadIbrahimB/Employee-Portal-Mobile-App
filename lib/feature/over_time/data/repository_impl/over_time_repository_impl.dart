@@ -14,7 +14,8 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
   OverTimeRepositoryImpl({required this.overTimeRequestRemoteDataSource});
 
   @override
-  Future<Either<Failure, AlertModel>> getAlertOverTimeRequest({int? id}) async {
+  Future<Either<Failure, AlertModel>> getAlertOverTimeRequest({int? id})
+  async {
     try {
       final result = await overTimeRequestRemoteDataSource
           .getAlertOverTimeRequest(id: id);
@@ -32,7 +33,8 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
   Future<Either<Failure, List<AlertModel>>> getAlertsOverTimeRequest({
     String? fromDate,
     String? toDate,
-  }) async {
+  })
+  async {
     try {
       final result = await overTimeRequestRemoteDataSource
           .getAlertsOverTimeRequest(fromDate: fromDate, toDate: toDate);
@@ -92,8 +94,9 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
     } catch (e) {
       return left(
         ServerFailure(
-          "${e.toString()}حدث خطأ في الخادم postOver  ",
-        ),      );
+          "${e.toString()}حدث خطأ في الخادم postOver   ",
+        ),
+      );
     }
   }
 
