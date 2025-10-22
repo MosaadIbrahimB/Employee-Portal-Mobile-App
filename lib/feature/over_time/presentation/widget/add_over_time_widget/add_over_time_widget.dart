@@ -114,7 +114,7 @@ class AddOverTimeWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   SizedBox(
-                    height: context.height * .40,
+                    // height: context.height * .40,
                     child: CustomListAlertsOverTimeWidget(),
                   ),
                   SizedBox(height: 16.h),
@@ -124,6 +124,15 @@ class AddOverTimeWidget extends StatelessWidget {
                   SizedBox(height: 16.h),
                   CustomButtonWidget(
                     onTap: () {
+                      List<AlertModel>? alerts=  context
+                          .read<GetAlertsOverTimeCubit>()
+                          .state
+                          .listOverTimeSelected;
+                      if(alerts==null||alerts.isEmpty){
+                        context.showErrorDialog("يرجى اختيار تنبيه واحد على الاقل");
+                        return;
+                      }
+
                       RequestPostOverTimeModel  postOverTime= requestPostOverTime(context);
                       context
                           .read<PostOverTimeRequestCubit>()

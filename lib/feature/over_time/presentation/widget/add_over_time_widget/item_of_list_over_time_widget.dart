@@ -2,6 +2,7 @@ import '../../../../../core/utils/import_file.dart';
 import '../../../../request/presentation/control/tab_switcher/tab_switcher_cubit.dart';
 import '../../../data/model/alert_model.dart';
 import '../../control/get_alerts_over_time/get_alerts_over_time_cubit.dart';
+import 'convert_hijri_to_gregorian.dart';
 
 class ItemOfListOverTimeWidget extends StatelessWidget {
   const ItemOfListOverTimeWidget({super.key, required this.model,required this.isSelected});
@@ -60,7 +61,7 @@ class ItemOfListOverTimeWidget extends StatelessWidget {
                     Icon(Icons.calendar_today_outlined, size: 16.r),
                     SizedBox(width: 8.w),
                     Text(
-                      model.date.toString().substring(0,10)??"تاريخ تقديم الطلب  :غير متاح",
+                      hijriToGregorian()??"تاريخ تقديم الطلب  :غير متاح",
 
                       style: context.text.titleSmall, // Color(0xff3D4966)
                     ),
@@ -90,10 +91,13 @@ class ItemOfListOverTimeWidget extends StatelessWidget {
 
               ],
             ),
-
           ],
         ),
       ),
     );
+  }
+String  hijriToGregorian(){
+    String hijriDateString = model.date ?? "";
+   return convertHijriToGregorian(hijriDateString);
   }
 }

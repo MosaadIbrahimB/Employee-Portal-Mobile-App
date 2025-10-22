@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:employee_portal_mobile_app/core/error/error_model.dart';
 import 'exceptions.dart';
 Exception handleDioException(DioException dioError) {

@@ -91,8 +91,9 @@ class OverTimeRepositoryImpl extends OverTimeRepository {
       return right(result);
     } catch (e) {
       return left(
-        ServerFailure(e.toString()),
-      );
+        ServerFailure(
+          "${e.toString()}حدث خطأ في الخادم postOver  ",
+        ),      );
     }
   }
 

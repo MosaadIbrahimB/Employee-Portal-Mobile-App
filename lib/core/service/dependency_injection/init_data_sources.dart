@@ -21,11 +21,6 @@ void initDataSources() {
   );
 
 
-  // sl.registerLazySingleton<RequestRemoteDataSource>(
-  //       () => RequestRemoteImplDio(apiService: sl<ApiService>(instanceName: "mohr")),
-  // );
-
-
   sl.registerLazySingleton<FinancialRequestRemoteDataSource>(
         () => FinancialRequestRemoteDataSourceImpl(apiService: sl<DioConsumer>(instanceName: "mohr")),
   );
@@ -43,7 +38,7 @@ void initDataSources() {
   );
 
   sl.registerLazySingleton<OverTimeRequestRemoteDataSource>(
-        () => OverTimeRequestRemoteDataSourceImpl(apiService: sl<DioConsumer>(instanceName: "mohr")),
+        () => OverTimeRequestRemoteDataSourceImpl(apiService: sl<DioConsumer>(instanceName: "main")),
   );
 
   sl.registerLazySingleton<LoanRemoteDataSource>(

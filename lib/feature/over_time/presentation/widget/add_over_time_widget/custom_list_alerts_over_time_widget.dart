@@ -8,47 +8,37 @@ class CustomListAlertsOverTimeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   BlocBuilder<GetAlertsOverTimeCubit, GetAlertsOverTimeState>(
+    return BlocBuilder<GetAlertsOverTimeCubit, GetAlertsOverTimeState>(
       builder: (context, state) {
-        if(state.isLoading==true){
+        if (state.isLoading == true) {
           return Center(child: CircularProgressIndicator());
         }
-        if (state.errorMessage!=null) {
+        if (state.errorMessage != null) {
           return SizedBox(
             height: 50.h,
-            child: Center(
-              child: Text(
-                state.errorMessage??"حدث خطأ ما",
-              ),
-            ),
+            child: Center(child: Text(state.errorMessage ?? "حدث خطأ ما")),
           );
         }
         if (state.response == null || state.response!.isEmpty) {
           return SizedBox(
             height: 50.h,
-            child: Center(
-              child: Text(
-                "لا توجد طلبات ",
-              ),
-            ),
+            child: Center(child: Text("لا توجد طلبات ")),
           );
         }
-        final response=state.response;
+        final response = state.response;
 
-
-
-        if(response!=null&&response.isNotEmpty){
-          return SizedBox(
-            height: context.height,
-            child: ListView.builder(
-              itemCount: response.length,
-              itemBuilder: (context, index) {
-                final alert = response[index];
-                final isSelected = state.listOverTimeSelected?.contains(alert) ?? false;
-
-                return ItemOfListOverTimeWidget(model: alert,isSelected: isSelected,);
-              }
-                ),
+        if (response != null && response.isNotEmpty) {
+          return Column(
+            children:
+                response
+                    .map(
+                      (e) => ItemOfListOverTimeWidget(
+                        model: e,
+                        isSelected:
+                            state.listOverTimeSelected?.contains(e) ?? false,
+                      ),
+                    )
+                    .toList(),
           );
         }
         return SizedBox();
