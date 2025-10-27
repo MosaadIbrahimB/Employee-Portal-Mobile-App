@@ -39,7 +39,7 @@ class AdministrativeRequestRepositoryImpl implements AdministrativeRequestReposi
     } catch (e) {
       return left(
         ServerFailure(
-          "${e.toString()}حدث خطأ في الخادم getEmployeeReviewedAdministrativeRequest  ",
+          "${e.toString()}حدث خطأ في الخادم getEmployeeAdministrativeRequest  ",
         ),
       );
     }
@@ -55,7 +55,7 @@ class AdministrativeRequestRepositoryImpl implements AdministrativeRequestReposi
     } catch (e) {
       return left(
         ServerFailure(
-          "${e.toString()}حدث خطأ في الخادم getReviewerFinancialRequest  ",
+          "${e.toString()}حدث خطأ في الخادم getReviewerAdministrativeRequest  ",
         ),
       );
     }

@@ -21,25 +21,25 @@ class EndPoint {
   static const String getRequestAdministrative =
       "/Api/Requests/GetRequestTypes?requestType=5";
   //Financial
-  static const String getEmployeeReviewedFinancialRequest =
+  static const String getEmployeeFinancialTrue =
       "/api/Financial/Requests/Employee/true";
-  static const String getEmployeePendingFinancialRequests =
+  static const String getEmployeeFinancialFalse =
       "/api/Financial/Requests/Employee/false";
 
-  static const String getReviewerReviewedFinancialRequests =
+  static const String getReviewerFinancialTrue =
       "/api/Financial/Requests/Reviewer/true";
-  static const String getReviewerPendingFinancialRequests =
+  static const String getReviewerFinancialFalse =
       "/api/Financial/Requests/Reviewer/false";
 
   //Administrative
-  static const String getEmployeeReviewedAdministrativeRequest =
+  static const String getEmployeeAdminTrue =
       "/api/Administrative/Requests/Employee/true";
-  static const String getEmployeePendingAdministrativeRequest =
+  static const String getEmployeeAdminFalse =
       "/api/Administrative/Requests/Employee/false";
 
-  static const String getReviewerReviewedAdministrativeRequest =
+  static const String getReviewerAdminTrue =
       "/api/Administrative/Requests/Reviewer/true";
-  static const String getReviewerPendingAdministrativeRequest =
+  static const String getReviewerAdminFalse =
       "/api/Administrative/Requests/Reviewer/false";
   static const String postRequest = "/Api/Requests";
   //mission

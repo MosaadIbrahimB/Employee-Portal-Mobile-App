@@ -39,7 +39,7 @@ class FinancialRequestRepositoryImpl implements FinancialRequestRepository {
     } catch (e) {
       return left(
         ServerFailure(
-          "${e.toString()}حدث خطأ في الخادم getEmployeeReviewedAdministrativeRequest  ",
+          "${e.toString()}حدث خطأ في الخادم getEmployeeFinancialRequest  ",
         ),
       );
     }

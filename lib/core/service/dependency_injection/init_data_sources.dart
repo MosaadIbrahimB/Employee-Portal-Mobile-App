@@ -17,7 +17,7 @@ import 'depend_inject.dart';
 
 void initDataSources() {
   sl.registerLazySingleton<VacationRemoteDataSource>(
-        () => VacationRemoteImplDio(apiService: sl<DioConsumer>(instanceName: "main")),
+        () => VacationRemoteImplDio(apiService: sl<DioConsumer>(instanceName: "mohr")),
   );
 
 

@@ -45,7 +45,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
   getEmployeeFinancialRequest()
   async {
     final responseReviewed = await apiService.get(
-      endPoint: EndPoint.getEmployeeReviewedFinancialRequest,
+      endPoint: EndPoint.getEmployeeFinancialTrue,
     );
     final listReviewed =
     responseReviewed.data
@@ -55,7 +55,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
         .toList();
 
     final responsePending = await apiService.get(
-      endPoint: EndPoint.getEmployeePendingFinancialRequests,
+      endPoint: EndPoint.getEmployeeFinancialFalse,
     );
     final listPending =
     responsePending.data
@@ -64,12 +64,11 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
     )
         .toList();
 
-    // return [
-    //   ...listReviewed,
-    //   ...listPending,
-    // ];
+    return [
+      ...listReviewed,
+      ...listPending,
+    ];
 
-    return ResponseFinancialModel.sampleFinancialRequests;
   }
 
   @override
@@ -77,7 +76,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
   getReviewerFinancialRequest()
   async {
     final responseReviewed = await apiService.get(
-      endPoint: EndPoint.getReviewerReviewedFinancialRequests,
+      endPoint: EndPoint.getReviewerFinancialTrue,
     );
     final listReviewed =
     responseReviewed.data
@@ -87,7 +86,7 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
         .toList();
 
     final responsePending = await apiService.get(
-      endPoint: EndPoint.getReviewerPendingFinancialRequests,
+      endPoint: EndPoint.getReviewerFinancialFalse,
     );
     final listPending =
     responsePending.data
@@ -96,12 +95,11 @@ class FinancialRequestRemoteDataSourceImpl implements FinancialRequestRemoteData
     )
         .toList();
 
-    // return [
-    //   ...listReviewed,
-    //   ...listPending,
-    // ];
+    return [
+      ...listReviewed,
+      ...listPending,
+    ];
 
-    return ResponseFinancialModel.sampleFinancialRequests;
   }
 
 }

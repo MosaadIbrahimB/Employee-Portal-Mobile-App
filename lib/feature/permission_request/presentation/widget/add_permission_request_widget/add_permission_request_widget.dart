@@ -13,6 +13,7 @@ import '../../../../request/presentation/widget/add_document_button_widget.dart'
 import '../../../../request/presentation/widget/app_bar_request_widget.dart';
 import '../../../../request/presentation/widget/list_reviewer_widget.dart';
 import '../../../../request/presentation/widget/notes_input_field.dart';
+import '../../../../vacation/data/model/default_reviewer/default_reviewer_model.dart';
 import '../../../../vacation/data/model/post_vacation/post_vacation_request_model.dart';
 import '../../../../vacation/presentation/control/default_reviewer/default_reviewer_cubit.dart';
 import '../../../../vacation/presentation/widget/vacation_request/reviewer_widget.dart';
@@ -178,6 +179,16 @@ class AddPerMissionRequestWidget extends StatelessWidget {
                         );
                         return;
                       }
+                      List<DefaultReviewerModel>   reviewers=
+                      context.read<DefaultReviewerCubit>().state.listSelectedReviewers;
+
+                      if (reviewers.isEmpty) {
+                        context.showErrorDialog(
+                          "الرجاء اختيار المراجعين للطلب",
+                        );
+                        return;
+                      }
+
                       context
                           .read<PostPerMissionRequestCubit>()
                           .postPreMissionRequest(
